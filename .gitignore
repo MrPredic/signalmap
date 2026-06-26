@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# Artifacts & data (regenerable)
+artifacts/
+data/
+*.pt
+*.parquet
+
+# Rust
+firmware/target/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
