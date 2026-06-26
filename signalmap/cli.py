@@ -72,6 +72,11 @@ def cmd_benchmark(args):
     run(args.dataset, args.epochs, args.anomaly_label)
 
 
+def cmd_ingest(args):
+    from .ingest import ingest
+    ingest(args.path, args.label, args.out, args.sr, args.column, args.sensor_class)
+
+
 def main() -> None:
     p = argparse.ArgumentParser(prog="signalmap")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -111,6 +116,15 @@ def main() -> None:
     b.add_argument("--epochs", type=int, default=40)
     b.add_argument("--anomaly-label", default="ANOMALY")
     b.set_defaults(func=cmd_benchmark)
+
+    g = sub.add_parser("ingest-file", help="convert a WAV/CSV/NPY recording into frames")
+    g.add_argument("path")
+    g.add_argument("--label", required=True)
+    g.add_argument("--out", default="data/real.parquet")
+    g.add_argument("--sr", type=int, default=16000)
+    g.add_argument("--column", type=int, default=0)
+    g.add_argument("--sensor-class", type=int, default=0)
+    g.set_defaults(func=cmd_ingest)
 
     args = p.parse_args()
     args.func(args)

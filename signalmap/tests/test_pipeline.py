@@ -101,6 +101,35 @@ def test_roc_auc_matches_known_values():
     assert abs(roc_auc(s3, y3) - 0.5) < 1e-9
 
 
+def test_ingest_wav_roundtrip(tmp_path):
+    import wave
+
+    from signalmap.frame import decode
+    from signalmap.ingest import ingest
+    from signalmap.sources import ReplaySource
+
+    wav = tmp_path / "tone.wav"
+    sr = 16000
+    t = np.arange(sr) / sr  # 1 second -> ~31 frames of 512
+    sig = (3000 * np.sin(2 * np.pi * 440 * t)).astype("<i2")
+    with wave.open(str(wav), "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(sr)
+        w.writeframes(sig.tobytes())
+
+    out = tmp_path / "real.parquet"
+    n = ingest(str(wav), "tone", str(out), sr=sr, column=0, sensor_class=3)
+    assert n == sr // 512
+
+    frames = list(ReplaySource(str(out)).frames())
+    assert len(frames) == n
+    f0 = frames[0]
+    assert not f0.is_spectrum and f0.sr_hz == sr and f0.sensor_class == 3
+    assert f0.payload.dtype == np.int16 and len(f0.payload) == 512
+    assert np.max(np.abs(f0.payload)) > 1000  # real signal energy preserved
+
+
 def test_model_embed_shapes():
     m = SpectralAutoencoder(n_bins=256, latent_dim=32)
     import torch
