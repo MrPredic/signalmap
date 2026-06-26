@@ -67,6 +67,11 @@ def cmd_universal(_args):
     u()
 
 
+def cmd_benchmark(args):
+    from .benchmark import run
+    run(args.dataset, args.epochs, args.anomaly_label)
+
+
 def main() -> None:
     p = argparse.ArgumentParser(prog="signalmap")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -100,6 +105,12 @@ def main() -> None:
     m.set_defaults(func=cmd_map)
 
     sub.add_parser("universal", help="cross-domain platform proof").set_defaults(func=cmd_universal)
+
+    b = sub.add_parser("benchmark", help="ROC-AUC anomaly benchmark (synthetic or real)")
+    b.add_argument("--dataset", help="Parquet of raw frames (default: synthetic)")
+    b.add_argument("--epochs", type=int, default=40)
+    b.add_argument("--anomaly-label", default="ANOMALY")
+    b.set_defaults(func=cmd_benchmark)
 
     args = p.parse_args()
     args.func(args)
