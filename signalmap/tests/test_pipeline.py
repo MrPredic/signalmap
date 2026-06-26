@@ -83,6 +83,24 @@ def test_dsp_preserves_energy_difference():
     assert fl.energy_rms > 10 * fq.energy_rms
 
 
+def test_roc_auc_matches_known_values():
+    from signalmap.benchmark import roc_auc
+    # perfect separation
+    s = np.array([0.1, 0.2, 0.8, 0.9])
+    y = np.array([0, 0, 1, 1])
+    assert roc_auc(s, y) == 1.0
+    # inverted = 0.0
+    assert roc_auc(-s, y) == 0.0
+    # partial overlap = 0.75
+    s2 = np.array([0.1, 0.2, 0.3, 0.4])
+    y2 = np.array([0, 1, 0, 1])
+    assert abs(roc_auc(s2, y2) - 0.75) < 1e-9
+    # ties across classes = 0.5
+    s3 = np.array([0.5, 0.5, 0.5, 0.5])
+    y3 = np.array([0, 1, 0, 1])
+    assert abs(roc_auc(s3, y3) - 0.5) < 1e-9
+
+
 def test_model_embed_shapes():
     m = SpectralAutoencoder(n_bins=256, latent_dim=32)
     import torch
