@@ -41,3 +41,4 @@ packages = ["signalmap", "sensors"]
 
 [tool.pytest.ini_options]
 testpaths = ["signalmap/tests"]
+pythonpath = ["."]
