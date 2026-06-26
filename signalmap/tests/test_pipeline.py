@@ -142,6 +142,37 @@ def test_benchmark_detects_synthetic_fault(tmp_path):
     assert res["auc_recon"] > 0.8
 
 
+def test_mutual_information_independent_vs_dependent():
+    from signalmap.coupling import mutual_information
+    rng = np.random.default_rng(0)
+    x = rng.standard_normal(4000)
+    indep = rng.standard_normal(4000)
+    dep = np.tanh(x) + 0.05 * rng.standard_normal(4000)  # nonlinear dependence
+    assert mutual_information(x, indep) < 0.05
+    assert mutual_information(x, dep) > 0.3
+
+
+def test_partial_correlation_removes_confound():
+    from signalmap.coupling import _safe_corr, partial_correlation
+    rng = np.random.default_rng(1)
+    z = rng.standard_normal(4000)
+    x = z + 0.3 * rng.standard_normal(4000)   # both driven by z, not each other
+    y = z + 0.3 * rng.standard_normal(4000)
+    assert _safe_corr(x, y) > 0.7              # looks coupled...
+    assert abs(partial_correlation(x, y, z)) < 0.1   # ...but vanishes given z
+
+
+def test_discover_keeps_real_coupling_rejects_confound():
+    """Headline rigor test: the apparatus must NOT lie."""
+    from signalmap.discover import evaluate
+    v = evaluate(seed=0)
+    assert v["true_coupling_found"], "missed the genuine heat->acoustic coupling"
+    assert v["confound_rejected"], "fell for the temp-driven confound"
+    # the confounded pair looks coupled raw, but collapses after confound removal
+    assert v["confound_raw_corr"] > 0.4
+    assert v["confound_adj_corr"] < 0.15
+
+
 def test_model_embed_shapes():
     m = SpectralAutoencoder(n_bins=256, latent_dim=32)
     import torch
