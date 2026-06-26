@@ -132,6 +132,49 @@ def anomaly(rng: np.random.Generator) -> np.ndarray:
     return _i16(sig)
 
 
+def build_pdm_benchmark(out: str, normal: int = 400, faults: int = 40,
+                        seed: int = 11) -> int:
+    """A realistic single-regime predictive-maintenance benchmark: one healthy
+    machine vibration regime ('normal') vs. a bearing-like fault signature
+    (periodic decaying impulses + harmonics). Unlike the 8-domain universal set,
+    'normal' here is homogeneous, so reconstruction error is a meaningful signal
+    — the proper sanity check that mirrors real CWRU data."""
+    import time
+
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+
+    rng = np.random.default_rng(seed)
+    sr = 12000
+    t = np.arange(N) / sr
+    labels, srs, ts, blobs = [], [], [], []
+
+    def healthy():
+        f = 30 * (1 + rng.uniform(-0.03, 0.03))
+        a = rng.uniform(250, 350)
+        sig = a * np.sin(2 * np.pi * f * t) + 0.3 * a * np.sin(2 * np.pi * 3 * f * t)
+        return sig + rng.standard_normal(N) * 25
+
+    def faulty():
+        sig = healthy()
+        bpfo = rng.uniform(100, 140)                 # bearing defect frequency
+        period = max(int(sr / bpfo), 1)
+        for k in range(0, N, period):
+            env = np.exp(-(np.arange(N) - k).clip(0) / 25.0)
+            sig += rng.uniform(150, 280) * env * np.sin(2 * np.pi * 2000 * t)
+        return sig
+
+    for i in range(normal + faults):
+        fault = i >= normal
+        s = _i16(faulty() if fault else healthy())
+        labels.append("ANOMALY_fault" if fault else "normal")
+        srs.append(sr); ts.append(int(time.time() * 1e6)); blobs.append(s.tobytes())
+
+    pq.write_table(pa.table({"label": labels, "sensor_class": [1] * len(labels),
+                             "sr_hz": srs, "ts_us": ts, "samples": blobs}), out)
+    return normal + faults
+
+
 def build_dataset(out: str, per_class: int = 60, anomalies: int = 8, seed: int = 7) -> int:
     """Write a heterogeneous multi-domain Parquet dataset (raw frames +
     sensor_class metadata + label). Returns row count."""

@@ -130,6 +130,18 @@ def test_ingest_wav_roundtrip(tmp_path):
     assert np.max(np.abs(f0.payload)) > 1000  # real signal energy preserved
 
 
+def test_benchmark_detects_synthetic_fault(tmp_path):
+    """The pipeline must separate a homogeneous-normal vs fault set unsupervised."""
+    from signalmap.benchmark import run
+    from signalmap.synth import build_pdm_benchmark
+
+    ds = tmp_path / "pdm.parquet"
+    build_pdm_benchmark(str(ds), normal=120, faults=20, seed=3)
+    res = run(str(ds), epochs=15, anomaly_label="ANOMALY")
+    assert res["auc"] > 0.9
+    assert res["auc_recon"] > 0.8
+
+
 def test_model_embed_shapes():
     m = SpectralAutoencoder(n_bins=256, latent_dim=32)
     import torch

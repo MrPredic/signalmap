@@ -45,6 +45,15 @@ def roc_auc(scores: np.ndarray, labels: np.ndarray) -> float:
     return float((sum_pos - n_pos * (n_pos + 1) / 2.0) / (n_pos * n_neg))
 
 
+def _pct_rank(a: np.ndarray) -> np.ndarray:
+    """Percentile rank in [0,1]; higher value -> higher rank. Tie-robust."""
+    a = np.asarray(a, dtype=float)
+    order = np.argsort(a, kind="mergesort")
+    r = np.empty(len(a), dtype=float)
+    r[order] = np.arange(len(a))
+    return r / max(len(a) - 1, 1)
+
+
 def _features(blobs, srs):
     return np.stack([
         raw_to_features(np.frombuffer(b, dtype="<i2").astype(np.float32), sr, N_BINS).mag
@@ -63,9 +72,9 @@ def run(dataset: str | None, epochs: int, anomaly_label: str, seed: int = 7) -> 
     import pyarrow.parquet as pq
 
     if dataset is None:
-        from .synth import build_dataset
+        from .synth import build_pdm_benchmark
         dataset = "data/_benchmark.parquet"
-        build_dataset(dataset, per_class=60, anomalies=8, seed=seed)
+        build_pdm_benchmark(dataset, normal=400, faults=40, seed=seed)
 
     t = pq.read_table(dataset)
     labels = t.column("label").to_pylist()
@@ -95,30 +104,29 @@ def run(dataset: str | None, epochs: int, anomaly_label: str, seed: int = 7) -> 
     net.eval()
 
     with torch.no_grad():
-        z, _ = net.embed(torch.from_numpy(feats).float())
-    vecs = z.numpy()
+        _z, err = net.embed(torch.from_numpy(feats).float())
+    recon = err.numpy()  # reconstruction error = unseen-shape novelty (robust)
 
-    # latent novelty = cosine distance to the known-data manifold
-    vn = vecs / (np.linalg.norm(vecs, axis=1, keepdims=True) + 1e-9)
-    ref = vn[~is_anom]
-    sim = vn @ ref.T
-    sim[sim > 0.99999] = -1.0
-    novelty = 1.0 - np.sort(sim, axis=1)[:, -8:].mean(axis=1)
+    y = is_anom.astype(int)
+    auc_recon = roc_auc(recon, y)
+    auc_energy = roc_auc(energy, y)
 
-    def z_(a):
-        return (a - a.mean()) / (a.std() + 1e-9)
-
-    scores = z_(novelty) + z_(energy)
-    auc = roc_auc(scores, is_anom.astype(int))
+    # Robust combination: average of percentile ranks of the two sound signals
+    # (rank-based => immune to the heavy tails that wreck a z-score sum).
+    score = _pct_rank(recon) + _pct_rank(energy)
+    auc = roc_auc(score, y)
     k = int(is_anom.sum())
-    topk = set(np.argsort(scores)[-k:].tolist())
+    topk = set(np.argsort(score)[-k:].tolist())
     p_at_k = sum(is_anom[i] for i in topk) / k
 
     print(f"benchmark on {dataset}")
     print(f"  rows={len(labels)}  normal={int((~is_anom).sum())}  anomalies={k}")
-    print(f"  ROC-AUC          = {auc:.3f}   (0.5=random, 1.0=perfect)")
+    print(f"  AUC recon-error  = {auc_recon:.3f}")
+    print(f"  AUC raw-energy   = {auc_energy:.3f}")
+    print(f"  AUC combined     = {auc:.3f}   (0.5=random, 1.0=perfect)")
     print(f"  precision@{k:<3d}     = {p_at_k:.3f}")
-    return {"auc": auc, "p_at_k": p_at_k, "n": len(labels), "anomalies": k}
+    return {"auc": auc, "auc_recon": auc_recon, "auc_energy": auc_energy,
+            "p_at_k": p_at_k, "n": len(labels), "anomalies": k}
 
 
 def main() -> None:
