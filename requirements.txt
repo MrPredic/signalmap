@@ -1,0 +1,23 @@
+# Core pipeline (vertical slice runs with just these)
+numpy>=1.26
+torch>=2.2
+
+# Ingestion
+aiomqtt>=2.0
+paho-mqtt>=2.0      # mic stream mode
+
+# Sensors (laptop mic = free ADC node)
+sounddevice>=0.4
+pyarrow>=15.0       # dataset storage / replay
+
+# API
+fastapi>=0.110
+uvicorn>=0.29
+
+# Optional sinks / viz (lazy-imported)
+qdrant-client>=1.9   # vector DB
+umap-learn>=0.5      # 2D latent map
+hdbscan>=0.8         # density clustering of the landscape
+
+# Dev
+pytest>=8.0

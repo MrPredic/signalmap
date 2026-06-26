@@ -1,0 +1,28 @@
+# SignalMap infra: broker + time-series DB + vector DB.
+# `docker compose up -d` then run `python -m backend.ingestor --broker localhost`.
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./infra/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  questdb:
+    image: questdb/questdb:8.2.1
+    ports:
+      - "9000:9000"   # web console + REST
+      - "9009:9009"   # InfluxDB line protocol (ILP) ingest
+    volumes:
+      - questdb-data:/var/lib/questdb
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.1
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant-data:/qdrant/storage
+
+volumes:
+  questdb-data:
+  qdrant-data:
