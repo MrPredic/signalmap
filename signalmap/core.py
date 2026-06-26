@@ -105,9 +105,13 @@ class Pipeline:
                     continue
                 feat = self.transform(frame)
                 emb, score = self.model.process(feat)
+                # Raw energy is SIGNAL, not nuisance — carry it through instead
+                # of discarding it (a Transform may expose it as `last_energy`).
+                energy = getattr(self.transform, "last_energy", None)
                 res = Result(frame, feat, emb, score,
                              meta={"node_id": frame.node_id, "seq": frame.seq,
-                                   "sensor_class": frame.sensor_class})
+                                   "sensor_class": frame.sensor_class,
+                                   "energy_rms": float(energy) if energy is not None else None})
                 for s in self.sinks:
                     s.emit(res)
                 n += 1
