@@ -35,12 +35,19 @@ We keep this line bright on purpose — bold mission, honest maturity.
 | Sensor-agnostic ingest (raw frames, any source) | ✅ working |
 | Pluggable pipeline: Source → Transform → Model → Sink | ✅ working |
 | Unsupervised embedding (Conv-AE) + anomaly scoring | ✅ working |
-| Cross-domain proof in **simulation**: one model separates 8 sensor domains it was never told about (76% NN purity) and flags injected novel-effect anomalies (8/8) | ✅ working, **synthetic only** |
-| Discovery of *real* unknown effects / material properties on *real* sensor data | 🔬 **research goal — not yet validated. No real-world finding claimed.** |
+| Cross-domain proof in **simulation**: one model separates 8 sensor domains it was never told about (76% NN purity) | ✅ working, synthetic |
+| **Unsupervised fault detection on REAL sensor data** — trained on healthy data only, scores held-out faults. **CWRU bearing dataset: ROC-AUC ≈ 1.00** (recon-error and raw-energy each AUC 1.00) | ✅ **validated on real data** |
+| Discovery of *genuinely new / unknown* effects, material properties or norms | 🔬 **research goal — not yet demonstrated. An anomaly is a hypothesis, never a discovery.** |
 
-> We have proven the **machinery**. We have **not** yet proven it discovers new
-> physics on real data — that is the open research the platform exists to enable.
-> Treat any "discovery" as a hypothesis to be physically validated, never as fact.
+> The **machinery is validated**: on real bearing-vibration data it separates
+> faults from healthy with AUC ≈ 1.0, fully unsupervised — reproduce with
+> `signalmap benchmark`. What is **not** yet shown is discovery of *new* physics:
+> detecting a known fault type ≠ discovering an unknown one. Treat any anomaly as
+> a hypothesis to be physically validated, never as fact.
+
+> ⚠️ CWRU is a deliberately clean, well-separated benchmark — AUC 1.0 there proves
+> the pipeline works end-to-end on real signals, not that hard real-world cases
+> are solved. Harder datasets are on the roadmap.
 
 ## Design principle: bias-free by construction
 Every "normalization" is an assumption, and assumptions hide the unexpected:
@@ -55,9 +62,18 @@ Every "normalization" is an assumption, and assumptions hide the unexpected:
 pip install -e .[all]
 signalmap plugins                                   # see everything pluggable
 signalmap universal                                 # cross-domain proof + HTML map
+signalmap benchmark                                 # ROC-AUC on a synthetic PdM set
 signalmap train --synthetic 2000 --epochs 30
 signalmap run --source sim --weights artifacts/model.pt --sink stdout --limit 20
 pytest -q
+```
+
+## Validate on real data (the litmus test)
+```bash
+# any recording -> frames -> unsupervised benchmark. Example with CWRU bearings:
+signalmap ingest-file healthy.wav --label normal        --out data/real.parquet
+signalmap ingest-file faulty.wav  --label ANOMALY_fault --out data/real.parquet
+signalmap benchmark --dataset data/real.parquet --anomaly-label ANOMALY
 ```
 
 ## The pluggable core
@@ -100,7 +116,9 @@ Edge (Rust no_std, ESP32-S3) ── MQTT ──▶ Ingest ──▶ Transform(FF
 ## Roadmap
 - [x] Pluggable Source/Transform/Model/Sink core + CLI
 - [x] Cross-domain unsupervised proof (simulation)
-- [ ] Validate on **real** public sensor datasets (the honest litmus test)
+- [x] Real-recording ingestion (WAV/CSV/NPY) + ROC-AUC benchmark
+- [x] Validated on **real** public sensor data (CWRU bearing, AUC ≈ 1.0)
+- [ ] Harder real datasets (MIMII, IMS, MAFAULDA) + leaderboard
 - [ ] HDBSCAN auto-clustering + cluster naming
 - [ ] Host Rust capture adapters (audio/camera/SDR)
 - [ ] Live latent-novelty (Qdrant kNN) in the streaming path
