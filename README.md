@@ -113,8 +113,25 @@ Edge (Rust no_std, ESP32-S3) ── MQTT ──▶ Ingest ──▶ Transform(FF
                                                           FastAPI /map /anomalies
 ```
 
+## Cross-modal discovery (experimental, honest)
+Deploy many *different* sensors on one phenomenon and ask: which modalities are
+**genuinely coupled**, versus merely correlated through a shared driver (time,
+temperature, mains)? Naive correlation lies — almost everything correlates. We
+remove known confounds (partial correlation) and keep only couplings that
+*survive*, with a permutation p-value.
+```bash
+signalmap discover --naive            # the trap: flags confounds as "couplings"
+signalmap discover --confound temp    # honest: confounded pairs collapse, real coupling survives
+```
+On the built-in ground-truth set, a temp-driven `vibration–em` pair (raw corr
+0.82) is correctly **rejected** after conditioning on temperature, while a real
+`heat→acoustic` coupling survives. A survivor is a **hypothesis for controlled
+validation**, never a proven new effect — the instrument generates candidates,
+nature certifies them.
+
 ## Roadmap
 - [x] Pluggable Source/Transform/Model/Sink core + CLI
+- [x] Cross-modal coupling discovery with confound ablation (`discover`)
 - [x] Cross-domain unsupervised proof (simulation)
 - [x] Real-recording ingestion (WAV/CSV/NPY) + ROC-AUC benchmark
 - [x] Validated on **real** public sensor data (CWRU bearing, AUC ≈ 1.0)

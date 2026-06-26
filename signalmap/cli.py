@@ -77,6 +77,11 @@ def cmd_ingest(args):
     ingest(args.path, args.label, args.out, args.sr, args.column, args.sensor_class)
 
 
+def cmd_discover(args):
+    from .discover import run
+    run(confounds=args.confound, naive=args.naive, n=args.n)
+
+
 def main() -> None:
     p = argparse.ArgumentParser(prog="signalmap")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -125,6 +130,12 @@ def main() -> None:
     g.add_argument("--column", type=int, default=0)
     g.add_argument("--sensor-class", type=int, default=0)
     g.set_defaults(func=cmd_ingest)
+
+    d = sub.add_parser("discover", help="cross-modal coupling discovery (confound-adjusted)")
+    d.add_argument("--confound", action="append", help="channel(s) to treat as confound")
+    d.add_argument("--naive", action="store_true", help="no confound removal (shows the trap)")
+    d.add_argument("--n", type=int, default=2000)
+    d.set_defaults(func=cmd_discover)
 
     args = p.parse_args()
     args.func(args)
