@@ -15,8 +15,10 @@ class StdoutSink:
     def emit(self, r: Result) -> None:
         self.n += 1
         if self.n % self.every == 0:
+            e = r.meta.get("energy_rms")
+            etxt = f" e_rms={e:8.1f}" if e is not None else ""
             print(f"  node={r.meta['node_id']} seq={r.meta['seq']:>5} "
-                  f"cls={r.meta['sensor_class']:>3} score={r.score:.5f}")
+                  f"cls={r.meta['sensor_class']:>3} score={r.score:.5f}{etxt}")
 
     def close(self) -> None:
         print(f"  [stdout] {self.n} frames processed")
@@ -34,6 +36,7 @@ class ParquetSink:
         self.rows.append({
             "node_id": r.meta["node_id"], "seq": r.meta["seq"],
             "sensor_class": r.meta["sensor_class"], "score": r.score,
+            "energy_rms": r.meta.get("energy_rms") or 0.0,
             "embedding": np.asarray(r.embedding, dtype=np.float32).tobytes(),
         })
 
@@ -55,7 +58,8 @@ class QuestDBSink:
 
     def emit(self, r: Result) -> None:
         self.w.write_measurement(r.meta["node_id"], r.frame.ts_us,
-                                 energy_rms=0.0, recon_error=r.score, anomaly_score=r.score)
+                                 energy_rms=r.meta.get("energy_rms") or 0.0,
+                                 recon_error=r.score, anomaly_score=r.score)
 
     def close(self) -> None:
         pass

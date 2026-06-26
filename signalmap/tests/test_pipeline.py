@@ -12,6 +12,32 @@ def _raw(node_id, seq, samples, sr=16000):
     return hdr + np.asarray(samples, dtype="<i2").tobytes()
 
 
+def test_pipeline_propagates_energy():
+    """Raw energy must survive end-to-end (it is signal, not nuisance)."""
+    from signalmap.core import Pipeline
+    from signalmap.models import AutoencoderModel
+    from signalmap.sources import SimulatorSource
+    from signalmap.transforms import FFTTransform
+
+    captured = []
+
+    class CaptureSink:
+        def emit(self, r):
+            captured.append(r)
+
+        def close(self):
+            pass
+
+    Pipeline(SimulatorSource(count=5, seed=1), FFTTransform(),
+             AutoencoderModel(), [CaptureSink()]).run()
+
+    assert len(captured) == 5
+    for r in captured:
+        assert r.meta["energy_rms"] is not None
+        assert r.meta["energy_rms"] >= 0.0
+    assert any(r.meta["energy_rms"] > 0 for r in captured)
+
+
 def test_frame_roundtrip():
     s = np.array([0, 100, -100, 2047, -2048], dtype=np.int16)
     f = decode(_raw(7, 3, s))
