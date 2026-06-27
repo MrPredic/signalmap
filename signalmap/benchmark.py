@@ -71,6 +71,11 @@ def _energy(blobs, srs):
 def run(dataset: str | None, epochs: int, anomaly_label: str, seed: int = 7) -> dict:
     import pyarrow.parquet as pq
 
+    # Determinism: model init + DataLoader shuffle both draw from torch's global
+    # RNG. Seeding makes the benchmark (and its CI test) reproducible.
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+
     if dataset is None:
         from .synth import build_pdm_benchmark
         dataset = "data/_benchmark.parquet"
