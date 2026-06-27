@@ -137,7 +137,7 @@ def test_benchmark_detects_synthetic_fault(tmp_path):
 
     ds = tmp_path / "pdm.parquet"
     build_pdm_benchmark(str(ds), normal=120, faults=20, seed=3)
-    res = run(str(ds), epochs=15, anomaly_label="ANOMALY")
+    res = run(str(ds), epochs=25, anomaly_label="ANOMALY")  # AE needs ~25 ep to converge here
     assert res["auc"] > 0.9
     assert res["auc_recon"] > 0.8
 
