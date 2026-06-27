@@ -173,6 +173,45 @@ def test_discover_keeps_real_coupling_rejects_confound():
     assert v["confound_adj_corr"] < 0.15
 
 
+def test_detector_alerts_on_fault_not_healthy(tmp_path):
+    """The product surface: fit on healthy, alert on faults, stay quiet on healthy."""
+    import pyarrow.parquet as pq
+
+    from signalmap.detector import Detector
+    from signalmap.dsp import raw_to_features
+    from signalmap.synth import build_pdm_benchmark
+
+    ds = tmp_path / "pdm.parquet"
+    build_pdm_benchmark(str(ds), normal=200, faults=40, seed=5)
+    t = pq.read_table(str(ds))
+    labels = t.column("label").to_pylist()
+    srs = t.column("sr_hz").to_pylist()
+    blobs = t.column("samples").to_pylist()
+
+    def feat(i):
+        f = raw_to_features(np.frombuffer(blobs[i], dtype="<i2").astype(np.float32), srs[i], 256)
+        return f.mag, f.energy_rms
+
+    healthy = [i for i, l in enumerate(labels) if l == "normal"]
+    fault = [i for i, l in enumerate(labels) if "ANOMALY" in l]
+
+    train = healthy[:150]
+    det = Detector.fit(np.stack([feat(i)[0] for i in train]),
+                       np.array([feat(i)[1] for i in train]),
+                       epochs=30, threshold=4.0, seed=0)
+
+    # save/load roundtrip must preserve behavior
+    p = tmp_path / "det.pt"
+    det.save(str(p))
+    det = Detector.load(str(p))
+
+    held_healthy = healthy[150:]
+    h_rate = sum(det.score(*feat(i)).alert for i in held_healthy) / len(held_healthy)
+    f_rate = sum(det.score(*feat(i)).alert for i in fault) / len(fault)
+    assert h_rate < 0.15, f"too many false alarms on healthy: {h_rate:.0%}"
+    assert f_rate > 0.8, f"missed faults: only {f_rate:.0%} caught"
+
+
 def test_model_embed_shapes():
     m = SpectralAutoencoder(n_bins=256, latent_dim=32)
     import torch

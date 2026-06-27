@@ -82,6 +82,19 @@ def cmd_discover(args):
     run(confounds=args.confound, naive=args.naive, n=args.n)
 
 
+def cmd_fit(args):
+    from .monitor import fit_from_dataset
+    fit_from_dataset(args.dataset, args.out, healthy_label=args.healthy_label,
+                     epochs=args.epochs, threshold=args.threshold)
+
+
+def cmd_monitor(args):
+    from .detector import Detector
+    from .monitor import run
+    det = Detector.load(args.detector)
+    run(det, _build_source(args).frames(), quiet=args.quiet)
+
+
 def main() -> None:
     p = argparse.ArgumentParser(prog="signalmap")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -136,6 +149,23 @@ def main() -> None:
     d.add_argument("--naive", action="store_true", help="no confound removal (shows the trap)")
     d.add_argument("--n", type=int, default=2000)
     d.set_defaults(func=cmd_discover)
+
+    f = sub.add_parser("fit", help="fit an anomaly detector on healthy data (no labels)")
+    f.add_argument("--dataset", required=True)
+    f.add_argument("--out", default="artifacts/detector.pt")
+    f.add_argument("--healthy-label", default="", help="substring selecting healthy rows (default: all)")
+    f.add_argument("--epochs", type=int, default=40)
+    f.add_argument("--threshold", type=float, default=4.0, help="alert z-score threshold")
+    f.set_defaults(func=cmd_fit)
+
+    mo = sub.add_parser("monitor", help="monitor a source with a fitted detector")
+    mo.add_argument("--detector", default="artifacts/detector.pt")
+    mo.add_argument("--source", default="replay")
+    mo.add_argument("--dataset")
+    mo.add_argument("--broker", default="localhost")
+    mo.add_argument("--count", type=int, default=200)
+    mo.add_argument("--quiet", action="store_true")
+    mo.set_defaults(func=cmd_monitor)
 
     args = p.parse_args()
     args.func(args)

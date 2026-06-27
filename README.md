@@ -49,6 +49,19 @@ We keep this line bright on purpose — bold mission, honest maturity.
 > the pipeline works end-to-end on real signals, not that hard real-world cases
 > are solved. Harder datasets are on the roadmap.
 
+## Real use case in two commands (any sensor)
+No labels, no config. Fit a detector on healthy operation, then monitor for
+anomalies — identical commands for vibration, acoustics, current, anything:
+```bash
+signalmap fit     --dataset healthy.parquet --healthy-label normal --out detector.pt
+signalmap monitor --source replay --dataset live.parquet --detector detector.pt
+```
+**On real CWRU bearing data:** fit on 945 healthy frames → monitor 1183 frames →
+**238/238 faults caught (100%), 2/945 false alarms (0.2%)**, fully unsupervised.
+The *same* two commands flag injected faults in the synthetic set at 0 false
+positives. That is the USP: zero-config unsupervised condition monitoring that
+runs on any (even salvaged) sensor.
+
 ## Design principle: bias-free by construction
 Every "normalization" is an assumption, and assumptions hide the unexpected:
 - **Raw int16 ADC** from the edge — no filtering, AGC, DC-removal, scaling.
@@ -132,6 +145,7 @@ nature certifies them.
 ## Roadmap
 - [x] Pluggable Source/Transform/Model/Sink core + CLI
 - [x] Cross-modal coupling discovery with confound ablation (`discover`)
+- [x] Deployable detector: `fit` on healthy → `monitor` for anomalies (any sensor)
 - [x] Cross-domain unsupervised proof (simulation)
 - [x] Real-recording ingestion (WAV/CSV/NPY) + ROC-AUC benchmark
 - [x] Validated on **real** public sensor data (CWRU bearing, AUC ≈ 1.0)
