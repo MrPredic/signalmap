@@ -62,6 +62,9 @@ The *same* two commands flag injected faults in the synthetic set at 0 false
 positives. That is the USP: zero-config unsupervised condition monitoring that
 runs on any (even salvaged) sensor.
 
+Reproduce the CWRU result yourself in one script, plus acoustic/electrical
+recipes: see [examples/](examples/).
+
 ## Design principle: bias-free by construction
 Every "normalization" is an assumption, and assumptions hide the unexpected:
 - **Raw int16 ADC** from the edge — no filtering, AGC, DC-removal, scaling.
