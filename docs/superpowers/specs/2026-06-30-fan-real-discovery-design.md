@@ -12,9 +12,22 @@ cross-modal coupling**, separates it **confound-controlled** from a spurious one
 surviving coupling **tracks a controlled intervention** while the spurious one collapses.
 
 **Claim boundary (non-negotiable):** what is demonstrated is an *unsupervised-discovered,
-intervention-validated, real coupling* — **not** "new physics" and **not** "new material law".
-This is the honest rung toward the vision (manufacture differentiated knowledge), captured on
-real data instead of self-generated synthetics. Anything stronger does not survive due diligence.
+intervention-validated, real latent quantity / coupling* — **not** "new physics" and **not**
+"new material law". This is the honest rung toward the vision (manufacture differentiated
+knowledge), captured on real data instead of self-generated synthetics. Anything stronger does
+not survive due diligence.
+
+**Why this experiment is more than a smoke test (moat framing, revised 2026-06-30):** the moat
+is **not** any single off-the-shelf algorithm (CCM is 2012, public — no moat). The moat is the
+**novel synthesis of discovery methods that make currently-unobservable quantities observable
+from cheap, noisy, heterogeneous multimodal sensors**, packaged as a usable engine, plus the
+proprietary data corpus and validated track record that being early lets us accumulate. Academia
+holds the pieces (SINDy, SciNet, Koopman, conservation-law discovery, deep-CCA) but all siloed,
+single-modality, clean-data, researcher-only. Nobody fuses them for noisy cheap-sensor streams +
+active intervention as OSS. Classical methods (correlation/anomaly/CCM) are accounting over
+*known* variables; the vision needs methods that recover the variables, laws, invariants and
+categories nature uses — which are in no label or norm. This experiment is the first testbed for
+one such method beyond classical, not a correlation demo.
 
 ## 2. Phenomenon
 
@@ -41,27 +54,41 @@ temperature/brightness simultaneously, so a naive correlation will flag confound
   ├─ optical    : webcam -> mean brightness/frame @ ~10 Hz
   └─ load/therm : CPU load % + CPU temp @ ~10 Hz
         v  multichannel.py (dropna-sync onto common time grid)
-[discover] coupling.py: mutual information + partial correlation (confound ablation)
-           + permutation p-value
-        v  edge hypotheses with p-value, raw vs. conditioned
+[prefilter] coupling.py: mutual information + partial correlation (confound ablation)
+            + permutation p-value  -> reject confounded pairs
+        v  surviving edge hypotheses
+[latent]   SciNet-style bottleneck autoencoder + deep-CCA across channels
+           -> recover a minimal shared latent (no label) ; predicted: latent ~ fan RPM
+        v  latent series + reconstruction skill
 [intervene] load_sweep.py: scripted load stages (idle -> burst -> idle ...) = ground truth
         v
-[validate] does an edge survive conditioning AND track the manipulation?
+[validate] does the latent track the manipulation (and decode to a physical proxy)
+           while confounded edges collapse?
 ```
+
+**Method order (decided 2026-06-30):** (1) latent-variable recovery (SciNet bottleneck +
+deep-CCA) is the first method-beyond-classical built here — most directly falsifiable (latent
+should align to fan RPM), lowest risk on real noise. (2) SINDy / Koopman (law/mode layer) next,
+own follow-up spec. (3) conservation-quantity discovery + active-intervention loop later. The
+classical `coupling.py` stays as the confound prefilter in front of the latent step.
 
 ## 4. Components (new, small, focused)
 
 All under `experiments/fan_real/`. The discovery core (`signalmap/coupling.py`,
-`signalmap/multichannel.py`, `signalmap/discover.py`) is reused **unchanged** — only capture
-and intervention are new.
+`signalmap/multichannel.py`, `signalmap/discover.py`) is reused **unchanged** as the confound
+prefilter — capture, intervention and the latent-recovery method are new.
 
 - `capture.py` — 3-channel synchronous capture, 0 €. Each channel degrades gracefully if its
   device is unavailable (mic-only / webcam-only still produce a partial run, logged honestly).
   Pure-stdlib + ffmpeg subprocess; numpy for feature reduction.
 - `load_sweep.py` — reproducible CPU-load driver in pure stdlib (worker processes, timed
   idle/burst stages). Emits a ground-truth stage log aligned to the capture clock.
-- `run_discovery.py` — orchestrates capture -> multichannel sync -> coupling discovery ->
-  report. Writes raw vs. conditioned edge table with permutation p-values.
+- `latent.py` — SciNet-style bottleneck autoencoder + deep-CCA across the synced channels
+  (torch, small, laptop-only). Recovers a minimal shared latent without labels; exposes the
+  latent series + reconstruction skill for validation against the load ground truth.
+- `run_discovery.py` — orchestrates capture -> multichannel sync -> coupling prefilter ->
+  latent recovery -> report. Writes raw vs. conditioned edge table (p-values) and the
+  latent-vs-ground-truth alignment.
 - `README.md` — **pre-registration** (predictions written before the run) + one-line repro command.
 
 ## 5. Validation Protocol (pre-registered, falsifiable)
@@ -70,12 +97,16 @@ and intervention are new.
    - acoustic <-> load expected to survive conditioning (fan tracks load — real, mechanical).
    - acoustic/optical <-> temp suspected confound (common cause = load); must collapse when
      conditioned on load.
+   - latent prediction: the recovered shared latent should align (high correlation) to a
+     physical proxy of fan RPM / load stage, *without* ever being given it.
    No post-hoc reinterpretation (no HARKing).
-2. **Run A:** load sweep on -> discover. Record raw and conditioned edges + p-values.
+2. **Run A:** load sweep on -> coupling prefilter + latent recovery. Record raw/conditioned
+   edges + p-values, and latent-vs-ground-truth alignment.
 3. **Run B (control interventions):**
-   - cover webcam -> any optical edge must die.
-   - hold load constant -> load-driven edges must collapse.
-4. **Success** = predicted structure is recovered AND interventions move edges as predicted.
+   - cover webcam -> any optical edge must die; latent must lose the optical contribution.
+   - hold load constant -> load-driven edges must collapse; latent variance must drop.
+4. **Success** = predicted structure recovered, interventions move edges as predicted, AND the
+   unsupervised latent tracks the controlled manipulation.
 
 ## 6. Honesty Clause (non-negotiable)
 
