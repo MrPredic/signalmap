@@ -21,3 +21,5 @@ firmware/target/
 .DS_Store
 .idea/
 .vscode/
+.venv-research/
+PARALLEL_PLAN.md
