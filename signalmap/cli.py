@@ -82,20 +82,50 @@ def cmd_discover(args):
     run(confounds=args.confound, naive=args.naive, n=args.n)
 
 
+def cmd_causal(args):
+    from .causal_discover import run, run_file
+    if args.csv:
+        run_file(args.csv, columns=args.column)
+    else:
+        run(n=args.n, seed=args.seed)
+
+
 def cmd_fit(args):
+    if args.spec:
+        if not args.bank:
+            raise SystemExit("fit --spec needs --bank (directory of healthy "
+                             "recordings, same layout as distill --bank)")
+        from .monitor import fit_spec_backend
+        fit_spec_backend(args.spec, args.bank, args.out)
+        return
+    if not args.dataset:
+        raise SystemExit("fit needs --dataset (parquet) or --spec + --bank")
     from .monitor import fit_from_dataset
     fit_from_dataset(args.dataset, args.out, healthy_label=args.healthy_label,
                      epochs=args.epochs, threshold=args.threshold)
 
 
 def cmd_monitor(args):
+    if args.bank:
+        from .monitor import monitor_spec_backend
+        monitor_spec_backend(args.detector, args.bank, quiet=args.quiet)
+        return
     from .detector import Detector
     from .monitor import run
     det = Detector.load(args.detector)
     run(det, _build_source(args).frames(), quiet=args.quiet)
 
 
-def main() -> None:
+def cmd_distill(args):
+    from .distill import run_cli
+    run_cli(args.bank, args.label_by, args.budget_c, args.out,
+            report_out=args.report, pattern=args.pattern, column=args.column,
+            n_perm=args.perms, trees=args.trees,
+            premium=tuple(args.premium.split(",")) if args.premium else (),
+            multichannel=args.multichannel, channel_axis=args.channel_axis)
+
+
+def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="signalmap")
     sub = p.add_subparsers(dest="cmd", required=True)
 
@@ -150,8 +180,19 @@ def main() -> None:
     d.add_argument("--n", type=int, default=2000)
     d.set_defaults(func=cmd_discover)
 
+    cz = sub.add_parser("causal", help="directed causal-graph discovery + root-cause (CCM/EDM)")
+    cz.add_argument("--csv", help="real recording (CSV/NPY); omit for synthetic demo")
+    cz.add_argument("--column", action="append", help="repeatable; select channels")
+    cz.add_argument("--n", type=int, default=1500)
+    cz.add_argument("--seed", type=int, default=0)
+    cz.set_defaults(func=cmd_causal)
+
     f = sub.add_parser("fit", help="fit an anomaly detector on healthy data (no labels)")
-    f.add_argument("--dataset", required=True)
+    f.add_argument("--dataset", help="parquet of healthy frames (spectral-AE backend)")
+    f.add_argument("--spec", help="distilled spec.json backend (from `signalmap "
+                                  "distill`); fit on --bank recordings instead "
+                                  "of --dataset, threshold self-calibrates")
+    f.add_argument("--bank", help="directory of healthy recordings (with --spec)")
     f.add_argument("--out", default="artifacts/detector.pt")
     f.add_argument("--healthy-label", default="", help="substring selecting healthy rows (default: all)")
     f.add_argument("--epochs", type=int, default=40)
@@ -162,12 +203,42 @@ def main() -> None:
     mo.add_argument("--detector", default="artifacts/detector.pt")
     mo.add_argument("--source", default="replay")
     mo.add_argument("--dataset")
+    mo.add_argument("--bank", help="score a directory of recordings offline "
+                                   "with a distilled detector.json")
     mo.add_argument("--broker", default="localhost")
     mo.add_argument("--count", type=int, default=200)
     mo.add_argument("--quiet", action="store_true")
     mo.set_defaults(func=cmd_monitor)
 
-    args = p.parse_args()
+    ds = sub.add_parser("distill", help="distill per-domain features with a capacity gate + receipt")
+    ds.add_argument("--bank", required=True, help="directory of recordings (one file per recording)")
+    ds.add_argument("--label-by", default="prefix", dest="label_by",
+                    help="labeling rule: prefix (before first _), stem, or parent dir")
+    ds.add_argument("--budget-c", type=int, default=50, dest="budget_c",
+                    help="capacity constant C: budget=min(len(grammar), C*n_recordings)")
+    ds.add_argument("--out", default="artifacts/spec.json")
+    ds.add_argument("--report", help="report .md path (default: <out>_report.md)")
+    ds.add_argument("--pattern", default="*", help="glob for recording files within --bank")
+    ds.add_argument("--column", type=int, default=0, help="CSV column index for the signal")
+    ds.add_argument("--perms", type=int, default=60, help="group-permutation count")
+    ds.add_argument("--trees", type=int, default=100)
+    ds.add_argument("--premium", default="",
+                    help="comma-separated premium families to challenge with "
+                         "(e.g. rqa,coherence); cost-receipted, spec-included "
+                         "only on a paired-CI-solid win")
+    ds.add_argument("--multichannel", action="store_true",
+                    help="recordings are multi-channel (.csv with a header of "
+                         "channel names, or 2-D .npy); base grammar sees "
+                         "channel 0, coherence-style families see all channels")
+    ds.add_argument("--channel-axis", type=int, default=None, dest="channel_axis",
+                    help=".npy axis holding the channels (default heuristic: "
+                         "the longer axis is time)")
+    ds.set_defaults(func=cmd_distill)
+    return p
+
+
+def main() -> None:
+    args = build_parser().parse_args()
     args.func(args)
 
 

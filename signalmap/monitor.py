@@ -45,6 +45,54 @@ def fit_from_dataset(dataset: str, out: str, healthy_label: str = "",
     return det
 
 
+def fit_spec_backend(spec_path: str, bank_path: str, out: str, pattern: str = "*",
+                     column: int = 0, channel_axis: int | None = None,
+                     envelope: float = 3.0):
+    """`signalmap fit --spec spec.json --bank healthy_dir/` — fit a
+    DistilledDetector on every window of the healthy recordings. The alert
+    threshold is calibrated from the healthy envelope (DistilledDetector.fit),
+    NOT the fixed z of the spectral path. Multi-channel specs load the bank
+    with the spec's channel layout automatically."""
+    from .distill import DistilledDetector, FeatureSpec, load_bank
+    spec = FeatureSpec.load(spec_path)
+    bank = load_bank(bank_path, label_by="stem", column=column, pattern=pattern,
+                     multichannel=bool(spec.channels), channel_axis=channel_axis)
+    det = DistilledDetector.fit(spec, bank.windows, envelope=envelope)
+    det.save(out)
+    print(f"fitted distilled detector on {len(bank.windows)} healthy windows "
+          f"from {bank.n_recordings} recording(s) "
+          f"(calibrated threshold {det.threshold:.3g}) -> {out}")
+    return det
+
+
+def monitor_spec_backend(det_path: str, bank_path: str, pattern: str = "*",
+                         column: int = 0, channel_axis: int | None = None,
+                         quiet: bool = False) -> dict:
+    """`signalmap monitor --detector det.json --bank dir/` — offline monitoring
+    over recordings: score every 1024-window, report per-recording alert rates."""
+    from .distill import DistilledDetector, load_bank
+    det = DistilledDetector.load(det_path)
+    bank = load_bank(bank_path, label_by="stem", column=column, pattern=pattern,
+                     multichannel=bool(det.spec.channels), channel_axis=channel_axis)
+    per: dict[int, list[int]] = {}
+    n = alerts = 0
+    for w, g in zip(bank.windows, bank.g):
+        a = int(det.alert(w))
+        n += 1
+        alerts += a
+        hit, tot = per.setdefault(int(g), [0, 0])
+        per[int(g)] = [hit + a, tot + 1]
+    per_recording = {gid: hit / tot for gid, (hit, tot) in sorted(per.items())}
+    if not quiet:
+        for gid, r in per_recording.items():
+            print(f"  recording {gid}: {r:.0%} of windows alerting")
+    rate = alerts / n if n else 0.0
+    print(f"  {n} windows · {alerts} alerts ({rate:.0%}) across "
+          f"{bank.n_recordings} recording(s)")
+    return {"n": n, "alerts": alerts, "rate": rate,
+            "per_recording": per_recording}
+
+
 def run(detector: Detector, frames: Iterable[Frame], quiet: bool = False) -> dict:
     n = alerts = 0
     by_sev = {"ok": 0, "warn": 0, "alarm": 0}

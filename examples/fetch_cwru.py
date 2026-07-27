@@ -24,7 +24,11 @@ import urllib.request
 
 import numpy as np
 
-BASE = "https://raw.githubusercontent.com/zerothphase/CWRU/master/Data/12k_DE/"
+# Unofficial community mirror of the Case Western Reserve bearing data, pinned to
+# a commit SHA (not a moving branch) so this download stays reproducible. Original
+# source: https://engineering.case.edu/bearingdatacenter
+_CWRU_MIRROR_SHA = "19f5bd6727fffa5023a5b6304427867eb375ea4e"
+BASE = f"https://raw.githubusercontent.com/zerothphase/CWRU/{_CWRU_MIRROR_SHA}/Data/12k_DE/"
 FILES = [("Normal_1.mat", "normal"), ("IR007_1.mat", "ANOMALY_inner_race_fault")]
 SR = 12000
 FRAME_N = 512

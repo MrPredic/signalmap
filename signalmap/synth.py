@@ -21,6 +21,8 @@ from enum import IntEnum
 
 import numpy as np
 
+from ._io import ensure_parent
+
 
 class SensorClass(IntEnum):
     ACOUSTIC = 0    # mic, speaker-as-mic
@@ -170,6 +172,7 @@ def build_pdm_benchmark(out: str, normal: int = 400, faults: int = 40,
         labels.append("ANOMALY_fault" if fault else "normal")
         srs.append(sr); ts.append(int(time.time() * 1e6)); blobs.append(s.tobytes())
 
+    ensure_parent(out)
     pq.write_table(pa.table({"label": labels, "sensor_class": [1] * len(labels),
                              "sr_hz": srs, "ts_us": ts, "samples": blobs}), out)
     return normal + faults
@@ -203,5 +206,6 @@ def build_dataset(out: str, per_class: int = 60, anomalies: int = 8, seed: int =
         "label": labels, "sensor_class": classes,
         "sr_hz": srs, "ts_us": ts, "samples": blobs,
     })
+    ensure_parent(out)
     pq.write_table(table, out)
     return table.num_rows

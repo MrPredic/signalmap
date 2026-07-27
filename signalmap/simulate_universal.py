@@ -17,6 +17,7 @@ from __future__ import annotations
 import numpy as np
 import torch
 
+from ._io import ensure_parent
 from .dsp import raw_to_features
 from .embed import Embedder
 from .model import SpectralAutoencoder
@@ -69,6 +70,7 @@ def main() -> None:
             loss = torch.mean((recon - b) ** 2)
             loss.backward()
             opt.step()
+    ensure_parent(MODEL)
     torch.save(model.state_dict(), MODEL)
 
     # --- embed everything; collect latent vectors + raw energy ---
@@ -152,6 +154,7 @@ def _render(vecs, scores, classes, labels, is_anom, out):
                "#ff3b3b", "#1affd1", "#b07cff"]
     html = _UNIVERSAL_HTML.replace("/*DATA*/", json.dumps(pts)) \
                           .replace("/*PALETTE*/", json.dumps(palette))
+    ensure_parent(out)
     with open(out, "w") as f:
         f.write(html)
 

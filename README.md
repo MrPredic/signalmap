@@ -3,10 +3,13 @@
 <p align="center">An open, sensor-agnostic platform that streams raw signals from <i>any</i> sensor —
 including salvaged e-waste hardware — embeds them with unsupervised learning, and
 lets you explore the latent landscape for patterns nobody labeled yet.</p>
+<p align="center"><i>Its distinctive piece: <b>distill</b> — a feature-selection
+step with a capacity gate and a statistical receipt that <b>refuses</b> premium
+feature families when they don't generalize, instead of silently adding them.</i></p>
 <p align="center">
 <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
 <img alt="Python" src="https://img.shields.io/badge/python-3.9%2B-blue">
-<img alt="Status" src="https://img.shields.io/badge/status-alpha-orange">
+<img alt="Status" src="https://img.shields.io/badge/status-0.4.0--rc-orange">
 </p>
 
 ---
@@ -49,25 +52,88 @@ We keep this line bright on purpose — bold mission, honest maturity.
 > the pipeline works end-to-end on real signals, not that hard real-world cases
 > are solved. Harder datasets are on the roadmap.
 
-## Real use case in two commands (any sensor)
-No labels, no config. Fit a detector on healthy operation, then monitor for
-anomalies — identical commands for vibration, acoustics, current, anything:
+## Real use case in two commands
+**No fault labels needed** — you only supply (or mark) healthy data; anomalies
+are never labeled. Fit a detector on healthy operation, then monitor for
+deviations. The same two commands work for any recorded signal — vibration,
+acoustics, current:
 ```bash
+python3 -m pip install 'signalmap[all]'   # parquet I/O needs pyarrow (bundled in [all])
 signalmap fit     --dataset healthy.parquet --healthy-label normal --out detector.pt
 signalmap monitor --source replay --dataset live.parquet --detector detector.pt
 ```
+
+Model artifacts (`.pt`) are a trust boundary: load only files you trust and
+keep them as tensor state dictionaries. SignalMap explicitly loads weights
+with PyTorch's `weights_only=True`; arbitrary pickle objects are rejected.
 **On real CWRU bearing data:** fit on 945 healthy frames → monitor 1183 frames →
 **238/238 faults caught (100%), 2/945 false alarms (0.2%)**, fully unsupervised.
 The *same* two commands flag injected faults in the synthetic set at 0 false
-positives. That is the USP: zero-config unsupervised condition monitoring that
-runs on any (even salvaged) sensor.
+positives. That is the USP: zero-config unsupervised condition monitoring over
+arbitrary recorded/raw signals, with an extensible adapter model for new sources
+(including salvaged hardware — see the roadmap for capture-adapter status).
 
 Reproduce the CWRU result yourself in one script, plus acoustic/electrical
 recipes: see [examples/](examples/).
 
+## Distill: per-domain features with a receipt
+`signalmap distill` searches a compositional feature grammar for the handful of
+programs that separate *your* recordings — and refuses to fool itself. The
+search budget is cut by a **capacity gate** (`budget = C × n_recordings`,
+C=50): below it the distilled set generalises, above it selection noise wins —
+a coupling neither a fixed feature list (catch22) nor an ungated 7700-feature
+sweep (hctsa) has. Every run emits a human-readable **gauntlet receipt**:
+leakage-free nested LOGO accuracy, a group-permutation p-value, a label-shuffle
+null, and cost per window. The output `spec.json` plugs straight into the
+`fit`/`monitor` deploy surface; the detector calibrates its alert threshold
+from the healthy envelope at fit time, so it self-scales to features of any
+magnitude.
+```bash
+# quote the extras so zsh doesn't glob the brackets; parquet banks also need pyarrow
+python3 -m pip install 'signalmap[distill]'   # distill/fit/monitor on .npy/.csv banks (scipy + scikit-learn)
+signalmap distill --bank recordings/ --label-by prefix --out artifacts/spec.json
+```
+
+**Premium families** (`--premium rqa,coherence`): specialised featurizers —
+full-window recurrence quantification (RQA, O(n²) per window) and cross-channel
+magnitude-squared coherence — run as opt-in *challengers* against the distilled
+base selection, never inside the base grammar. The receipt prints a paired
+bootstrap CI over the LOGO folds plus the real cost ratio (ms/window), and the
+**champion rule** admits a family into `spec.json` only on a CI-solid win.
+
+We preregistered these verdicts on public datasets before reading them out, and
+both outcomes happened. The receipt *admitted* RQA on CWRU bearings (accuracy
+0.914 → 0.980, paired +0.066, 95% CI [+0.033, +0.106], at ~585× the base cost)
+and coherence on the UCI hydraulic rig (0.750 → 0.889, +0.139, CI [+0.042,
++0.236], ~81×). It *refused* RQA on CALCE batteries and on the same hydraulic
+rig, and refused coherence on the UCI gas sensor array — in each case because
+the CI over recordings did not clear zero. A tool that can say "this expensive
+family does not pay for itself on your data" is the point; a receipt that only
+ever says yes proves nothing. Note the two verdicts have different scopes: the
+PASS/FAIL gate judges the base selection, the champion rule judges each premium
+family — a bank can be base-FAIL with a family INCLUDED when the signal lives
+only in the premium features (the receipt says so explicitly).
+
+**Multi-channel banks** (`--multichannel`): recordings can be 2-D — a CSV with
+a header of channel names, or a 2-D `.npy` (the longer axis is taken as time;
+override with `--channel-axis`). Windows become synchronous `(C, 1024)` slices.
+The base grammar always sees channel 0 only, so single-channel behaviour is
+bit-for-bit unchanged; families that need cross-channel structure declare it
+and are refused loudly on single-channel banks instead of silently degrading.
+
+**Deploying a spec** is two commands, no labels needed:
+```bash
+signalmap fit --spec artifacts/spec.json --bank healthy_recordings/ --out det.json
+signalmap monitor --detector det.json --bank incoming_recordings/
+```
+`fit` calibrates the alert threshold from the healthy envelope; `monitor`
+scores every window and reports per-recording alert rates.
+
 ## Design principle: bias-free by construction
 Every "normalization" is an assumption, and assumptions hide the unexpected:
 - **Raw int16 ADC** from the edge — no filtering, AGC, DC-removal, scaling.
+  (`ingest-file` maps WAV/CSV that weren't captured as int16 into int16 range via
+  a single global gain + DC-center — spectrum-preserving, no per-window scaling.)
 - **Full spectrum** — no frequency cropping.
 - **Raw amplitude is signal, not nuisance** — kept as a separate energy scalar.
 - **Sensor class is metadata only** — never fed to the model.
@@ -75,7 +141,7 @@ Every "normalization" is an assumption, and assumptions hide the unexpected:
 
 ## Quick start (no hardware)
 ```bash
-pip install -e .[all]
+python3 -m pip install -e '.[all]'                  # quote '.[all]' so zsh doesn't glob it
 signalmap plugins                                   # see everything pluggable
 signalmap universal                                 # cross-domain proof + HTML map
 signalmap benchmark                                 # ROC-AUC on a synthetic PdM set
@@ -148,7 +214,7 @@ nature certifies them.
 ## Roadmap
 - [x] Pluggable Source/Transform/Model/Sink core + CLI
 - [x] Cross-modal coupling discovery with confound ablation (`discover`)
-- [x] Deployable detector: `fit` on healthy → `monitor` for anomalies (any sensor)
+- [x] Deployable detector: `fit` on healthy → `monitor` for anomalies (any recorded signal)
 - [x] Cross-domain unsupervised proof (simulation)
 - [x] Real-recording ingestion (WAV/CSV/NPY) + ROC-AUC benchmark
 - [x] Validated on **real** public sensor data (CWRU bearing, AUC ≈ 1.0)

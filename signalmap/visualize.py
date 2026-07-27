@@ -50,7 +50,10 @@ def _project_2d(vectors: np.ndarray) -> np.ndarray:
 def build(dataset: str, model_path: str, out: str) -> None:
     labels, srs, blobs = _load(dataset)
     model = SpectralAutoencoder(n_bins=N_BINS, latent_dim=32)
-    model.load_state_dict(torch.load(model_path, map_location="cpu"))
+    # Visualization also loads user-supplied model artifacts; keep this path
+    # under the same non-pickle trust boundary as the runtime loaders.
+    model.load_state_dict(torch.load(
+        model_path, map_location="cpu", weights_only=True))
     embedder = Embedder(model)
 
     vecs, scores, recon, energy = [], [], [], []
@@ -83,7 +86,9 @@ def build(dataset: str, model_path: str, out: str) -> None:
 
 
 def _write_html(points: list[dict], out: str) -> None:
+    from ._io import ensure_parent
     html = _HTML.replace("/*DATA*/", json.dumps(points))
+    ensure_parent(out)
     with open(out, "w") as f:
         f.write(html)
 

@@ -91,6 +91,8 @@ class Detector:
 
     # --- persistence ----------------------------------------------------------
     def save(self, path: str) -> None:
+        from ._io import ensure_parent
+        ensure_parent(path)
         torch.save({
             "state_dict": self.net.state_dict(),
             "n_bins": self.n_bins, "latent_dim": self.net.latent_dim,
@@ -101,7 +103,9 @@ class Detector:
 
     @classmethod
     def load(cls, path: str) -> "Detector":
-        d = torch.load(path, map_location="cpu")
+        # Model files are an input trust boundary.  Only tensor weights and
+        # primitive metadata are accepted; never enable pickle deserialization.
+        d = torch.load(path, map_location="cpu", weights_only=True)
         net = SpectralAutoencoder(n_bins=d["n_bins"], latent_dim=d["latent_dim"])
         net.load_state_dict(d["state_dict"])
         return cls(net, d["med_r"], d["mad_r"], d["med_e"], d["mad_e"],

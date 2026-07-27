@@ -13,16 +13,20 @@ signalmap monitor --source replay --dataset <stream>.parquet --detector det.pt
 Downloads real Case Western Reserve bearing data and reproduces the headline
 result, end to end:
 ```bash
-pip install scipy pyarrow            # one-time
-python examples/fetch_cwru.py        # -> data/cwru_real.parquet
+python3 -m pip install 'signalmap[all]'   # one-time; quote so zsh doesn't glob the extras
+python examples/fetch_cwru.py             # -> data/cwru_real.parquet
 signalmap fit     --dataset data/cwru_real.parquet --healthy-label normal --out det.pt --epochs 40
 signalmap monitor --source replay --dataset data/cwru_real.parquet --detector det.pt --quiet
 ```
 Expected: **238/238 faults caught, ~0.2% false alarms**, fully unsupervised.
+Data comes from an unofficial community mirror of the Case Western Reserve
+bearing dataset, pinned to a commit SHA in `fetch_cwru.py` for reproducibility
+(original: engineering.case.edu/bearingdatacenter).
 
 ## 🔊 Acoustic — machine sounds (recipe; bring your own audio)
 Any WAV works — record a healthy machine, then a faulty one (or use the MIMII
-dataset, zenodo.org/records/3384388):
+dataset, https://zenodo.org/records/3384388 — its `.wav` files feed straight
+into `ingest-file` below):
 ```bash
 signalmap ingest-file healthy_machine.wav --label normal          --out data/audio.parquet
 signalmap ingest-file faulty_machine.wav  --label ANOMALY_fault   --out data/audio.parquet

@@ -45,7 +45,9 @@ class ParquetSink:
             return
         import pyarrow as pa
         import pyarrow.parquet as pq
+        from ._io import ensure_parent
         cols = {k: [row[k] for row in self.rows] for k in self.rows[0]}
+        ensure_parent(self.path)
         pq.write_table(pa.table(cols), self.path)
         print(f"  [parquet] wrote {len(self.rows)} embeddings -> {self.path}")
 

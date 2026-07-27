@@ -34,7 +34,7 @@ confirm it registered.
 
 ## Dev setup
 ```bash
-pip install -e .[all]
+python3 -m pip install -e '.[all]'   # quote '.[all]' so zsh doesn't glob the brackets
 pytest -q
 ```
 

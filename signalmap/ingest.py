@@ -84,6 +84,8 @@ def ingest(path: str, label: str, out: str, sr: int, column: int,
     })
     if os.path.exists(out):
         table = pa.concat_tables([pq.read_table(out), table])
+    from ._io import ensure_parent
+    ensure_parent(out)
     pq.write_table(table, out)
     print(f"  {path} -> {n_full} frames @ {sr} Hz, label={label} -> {out} "
           f"(total {table.num_rows})")

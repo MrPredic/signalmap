@@ -18,6 +18,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader, TensorDataset
 
+from ._io import ensure_parent
 from .dsp import raw_to_features
 from .model import SpectralAutoencoder, reconstruction_loss
 
@@ -76,6 +77,7 @@ def train(feats: np.ndarray, epochs: int, out: str) -> None:
         if ep % 5 == 0 or ep == epochs - 1:
             print(f"  epoch {ep:3d}  recon_loss={total / len(x):.6f}")
 
+    ensure_parent(out)
     torch.save(model.state_dict(), out)
     print(f"saved -> {out}")
 

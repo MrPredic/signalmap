@@ -17,7 +17,10 @@ class AutoencoderModel:
         self.torch = torch
         self.net = SpectralAutoencoder(n_bins=n_bins, latent_dim=latent_dim).eval()
         if weights:
-            self.net.load_state_dict(torch.load(weights, map_location="cpu"))
+            # Weights may be downloaded/shared model artifacts: reject arbitrary
+            # pickle objects at the product boundary.
+            self.net.load_state_dict(torch.load(
+                weights, map_location="cpu", weights_only=True))
         else:
             print("  [model] no weights -> untrained AE; scores are not meaningful yet")
 
