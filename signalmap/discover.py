@@ -12,8 +12,6 @@ plugs in via the same `channels` dict.
 """
 from __future__ import annotations
 
-import numpy as np
-
 from .coupling import find_couplings
 from .synth_multimodal import (CONFOUNDED_PAIRS, GROUND_TRUTH_COUPLINGS,
                                make_multimodal)

@@ -63,7 +63,7 @@ def main() -> None:
     from torch.utils.data import DataLoader, TensorDataset
 
     loader = DataLoader(TensorDataset(x), batch_size=64, shuffle=True)
-    for ep in range(40):
+    for _ep in range(40):
         for (b,) in loader:
             opt.zero_grad()
             recon, _ = model(b)
@@ -146,8 +146,6 @@ def _render(vecs, scores, classes, labels, is_anom, out):
         for i in range(len(scores))
     ]
     import json
-
-    from .visualize import _HTML  # reuse styling shell
 
     # universal map needs class coloring -> small dedicated script
     palette = ["#ff7a1a", "#1aa3ff", "#7CFC00", "#ff4dd2", "#ffd11a",

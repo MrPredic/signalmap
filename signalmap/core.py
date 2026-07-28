@@ -79,9 +79,9 @@ def register(kind: str, name: str):
 def get(kind: str, name: str):
     try:
         return _REGISTRY[kind][name]
-    except KeyError:
+    except KeyError as err:
         avail = ", ".join(sorted(_REGISTRY.get(kind, {}))) or "(none)"
-        raise SystemExit(f"no {kind} named {name!r}. available: {avail}")
+        raise SystemExit(f"no {kind} named {name!r}. available: {avail}") from err
 
 
 def available(kind: str) -> list[str]:
