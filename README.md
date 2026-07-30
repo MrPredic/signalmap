@@ -15,13 +15,15 @@ feature families when they don't generalize, instead of silently adding them.</i
 ---
 
 ## Installation
-Not on PyPI yet — install straight from the clone (editable, so `signalmap`
-tracks your checkout):
+```bash
+python3 -m pip install 'signalmap[all]'   # quote it so zsh doesn't glob the brackets
+signalmap plugins                         # confirm it installed: lists everything pluggable
+```
+Or from the clone, editable, so `signalmap` tracks your checkout:
 ```bash
 git clone https://github.com/MrPredic/signalmap.git
 cd signalmap
-python3 -m pip install -e '.[all]'   # quote '.[all]' so zsh doesn't glob it
-signalmap plugins                    # confirm it installed: lists everything pluggable
+python3 -m pip install -e '.[all]'
 ```
 Extras: `[all]` pulls in everything below; `[distill]` alone is enough for
 `distill`/`fit`/`monitor` on `.npy`/`.csv` banks (scipy + scikit-learn); parquet
