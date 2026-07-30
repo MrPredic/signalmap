@@ -14,6 +14,35 @@ feature families when they don't generalize, instead of silently adding them.</i
 
 ---
 
+## Installation
+Not on PyPI yet — install straight from the clone (editable, so `signalmap`
+tracks your checkout):
+```bash
+git clone https://github.com/MrPredic/signalmap.git
+cd signalmap
+python3 -m pip install -e '.[all]'   # quote '.[all]' so zsh doesn't glob it
+signalmap plugins                    # confirm it installed: lists everything pluggable
+```
+Extras: `[all]` pulls in everything below; `[distill]` alone is enough for
+`distill`/`fit`/`monitor` on `.npy`/`.csv` banks (scipy + scikit-learn); parquet
+I/O additionally needs `pyarrow` (bundled in `[all]`).
+
+## Table of contents
+- [The vision](#the-vision)
+- [What works today vs. the research frontier](#what-works-today-verified-vs-the-research-frontier)
+- [Real use case in two commands](#real-use-case-in-two-commands)
+- [Distill: per-domain features with a receipt](#distill-per-domain-features-with-a-receipt)
+- [Design principle: bias-free by construction](#design-principle-bias-free-by-construction)
+- [Quick start (no hardware)](#quick-start-no-hardware)
+- [Validate on real data (the litmus test)](#validate-on-real-data-the-litmus-test)
+- [The pluggable core](#the-pluggable-core)
+- [Recycle the trash (0-€ sensors)](#recycle-the-trash-0--sensors)
+- [Architecture](#architecture)
+- [Cross-modal discovery (experimental, honest)](#cross-modal-discovery-experimental-honest)
+- [Compositional search (experimental)](#compositional-search-experimental)
+- [Roadmap](#roadmap)
+- [License](#license)
+
 ## The vision
 
 Every material, every mechanism, every environment radiates signals — vibration,
@@ -56,9 +85,8 @@ We keep this line bright on purpose — bold mission, honest maturity.
 **No fault labels needed** — you only supply (or mark) healthy data; anomalies
 are never labeled. Fit a detector on healthy operation, then monitor for
 deviations. The same two commands work for any recorded signal — vibration,
-acoustics, current:
+acoustics, current (see [Installation](#installation) first):
 ```bash
-python3 -m pip install 'signalmap[all]'   # parquet I/O needs pyarrow (bundled in [all])
 signalmap fit     --dataset healthy.parquet --healthy-label normal --out detector.pt
 signalmap monitor --source replay --dataset live.parquet --detector detector.pt
 ```
@@ -140,8 +168,8 @@ Every "normalization" is an assumption, and assumptions hide the unexpected:
 - **Gaps are data** — sample loss is reported, never interpolated.
 
 ## Quick start (no hardware)
+After [installing](#installation):
 ```bash
-python3 -m pip install -e '.[all]'                  # quote '.[all]' so zsh doesn't glob it
 signalmap plugins                                   # see everything pluggable
 signalmap universal                                 # cross-domain proof + HTML map
 signalmap benchmark                                 # ROC-AUC on a synthetic PdM set
@@ -210,6 +238,21 @@ On the built-in ground-truth set, a temp-driven `vibration–em` pair (raw corr
 `heat→acoustic` coupling survives. A survivor is a **hypothesis for controlled
 validation**, never a proven new effect — the instrument generates candidates,
 nature certifies them.
+
+## Compositional search (experimental)
+`prove` searches a fixed, auditable vocabulary of sensor views, statistics and
+cross-channel relations. It uses group-held-out scoring, group-label
+permutations and a structure-preserving mechanism null. The output is a JSON
+receipt; `candidate` is a lead, not a discovery claim.
+
+```bash
+signalmap prove --synthetic 96 --budget 24 --perms 50 \
+  --out artifacts/composer_receipt.json
+```
+
+For real data, pass an `.npz` containing `X` (`N×channels×time`), `y`, and
+`groups`. Only a receipt with independent replication should be promoted to a
+production recipe.
 
 ## Roadmap
 - [x] Pluggable Source/Transform/Model/Sink core + CLI
