@@ -2,7 +2,12 @@ name: release
 on:
   release:
     types: [published]
-  workflow_dispatch:      # dry run: builds + checks, publish job is skipped
+  workflow_dispatch:      # default is a build-only dry run
+    inputs:
+      publish:
+        description: "Upload to PyPI (irreversible — a version can never be re-uploaded)"
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -31,7 +36,7 @@ jobs:
 
   publish:
     needs: build
-    if: github.event_name == 'release'
+    if: github.event_name == 'release' || inputs.publish
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
