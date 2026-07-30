@@ -26,8 +26,8 @@ def fit_from_dataset(dataset: str, out: str, healthy_label: str = "",
     srs = t.column("sr_hz").to_pylist()
     blobs = t.column("samples").to_pylist()
 
-    keep = [i for i, l in enumerate(labels)
-            if healthy_label.lower() in str(l).lower()] if healthy_label else list(range(len(labels)))
+    keep = [i for i, lab in enumerate(labels)
+            if healthy_label.lower() in str(lab).lower()] if healthy_label else list(range(len(labels)))
     if not keep:
         raise SystemExit(f"no rows match healthy-label {healthy_label!r}")
 

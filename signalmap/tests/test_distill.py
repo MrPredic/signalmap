@@ -143,7 +143,7 @@ def test_detector_threshold_calibrates_to_healthy_envelope():
     rng = np.random.default_rng(7)
     draw = lambda: np.full(8, float(rng.standard_t(df=1.5)))  # heavy tails
     healthy = [draw() for _ in range(200)]
-    det = DistilledDetector.fit(spec := _StubSpec(programs=[]), healthy)
+    det = DistilledDetector.fit(_StubSpec(programs=[]), healthy)
     assert det.threshold > 4.0, "threshold did not scale to the healthy envelope"
     h_rate = np.mean([det.alert(draw()) for _ in range(200)])
     assert h_rate < 0.1, f"fixed-cut false alarms are back: {h_rate:.0%}"

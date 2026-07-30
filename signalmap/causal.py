@@ -149,8 +149,8 @@ def granger_causality(source: np.ndarray, target: np.ndarray, lag: int = 2) -> f
     def _design(series_list):
         cols = [np.ones(len(yt))]
         for s in series_list:
-            for l in range(1, lag + 1):
-                cols.append(s[lag - l:n - l])
+            for k in range(1, lag + 1):
+                cols.append(s[lag - k:n - k])
         return np.column_stack(cols)
 
     def _rss(design):
@@ -175,7 +175,7 @@ def _var_edge_scores(channels: dict[str, np.ndarray], lag: int = 1) -> dict[tupl
     T, m = X.shape
     Y = X[lag:]
     design = np.column_stack([np.ones(T - lag)]
-                             + [X[lag - l:T - l] for l in range(1, lag + 1)])
+                             + [X[lag - k:T - k] for k in range(1, lag + 1)])
     beta, *_ = np.linalg.lstsq(design, Y, rcond=None)  # (1 + m*lag) x m
     out: dict[tuple[str, str], float] = {}
     for ei, effect in enumerate(names):

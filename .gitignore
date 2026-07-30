@@ -24,3 +24,8 @@ firmware/target/
 .venv-research/
 PARALLEL_PLAN.md
 research/factory/logs/cache/
+
+# coverage
+.coverage
+.coverage.*
+htmlcov/

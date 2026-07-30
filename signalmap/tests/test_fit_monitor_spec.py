@@ -52,7 +52,7 @@ def test_fit_spec_backend_writes_calibrated_detector(tmp_path, spec_path):
     assert back.threshold == det.threshold > 0
     # quiet on healthy windows, alert on faulty ones
     _write_recordings(tmp_path / "faulty", "faulty", seed=1)
-    from signalmap.distill import load_bank, window
+    from signalmap.distill import load_bank
     h = load_bank(str(tmp_path / "healthy"), label_by="stem")
     f = load_bank(str(tmp_path / "faulty"), label_by="stem")
     assert np.mean([back.alert(w) for w in f.windows]) > 0.8

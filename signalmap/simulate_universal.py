@@ -54,7 +54,7 @@ def main() -> None:
     print(f"dataset: {rows} frames across 8 sensor domains + injected anomalies\n")
 
     feats = _features(blobs, srs)
-    is_anom = np.array([l.startswith("ANOMALY") for l in labels])
+    is_anom = np.array([lab.startswith("ANOMALY") for lab in labels])
 
     # --- train on KNOWN sensor data only; anomalies are unseen (realistic) ---
     x = torch.from_numpy(feats[~is_anom]).float()

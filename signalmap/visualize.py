@@ -36,15 +36,23 @@ def _load(path: str):
 
 
 def _project_2d(vectors: np.ndarray) -> np.ndarray:
-    try:
-        import umap
+    """Project embeddings to 2D. Always returns two columns, even when the data
+    cannot span them (a first capture is often a single recording)."""
+    if len(vectors) > 2:
+        try:
+            import umap
 
-        return umap.UMAP(n_components=2, n_neighbors=min(15, len(vectors) - 1)).fit_transform(vectors)
-    except Exception:
-        # PCA via SVD, no sklearn needed.
-        x = vectors - vectors.mean(axis=0)
-        _u, _s, vt = np.linalg.svd(x, full_matrices=False)
-        return x @ vt[:2].T
+            return umap.UMAP(n_components=2,
+                             n_neighbors=min(15, len(vectors) - 1)).fit_transform(vectors)
+        except Exception:
+            pass
+    # PCA via SVD, no sklearn needed.
+    x = vectors - vectors.mean(axis=0)
+    _u, _s, vt = np.linalg.svd(x, full_matrices=False)
+    coords = x @ vt[:2].T
+    if coords.shape[1] < 2:
+        coords = np.pad(coords, ((0, 0), (0, 2 - coords.shape[1])))
+    return coords
 
 
 def build(dataset: str, model_path: str, out: str) -> None:

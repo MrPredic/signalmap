@@ -8,7 +8,7 @@ import json
 import numpy as np
 import pytest
 
-from signalmap.distill import Bank, FeatureSpec, W, distill, load_bank, window
+from signalmap.distill import FeatureSpec, W, distill, load_bank, window
 from signalmap.premium import PREMIUM_FAMILIES, PremiumFamily
 
 
@@ -160,7 +160,8 @@ def test_coherence_separates_coupled_from_independent():
 def test_coherence_parity_with_coherence_fair():
     """Parity pin against the research implementation whose config was
     CONFIRMED (coherence_fair.coh_feats): pairs (0, j) must match exactly."""
-    import os, sys
+    import os
+    import sys
     factory = os.path.join(os.path.dirname(__file__), "..", "..",
                            "research", "factory")
     sys.path.insert(0, os.path.abspath(factory))

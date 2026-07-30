@@ -101,7 +101,7 @@ def p_lcross(x):
     iv = np.diff(up); return float(iv.std() / (iv.mean() + 1e-12))
 def p_acflag(x):
     v = x - x.mean(); d = (v * v).sum() + 1e-12
-    ac = np.array([(v[l:] * v[:-l]).sum() / d for l in range(2, 65)])
+    ac = np.array([(v[k:] * v[:-k]).sum() / d for k in range(2, 65)])
     return float((np.argmax(ac) + 2) / 64.0)
 def p_specflat(x):
     P = np.abs(np.fft.rfft(x)) ** 2 + 1e-20

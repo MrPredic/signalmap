@@ -92,7 +92,9 @@ def main() -> None:
 
     if args.dataset:
         feats = load_dataset(args.dataset)
-    elif args.synthetic:
+    elif args.synthetic is not None:
+        if args.synthetic < 1:
+            raise SystemExit(f"--synthetic needs at least 1 frame, got {args.synthetic}")
         feats = synthetic_dataset(args.synthetic)
     else:
         raise SystemExit("provide --dataset PATH or --synthetic N")

@@ -104,7 +104,6 @@ def test_roc_auc_matches_known_values():
 def test_ingest_wav_roundtrip(tmp_path):
     import wave
 
-    from signalmap.frame import decode
     from signalmap.ingest import ingest
     from signalmap.sources import ReplaySource
 
@@ -192,8 +191,8 @@ def test_detector_alerts_on_fault_not_healthy(tmp_path):
         f = raw_to_features(np.frombuffer(blobs[i], dtype="<i2").astype(np.float32), srs[i], 256)
         return f.mag, f.energy_rms
 
-    healthy = [i for i, l in enumerate(labels) if l == "normal"]
-    fault = [i for i, l in enumerate(labels) if "ANOMALY" in l]
+    healthy = [i for i, lab in enumerate(labels) if lab == "normal"]
+    fault = [i for i, lab in enumerate(labels) if "ANOMALY" in lab]
 
     train = healthy[:150]
     det = Detector.fit(np.stack([feat(i)[0] for i in train]),

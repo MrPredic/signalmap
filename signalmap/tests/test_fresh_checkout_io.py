@@ -2,9 +2,7 @@
 `data/` and `artifacts/` dirs. Every writer must create its parent dir so the
 README quickstart works on a clean `git clone` (L3 fresh-checkout replay found
 benchmark/universal/train crashing with FileNotFoundError here)."""
-import os
 
-import numpy as np
 
 from signalmap._io import ensure_parent
 

@@ -85,7 +85,7 @@ def run(dataset: str | None, epochs: int, anomaly_label: str, seed: int = 7) -> 
     labels = t.column("label").to_pylist()
     srs = t.column("sr_hz").to_pylist()
     blobs = t.column("samples").to_pylist()
-    is_anom = np.array([anomaly_label.lower() in str(l).lower() for l in labels])
+    is_anom = np.array([anomaly_label.lower() in str(lab).lower() for lab in labels])
     if is_anom.sum() == 0:
         raise SystemExit(f"no rows match anomaly-label {anomaly_label!r}; "
                          f"labels present: {sorted(set(labels))[:8]}")
