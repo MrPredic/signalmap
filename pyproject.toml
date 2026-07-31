@@ -27,7 +27,7 @@ store = ["qdrant-client>=1.9"]
 viz = ["umap-learn>=0.5", "hdbscan>=0.8"]
 distill = ["scipy>=1.11", "scikit-learn>=1.4"]
 attest = ["cryptography>=42"]
-dev = ["pytest>=8.0", "scipy>=1.11", "scikit-learn>=1.4"]
+dev = ["pytest>=8.0", "pytest-xdist>=3.6", "scipy>=1.11", "scikit-learn>=1.4"]
 all = ["sounddevice>=0.4", "pyarrow>=15.0", "paho-mqtt>=2.0", "aiomqtt>=2.0",
        "fastapi>=0.110", "uvicorn>=0.29", "qdrant-client>=1.9", "pytest>=8.0",
        "scipy>=1.11", "scikit-learn>=1.4"]

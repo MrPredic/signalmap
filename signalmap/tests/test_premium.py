@@ -218,7 +218,9 @@ def test_run_cli_forwards_premium(tmp_path):
     premium block into the receipt file."""
     from signalmap.distill import run_cli
     _make_bank(tmp_path / "bank", seed=1) if (tmp_path / "bank").mkdir() is None else None
-    res = run_cli(str(tmp_path / "bank"), "prefix", 50, str(tmp_path / "spec.json"),
+    # budget 6, not 50: this test pins CLI flag forwarding, not statistical
+    # power, and the full budget costs ~70s of quadratic RQA to prove nothing extra.
+    res = run_cli(str(tmp_path / "bank"), "prefix", 6, str(tmp_path / "spec.json"),
                   n_perm=10, trees=25, premium=("rqa",))
     assert res.premium_receipts and res.premium_receipts[0]["family"] == "rqa"
     report = open(tmp_path / "spec_report.md").read()

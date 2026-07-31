@@ -30,7 +30,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .[dev] pyarrow   # [dev] = pytest + scipy + scikit-learn (distill/premium suite)
       - name: Test
-        run: pytest -q
+        run: pytest -q -n auto        # 8 workers: 5:05 -> 1:47 wall clock
       - name: Smoke (installed entry point)
         run: |
           signalmap plugins
