@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased
+
+Added
+- Published to PyPI: `pip install signalmap`. Releases upload through GitHub
+  Actions via PyPI trusted publishing (OIDC), so no API token is stored
+  anywhere.
+- Test coverage for the seven product modules that had none — `train`,
+  `visualize`, `embed`, the sinks, the store, `discover`, the simulator and the
+  `fit --dataset` path. 116 -> 172 tests, coverage 78% -> 89%.
+- Lint gate in CI (ruff, pinned version, explicitly selected rules).
+
+Fixed
+- `signalmap map` crashed with `IndexError` on a single-recording dataset: the
+  2D projection returned one column when the data could not span two. It now
+  always returns two, and skips UMAP below three points.
+- `signalmap train --synthetic 0` reported a missing data source instead of
+  naming the real problem, the frame count.
+- `causal.py` linear-Granger design matrix used an out-of-scope loop variable
+  after a rename; caught by the new lint gate.
+
 ## 0.4.0 (2026-07-27)
 
 First release with the distill pipeline as a first-class product surface.

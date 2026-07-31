@@ -50,6 +50,9 @@ pythonpath = ["."]
 line-length = 100
 
 [tool.ruff.lint]
+# Selected explicitly, not inherited: ruff's defaults change between releases,
+# and an unpinned rule set turns any upstream release into a red build.
+select = ["E4", "E7", "E9", "F", "W"]
 # E701/E702/E731 flag the compact one-liners this codebase uses on purpose
 # (tight numeric helpers); everything else stays on so real defects surface.
 ignore = ["E701", "E702", "E731"]
