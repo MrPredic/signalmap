@@ -232,3 +232,32 @@ def test_cli_corpus_command_prints_the_traction_line(tmp_path, monkeypatch,
     printed = capsys.readouterr().out
     assert "8 verdicts" in printed
     assert len(list(out.glob("*.receipt.json"))) == 8
+
+
+def test_cli_corpus_shortens_paths_that_sit_under_the_working_directory(
+        tmp_path, monkeypatch, capsys):
+    """`corpus` defaults to an absolute path under the repo root, so the listing
+    used to print the maintainer's home directory eight times. The traction line
+    gets pasted into issues and READMEs — the paths above it should be local."""
+    from signalmap.cli import main
+    monkeypatch.setenv("SIGNALMAP_HOME", str(tmp_path / "home"))
+    monkeypatch.chdir(tmp_path)
+    out = Path.cwd() / "receipts"          # absolute, but under the cwd
+    rc = main(["corpus", "--out", str(out)])
+    assert rc in (0, None)
+    printed = capsys.readouterr().out
+    assert "receipts/cwru_rqa.receipt.json" in printed
+    assert str(out) not in printed
+
+
+def test_cli_corpus_keeps_absolute_paths_outside_the_working_directory(
+        tmp_path, monkeypatch, capsys):
+    from signalmap.cli import main
+    monkeypatch.setenv("SIGNALMAP_HOME", str(tmp_path / "home"))
+    out = tmp_path / "receipts"
+    (tmp_path / "elsewhere").mkdir()
+    monkeypatch.chdir(tmp_path / "elsewhere")
+    rc = main(["corpus", "--out", str(out)])
+    assert rc in (0, None)
+    printed = capsys.readouterr().out
+    assert str(Path(out).resolve() / "cwru_rqa.receipt.json") in printed

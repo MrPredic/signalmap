@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "signalmap"
-version = "0.4.0"
+version = "0.5.0"
 description = "Open, sensor-agnostic platform: stream raw signals from any (even salvaged) sensor, embed them unsupervised, explore the latent landscape for unknown patterns."
 readme = "README.md"
 requires-python = ">=3.9"

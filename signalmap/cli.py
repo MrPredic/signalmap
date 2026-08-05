@@ -239,12 +239,20 @@ def cmd_distill(args):
 
 def cmd_corpus(args):
     from . import corpus
+    from pathlib import Path
     import json
     paths = corpus.build_corpus(out_dir=args.out)
     receipts = [json.loads(p.read_text()) for p in paths]
+    cwd = Path.cwd().resolve()
     for p, r in zip(paths, receipts):
+        # The default out dir is absolute (repo root). Show it relative where
+        # that is unambiguous, so a pasted listing carries no home directory.
+        try:
+            shown = Path(p).resolve().relative_to(cwd)
+        except ValueError:
+            shown = p
         print(f"{r['verdict']:<8} {r['evidence']['bank']:<11} "
-              f"{r['evidence']['family']:<9} {p}")
+              f"{r['evidence']['family']:<9} {shown}")
     print(corpus.traction_line(receipts))
 
 

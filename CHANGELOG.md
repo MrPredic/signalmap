@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.5.0 (2026-08-05)
 
 Added
 - Signed verdict receipts (`signalmap.receipt/1`): every `distill`, `fit` and
@@ -31,7 +31,17 @@ Added
   `fit --dataset` path. 116 -> 172 tests, coverage 78% -> 89%.
 - Lint gate in CI (ruff, pinned version, explicitly selected rules).
 
+- README section "Signed verdicts, verifiable without us": the receipt, the
+  standalone verifier and the shipped corpus in three commands.
+
 Fixed
+- `signalmap corpus` printed the absolute path of every receipt, so a pasted
+  listing carried the maintainer's home directory. Paths under the working
+  directory now print relative to it.
+- The CI job that proves standalone verification ran from the checkout root,
+  where the source tree is importable through cwd: its "signalmap must not be
+  importable" assertion fired on every run and the verifier was never
+  exercised. It now runs outside the checkout.
 - `test_training_reduces_reconstruction_loss` compared two independently
   initialised models and failed at random (1 in 3 parallel runs); both runs now
   start from the same seed.

@@ -9,7 +9,7 @@ feature families when they don't generalize, instead of silently adding them.</i
 <p align="center">
 <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
 <img alt="Python" src="https://img.shields.io/badge/python-3.9%2B-blue">
-<img alt="Status" src="https://img.shields.io/badge/status-0.4.0--rc-orange">
+<img alt="Status" src="https://img.shields.io/badge/status-0.5.0-orange">
 </p>
 
 ---
@@ -34,6 +34,7 @@ I/O additionally needs `pyarrow` (bundled in `[all]`).
 - [What works today vs. the research frontier](#what-works-today-verified-vs-the-research-frontier)
 - [Real use case in two commands](#real-use-case-in-two-commands)
 - [Distill: per-domain features with a receipt](#distill-per-domain-features-with-a-receipt)
+- [Signed verdicts, verifiable without us](#signed-verdicts-verifiable-without-us)
 - [Design principle: bias-free by construction](#design-principle-bias-free-by-construction)
 - [Quick start (no hardware)](#quick-start-no-hardware)
 - [Validate on real data (the litmus test)](#validate-on-real-data-the-litmus-test)
@@ -159,6 +160,44 @@ signalmap monitor --detector det.json --bank incoming_recordings/
 `fit` calibrates the alert threshold from the healthy envelope; `monitor`
 scores every window and reports per-recording alert rates.
 
+## Signed verdicts, verifiable without us
+Every verdict-producing command — `distill`, `fit`, `monitor` — writes a signed
+JSON receipt next to its output: the claim, the verdict
+(`INCLUDED`/`EXCLUDED`/`PASS`/`REFUSED`), the evidence behind it, the sha256 of
+every input, and an Ed25519 signature. The signing key lives in
+`~/.signalmap/signing_key` (mode 0600) and never leaves the machine; only the
+public key travels in the receipt.
+
+The verifier is deliberately separate from the tool. `tools/verify_receipt.py`
+imports **nothing** from signalmap — stdlib plus `cryptography` — so checking a
+receipt never means running our code:
+```bash
+pip install signalmap
+signalmap corpus                              # rebuild + list the shipped verdict corpus
+python3 tools/verify_receipt.py research/factory/receipts/cwru_rqa.receipt.json
+# PASS: … — verdict INCLUDED, integrity only
+```
+```text
+EXCLUDED CALCE       rqa       research/factory/receipts/calce_rqa.receipt.json
+EXCLUDED CWRU        envelope  research/factory/receipts/cwru_envelope.receipt.json
+INCLUDED CWRU        rqa       research/factory/receipts/cwru_rqa.receipt.json
+EXCLUDED GAS-id      coherence research/factory/receipts/gasid_coherence.receipt.json
+INCLUDED HYD-cooler  coherence research/factory/receipts/hydcooler_coherence.receipt.json
+EXCLUDED HYD-cooler  rqa       research/factory/receipts/hydcooler_rqa.receipt.json
+EXCLUDED IMS         envelope  research/factory/receipts/ims_envelope.receipt.json
+EXCLUDED MFPT        envelope  research/factory/receipts/mfpt_envelope.receipt.json
+8 verdicts across 6 banks · 2 included with a cost receipt · 6 honest exclusions · 0 silent adoptions · offline verifiable
+```
+Those eight are the preregistered premium verdicts described above, shipped in
+the repo as signed receipts. They are labelled `archive_signature`: the
+statistics were decided in the preregistered runs, and the signature attests to
+the origin and integrity of the transcription, **not** to a re-execution. Each
+one pins the sha256 of the report it transcribes, and the test suite fails if a
+shipped receipt drifts from its source.
+
+What a receipt does not do: it does not make a verdict true. It makes a verdict
+**attributable and tamper-evident** — flip one byte and verification fails.
+
 ## Design principle: bias-free by construction
 Every "normalization" is an assumption, and assumptions hide the unexpected:
 - **Raw int16 ADC** from the edge — no filtering, AGC, DC-removal, scaling.
@@ -263,6 +302,7 @@ production recipe.
 - [x] Cross-domain unsupervised proof (simulation)
 - [x] Real-recording ingestion (WAV/CSV/NPY) + ROC-AUC benchmark
 - [x] Validated on **real** public sensor data (CWRU bearing, AUC ≈ 1.0)
+- [x] Signed, offline-verifiable verdict receipts + shipped verdict corpus
 - [ ] Harder real datasets (MIMII, IMS, MAFAULDA) + leaderboard
 - [ ] HDBSCAN auto-clustering + cluster naming
 - [ ] Host Rust capture adapters (audio/camera/SDR)
