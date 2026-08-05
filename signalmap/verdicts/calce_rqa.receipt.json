@@ -1,0 +1,53 @@
+{
+  "claim": "premium family 'rqa' on bank CALCE does not clear the cost-receipted champion rule over the distilled base grammar",
+  "countersignatures": [],
+  "created_at": "2026-08-04T17:20:27Z",
+  "evidence": {
+    "bank": "CALCE",
+    "base_gate": {
+      "chance": 0.333,
+      "cost_ms_per_window": 0.319,
+      "deploy_selection": 0.935,
+      "n_recordings": 18,
+      "n_windows": 306,
+      "nested_logo": 0.892,
+      "null_selftest": 0.366,
+      "perm_p": 0.005,
+      "verdict": "PASS"
+    },
+    "family": "rqa",
+    "premium": {
+      "augmented_acc": 0.905,
+      "base_acc": 0.935,
+      "base_cost_ms_per_window": 0.319,
+      "ci95": [
+        -0.072,
+        0.006
+      ],
+      "cost_ms_per_window": 58.05,
+      "cost_ratio_vs_base": 182.0,
+      "family": "rqa",
+      "paired_delta": -0.03,
+      "verdict": "EXCLUDED"
+    },
+    "provenance": {
+      "mode": "archive_signature",
+      "note": "Archive signature: the verdict was decided in the preregistered run cited below and is transcribed here, NOT re-executed. The signature attests to origin and integrity of this transcription, not to correctness of the statistics.",
+      "prereg": "research/factory/PREREG_DISTILL_PREMIUM_CALCE.md",
+      "rerun": false,
+      "source_report": "research/factory/logs/distill_premium_calce_report.md",
+      "source_sha256": "9916927561c8883c7f683c432ef0c1e90c484f346216aca426f340559930468e"
+    }
+  },
+  "input_hashes": {
+    "prereg": "5f0a92b9dbb8fb765a11f8951dcc01f1720570f8f3b67653544c8e7036636dbd",
+    "report": "9916927561c8883c7f683c432ef0c1e90c484f346216aca426f340559930468e",
+    "spec": "5568417f7bf28d7520dca72224d37a78fbc2e0a379a714426bcd6a898294c2ce"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "3e3454f3f2ca58d85366025235cac59c9bed5b93e218759743037e2c5edc2a1d5d238f0343a8cd3eb8107fdfea01346302663fe864dcb917bbc1aaa17a828402",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "EXCLUDED"
+}

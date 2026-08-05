@@ -209,6 +209,54 @@ def build_corpus(out_dir=None, root=None) -> list[Path]:
     return sorted(paths)
 
 
+def packaged_dir() -> Path:
+    """Signed receipts shipped inside the package.
+
+    A wheel carries no `research/` tree, so `build_corpus` has nothing to
+    rebuild from. The receipts themselves are small and self-contained — each
+    one pins the sha256 of the report it transcribes — so they travel with the
+    package and stay verifiable offline.
+    """
+    return Path(__file__).resolve().parent / "verdicts"
+
+
+def sources_present(root=None) -> bool:
+    """True when the preregistered reports are on disk (a clone, not a wheel)."""
+    r = Path(root) if root is not None else repo_root()
+    return all((r / e.report).is_file() for e in MANIFEST)
+
+
+def packaged_receipts(out_dir=None) -> list[Path]:
+    """Return the packaged receipts, copied into `out_dir` when one is given.
+
+    Copies are byte-identical, so the signatures still verify — nothing is
+    re-signed, because nothing was re-decided.
+    """
+    src = sorted(packaged_dir().glob("*.receipt.json"))
+    if out_dir is None:
+        return src
+    out = Path(out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    written = []
+    for p in src:
+        target = out / p.name
+        target.write_bytes(p.read_bytes())
+        written.append(target)
+    return sorted(written)
+
+
+def sync_packaged(paths) -> list[Path]:
+    """Mirror freshly built receipts into the packaged copy, byte for byte."""
+    out = packaged_dir()
+    out.mkdir(parents=True, exist_ok=True)
+    for p in paths:
+        target = out / Path(p).name
+        data = Path(p).read_bytes()
+        if not target.is_file() or target.read_bytes() != data:
+            target.write_bytes(data)
+    return sorted(out.glob("*.receipt.json"))
+
+
 def load_corpus(corpus_dir=None) -> list[dict]:
     root = repo_root()
     d = Path(corpus_dir) if corpus_dir is not None else root / CORPUS_DIR

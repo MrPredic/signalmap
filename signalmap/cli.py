@@ -241,7 +241,16 @@ def cmd_corpus(args):
     from . import corpus
     from pathlib import Path
     import json
-    paths = corpus.build_corpus(out_dir=args.out)
+    if corpus.sources_present():
+        paths = corpus.build_corpus(out_dir=args.out)
+        if args.out is None:
+            # Keep the copy that ships in the wheel in step with the repo one,
+            # so a pip user never sees a different verdict list than a clone.
+            corpus.sync_packaged(paths)
+    else:
+        # Installed from a wheel: no reports to rebuild from, so list the
+        # receipts that shipped with the package. They verify all the same.
+        paths = corpus.packaged_receipts(out_dir=args.out)
     receipts = [json.loads(p.read_text()) for p in paths]
     cwd = Path.cwd().resolve()
     for p, r in zip(paths, receipts):

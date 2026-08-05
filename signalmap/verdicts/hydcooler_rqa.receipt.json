@@ -1,0 +1,53 @@
+{
+  "claim": "premium family 'rqa' on bank HYD-cooler does not clear the cost-receipted champion rule over the distilled base grammar",
+  "countersignatures": [],
+  "created_at": "2026-08-04T17:20:27Z",
+  "evidence": {
+    "bank": "HYD-cooler",
+    "base_gate": {
+      "chance": 0.333,
+      "cost_ms_per_window": 0.079,
+      "deploy_selection": 0.8,
+      "n_recordings": 18,
+      "n_windows": 90,
+      "nested_logo": 0.733,
+      "null_selftest": 0.311,
+      "perm_p": 0.005,
+      "verdict": "PASS"
+    },
+    "family": "rqa",
+    "premium": {
+      "augmented_acc": 0.833,
+      "base_acc": 0.8,
+      "base_cost_ms_per_window": 0.079,
+      "ci95": [
+        -0.022,
+        0.1
+      ],
+      "cost_ms_per_window": 59.87,
+      "cost_ratio_vs_base": 755.0,
+      "family": "rqa",
+      "paired_delta": 0.033,
+      "verdict": "EXCLUDED"
+    },
+    "provenance": {
+      "mode": "archive_signature",
+      "note": "Archive signature: the verdict was decided in the preregistered run cited below and is transcribed here, NOT re-executed. The signature attests to origin and integrity of this transcription, not to correctness of the statistics.",
+      "prereg": "research/factory/PREREG_DISTILL_PREMIUM_CALCE.md",
+      "rerun": false,
+      "source_report": "research/factory/logs/distill_premium_hydcooler_report.md",
+      "source_sha256": "cdcf3aefbd0fb57667b3969e4fc33c2290ffde3ea94fc51aadcd56c3c28091d5"
+    }
+  },
+  "input_hashes": {
+    "prereg": "5f0a92b9dbb8fb765a11f8951dcc01f1720570f8f3b67653544c8e7036636dbd",
+    "report": "cdcf3aefbd0fb57667b3969e4fc33c2290ffde3ea94fc51aadcd56c3c28091d5",
+    "spec": "5f7f2c87932fd78e6a02c138ea025d3ff265d332ba70102b0f1ebc727bb3e186"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "b5d0d1f6250ad10c70cae928ff48c7a3847f180caea57fe31742d99736aea2121918392243f68e8b6c4c0f489558d8159235486fe018d9fcbd13c3adf6e95609",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "EXCLUDED"
+}

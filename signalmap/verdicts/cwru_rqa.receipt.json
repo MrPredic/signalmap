@@ -1,0 +1,53 @@
+{
+  "claim": "premium family 'rqa' on bank CWRU clears the cost-receipted champion rule over the distilled base grammar",
+  "countersignatures": [],
+  "created_at": "2026-08-04T17:20:27Z",
+  "evidence": {
+    "bank": "CWRU",
+    "base_gate": {
+      "chance": 0.167,
+      "cost_ms_per_window": 0.113,
+      "deploy_selection": 0.914,
+      "n_recordings": 24,
+      "n_windows": 2849,
+      "nested_logo": 0.874,
+      "null_selftest": 0.082,
+      "perm_p": 0.005,
+      "verdict": "PASS"
+    },
+    "family": "rqa",
+    "premium": {
+      "augmented_acc": 0.98,
+      "base_acc": 0.914,
+      "base_cost_ms_per_window": 0.113,
+      "ci95": [
+        0.033,
+        0.106
+      ],
+      "cost_ms_per_window": 66.03,
+      "cost_ratio_vs_base": 585.0,
+      "family": "rqa",
+      "paired_delta": 0.066,
+      "verdict": "INCLUDED"
+    },
+    "provenance": {
+      "mode": "archive_signature",
+      "note": "Archive signature: the verdict was decided in the preregistered run cited below and is transcribed here, NOT re-executed. The signature attests to origin and integrity of this transcription, not to correctness of the statistics.",
+      "prereg": "research/factory/PREREG_DISTILL_PREMIUM_CWRU.md",
+      "rerun": false,
+      "source_report": "research/factory/logs/distill_premium_cwru_report.md",
+      "source_sha256": "f219682ff3345d6043d01722b024f0aab06b9ad2f2c71f44d3365dd787c8510f"
+    }
+  },
+  "input_hashes": {
+    "prereg": "79752a0952d80153faec6b226371e309a28fafcc73b29535f51bcd2542e24e54",
+    "report": "f219682ff3345d6043d01722b024f0aab06b9ad2f2c71f44d3365dd787c8510f",
+    "spec": "60e21f08453f0a22bcd0677dc6cb03fc90e45acda2da9cce207ae06183eee57c"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "a1c183ea76d34699c2c215a9e2a46f76fedce3e6848a73b20b85a25b268ea8b7ee91a7e5600aa51e42fd23527ac9f62845aac1209ca001f1205e04aa7025e50b",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "INCLUDED"
+}

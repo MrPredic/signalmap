@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.1 (2026-08-05)
+
+Fixed
+- `signalmap corpus` crashed on a `pip install` with `FileNotFoundError`: it
+  rebuilds the corpus from the preregistered reports, and a wheel carries no
+  `research/` tree. The eight signed receipts now ship inside the package
+  (`signalmap/verdicts/`), so `corpus` lists and writes them out from any
+  install and only rebuilds when the reports are actually present. Rebuilding
+  in a clone keeps the packaged copy in step, and the suite fails if the two
+  ever drift.
+
 ## 0.5.0 (2026-08-05)
 
 Added

@@ -1,0 +1,53 @@
+{
+  "claim": "premium family 'coherence' on bank HYD-cooler clears the cost-receipted champion rule over the distilled base grammar",
+  "countersignatures": [],
+  "created_at": "2026-08-04T17:20:27Z",
+  "evidence": {
+    "bank": "HYD-cooler",
+    "base_gate": {
+      "chance": 0.333,
+      "cost_ms_per_window": 0.183,
+      "deploy_selection": 0.75,
+      "n_recordings": 18,
+      "n_windows": 72,
+      "nested_logo": 0.694,
+      "null_selftest": 0.361,
+      "perm_p": 0.005,
+      "verdict": "PASS"
+    },
+    "family": "coherence",
+    "premium": {
+      "augmented_acc": 0.889,
+      "base_acc": 0.75,
+      "base_cost_ms_per_window": 0.183,
+      "ci95": [
+        0.042,
+        0.236
+      ],
+      "cost_ms_per_window": 14.84,
+      "cost_ratio_vs_base": 81.0,
+      "family": "coherence",
+      "paired_delta": 0.139,
+      "verdict": "INCLUDED"
+    },
+    "provenance": {
+      "mode": "archive_signature",
+      "note": "Archive signature: the verdict was decided in the preregistered run cited below and is transcribed here, NOT re-executed. The signature attests to origin and integrity of this transcription, not to correctness of the statistics.",
+      "prereg": "research/factory/PREREG_DISTILL_PREMIUM_COHERENCE.md",
+      "rerun": false,
+      "source_report": "research/factory/logs/distill_premium_coh_hydcooler_report.md",
+      "source_sha256": "aa4794d68ef4d0d41b4b248658f8dbe95100e340ff48ee3c671715a2a68c16e3"
+    }
+  },
+  "input_hashes": {
+    "prereg": "10735e01555add5bcdfe025f617f06c43be0617f99daa539c083edd5def336bf",
+    "report": "aa4794d68ef4d0d41b4b248658f8dbe95100e340ff48ee3c671715a2a68c16e3",
+    "spec": "2b26baf69d053de80bde723055e92362d8fd378e9ff61b08ebd6b6792d12ef2d"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "f42442b94d0d1c5346ba5d5cd607d4ab699618fc03163d99b10b1242e0c4a0f1e0c9089ff874368e0ec8e336b52fa0af1a735d517bad3300211e261919c22b04",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "INCLUDED"
+}

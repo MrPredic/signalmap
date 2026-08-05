@@ -1,0 +1,53 @@
+{
+  "claim": "premium family 'envelope' on bank CWRU does not clear the cost-receipted champion rule over the distilled base grammar",
+  "countersignatures": [],
+  "created_at": "2026-08-04T17:20:27Z",
+  "evidence": {
+    "bank": "CWRU",
+    "base_gate": {
+      "chance": 0.167,
+      "cost_ms_per_window": 0.116,
+      "deploy_selection": 0.914,
+      "n_recordings": 24,
+      "n_windows": 2849,
+      "nested_logo": 0.874,
+      "null_selftest": 0.082,
+      "perm_p": 0.005,
+      "verdict": "PASS"
+    },
+    "family": "envelope",
+    "premium": {
+      "augmented_acc": 0.926,
+      "base_acc": 0.914,
+      "base_cost_ms_per_window": 0.116,
+      "ci95": [
+        -0.031,
+        0.054
+      ],
+      "cost_ms_per_window": 0.08,
+      "cost_ratio_vs_base": 1.0,
+      "family": "envelope",
+      "paired_delta": 0.012,
+      "verdict": "EXCLUDED"
+    },
+    "provenance": {
+      "mode": "archive_signature",
+      "note": "Archive signature: the verdict was decided in the preregistered run cited below and is transcribed here, NOT re-executed. The signature attests to origin and integrity of this transcription, not to correctness of the statistics.",
+      "prereg": "research/factory/PREREG_DISTILL_PREMIUM_ENVELOPE.md",
+      "rerun": false,
+      "source_report": "research/factory/logs/distill_premium_cwru_envelope_report.md",
+      "source_sha256": "6236d608bdfe039bd7a8ffc377d7876c38283ae0d85ed6dc90dd1254b3d56386"
+    }
+  },
+  "input_hashes": {
+    "prereg": "ee71621a02b4ec25cb822929e32406b5137c8193848bd226240bb165004983bc",
+    "report": "6236d608bdfe039bd7a8ffc377d7876c38283ae0d85ed6dc90dd1254b3d56386",
+    "spec": "e2efc7a0fb0ed53f0f17145893c86b70473cb61ebe9c12bb05fecabde82bcb8f"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "26df6d1d97e6b2f2509480875fb44f75204606fc9a67ad9d0881b6e46624a85d8bdfc407cd53537b32453c12cbee4a1bb2fce4c6cfda26050242a24f4e1bd608",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "EXCLUDED"
+}

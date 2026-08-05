@@ -177,6 +177,52 @@ def test_committed_receipts_are_not_stale():
         assert verify_receipt(r)
 
 
+# --- the corpus has to survive leaving the repository ------------------
+
+def test_packaged_receipts_are_identical_to_the_committed_corpus():
+    """A wheel carries no reports, so `corpus` falls back to receipts shipped
+    inside the package. If those drift from the repo corpus, a pip user sees a
+    different verdict list than a clone does."""
+    shipped = sorted((ROOT / corpus.CORPUS_DIR).glob("*.receipt.json"))
+    packaged = sorted(corpus.packaged_dir().glob("*.receipt.json"))
+    assert [p.name for p in packaged] == [p.name for p in shipped]
+    for a, b in zip(packaged, shipped):
+        assert a.read_bytes() == b.read_bytes(), f"{a.name} drifted from the repo corpus"
+
+
+def test_packaged_receipts_all_verify():
+    for p in sorted(corpus.packaged_dir().glob("*.receipt.json")):
+        assert verify_receipt(json.loads(p.read_text())), p.name
+
+
+def test_cli_corpus_works_without_the_reports(tmp_path, monkeypatch, capsys):
+    """`pip install signalmap && signalmap corpus` — the README promises this,
+    and a wheel has no research/ tree to rebuild from."""
+    from signalmap.cli import main
+    monkeypatch.setenv("SIGNALMAP_HOME", str(tmp_path / "home"))
+    monkeypatch.setattr(corpus, "repo_root", lambda: tmp_path / "no-repo")
+    monkeypatch.chdir(tmp_path)
+    rc = main(["corpus"])
+    assert rc in (0, None)
+    printed = capsys.readouterr().out
+    assert "8 verdicts across 6 banks" in printed
+    assert "INCLUDED" in printed and "EXCLUDED" in printed
+
+
+def test_cli_corpus_without_reports_can_write_the_receipts_out(
+        tmp_path, monkeypatch, capsys):
+    from signalmap.cli import main
+    monkeypatch.setenv("SIGNALMAP_HOME", str(tmp_path / "home"))
+    monkeypatch.setattr(corpus, "repo_root", lambda: tmp_path / "no-repo")
+    monkeypatch.chdir(tmp_path)
+    rc = main(["corpus", "--out", "out"])
+    assert rc in (0, None)
+    written = sorted((tmp_path / "out").glob("*.receipt.json"))
+    assert len(written) == 8
+    for p in written:
+        assert verify_receipt(json.loads(p.read_text())), p.name
+
+
 # --- verifier consistency check ----------------------------------------
 
 def test_verifier_rejects_an_archive_receipt_claiming_a_rerun(tmp_path):

@@ -9,7 +9,7 @@ feature families when they don't generalize, instead of silently adding them.</i
 <p align="center">
 <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
 <img alt="Python" src="https://img.shields.io/badge/python-3.9%2B-blue">
-<img alt="Status" src="https://img.shields.io/badge/status-0.5.0-orange">
+<img alt="Status" src="https://img.shields.io/badge/status-0.5.1-orange">
 </p>
 
 ---
@@ -173,20 +173,24 @@ imports **nothing** from signalmap — stdlib plus `cryptography` — so checkin
 receipt never means running our code:
 ```bash
 pip install signalmap
-signalmap corpus                              # rebuild + list the shipped verdict corpus
-python3 tools/verify_receipt.py research/factory/receipts/cwru_rqa.receipt.json
-# PASS: … — verdict INCLUDED, integrity only
+signalmap corpus --out receipts/     # write out the eight shipped verdicts
+curl -sO https://raw.githubusercontent.com/MrPredic/signalmap/main/tools/verify_receipt.py
+python3 verify_receipt.py receipts/cwru_rqa.receipt.json
+# PASS: receipts/cwru_rqa.receipt.json — verdict INCLUDED, integrity only
 ```
+The receipts travel inside the wheel, so `signalmap corpus` works from a plain
+`pip install`; in a clone it rebuilds them from the preregistered reports
+instead. Either way you get the same eight files and the same traction line:
 ```text
-EXCLUDED CALCE       rqa       research/factory/receipts/calce_rqa.receipt.json
-EXCLUDED CWRU        envelope  research/factory/receipts/cwru_envelope.receipt.json
-INCLUDED CWRU        rqa       research/factory/receipts/cwru_rqa.receipt.json
-EXCLUDED GAS-id      coherence research/factory/receipts/gasid_coherence.receipt.json
-INCLUDED HYD-cooler  coherence research/factory/receipts/hydcooler_coherence.receipt.json
-EXCLUDED HYD-cooler  rqa       research/factory/receipts/hydcooler_rqa.receipt.json
-EXCLUDED IMS         envelope  research/factory/receipts/ims_envelope.receipt.json
-EXCLUDED MFPT        envelope  research/factory/receipts/mfpt_envelope.receipt.json
-8 verdicts across 6 banks · 2 included with a cost receipt · 6 honest exclusions · 0 silent adoptions · offline verifiable
+EXCLUDED CALCE       rqa       receipts/calce_rqa.receipt.json
+EXCLUDED CWRU        envelope  receipts/cwru_envelope.receipt.json
+INCLUDED CWRU        rqa       receipts/cwru_rqa.receipt.json
+EXCLUDED GAS-id      coherence receipts/gasid_coherence.receipt.json
+INCLUDED HYD-cooler  coherence receipts/hydcooler_coherence.receipt.json
+EXCLUDED HYD-cooler  rqa       receipts/hydcooler_rqa.receipt.json
+EXCLUDED IMS         envelope  receipts/ims_envelope.receipt.json
+EXCLUDED MFPT        envelope  receipts/mfpt_envelope.receipt.json
+8 verdicts across 6 banks · 2 included with a cost receipt · 6 honest exclusions · 0 silent adoptions · offline verifiable (tools/verify_receipt.py)
 ```
 Those eight are the preregistered premium verdicts described above, shipped in
 the repo as signed receipts. They are labelled `archive_signature`: the

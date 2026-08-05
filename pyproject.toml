@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "signalmap"
-version = "0.5.0"
+version = "0.5.1"
 description = "Open, sensor-agnostic platform: stream raw signals from any (even salvaged) sensor, embed them unsupervised, explore the latent landscape for unknown patterns."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -41,6 +41,11 @@ signalmap = "signalmap.cli:main"
 
 [tool.setuptools]
 packages = ["signalmap", "sensors"]
+
+[tool.setuptools.package-data]
+# The verdict corpus travels with the wheel: `signalmap corpus` has to
+# work from a pip install, where no research/ tree exists to rebuild from.
+signalmap = ["verdicts/*.receipt.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["signalmap/tests"]
