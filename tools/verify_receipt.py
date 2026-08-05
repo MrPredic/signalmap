@@ -65,10 +65,16 @@ def check(receipt, pinned_pubkey=None):
             errors.append("inconsistent: archive_signature lacks "
                           "source_report")
 
-    from cryptography.exceptions import InvalidSignature
-    from cryptography.hazmat.primitives.asymmetric.ed25519 import (
-        Ed25519PublicKey,
-    )
+    try:
+        from cryptography.exceptions import InvalidSignature
+        from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+            Ed25519PublicKey,
+        )
+    except ImportError:
+        # This script is meant to run in an environment that has nothing to do
+        # with signalmap, so say what is missing instead of raising a traceback.
+        raise SystemExit(
+            "verify_receipt needs Ed25519 verification: pip install cryptography")
     try:
         pub = Ed25519PublicKey.from_public_bytes(
             bytes.fromhex(receipt["pubkey"]))

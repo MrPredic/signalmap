@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "signalmap"
-version = "0.5.1"
+version = "0.5.2"
 description = "Open, sensor-agnostic platform: stream raw signals from any (even salvaged) sensor, embed them unsupervised, explore the latent landscape for unknown patterns."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -17,7 +17,8 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
   "Topic :: System :: Hardware",
 ]
-dependencies = ["numpy>=1.26", "torch>=2.2"]
+# cryptography is not optional: distill/fit/monitor sign every verdict they emit.
+dependencies = ["numpy>=1.26", "torch>=2.2", "cryptography>=42"]
 
 [project.optional-dependencies]
 sensors = ["sounddevice>=0.4", "pyarrow>=15.0", "paho-mqtt>=2.0"]

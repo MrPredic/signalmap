@@ -9,7 +9,7 @@ feature families when they don't generalize, instead of silently adding them.</i
 <p align="center">
 <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
 <img alt="Python" src="https://img.shields.io/badge/python-3.9%2B-blue">
-<img alt="Status" src="https://img.shields.io/badge/status-0.5.1-orange">
+<img alt="Status" src="https://img.shields.io/badge/status-0.5.2-orange">
 </p>
 
 ---
@@ -174,7 +174,10 @@ receipt never means running our code:
 ```bash
 pip install signalmap
 signalmap corpus --out receipts/     # write out the eight shipped verdicts
+
+# the verifier: one file, no signalmap, no venv of ours
 curl -sO https://raw.githubusercontent.com/MrPredic/signalmap/main/tools/verify_receipt.py
+pip install cryptography             # its only dependency
 python3 verify_receipt.py receipts/cwru_rqa.receipt.json
 # PASS: receipts/cwru_rqa.receipt.json — verdict INCLUDED, integrity only
 ```

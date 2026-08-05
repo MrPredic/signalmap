@@ -145,3 +145,25 @@ def test_cli_fit_and_monitor_emit_signed_receipts(tmp_path, monkeypatch):
     assert "rate" in mon_receipt["evidence"]
     # both receipts signed by the same persistent key
     assert fit_receipt["pubkey"] == mon_receipt["pubkey"]
+
+
+def test_cryptography_is_declared_as_a_core_dependency():
+    """Every verdict command signs its receipt, so signing is not optional.
+    Shipped as an extra, `pip install signalmap` gives a package whose headline
+    feature dies with ModuleNotFoundError (that happened in 0.5.0 and 0.5.1)."""
+    import re
+    import sys
+    from pathlib import Path
+    if sys.version_info >= (3, 11):
+        import tomllib
+    else:                                    # pragma: no cover - 3.9/3.10 CI legs
+        tomllib = None
+    root = Path(__file__).resolve().parents[2]
+    text = (root / "pyproject.toml").read_text()
+    if tomllib is not None:
+        deps = tomllib.loads(text)["project"]["dependencies"]
+    else:
+        block = re.search(r"^dependencies = \[(.*?)\]", text, re.S | re.M).group(1)
+        deps = re.findall(r'"([^"]+)"', block)
+    assert any(d.split(">=")[0].split("[")[0].strip() == "cryptography" for d in deps), (
+        f"cryptography missing from core dependencies: {deps}")

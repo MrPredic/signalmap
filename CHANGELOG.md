@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.2 (2026-08-05)
+
+Fixed
+- `cryptography` was an extra, not a dependency, so on a plain
+  `pip install signalmap` every command that emits a verdict — `distill`,
+  `fit`, `monitor` — died with `ModuleNotFoundError` when it went to sign the
+  receipt. Signing is not optional; it is a core dependency now. A test asserts
+  it stays one.
+- `tools/verify_receipt.py` raised a traceback when `cryptography` was absent.
+  It is meant to run in an environment that has nothing to do with signalmap,
+  so it now says what to install.
+
 ## 0.5.1 (2026-08-05)
 
 Fixed
