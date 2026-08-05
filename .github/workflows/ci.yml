@@ -70,10 +70,19 @@ jobs:
         run: |
           python -m venv /tmp/bare
           /tmp/bare/bin/pip install cryptography
-          /tmp/bare/bin/python -c "import signalmap" && exit 1 || true
-          /tmp/bare/bin/python tools/verify_receipt.py det.json.receipt.json
+          # Outside the repo: from the checkout root the source tree itself is
+          # importable via cwd, which would make the isolation check meaningless.
+          mkdir -p /tmp/standalone
+          cp tools/verify_receipt.py det.json.receipt.json /tmp/standalone/
+          cd /tmp/standalone
+          if /tmp/bare/bin/python -c "import signalmap" 2>/dev/null; then
+            echo "signalmap is importable here — this job no longer proves standalone verification"
+            exit 1
+          fi
+          /tmp/bare/bin/python verify_receipt.py det.json.receipt.json
       - name: Tampered receipt must FAIL
         run: |
+          cd /tmp/standalone
           python - <<'PY'
           from pathlib import Path
           p = Path("det.json.receipt.json")
@@ -81,6 +90,6 @@ jobs:
           raw[raw.find(b'"claim"') + 12] ^= 0x01
           p.write_bytes(bytes(raw))
           PY
-          if /tmp/bare/bin/python tools/verify_receipt.py det.json.receipt.json; then
+          if /tmp/bare/bin/python verify_receipt.py det.json.receipt.json; then
             echo "tampered receipt verified — red-team gate broken"; exit 1
           fi
