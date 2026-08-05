@@ -5,6 +5,7 @@ __pycache__/
 .eggs/
 build/
 dist/
+.venv
 .venv/
 venv/
 
@@ -16,16 +17,39 @@ data/
 
 # Rust
 firmware/target/
+firmware/edge-core/target/
 
 # OS / editor
 .DS_Store
 .idea/
 .vscode/
 .venv-research/
-PARALLEL_PLAN.md
 research/factory/logs/cache/
+
+# Local working state: session handoffs, plans and the research overview stay
+# on the machine. They carry local paths and unreleased planning, never the
+# public repo.
+.remember/
+NEXT.md
+PARALLEL_PLAN.md
+PLAN_*.md
+SESSION_HANDOVER_*.md
+RESEARCH_OVERVIEW.html
 
 # coverage
 .coverage
 .coverage.*
 htmlcov/
+
+# Research artifacts: the public repo carries the verdict corpus and exactly
+# the reports/specs/preregs its receipts pin (~44 KiB) — raw run logs, caches
+# and frozen models (~70 MB) stay on the private research branch.
+research/*
+!research/factory/
+research/factory/*
+!research/factory/PREREG_*.md
+!research/factory/receipts/
+!research/factory/logs/
+research/factory/logs/*
+!research/factory/logs/*_report.md
+!research/factory/logs/*_spec.json

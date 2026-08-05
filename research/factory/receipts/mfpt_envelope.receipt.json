@@ -1,0 +1,53 @@
+{
+  "claim": "premium family 'envelope' on bank MFPT does not clear the cost-receipted champion rule over the distilled base grammar",
+  "countersignatures": [],
+  "created_at": "2026-08-04T17:20:27Z",
+  "evidence": {
+    "bank": "MFPT",
+    "base_gate": {
+      "chance": 0.333,
+      "cost_ms_per_window": 0.388,
+      "deploy_selection": 0.83,
+      "n_recordings": 20,
+      "n_windows": 3718,
+      "nested_logo": 0.812,
+      "null_selftest": 0.387,
+      "perm_p": 0.005,
+      "verdict": "PASS"
+    },
+    "family": "envelope",
+    "premium": {
+      "augmented_acc": 0.842,
+      "base_acc": 0.83,
+      "base_cost_ms_per_window": 0.388,
+      "ci95": [
+        -0.009,
+        0.035
+      ],
+      "cost_ms_per_window": 0.15,
+      "cost_ratio_vs_base": 0.0,
+      "family": "envelope",
+      "paired_delta": 0.012,
+      "verdict": "EXCLUDED"
+    },
+    "provenance": {
+      "mode": "archive_signature",
+      "note": "Archive signature: the verdict was decided in the preregistered run cited below and is transcribed here, NOT re-executed. The signature attests to origin and integrity of this transcription, not to correctness of the statistics.",
+      "prereg": "research/factory/PREREG_DISTILL_PREMIUM_ENVELOPE.md",
+      "rerun": false,
+      "source_report": "research/factory/logs/distill_premium_mfpt_envelope_report.md",
+      "source_sha256": "1f0a5065ad67a65aefb077b69a05e1085c13fc8862d25d557dcb15d0f172aa65"
+    }
+  },
+  "input_hashes": {
+    "prereg": "ee71621a02b4ec25cb822929e32406b5137c8193848bd226240bb165004983bc",
+    "report": "1f0a5065ad67a65aefb077b69a05e1085c13fc8862d25d557dcb15d0f172aa65",
+    "spec": "a1a54c4606bb29a52c55faa3fdc9b0da7a2fc984a8a5d2dcb7f6b93c5c3215c3"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "9af68fd7138d7d310a70e88c559d247891f938f27ee5045a427ee76d23010cd01c1e963350ed8da30f6502e3a60812894ef12aa73b24c45306932903f5958804",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "EXCLUDED"
+}

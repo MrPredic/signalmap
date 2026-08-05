@@ -215,13 +215,25 @@ def test_premium_included_on_ci_solid_win(tmp_path, oracle_family):
 
 def test_run_cli_forwards_premium(tmp_path):
     """CLI surface: run_cli(premium=...) must run the challenger and write the
-    premium block into the receipt file."""
+    premium block into the receipt file.
+
+    Forwarding only — a deliberately tiny bank/budget (2 recordings per class,
+    2*W samples, budget 5) keeps this < 20 s; the champion-rule semantics are
+    covered by the dedicated tests above."""
     from signalmap.distill import run_cli
-    _make_bank(tmp_path / "bank", seed=1) if (tmp_path / "bank").mkdir() is None else None
-    # budget 6, not 50: this test pins CLI flag forwarding, not statistical
-    # power, and the full budget costs ~70s of quadratic RQA to prove nothing extra.
-    res = run_cli(str(tmp_path / "bank"), "prefix", 6, str(tmp_path / "spec.json"),
-                  n_perm=10, trees=25, premium=("rqa",))
+    bank = tmp_path / "bank"
+    bank.mkdir()
+    rng = np.random.default_rng(1)
+    n = 2 * 1024
+    t = np.arange(n)
+    for cls, f in (("A", 0.01), ("B", 0.3)):
+        for r in range(2):
+            s = np.sin(2 * np.pi * f * t) + 0.1 * rng.standard_normal(n)
+            if cls == "B":
+                s += 4.0 * (rng.random(n) < 0.02) * rng.standard_normal(n)
+            np.save(bank / f"{cls}_{r}.npy", s.astype(np.float64))
+    res = run_cli(str(bank), "prefix", 5, str(tmp_path / "spec.json"),
+                  n_perm=5, trees=10, premium=("rqa",))
     assert res.premium_receipts and res.premium_receipts[0]["family"] == "rqa"
     report = open(tmp_path / "spec_report.md").read()
     assert "premium families" in report

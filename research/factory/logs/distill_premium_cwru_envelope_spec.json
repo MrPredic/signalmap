@@ -1,0 +1,25 @@
+{
+  "programs": [
+    "acf1(abs(clip(x)))",
+    "meanabs(diff(abs(x)))",
+    "meanabs(sq(sq(x)))",
+    "meanabs(abs(abs(x)))",
+    "crest(tanh(diff(x)))"
+  ],
+  "classes": [
+    "B007",
+    "B021",
+    "IR007",
+    "IR021",
+    "OR007",
+    "OR021"
+  ],
+  "window": 1024,
+  "budget_c": 50,
+  "n_recordings": 24,
+  "nested_acc": 0.8739908739908739,
+  "forged_acc": 0.9139011536818117,
+  "chance": 0.16666666666666666,
+  "premium": [],
+  "channels": []
+}

@@ -47,3 +47,21 @@ embedded with no servers.
 The machinery (ingest → embed → anomaly) is verified. "Discovery of new
 effects/materials" is a research goal validated by physical experiment, not by
 the anomaly score alone. An outlier is a hypothesis, never a conclusion.
+
+## Method modules and evidence
+
+The scientific method layer is intentionally open-ended. A method module
+declares a `MethodCapability` (family, hard technical requirements, cost, and
+evidence status) and can be loaded into a `MethodCatalog` without changing the
+core pipeline.
+
+- `confirmed` methods have receipts that passed the required evidence gates.
+- `candidate` methods are plausible but incomplete.
+- `speculative` methods are allowed for exploratory work and remain visibly
+  separate from confirmed results.
+
+Routing only hard-excludes technically impossible methods, such as a
+two-channel method on a one-channel source. Noise diagnostics may change
+priority or budget, but do not erase a method's opportunity to discover
+something unexpected. Method-specific evidence lives in extensible JSON; the
+core requires stable identity, status, and replayable inputs.

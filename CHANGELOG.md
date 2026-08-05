@@ -3,6 +3,26 @@
 ## Unreleased
 
 Added
+- Signed verdict receipts (`signalmap.receipt/1`): every `distill`, `fit` and
+  `monitor` run emits versioned JSON — claim, verdict
+  (INCLUDED/EXCLUDED/PASS/REFUSED), evidence, input hashes, Ed25519 signature.
+  The signing key lives in `~/.signalmap/signing_key` (0600) and never enters
+  the repo; only the public key travels in the receipt.
+- `tools/verify_receipt.py`: standalone verifier that imports **nothing** from
+  signalmap — stdlib plus `cryptography`. Checks signature, schema and internal
+  consistency (a REFUSED verdict may not carry a deploy spec).
+- Verdict corpus: the eight preregistered premium-family verdicts (rqa,
+  coherence, envelope over six banks; 2 included, 6 honest exclusions) shipped
+  as signed receipts in `research/factory/receipts/`, each pinning the sha256
+  of the report it transcribes and labelled `archive_signature` — signed, not
+  re-run. A suite gate fails if a shipped receipt goes stale.
+- `signalmap corpus` rebuilds that corpus and prints the traction line.
+- `signalmap prove` records the permutation-resolution floor of each split and
+  reports `inconclusive` (cannot resolve) instead of `null` (no evidence) when
+  a p could never have cleared the threshold at that group count.
+- `signalmap qualify` (source profiling and method-family routing) and the
+  compositional `composer` grammar (`composer-v2`).
+
 - Published to PyPI: `pip install signalmap`. Releases upload through GitHub
   Actions via PyPI trusted publishing (OIDC), so no API token is stored
   anywhere.
@@ -12,6 +32,9 @@ Added
 - Lint gate in CI (ruff, pinned version, explicitly selected rules).
 
 Fixed
+- `test_training_reduces_reconstruction_loss` compared two independently
+  initialised models and failed at random (1 in 3 parallel runs); both runs now
+  start from the same seed.
 - `signalmap map` crashed with `IndexError` on a single-recording dataset: the
   2D projection returned one column when the data could not span two. It now
   always returns two, and skips UMAP below three points.

@@ -51,21 +51,29 @@ pub mod frame {
         sr_hz: u32,
         samples: &[i16],
     ) -> usize {
-        let n = samples.len().min(MAX_SAMPLES);
-        out[0..2].copy_from_slice(&MAGIC_RAW.to_le_bytes());
-        out[2] = VERSION;
-        out[3] = 0; // flags: raw, no phase
-        out[4..8].copy_from_slice(&node_id.to_le_bytes());
-        out[8..12].copy_from_slice(&seq.to_le_bytes());
-        out[12..20].copy_from_slice(&ts_us.to_le_bytes());
-        out[20..24].copy_from_slice(&sr_hz.to_le_bytes());
-        out[24..26].copy_from_slice(&(n as u16).to_le_bytes());
-        out[26..28].copy_from_slice(&0u16.to_le_bytes()); // reserved
-        for (i, s) in samples[..n].iter().enumerate() {
-            let off = HEADER_LEN + i * 2;
-            out[off..off + 2].copy_from_slice(&s.to_le_bytes());
+        #[cfg(feature = "edge-core")]
+        {
+            return signalmap_edge_core::frame::pack_raw(out, node_id, seq, ts_us, sr_hz, samples)
+                .unwrap_or(0);
         }
-        HEADER_LEN + n * 2
+        #[cfg(not(feature = "edge-core"))]
+        {
+            let n = samples.len().min(MAX_SAMPLES);
+            out[0..2].copy_from_slice(&MAGIC_RAW.to_le_bytes());
+            out[2] = VERSION;
+            out[3] = 0; // flags: raw, no phase
+            out[4..8].copy_from_slice(&node_id.to_le_bytes());
+            out[8..12].copy_from_slice(&seq.to_le_bytes());
+            out[12..20].copy_from_slice(&ts_us.to_le_bytes());
+            out[20..24].copy_from_slice(&sr_hz.to_le_bytes());
+            out[24..26].copy_from_slice(&(n as u16).to_le_bytes());
+            out[26..28].copy_from_slice(&0u16.to_le_bytes()); // reserved
+            for (i, s) in samples[..n].iter().enumerate() {
+                let off = HEADER_LEN + i * 2;
+                out[off..off + 2].copy_from_slice(&s.to_le_bytes());
+            }
+            HEADER_LEN + n * 2
+        }
     }
 }
 

@@ -1,0 +1,22 @@
+{
+  "programs": [
+    "acf1(cumsum(sq(x)))",
+    "acf1(cumsum(abs(x)))",
+    "hent(tanh(id(x)))",
+    "peakcv(cumsum(abs(x)))",
+    "crest(tanh(rollstd(x)))"
+  ],
+  "classes": [
+    "baseline",
+    "inner",
+    "outer"
+  ],
+  "window": 1024,
+  "budget_c": 50,
+  "n_recordings": 20,
+  "nested_acc": 0.8117267348036579,
+  "forged_acc": 0.8295454545454547,
+  "chance": 0.3333333333333333,
+  "premium": [],
+  "channels": []
+}

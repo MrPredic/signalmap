@@ -1,0 +1,31 @@
+{
+  "programs": [
+    "acf1(sq(diff(x)))",
+    "acf1(env(abs(x)))",
+    "acf1(abs(env(x)))",
+    "acf1(diff(diff2(x)))",
+    "acf1(rollstd(tanh(x)))"
+  ],
+  "classes": [
+    "cooler100",
+    "cooler20",
+    "cooler3"
+  ],
+  "window": 1024,
+  "budget_c": 50,
+  "n_recordings": 18,
+  "nested_acc": 0.6944444444444444,
+  "forged_acc": 0.75,
+  "chance": 0.3333333333333333,
+  "premium": [
+    "coherence"
+  ],
+  "channels": [
+    "ps1",
+    "ps2",
+    "ps3",
+    "ps4",
+    "ps5",
+    "ps6"
+  ]
+}

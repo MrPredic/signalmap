@@ -174,6 +174,18 @@ def test_distill_end_to_end_separable_classes(tmp_path):
     assert all(prog in res.report for prog in res.spec.programs)
 
 
+def test_distill_accepts_qualified_family_route(tmp_path):
+    """A confirmed source route can exclude spectral/envelope programs before
+    feature computation while preserving the normal receipt pipeline."""
+    bank = _make_bank(tmp_path)
+    res = distill(bank, C=50, kmax=2, thr=0.005, n_perm=2, trees=5,
+                  cand=5, null_check=False, family_families={"time_domain"})
+    assert res.grammar_total < len(enumerate_programs())
+    assert "qualification routing" in res.report
+    assert all("specratio" not in name and "env(" not in name
+               for name in res.spec.programs)
+
+
 def test_spec_save_creates_missing_parent_dir(tmp_path):
     """The README writes `--out artifacts/spec.json`; a fresh checkout has no
     artifacts/ dir. save() must create the parent so the gauntlet's result isn't

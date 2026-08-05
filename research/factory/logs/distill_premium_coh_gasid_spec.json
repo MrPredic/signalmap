@@ -1,0 +1,29 @@
+{
+  "programs": [
+    "peakcv(clip(diff(x)))",
+    "crest(sq(rollstd(x)))"
+  ],
+  "classes": [
+    "CO",
+    "ethanol",
+    "ethylene",
+    "methane"
+  ],
+  "window": 1024,
+  "budget_c": 50,
+  "n_recordings": 20,
+  "nested_acc": 0.3333333333333333,
+  "forged_acc": 0.42857142857142855,
+  "chance": 0.25,
+  "premium": [],
+  "channels": [
+    "mox1",
+    "mox2",
+    "mox3",
+    "mox4",
+    "mox5",
+    "mox6",
+    "mox7",
+    "mox8"
+  ]
+}

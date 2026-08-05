@@ -306,11 +306,12 @@ def test_run_cli_forwards_multichannel(tmp_path):
     bankdir.mkdir()
     rng = np.random.default_rng(12)
     for cls, f in (("A", 0.01), ("B", 0.3)):
-        for r in range(3):
-            n = 4 * W
+        for r in range(2):
+            # forwarding only: tiny bank/budget (semantics covered above)
+            n = 2 * W
             ch0 = np.sin(2 * np.pi * f * np.arange(n)) + 0.1 * rng.standard_normal(n)
             np.save(bankdir / f"{cls}_{r}.npy", np.stack([ch0, rng.standard_normal(n)]))
-    res = run_cli(str(bankdir), "prefix", 50, str(tmp_path / "spec.json"),
+    res = run_cli(str(bankdir), "prefix", 5, str(tmp_path / "spec.json"),
                   n_perm=5, trees=10, multichannel=True)
     assert res.spec.channels == ["ch0", "ch1"]
     assert json.load(open(tmp_path / "spec.json"))["channels"] == ["ch0", "ch1"]

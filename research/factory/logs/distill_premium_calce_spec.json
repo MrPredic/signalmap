@@ -1,0 +1,21 @@
+{
+  "programs": [
+    "acf1(clip(diff2(x)))",
+    "std(rollstd(id(x)))",
+    "meanabs(cumsum(diff(x)))",
+    "iqr90(rollstd(id(x)))",
+    "runmean(abs(env(x)))"
+  ],
+  "classes": [
+    "early",
+    "late",
+    "mid"
+  ],
+  "window": 1024,
+  "budget_c": 50,
+  "n_recordings": 18,
+  "nested_acc": 0.8921568627450981,
+  "forged_acc": 0.9351893809149556,
+  "chance": 0.3333333333333333,
+  "premium": []
+}

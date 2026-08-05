@@ -544,7 +544,8 @@ class DistillResult:
 
 def distill(bank: Bank, C: int = 50, kmax: int = 5, thr: float = 0.005,
             n_perm: int = 60, trees: int = 100, cand: int = 60, seed: int = 0,
-            null_check: bool = True, premium: tuple = ()) -> DistillResult:
+            null_check: bool = True, premium: tuple = (),
+            family_families: set[str] | None = None) -> DistillResult:
     """Run the full distillation gauntlet and return a deployable spec + receipt."""
     if bank.n_recordings < 2:
         raise SystemExit(
@@ -552,6 +553,13 @@ def distill(bank: Bank, C: int = 50, kmax: int = 5, thr: float = 0.005,
             f"got {bank.n_recordings} — each recording is one held-out group, and "
             f"an honest accuracy receipt requires at least one to hold out")
     all_progs = enumerate_programs()
+    if family_families is not None:
+        from .qualification import filter_programs
+        all_progs = filter_programs(all_progs, set(family_families))
+        if not all_progs:
+            raise SystemExit(
+                "qualification routed zero base-grammar programs; "
+                "re-qualify the source or use an explicit family set")
     kept = gate(all_progs, bank.n_recordings, C)
     budget = len(kept)
 
@@ -635,7 +643,7 @@ def distill(bank: Bank, C: int = 50, kmax: int = 5, thr: float = 0.005,
         premium=spec_premium, channels=list(bank.channels))
     report = _render_report(bank, sel_names, budget, len(all_progs), C, nested_acc,
                             forged_acc, lean_acc, p_forged, null_acc, cost_ms, passed,
-                            premium_receipts)
+                            premium_receipts, family_families)
     return DistillResult(spec, report, float(nested_acc), float(bank.chance),
                          float(lean_acc), float(forged_acc), float(p_forged),
                          float(null_acc), budget, len(all_progs), float(cost_ms), passed,
@@ -643,7 +651,7 @@ def distill(bank: Bank, C: int = 50, kmax: int = 5, thr: float = 0.005,
 
 
 def _render_report(bank, sel, budget, total, C, nested, forged, lean, pf, null_acc,
-                   cost_ms, passed, premium_receipts=()) -> str:
+                   cost_ms, passed, premium_receipts=(), family_families=None) -> str:
     per_rec = budget / max(bank.n_recordings, 1)
     L = ["# signalmap distill — gauntlet receipt", ""]
     L += [f"- verdict: {'PASS' if passed else 'FAIL'}",
@@ -654,6 +662,10 @@ def _render_report(bank, sel, budget, total, C, nested, forged, lean, pf, null_a
           f"- grammar total: {total}",
           f"- budget = min({total}, {C}*{bank.n_recordings}) = {budget} "
           f"({per_rec:.1f} programs/recording)", ""]
+    if family_families is not None:
+        L += ["## qualification routing",
+              f"- compatible base families: {', '.join(sorted(family_families))}",
+              "- incompatible families were excluded before feature computation", ""]
     L += ["## accuracy receipts (LOGO over recordings)",
           f"- nested LOGO (honesty anchor): {nested:.3f}",
           f"- deploy selection (biased UB): {forged:.3f}",
@@ -819,13 +831,20 @@ def run_cli(bank_path: str, label_by: str, budget_c: int, out: str,
             report_out: str | None = None, pattern: str = "*", column: int = 0,
             n_perm: int = 60, trees: int = 100, premium: tuple = (),
             multichannel: bool = False,
-            channel_axis: int | None = None) -> DistillResult:
+            channel_axis: int | None = None,
+            family_families: set[str] | None = None) -> DistillResult:
     bank = load_bank(bank_path, label_by, column, pattern, multichannel, channel_axis)
-    res = distill(bank, C=budget_c, n_perm=n_perm, trees=trees, premium=premium)
+    res = distill(bank, C=budget_c, n_perm=n_perm, trees=trees, premium=premium,
+                  family_families=family_families)
     res.spec.save(out)
     rpath = report_out or (os.path.splitext(out)[0] + "_report.md")
     with open(rpath, "w") as fh:
         fh.write(res.report)
     print(res.report)
+    from .run_receipts import emit_distill_receipts
+    receipts = emit_distill_receipts(res, bank_path=bank_path, spec_path=out,
+                                     report_path=rpath)
     print(f"\nspec  -> {out}\nreport -> {rpath}")
+    for p in receipts:
+        print(f"receipt -> {p}")
     return res

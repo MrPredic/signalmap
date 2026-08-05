@@ -5,6 +5,11 @@ edition = "2021"
 license = "Apache-2.0"
 description = "SignalMap edge firmware: raw ADC streaming over MQTT (ESP32-S3, no_std)"
 
+[features]
+default = []
+# Opt-in integration: keeps the existing raw path unchanged by default.
+edge-core = ["dep:signalmap-edge-core"]
+
 [dependencies]
 esp-hal              = { version = "0.23", features = ["esp32s3"] }
 esp-hal-embassy      = { version = "0.6", features = ["esp32s3"] }
@@ -19,6 +24,7 @@ heapless             = "0.8"
 static_cell          = "2.1"
 # Optional edge-FFT for the parallel spectrum path (allocation-free, no_std):
 microfft             = "0.6"
+signalmap-edge-core  = { path = "edge-core", optional = true }
 
 [profile.release]
 opt-level = 3

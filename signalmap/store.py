@@ -69,10 +69,17 @@ class QdrantNovelty:
         if not self.client:
             return 1.0
         try:
-            hits = self.client.search(
-                self.collection, query_vector=vector.tolist(), limit=k
-            )
-        except Exception:
+            if hasattr(self.client, "query_points"):
+                hits = self.client.query_points(
+                    self.collection, query=vector.tolist(), limit=k
+                ).points
+            else:  # pre-deprecation clients only have search()
+                hits = self.client.search(
+                    self.collection, query_vector=vector.tolist(), limit=k
+                )
+        except Exception as e:
+            # loud degradation: "no novelty" must never look like a healthy 1.0
+            print(f"  [qdrant] query failed ({e}); novelty falls back to 1.0")
             return 1.0
         if not hits:
             return 1.0  # empty index -> maximally novel

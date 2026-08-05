@@ -1,0 +1,21 @@
+{
+  "programs": [
+    "acf1(diff(abs(x)))",
+    "acf1(diff2(rollstd(x)))",
+    "crest(diff2(tanh(x)))",
+    "acf1(diff2(sq(x)))",
+    "lcross(diff(sq(x)))"
+  ],
+  "classes": [
+    "defect",
+    "healthy"
+  ],
+  "window": 1024,
+  "budget_c": 50,
+  "n_recordings": 12,
+  "nested_acc": 0.6875,
+  "forged_acc": 0.796875,
+  "chance": 0.5,
+  "premium": [],
+  "channels": []
+}

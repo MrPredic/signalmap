@@ -61,8 +61,15 @@ def test_training_reduces_reconstruction_loss(tmp_path):
             recon, _ = m(x)
         return float(((recon - x) ** 2).mean())
 
-    train_mod.train(feats, epochs=1, out=str(tmp_path / "a.pt"))
-    train_mod.train(feats, epochs=15, out=str(tmp_path / "b.pt"))
+    # Both runs must start from the SAME random init, or the comparison is
+    # between two different models and fails at random (observed: 1 in 3
+    # parallel runs). Seeded, "more epochs -> lower loss" is a real claim.
+    def train_seeded(epochs, name):
+        torch.manual_seed(0)
+        train_mod.train(feats, epochs=epochs, out=str(tmp_path / name))
+
+    train_seeded(1, "a.pt")
+    train_seeded(15, "b.pt")
     assert loss_of(str(tmp_path / "b.pt")) < loss_of(str(tmp_path / "a.pt"))
 
 

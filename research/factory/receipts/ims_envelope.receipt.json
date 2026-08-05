@@ -1,0 +1,53 @@
+{
+  "claim": "premium family 'envelope' on bank IMS does not clear the cost-receipted champion rule over the distilled base grammar",
+  "countersignatures": [],
+  "created_at": "2026-08-04T17:20:27Z",
+  "evidence": {
+    "bank": "IMS",
+    "base_gate": {
+      "chance": 0.5,
+      "cost_ms_per_window": 0.165,
+      "deploy_selection": 0.797,
+      "n_recordings": 12,
+      "n_windows": 192,
+      "nested_logo": 0.688,
+      "null_selftest": 0.474,
+      "perm_p": 0.005,
+      "verdict": "PASS"
+    },
+    "family": "envelope",
+    "premium": {
+      "augmented_acc": 0.766,
+      "base_acc": 0.797,
+      "base_cost_ms_per_window": 0.165,
+      "ci95": [
+        -0.104,
+        0.026
+      ],
+      "cost_ms_per_window": 0.19,
+      "cost_ratio_vs_base": 1.0,
+      "family": "envelope",
+      "paired_delta": -0.031,
+      "verdict": "EXCLUDED"
+    },
+    "provenance": {
+      "mode": "archive_signature",
+      "note": "Archive signature: the verdict was decided in the preregistered run cited below and is transcribed here, NOT re-executed. The signature attests to origin and integrity of this transcription, not to correctness of the statistics.",
+      "prereg": "research/factory/PREREG_DISTILL_PREMIUM_ENVELOPE.md",
+      "rerun": false,
+      "source_report": "research/factory/logs/distill_premium_ims_envelope_report.md",
+      "source_sha256": "bee04a54cce7fd9763f9f84f05169e9ef1e65a85604c6a23a132c469ef0022ba"
+    }
+  },
+  "input_hashes": {
+    "prereg": "ee71621a02b4ec25cb822929e32406b5137c8193848bd226240bb165004983bc",
+    "report": "bee04a54cce7fd9763f9f84f05169e9ef1e65a85604c6a23a132c469ef0022ba",
+    "spec": "34dbf79c7f96e3c76dff00118f6ef765dbb55bea189e712ad646f138ad1613f8"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "2f4884f3a12a9604768012ac1182ccc2b9a0a70b683dcd145b6a55aba939cf498f3a5365382ed8643e77982134280796c6b93310fa437367062cbe889632f507",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "EXCLUDED"
+}
