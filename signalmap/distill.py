@@ -777,6 +777,48 @@ class FeatureSpec:
 MAD_TO_SIGMA = 1.4826
 
 
+def _rank_auc(y_true: np.ndarray, y_score: np.ndarray) -> float:
+    """Mann-Whitney AUC with tie-averaged ranks; keeps sklearn off this path."""
+    y_true = np.asarray(y_true)
+    y_score = np.asarray(y_score, dtype=np.float64)
+    n_pos = int(y_true.sum())
+    n_neg = int(y_true.size - n_pos)
+    if n_pos == 0 or n_neg == 0:
+        return float("nan")
+    order = np.argsort(y_score, kind="mergesort")
+    ranks = np.empty(y_score.size, dtype=np.float64)
+    ss = y_score[order]
+    i = 0
+    while i < ss.size:
+        j = i
+        while j + 1 < ss.size and ss[j + 1] == ss[i]:
+            j += 1
+        ranks[order[i:j + 1]] = 0.5 * (i + j) + 1.0
+        i = j + 1
+    return float((ranks[y_true == 1].sum() - n_pos * (n_pos + 1) / 2.0)
+                 / (n_pos * n_neg))
+
+
+@dataclass
+class DirectionVerdict:
+    """Outcome of trying to identify which way anomaly lies."""
+    identified: bool
+    sign: int | None
+    auc: float | None
+    ci_lo: float | None
+    ci_hi: float | None
+    n_anchors: int
+    reason: str
+
+
+@dataclass
+class Decision:
+    """What the detector is willing to say about one window."""
+    verdict: str          # ALARM | QUIET | REFUSED
+    score: float
+    reason: str
+
+
 @dataclass
 class DistilledDetector:
     """fit-on-healthy / monitor deployment for a distilled spec — the same product
@@ -789,6 +831,8 @@ class DistilledDetector:
     med: np.ndarray
     mad: np.ndarray
     threshold: float = 4.0
+    degenerate: np.ndarray | None = None
+    direction: int | None = None
 
     @classmethod
     def fit(cls, spec: FeatureSpec, healthy_windows: list[np.ndarray],
@@ -796,8 +840,30 @@ class DistilledDetector:
         X = np.array([spec.featurize(w) for w in healthy_windows], float)
         med = np.median(X, 0)
         mad = np.median(np.abs(X - med), 0) * MAD_TO_SIGMA
-        mad = np.where(mad > 1e-12, mad, 1e-12)   # numeric guard only (keep sensitivity)
-        det = cls(spec, med, mad, 4.0)
+        # A feature that does not vary at all on healthy data cannot be
+        # standardised: dividing its rounding noise by the guard floor put it
+        # twelve orders of magnitude above every real feature and captured the
+        # score. Such features are excluded and named instead.
+        # A feature can be exactly constant on healthy data for two very
+        # different reasons, and the guard floor has to tell them apart.
+        #
+        # Legitimate: a discrete feature (acflag-style) whose healthy value
+        # never moves. A shift of 1e-3 on it is real and must alert.
+        # Spurious: a feature that is constant BY CONSTRUCTION -- window()
+        # z-normalises every window, so std(x) is exactly 1.0 for any input
+        # whatsoever. What is left is float accumulation noise, ~1e-12
+        # relative here, and an absolute 1e-12 floor divided it up into the
+        # dominant term of max|z|. Measured: two such features on the MAFAULDA
+        # bank drove the self-calibrated threshold to 9.67e8.
+        #
+        # A floor of one part per billion of the feature's own magnitude
+        # separates them: accumulation noise lands near z ~ 1e-3 and stays
+        # quiet, while any physically meaningful change is many orders above
+        # it and still alerts.
+        floor = np.maximum(1e-12, 1e-9 * np.abs(med))
+        degenerate = mad <= floor
+        mad = np.where(degenerate, floor, mad)
+        det = cls(spec, med, mad, 4.0, degenerate)
         if threshold is None:
             hs = np.array([det.score(w) for w in healthy_windows])
             # alert above `envelope`x the healthy 99th-percentile score (min 1e-6)
@@ -807,7 +873,115 @@ class DistilledDetector:
 
     def score(self, w: np.ndarray) -> float:
         z = np.abs(self.spec.featurize(w) - self.med) / self.mad
-        return float(np.max(z))
+        return float(np.max(z)) if z.size else 0.0
+
+    # ---------------------------------------------------------- direction
+    # A healthy-only fit fixes the standardising map, and so a threshold, but
+    # it never observes an anomaly. Whether anomalies score HIGHER or LOWER is
+    # a property of the unobserved alternative, and measurement says it goes
+    # both ways: MIMII valve 0.2786, MIMII slider 0.8254, Paderborn phase
+    # current 0.3172, each with a bootstrap CI clear of 0.5 under one frozen
+    # recipe. So `direction` starts None and `decide` refuses until labelled
+    # anchors settle it.
+
+    def calibrate_direction(self, windows, labels, groups=None,
+                            n_boot: int = 2000, seed: int = 0) -> "DirectionVerdict":
+        """Identify the sign from labelled anchors (1 = anomalous, 0 = normal).
+
+        Sets ``self.direction`` to +1 (anomalies score higher), -1 (anomalies
+        score lower), or leaves it None when the anchors do not decide it. The
+        criterion is a bootstrap CI that clears 0.5 — a point estimate on the
+        wrong side of chance is the very failure this guards against.
+
+        ``groups`` gives the recording each window came from, and the
+        bootstrap then resamples RECORDINGS. Pass it whenever windows share a
+        recording: twenty windows cut from one signal are not twenty
+        independent observations, and treating them as such lets chance
+        structure in a single recording look like a direction. Which CI comes
+        out wider depends on the case — near the boundary the grouped one can
+        be narrower — but the recording is the honest inferential unit, and
+        `n_anchors` then reports recordings rather than windows.
+        """
+        y = np.asarray(labels, dtype=int)
+        if y.size < 4 or len(windows) != y.size:
+            return DirectionVerdict(False, None, None, None, None, int(y.size),
+                                    "too few anchors: need at least 4, with "
+                                    "both classes present")
+        if np.unique(y).size < 2:
+            return DirectionVerdict(False, None, None, None, None, int(y.size),
+                                    "anchors must contain both classes")
+
+        s = np.array([self.score(w) for w in windows], dtype=float)
+        observed = _rank_auc(y, s)
+        rng = np.random.default_rng(seed)
+        vals = []
+        if groups is None:
+            for _ in range(n_boot):
+                idx = rng.integers(0, y.size, y.size)
+                if np.unique(y[idx]).size < 2:
+                    continue
+                vals.append(_rank_auc(y[idx], s[idx]))
+        else:
+            g = np.asarray(groups)
+            uniq = np.unique(g)
+            if uniq.size < 4:
+                return DirectionVerdict(False, None, observed, None, None,
+                                        int(uniq.size),
+                                        "too few anchor recordings: need at "
+                                        "least 4 distinct groups")
+            members = [np.flatnonzero(g == u) for u in uniq]
+            for _ in range(n_boot):
+                pick = rng.integers(0, uniq.size, uniq.size)
+                idx = np.concatenate([members[k] for k in pick])
+                if np.unique(y[idx]).size < 2:
+                    continue
+                vals.append(_rank_auc(y[idx], s[idx]))
+        if not vals:
+            return DirectionVerdict(False, None, observed, None, None,
+                                    int(y.size),
+                                    "bootstrap could not resample both classes")
+        n_units = int(y.size if groups is None else np.unique(groups).size)
+        lo, hi = (float(x) for x in np.percentile(vals, [2.5, 97.5]))
+        if lo > 0.5:
+            self.direction = 1
+            return DirectionVerdict(True, 1, observed, lo, hi, n_units,
+                                    "anomalies score higher than healthy")
+        if hi < 0.5:
+            self.direction = -1
+            return DirectionVerdict(True, -1, observed, lo, hi, n_units,
+                                    "anomalies score lower than healthy")
+        self.direction = None
+        return DirectionVerdict(False, None, observed, lo, hi, n_units,
+                                "the anchors do not separate: the CI covers "
+                                "0.5, so the direction stays unknown")
+
+    @property
+    def inverse_threshold(self) -> float:
+        """Cut for an inverted direction: the healthy envelope mirrored.
+
+        The robust z lives on a ratio scale, so the low-side cut divides by
+        the same factor the high-side cut multiplies by.
+        """
+        return float(self.threshold / 9.0)
+
+    def decide(self, w: np.ndarray) -> "Decision":
+        """ALARM / QUIET / REFUSED — the honest decision surface.
+
+        REFUSED is not a failure mode. It is the correct answer when the
+        direction was never identified: the score is informative about
+        distance and silent about which way anomaly lies.
+        """
+        s = self.score(w)
+        if self.direction is None:
+            return Decision("REFUSED", s,
+                            "direction unknown: a healthy-only fit cannot tell "
+                            "whether anomalies score higher or lower. Supply "
+                            "labelled anchors to calibrate_direction().")
+        cut = self.threshold if self.direction == 1 else self.inverse_threshold
+        hit = (s >= cut) if self.direction == 1 else (s <= cut)
+        return Decision("ALARM" if hit else "QUIET", s,
+                        f"direction {self.direction:+d}, score {s:.4g} "
+                        f"vs cut {cut:.4g}")
 
     def alert(self, w: np.ndarray) -> bool:
         return self.score(w) >= self.threshold
@@ -816,14 +990,20 @@ class DistilledDetector:
         _ensure_parent(path)
         with open(path, "w") as fh:
             json.dump({"spec": asdict(self.spec), "med": self.med.tolist(),
-                       "mad": self.mad.tolist(), "threshold": self.threshold}, fh, indent=2)
+                       "mad": self.mad.tolist(), "threshold": self.threshold,
+                       "degenerate": (None if self.degenerate is None
+                                      else [bool(x) for x in self.degenerate]),
+                       "direction": self.direction},
+                      fh, indent=2)
 
     @classmethod
     def load(cls, path: str) -> "DistilledDetector":
         with open(path) as fh:
             d = json.load(fh)
+        deg = d.get("degenerate")
         return cls(FeatureSpec(**d["spec"]), np.array(d["med"]), np.array(d["mad"]),
-                   d["threshold"])
+                   d["threshold"], None if deg is None else np.array(deg, dtype=bool),
+                   d.get("direction"))
 
 
 # ------------------------------------------------------------------ CLI entry
