@@ -1,0 +1,78 @@
+{
+  "claim": "on domain 'mimii_valve_id00', a healthy-only calibrated signalmap detector ranks anomalies inverted relative to normal (AUC 0.2786, 95% CI [0.2110, 0.3507])",
+  "countersignatures": [],
+  "created_at": "2026-08-07T10:48:41Z",
+  "evidence": {
+    "K": 20,
+    "W": 1024,
+    "alarm": {
+      "alarm_rate_anomaly": 0.0,
+      "alarm_rate_normal": 0.0,
+      "gap": 0.0,
+      "gap_ci_hi": 0.0,
+      "gap_ci_lo": 0.0
+    },
+    "auc": 0.2785714285714286,
+    "auc_star": 0.7214285714285714,
+    "ci_hi": 0.35065198340595666,
+    "ci_lo": 0.21099189661780998,
+    "direction": "inverted",
+    "domain": "mimii_valve_id00",
+    "envelope": 3.0,
+    "h2_separates": true,
+    "manifest": {
+      "anomaly_mapping": "the source's own filename prefix: clips named anomaly_id_00_* are the dataset's labelled anomalies, normal_id_00_* its labelled normal operation; the train split is all-normal by dataset construction",
+      "channel": "0 = the only channel; source clips are 16 kHz mono 16-bit PCM",
+      "fs_hz": 16000,
+      "license": "CC BY-SA 4.0 (MIMII / DCASE2020 Task 2 development dataset)",
+      "modality": "acoustic (single microphone, machine operating sound)",
+      "source_url": "https://zenodo.org/record/3678171 (DCASE2020 Task 2 development set, derived from the MIMII dataset, https://zenodo.org/record/3384388)"
+    },
+    "n1_null_ci": [
+      0.4210021008403361,
+      0.5801848739495797
+    ],
+    "n1_null_covers_half": true,
+    "n2_ci": [
+      0.3285263253028484,
+      0.5450743267149516
+    ],
+    "n2_healthy_vs_healthy_auc": 0.432,
+    "n2_ok": true,
+    "n3_leaked_recordings": [],
+    "n_anomaly": 119,
+    "n_boot_used": 2000,
+    "n_eval": 219,
+    "n_fit_recordings": 891,
+    "n_fit_windows": 17820,
+    "n_normal": 100,
+    "null_star_q95": 0.5800084033613445,
+    "perm_p_two_sided": 0.0,
+    "prereg": "PREREG_SIGN_IDENTIFIABILITY.md",
+    "runtime_s": 93.9,
+    "seed": 0,
+    "spec_premium": [],
+    "spec_programs": [
+      "acf1(id(id(x)))",
+      "crest(id(id(x)))",
+      "lcross(id(id(x)))",
+      "meanabs(id(id(x)))",
+      "peakcv(id(id(x)))",
+      "runcv(id(id(x)))",
+      "runmean(id(id(x)))",
+      "std(id(id(x)))",
+      "zcr(id(id(x)))"
+    ],
+    "threshold": 92.0088792050349,
+    "verdict": "PASS"
+  },
+  "input_hashes": {
+    "manifest_sha256": "8d113daa2375ccb3c3817a7b3621764acb7c222896fb9de897c40efed4f563e4"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "92a03f3c935d6fe01946f06f2a6fbfc38b97442257b2ee29fe6dbc91d9b34a0c9b6f3f5c5b395d72b5612e92b8329e5e188029aece24a9999b072aac3013d701",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "PASS"
+}
