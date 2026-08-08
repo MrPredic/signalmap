@@ -61,6 +61,10 @@ nine domains, signed receipts, ten amendments including our own errors.
 
 ## What changed because of it
 
+> Available from a clone of this repository. The current PyPI release (0.5.2)
+> predates it — `pip install signalmap` does not yet carry `decide()` or
+> `calibrate_direction()`.
+
 The detector no longer assumes the direction. It starts out refusing:
 
 ```python
