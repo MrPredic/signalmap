@@ -1,0 +1,17 @@
+{
+ "prereg": "SEIS-BACKWARD fresh holdout 2021-2023 (bank=2024-26)",
+ "frozen_utc": "2026-07-03T17:14:33Z",
+ "family": "lean duo perm3+psd_slope, StandardScaler+RF(150,rs=0), per station",
+ "event_query": "USGS fdsnws 2021-01-01..2024-01-01 M6.3+ orderby=magnitude, shallow maxdepth=70 / deep mindepth=300, per_class=16",
+ "models": {
+  "ANMO": {
+   "n_train_windows": 128,
+   "sha256": "39be9da65a00f3a9c1f9c627aac7a080bf4ba0a9ff92e3a16f98a601865b59eb"
+  },
+  "KONO": {
+   "n_train_windows": 128,
+   "sha256": "c02c4503d1beed03e349f23115957b93b68c660477eddf5260337196f7126745"
+  }
+ },
+ "criterion": "per station: event-majority acc, cluster-bootstrap CI over events, PASS=CI-lo>0.5"
+}

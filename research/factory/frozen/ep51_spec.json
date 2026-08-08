@@ -1,0 +1,37 @@
+{
+ "bank_caches_sha256": {
+  "RIMD": "ae1a86c3cfd4ae5f1eb235a7d525ccfb867ad360c954c77d06d34ca3ffce71c8",
+  "UWE": "0b738203063bb045ad014958d2feeaaf501bfc1f53e87564daa37e327961507e"
+ },
+ "context": "HVO Jul 2 2026: Ep50 ended Jun 27; Ep51 forecast Jul 8-15; not yet occurred",
+ "criterion": "per station: >=ceil(0.75*K) eruptive segs majority-eruptive AND >=ceil(0.75*K) quiet segs majority-quiet; both stations=full, one=partial",
+ "eruptive_segments": "start=ep_start+60min, hourly while seg_end<=ep_end, max K=6",
+ "family": "lean duo: perm_entropy(order=3,normalize=True) + psd_slope(welch nperseg<=256, loglog fit)",
+ "fetch_rule": "IRIS HV <sta> -- HHZ ascii1, 30-min segments, 8x1024 @100sps at rolling-RMS peak, znorm (== load_volcano)",
+ "frozen_utc": "2026-07-03T16:58:49Z",
+ "model": "StandardScaler + RandomForestClassifier(150, random_state=0), per station",
+ "models": {
+  "RIMD": {
+   "insample_sanity": 1.0,
+   "n_days": 16,
+   "n_windows": 128,
+   "path": "frozen/ep51_model_rimd.joblib",
+   "sha256": "64ae1b07973c9d908946d4aaaa237582d282558ce846b38f91787dfc86c81852"
+  },
+  "UWE": {
+   "insample_sanity": 1.0,
+   "n_days": 15,
+   "n_windows": 120,
+   "path": "frozen/ep51_model_uwe.joblib",
+   "sha256": "b0bc538896f7f039c43a944627132590d9a31b1b1381a36377d184603858bf28"
+  }
+ },
+ "prereg": "VOLCANO-EP51 prospective receipt",
+ "preregistered_caveat": "if eruptive passes but quiet control fails -> verdict 'reads unrest regime, not episode on/off'; no re-selection",
+ "quiet_segments": "same UTC clock times, ep_start_date -3d (odd idx -4d); >=48h after Ep50 end, >=24h before Ep51 start",
+ "segment_verdict": "majority vote over 8 windows",
+ "stations": [
+  "UWE",
+  "RIMD"
+ ]
+}

@@ -1,0 +1,7 @@
+  UWE 2025-11-26T01:30:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_UWE__HHZ_M, 100 samples, 100 sps, 2025-11-26T01:57:39.680000, SLIST, INTEGER, COUNTS'
+  UWE 2026-01-24T22:10:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_UWE__HHZ_M, 200 samples, 100 sps, 2026-01-24T22:12:53.680000, SLIST, INTEGER, COUNTS'
+UWE: n=94 acc=0.755 CI[0.681,0.824] eruptive 0.542 / quiet 0.978 pairs 22/44 p=0.0003 -> PASS
+  RIMD 2025-11-26T01:30:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_RIMD__HHZ_M, 206 samples, 100 sps, 2025-11-26T01:57:36.340000, SLIST, INTEGER, COUNTS'
+  RIMD 2026-01-24T22:10:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_RIMD__HHZ_M, 824 samples, 100 sps, 2026-01-24T22:12:48.060000, SLIST, INTEGER, COUNTS'
+RIMD: n=94 acc=0.553 CI[0.457,0.652] eruptive 0.396 / quiet 0.717 pairs 12/44 p=0.4199 -> FAIL
+ledger tip = de943693323af65a252de3a6dc9af0a9ab9d958f0636c6327a58ac73ac9e9efe

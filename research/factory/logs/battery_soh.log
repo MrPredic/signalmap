@@ -1,0 +1,12 @@
+SOH bank: 859 spectra, 24 cells, cuts=(0.9683722846383284, 0.9897272576897097), per-class [(np.str_('hi'), 285), (np.str_('lo'), 306), (np.str_('mid'), 268)]
+
+===== BATTERY-SOH-tertile (LOCO, 24 cells, chance 0.333) =====
+FORGE: 0.559 CI[0.521,0.597]  lean: 0.387 CI[0.347,0.428]
+PAIRED forge-lean: +0.172 CI[+0.128,+0.212]
+STABILITY top1 0.96  CHAMPION(chance-gated): forge
+
+===== BATTERY-SOH-SHUFFLE-NULL (LOCO, 24 cells, chance 0.333) =====
+FORGE: 0.342 CI[0.316,0.366]  lean: 0.341 CI[0.305,0.375]
+PAIRED forge-lean: +0.001 CI[-0.044,+0.047]
+STABILITY top1 0.96  CHAMPION(chance-gated): NULL (nobody clears chance)
+PERM-P (SOH forge LOCO, M=200): obs=0.559, p=0.0050

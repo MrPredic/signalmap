@@ -1,0 +1,31 @@
+
+===== CALCE-soh: 306 windows, 18 recordings, 3 classes, chance=0.333 =====
+LEAN: 0.579  CI [0.403,0.743]  [2s]
+LEAN group-perm-p = 0.016 (60 perms)
+gate: 900/2128 programs (C=50 x 18 recs); features [17s]
+  hold rec 0: acc=1.000  sel=['specflat(rollstd(diff(x)))', 'std(env(rollstd(x)))', 'specflat(rollstd(diff2(x)))', 'runmean(cumsum(rank(x)))', 'iqr90(rollstd(sign(x)))']
+  hold rec 1: acc=0.846  sel=['specflat(rollstd(diff(x)))', 'runmean(cumsum(rank(x)))', 'specflat(rollstd(diff2(x)))', 'zcr(diff2(env(x)))', 'std(diff(env(x)))']
+  hold rec 2: acc=0.872  sel=['specflat(rollstd(diff(x)))', 'lcross(clip(id(x)))', 'runmean(cumsum(rank(x)))', 'std(env(rollstd(x)))', 'runmean(rank(sq(x)))']
+  hold rec 3: acc=1.000  sel=['specflat(rollstd(diff(x)))', 'std(env(rollstd(x)))', 'specflat(rollstd(diff2(x)))', 'std(diff(env(x)))', 'std(tanh(rollstd(x)))']
+  hold rec 4: acc=0.925  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'std(env(rollstd(x)))', 'runmean(cumsum(rank(x)))', 'std(diff(env(x)))']
+  hold rec 5: acc=0.833  sel=['specflat(rollstd(diff(x)))', 'std(env(rollstd(x)))', 'specflat(rollstd(diff2(x)))', 'runmean(cumsum(rank(x)))', 'iqr90(clip(rollstd(x)))']
+  hold rec 6: acc=1.000  sel=['specflat(rollstd(diff(x)))', 'std(env(rollstd(x)))', 'specflat(rollstd(diff2(x)))', 'iqr90(rollstd(sign(x)))', 'zcr(diff2(env(x)))']
+  hold rec 7: acc=0.688  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'std(env(rollstd(x)))', 'runmean(cumsum(rank(x)))', 'zcr(diff2(env(x)))']
+  hold rec 8: acc=0.828  sel=['specflat(rollstd(diff(x)))', 'std(env(rollstd(x)))', 'iqr90(rollstd(sign(x)))', 'zcr(diff2(env(x)))', 'iqr90(tanh(rollstd(x)))']
+  hold rec 9: acc=1.000  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'std(env(rollstd(x)))', 'runmean(cumsum(rank(x)))', 'iqr90(rollstd(sign(x)))']
+  hold rec 10: acc=0.800  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'std(env(rollstd(x)))', 'runmean(cumsum(rank(x)))', 'std(diff(env(x)))']
+  hold rec 11: acc=1.000  sel=['specflat(rollstd(diff(x)))', 'std(env(rollstd(x)))', 'std(diff(env(x)))', 'iqr90(clip(rollstd(x)))', 'zcr(diff2(env(x)))']
+  hold rec 12: acc=1.000  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'zcr(diff2(env(x)))', 'std(env(rollstd(x)))', 'iqr90(tanh(rollstd(x)))']
+  hold rec 13: acc=0.778  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'std(env(rollstd(x)))', 'iqr90(rollstd(sign(x)))', 'std(diff(env(x)))']
+  hold rec 14: acc=0.963  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'std(env(rollstd(x)))', 'runmean(cumsum(rank(x)))', 'zcr(diff2(env(x)))']
+  hold rec 15: acc=1.000  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'std(env(rollstd(x)))', 'runmean(cumsum(rank(x)))', 'iqr90(rollstd(sign(x)))']
+  hold rec 16: acc=0.722  sel=['specflat(rollstd(diff(x)))', 'specflat(rollstd(diff2(x)))', 'std(env(rollstd(x)))', 'runmean(cumsum(rank(x)))', 'zcr(diff2(env(x)))']
+  hold rec 17: acc=1.000  sel=['specflat(rollstd(diff(x)))', 'std(env(rollstd(x)))', 'std(diff(env(x)))', 'iqr90(tanh(rollstd(x)))', 'crest(rollstd(sign(x)))']
+FORGE nested: 0.903  CI [0.853,0.949]
+PAIRED forge-lean: +0.324  CI [+0.155,+0.511]  forge>lean 14/18
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+  File "<local-path>/signalmap/research/factory/gauntlet.py", line 80, in gauntlet
+    with open(FOLDS_CSV, "a") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'research/factory/logs/gauntlet_folds.csv'

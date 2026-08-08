@@ -1,0 +1,10 @@
+{
+ "prereg": "PRECURSOR-SAMPLING (impulse/peak_sub readout, methods thesis #1, second readout family)",
+ "frozen_utc": "2026-07-04T20:38:37Z",
+ "question": "does an impulse-sampling readout read a -2h PRE/MID difference that the full-window lean readout (registered NULL, ledger affbdc1d) cannot see?",
+ "readout": "lean duo on readout_screen._sub(w,'peak') subwindow (len//4, max rolling std, step L//4), verbatim; scorer/criterion identical to amended precursor verdict (LOGO RF(150,seed0), segment-majority, cluster-bootstrap CI, exact paired sign test one-sided); PASS=CI-lo>0.5 AND sign_p<0.05",
+ "primary": "UWE@-2h peak_sub; RIMD@-2h replication; -6h/-12h exploratory descriptive",
+ "multiplicity": "readout family #2 on these banks; 3rd registered analysis on the precursor segments overall; -2h lean NULL stands as registered; a peak_sub-only hit = method-thesis evidence, needs prospective confirmation, no precursor claim",
+ "bank_identity": "cached audited precursor banks, readout variant only, no re-audit, no gauntlet",
+ "plan_sha256_ref": "frozen volcano_precursor plan (verified at prereg and run)"
+}

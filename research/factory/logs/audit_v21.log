@@ -1,0 +1,19 @@
+  (built F cache noise: (252, 1150) in 37s)
+[PASS] neg-control-noise: biased-top5 LOGO on noise = 0.067 (chance 0.167; must stay low even biased) [40s]
+  (built F cache planted: (252, 1150) in 40s)
+[PASS] pos-control-planted: planted 3-class signal recovered at 1.000 (chance 0.333; must be high) [43s]
+[PASS] selection-bias-visible: in-sample-scored on noise = 1.000 (inflated) vs honest-LOGO 0.067 (~chance) -> bias real AND nested removes it [0s]
+
+--- bank ecn: 196 win, 14 recs, 6 cls, chance=0.167 ---
+[PASS] group-integrity[ecn]: 0 folds with train/test recording overlap (must be 0) [0s]
+[PASS] window-provenance[ecn]: 0 exact + 0 near-identical (|r|>0.999) windows shared across different groups (must be 0) [0s]
+[PASS] class-balance[ecn]: majority share: windows 0.214, recordings 0.214 (both must be < 1.5x chance 0.250) [0s]
+[PASS] label-shuffle[ecn]: real 0.592 -> shuffled 0.296 (shuffle must destroy signal) [9s]
+[PASS] seed-stability[ecn]: lean LOGO over seeds 0/1/2 = ['0.592', '0.571', '0.571'], spread 0.020 (<0.05) and all > chance [14s]
+[PASS] determinism[ecn]: features identical=True, LOGO 0.591837 == 0.591837 -> True [9s]
+  (built F cache ecn: (196, 1150) in 30s)
+[PASS] feature-degeneracy[ecn]: top-30 ranking: 0 constants (must be 0), 24/30 effective unique clusters (must be >=8; <30 = grammar identity-duplicates burning candidate budget -> dedup recommended) [0s]
+[PASS] nested-vs-biased[ecn]: biased 0.398 >= nested 0.362 (gap +0.036) and nested > chance+0.05 (0.217) [112s]
+[PASS] scaler-note[ecn]: pipeline 0.592 vs global-scaled 0.592 (RF scale-invariant; scaling not a leak vector) [4s]
+
+=== AUDIT: 12/12 checks passed [261s] ===

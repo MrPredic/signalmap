@@ -1,0 +1,12 @@
+ECN (chance 0.167): ECN-family   -> 0.536  (3/3 progs found)
+ECN (chance 0.167): CWRU-family  -> 0.383  (3/3 progs found)
+ECN (chance 0.167): MFPT-family  -> 0.347  (3/3 progs found)
+  [11s]
+MFPT (chance 0.333): ECN-family   -> 0.723  (3/3 progs found)
+MFPT (chance 0.333): CWRU-family  -> 0.766  (3/3 progs found)
+MFPT (chance 0.333): MFPT-family  -> 0.777  (3/3 progs found)
+  [22s]
+CWRU (chance 0.167): ECN-family   -> 0.831  (3/3 progs found)
+CWRU (chance 0.167): CWRU-family  -> 0.837  (3/3 progs found)
+CWRU (chance 0.167): MFPT-family  -> 0.861  (3/3 progs found)
+  [17s]

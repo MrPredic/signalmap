@@ -1,0 +1,23 @@
+{
+  "programs": [
+    "specratio(tanh(id(x)))",
+    "specratio(diff2(id(x)))",
+    "zcr(diff(tanh(x)))",
+    "acf1(diff2(env(x)))",
+    "zcr(diff(sq(x)))"
+  ],
+  "classes": [
+    "FeCl3",
+    "H2SO4",
+    "KCl",
+    "KOH",
+    "NaCl",
+    "NaOH"
+  ],
+  "window": 1024,
+  "budget_c": 50,
+  "n_recordings": 14,
+  "nested_acc": 0.6530612244897959,
+  "forged_acc": 0.6428571428571429,
+  "chance": 0.16666666666666666
+}

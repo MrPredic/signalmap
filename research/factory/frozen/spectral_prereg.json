@@ -1,0 +1,15 @@
+{
+ "spec": {
+  "prereg": "SPECTRAL (WEG 3, spectral-wandering, TRIANGULATION path 3)",
+  "frozen_utc": "2026-07-06T22:39:57Z",
+  "representation": "within-window power spectrum SHAPE (Welch) on the reused znormed precursor cache; amplitude-invariant by construction",
+  "descriptors": "centroid=Sum(f*P)/Sum(P) Hz, spec_ent=normalised spectral entropy, hf_ratio=power above segment-median-freq / total; DISTINCT from Weg1 (perm_entropy, psd_slope)",
+  "unit": "per episode per station: PRE(-12h) vs MID (same pause), segment = mean descriptor over its 8 znormed windows",
+  "primary_tests": "per descriptor TWO-SIDED paired sign test + Wilcoxon on episode-wise PRE-vs-MID; MOVES if sign_p<0.05 AND wilcoxon_p<0.05; per-episode signed direction retained for consilience; UWE primary, RIMD replication",
+  "amplitude_confound": "neutralised by construction (znormed windows -> pure shape statistics)",
+  "orthogonality_honesty": "shares within-window spectral representation with Weg1 psd_slope (NOT fully orthogonal to Weg1); orthogonal to Weg2 (raw envelope dynamics); consilience shuffle-null exposes shared artifacts",
+  "claim_scope": "site-local (Kilauea summit), spectral-shape level",
+  "episode_table_sha256": "adb56f649b97008ae8209be05a377f0571bd552a8053249181279f8d66063bd3",
+  "prec_plan_sha256": "906a53f6d34d90a1038815de095793207695cf63b017bb6ea2a0db6b5721b9ec"
+ }
+}

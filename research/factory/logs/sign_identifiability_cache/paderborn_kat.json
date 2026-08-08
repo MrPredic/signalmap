@@ -1,0 +1,64 @@
+{
+  "K": 20,
+  "W": 1024,
+  "alarm": {
+    "alarm_rate_anomaly": 0.0,
+    "alarm_rate_normal": 0.0,
+    "gap": 0.0,
+    "gap_ci_hi": 0.0,
+    "gap_ci_lo": 0.0
+  },
+  "auc": 0.49763671875,
+  "auc_star": 0.5023632812500001,
+  "ci_hi": 0.5513228560874636,
+  "ci_lo": 0.44335324909452195,
+  "direction": "undetermined",
+  "domain": "paderborn_kat",
+  "envelope": 3.0,
+  "h2_separates": false,
+  "manifest": {
+    "anomaly_mapping": "the source's own bearing codes: ['KA01', 'KA03', 'KI01', 'KI03'] are damaged (KA = outer race, KI = inner race); K001-K005 are undamaged",
+    "channel": "phase_current_1 \u2014 the first channel in the source's own order (force, phase_current_1, phase_current_2, speed, temp_2_bearing_module, torque, vibration_1) that meets the 20480-sample minimum; force has only 16001. Prereg AMENDMENT 6.",
+    "fs_hz": 64000,
+    "license": "Paderborn University KAt-DataCenter bearing dataset, free for scientific use with citation of Lessmeier et al. (PHM Europe 2016)",
+    "modality": "motor phase current on a bearing test rig",
+    "source_url": "https://groups.uni-paderborn.de/kat/BearingDataCenter/"
+  },
+  "n1_null_ci": [
+    0.44558154296874997,
+    0.5525209960937499
+  ],
+  "n1_null_covers_half": true,
+  "n2_ci": [
+    0.2834545028142589,
+    0.4649208462332301
+  ],
+  "n2_healthy_vs_healthy_auc": 0.37171875,
+  "n2_ok": false,
+  "n3_leaked_recordings": [],
+  "n_anomaly": 320,
+  "n_boot_used": 2000,
+  "n_eval": 480,
+  "n_fit_recordings": 240,
+  "n_fit_windows": 4800,
+  "n_normal": 160,
+  "null_star_q95": 0.5534218750000001,
+  "perm_p_two_sided": 0.921,
+  "prereg": "PREREG_SIGN_IDENTIFIABILITY.md",
+  "runtime_s": 45.8,
+  "seed": 0,
+  "spec_premium": [],
+  "spec_programs": [
+    "acf1(id(id(x)))",
+    "crest(id(id(x)))",
+    "lcross(id(id(x)))",
+    "meanabs(id(id(x)))",
+    "peakcv(id(id(x)))",
+    "runcv(id(id(x)))",
+    "runmean(id(id(x)))",
+    "std(id(id(x)))",
+    "zcr(id(id(x)))"
+  ],
+  "threshold": 19.86261430678856,
+  "verdict": "REFUSED"
+}

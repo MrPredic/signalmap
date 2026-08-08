@@ -1,0 +1,30 @@
+ECG bank: 128 win, 16 patients
+
+===== ECG-AFib-vs-NSR: 128 windows, 16 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.875  CI [0.727,0.984]  [2s]
+LEAN group-perm-p = 0.016 (60 perms)
+gate: 800/2128 programs (C=50 x 16 recs); features [7s]
+  hold rec 0: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 1: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 2: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 3: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 4: acc=0.500  sel=['lcross(diff2(id(x)))']
+  hold rec 5: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 6: acc=0.750  sel=['acf1(clip(env(x)))']
+  hold rec 7: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 8: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 9: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 10: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 11: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 12: acc=1.000  sel=['specratio(sq(env(x)))', 'speccent(abs(diff(x)))', 'std(diff(rollstd(x)))']
+  hold rec 13: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 14: acc=1.000  sel=['speccent(abs(diff(x)))']
+  hold rec 15: acc=1.000  sel=['speccent(abs(diff(x)))']
+FORGE nested: 0.953  CI [0.875,1.000]
+PAIRED forge-lean: +0.078  CI [-0.008,+0.180]  forge>lean 4/16
+{
+ "lean": 0.875,
+ "forge": 0.953125,
+ "perm_p": 0.01639344262295082,
+ "chance": 0.5
+}

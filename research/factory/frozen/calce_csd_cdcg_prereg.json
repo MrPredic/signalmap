@@ -1,0 +1,642 @@
+{
+ "spec": {
+  "prereg": "CALCE-CSD-CDCG (critical-slowing-down early-warning on NMC calendar-aging, directed, theory-anchor, same anchor as IMS-CSD)",
+  "frozen_utc": "2026-07-11T10:44:10Z",
+  "domain": "OSF j2sn4 NCM_Calendar_and_Cycling_Dataset, per-checkpoint charge/discharge test",
+  "indicator": "cdcg",
+  "slow_variable": "HI[t] = Cdcg in-test chronological trace at one (cell, day) checkpoint",
+  "life_tercile_split": "reuses battery_pipeline.FRESH_DAYS={0,10,20} (early/first) vs AGED_DAYS={40,70,90} (late/last)",
+  "params": {
+   "health_indicator": "per-snapshot RMS amplitude",
+   "axis_pin": "test1 uses col 2*b (axis x); test2/3 col b",
+   "detrend_gaussian_sigma_frac": 0.05,
+   "rolling_window_frac": 0.5,
+   "rolling_step_frac": 0.005,
+   "n_surrogate": 500,
+   "alpha": 0.05,
+   "surrogate": "fourier phase-randomization of residual",
+   "seed": 20260708
+  },
+  "statistic": "ims_csd._csd_bearing(hi) UNCHANGED: Kendall tau of rolling ar1(t)/logvar(t) of Gaussian-detrended residual",
+  "significance": "per checkpoint, Fourier phase-randomized surrogate of residual x N_surr (ims_csd params); 1-sided p",
+  "primary": "per checkpoint PASS = tau_ar1>0 & p_ar1<alpha & tau_var>0 & p_var<alpha; headline = CSD+ rate AGED vs FRESH",
+  "specificity": "Fisher exact (CSD+/CSD-) x (aged/fresh), alternative=greater; fresh(early-life) must not fire at aged rate",
+  "confound_guard": "ar1-rise reported separately from var-rise; CONFIRMED needs BOTH",
+  "orthogonality": "directed dynamical-systems statistic, no learning/no selection; same anchor+method as IMS-CSD",
+  "claim_scope": "NMC calendar-aging fluctuation dynamics; n_fresh=72 n_aged=29 (severe cell dropout by day70/90, documented)",
+  "checkpoints_sha256": "0f27a75c07e956c04d6ceed4a6e635da21d2efe77c681d35af56007f642113d6",
+  "manifest_sha256": "bc7ba46b05cfd595a37cfda47a32edb1f5313315cfebcc64d7c60d498161e012",
+  "n_checkpoints": {
+   "fresh": 72,
+   "aged": 29
+  }
+ },
+ "checkpoints": [
+  {
+   "day": 0,
+   "cell": 1,
+   "sheet": "S1",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 2,
+   "sheet": "S2",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 3,
+   "sheet": "S3",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 4,
+   "sheet": "S4",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 5,
+   "sheet": "S5",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 6,
+   "sheet": "S6",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 7,
+   "sheet": "S7",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 8,
+   "sheet": "S8",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 9,
+   "sheet": "S9",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 10,
+   "sheet": "S10",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 11,
+   "sheet": "S11",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 12,
+   "sheet": "S12",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 13,
+   "sheet": "S13",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 14,
+   "sheet": "S14",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 15,
+   "sheet": "S15",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 16,
+   "sheet": "S16",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 17,
+   "sheet": "S17",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 18,
+   "sheet": "S18",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 19,
+   "sheet": "S19",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 20,
+   "sheet": "S20",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 21,
+   "sheet": "S21",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 22,
+   "sheet": "S22",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 23,
+   "sheet": "S23",
+   "label": "fresh"
+  },
+  {
+   "day": 0,
+   "cell": 24,
+   "sheet": "S24",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 1,
+   "sheet": "S1",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 2,
+   "sheet": "S2",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 3,
+   "sheet": "S3",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 4,
+   "sheet": "S4",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 5,
+   "sheet": "S5",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 6,
+   "sheet": "S6",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 7,
+   "sheet": "S7",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 8,
+   "sheet": "S8",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 9,
+   "sheet": "S9",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 10,
+   "sheet": "S10",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 11,
+   "sheet": "S11",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 12,
+   "sheet": "S12",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 13,
+   "sheet": "S13",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 14,
+   "sheet": "S14",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 15,
+   "sheet": "S15",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 16,
+   "sheet": "S16",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 17,
+   "sheet": "S17",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 18,
+   "sheet": "S18",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 19,
+   "sheet": "S19",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 20,
+   "sheet": "S20",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 21,
+   "sheet": "S21",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 22,
+   "sheet": "S22",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 23,
+   "sheet": "S23",
+   "label": "fresh"
+  },
+  {
+   "day": 10,
+   "cell": 24,
+   "sheet": "S24",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 1,
+   "sheet": "S1",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 2,
+   "sheet": "S2",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 3,
+   "sheet": "S3",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 4,
+   "sheet": "S4",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 5,
+   "sheet": "S5",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 6,
+   "sheet": "S6",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 7,
+   "sheet": "S7",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 8,
+   "sheet": "S8",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 9,
+   "sheet": "S9",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 10,
+   "sheet": "S10",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 11,
+   "sheet": "S11",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 12,
+   "sheet": "S12",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 13,
+   "sheet": "S13",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 14,
+   "sheet": "S14",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 15,
+   "sheet": "S15",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 16,
+   "sheet": "S16",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 17,
+   "sheet": "S17",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 18,
+   "sheet": "S18",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 19,
+   "sheet": "S19",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 20,
+   "sheet": "S20",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 21,
+   "sheet": "S21",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 22,
+   "sheet": "S22",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 23,
+   "sheet": "S23",
+   "label": "fresh"
+  },
+  {
+   "day": 20,
+   "cell": 24,
+   "sheet": "S24",
+   "label": "fresh"
+  },
+  {
+   "day": 40,
+   "cell": 1,
+   "sheet": "S1",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 3,
+   "sheet": "S3",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 4,
+   "sheet": "S4",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 5,
+   "sheet": "S5",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 6,
+   "sheet": "S6",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 7,
+   "sheet": "S7",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 8,
+   "sheet": "S8",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 9,
+   "sheet": "S9",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 10,
+   "sheet": "S10",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 11,
+   "sheet": "S11",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 12,
+   "sheet": "S12",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 13,
+   "sheet": "S13",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 14,
+   "sheet": "S14",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 15,
+   "sheet": "S15",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 16,
+   "sheet": "S16",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 17,
+   "sheet": "S17",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 18,
+   "sheet": "S18",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 19,
+   "sheet": "S19",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 20,
+   "sheet": "S20",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 21,
+   "sheet": "S21",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 22,
+   "sheet": "S22",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 23,
+   "sheet": "S23",
+   "label": "aged"
+  },
+  {
+   "day": 40,
+   "cell": 24,
+   "sheet": "S24",
+   "label": "aged"
+  },
+  {
+   "day": 70,
+   "cell": 5,
+   "sheet": "S5_d25",
+   "label": "aged"
+  },
+  {
+   "day": 70,
+   "cell": 6,
+   "sheet": "S6_d25",
+   "label": "aged"
+  },
+  {
+   "day": 70,
+   "cell": 7,
+   "sheet": "S7_d25",
+   "label": "aged"
+  },
+  {
+   "day": 90,
+   "cell": 5,
+   "sheet": "S5_d25",
+   "label": "aged"
+  },
+  {
+   "day": 90,
+   "cell": 6,
+   "sheet": "S6_d25",
+   "label": "aged"
+  },
+  {
+   "day": 90,
+   "cell": 7,
+   "sheet": "S7_d25",
+   "label": "aged"
+  }
+ ]
+}

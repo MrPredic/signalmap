@@ -1,0 +1,44 @@
+[PASS] GAS-id-LEVEL group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] GAS-id-LEVEL label-shuffle: real 0.104 -> shuffled 0.154 (chance 0.250)
+
+===== GAS-id-LEVEL: 240 windows, 20 recordings, 4 classes, chance=0.250 =====
+LEAN: 0.104  CI [0.071,0.138]  [3s]
+LEAN group-perm-p = 1.000 (60 perms)
+gate: 1000/1150 programs (C=50 x 20 recs); features [18s]
+  hold rec 0: acc=0.083  sel=['crest(clip(cumsum(x)))', 'ordtrans(sign(rank(x)))', 'crest(env(cumsum(x)))', 'meanabs(cumsum(env(x)))', 'meanabs(cumsum(sq(x)))']
+  hold rec 1: acc=0.333  sel=['crest(clip(cumsum(x)))', 'crest(cumsum(sq(x)))']
+  hold rec 2: acc=0.083  sel=['ordtrans(sign(rank(x)))', 'crest(clip(cumsum(x)))', 'crest(tanh(cumsum(x)))', 'meanabs(cumsum(env(x)))']
+  hold rec 3: acc=0.417  sel=['hent(cumsum(rank(x)))', 'crest(clip(cumsum(x)))', 'crest(tanh(cumsum(x)))', 'meanabs(cumsum(env(x)))', 'acflag(diff(abs(x)))']
+  hold rec 4: acc=0.167  sel=['crest(clip(cumsum(x)))', 'crest(tanh(cumsum(x)))']
+  hold rec 5: acc=0.167  sel=['hent(sq(cumsum(x)))', 'crest(clip(cumsum(x)))', 'meanabs(tanh(cumsum(x)))', 'crest(env(cumsum(x)))']
+  hold rec 6: acc=0.417  sel=['crest(clip(cumsum(x)))', 'crest(tanh(cumsum(x)))', 'meanabs(cumsum(env(x)))', 'peakcv(sign(cumsum(x)))']
+  hold rec 7: acc=0.167  sel=['hent(cumsum(rank(x)))', 'crest(clip(cumsum(x)))', 'crest(tanh(cumsum(x)))', 'meanabs(tanh(cumsum(x)))', 'crest(cumsum(env(x)))']
+  hold rec 8: acc=0.250  sel=['crest(clip(cumsum(x)))', 'meanabs(tanh(cumsum(x)))', 'crest(cumsum(clip(x)))', 'acflag(sign(cumsum(x)))']
+  hold rec 9: acc=0.167  sel=['hent(cumsum(rank(x)))', 'crest(clip(cumsum(x)))', 'acflag(sign(rank(x)))', 'crest(tanh(cumsum(x)))']
+  hold rec 10: acc=0.083  sel=['ordtrans(sign(rank(x)))', 'crest(clip(cumsum(x)))', 'meanabs(tanh(cumsum(x)))', 'crest(tanh(cumsum(x)))']
+  hold rec 11: acc=0.250  sel=['crest(clip(cumsum(x)))', 'meanabs(tanh(cumsum(x)))', 'crest(tanh(cumsum(x)))', 'meanabs(cumsum(env(x)))', 'crest(env(cumsum(x)))']
+  hold rec 12: acc=0.083  sel=['crest(clip(cumsum(x)))', 'crest(cumsum(env(x)))', 'specratio(diff2(diff(x)))']
+  hold rec 13: acc=0.167  sel=['hent(sq(cumsum(x)))', 'crest(clip(cumsum(x)))', 'crest(tanh(cumsum(x)))', 'meanabs(cumsum(env(x)))', 'acflag(diff(abs(x)))']
+  hold rec 14: acc=0.083  sel=['crest(clip(cumsum(x)))', 'crest(env(cumsum(x)))', 'meanabs(tanh(cumsum(x)))']
+  hold rec 15: acc=0.250  sel=['crest(clip(cumsum(x)))', 'hent(sq(cumsum(x)))']
+  hold rec 16: acc=0.167  sel=['acf1(env(cumsum(x)))', 'meanabs(tanh(cumsum(x)))', 'ordtrans(sign(rank(x)))']
+  hold rec 17: acc=0.250  sel=['crest(clip(cumsum(x)))', 'crest(cumsum(env(x)))']
+  hold rec 18: acc=0.417  sel=['crest(clip(cumsum(x)))', 'crest(cumsum(env(x)))', 'crest(sq(cumsum(x)))', 'iqr90(sign(cumsum(x)))', 'speccent(env(cumsum(x)))']
+  hold rec 19: acc=0.167  sel=['crest(clip(cumsum(x)))', 'crest(env(cumsum(x)))', 'meanabs(cumsum(sq(x)))', 'peakcv(sign(cumsum(x)))']
+FORGE nested: 0.208  CI [0.163,0.258]
+PAIRED forge-lean: +0.104  CI [+0.050,+0.163]  forge>lean 13/20
+STABILITY: top1-freq 0.60, mean-jaccard 0.25 (STABLE)
+CHAMPION (paired CI): forge
+{'lean': 0.10416666666666667, 'forge': 0.20833333333333331, 'perm_p': 1.0, 'chance': 0.25, 'paired_ci': (0.05, 0.1625), 'stability': 0.2515643274853801, 'top1_freq': 0.6, 'champion': 'forge'}
+
+===== GAS-id-LEVEL-LODO (leave-one-DEVICE-out) (MIXED-LABEL LOGO): 240 win, 5 groups, 4 cls, chance=0.250 =====
+LEAN: 0.279  CI [0.225,0.346]
+gate 250/1150 programs; features [4s]
+  hold 0: acc=0.292  sel=['std(abs(diff(x)))', 'iqr90(sq(rollstd(x)))', 'iqr90(diff(sq(x)))', 'meanabs(rollstd(sq(x)))', 'std(sq(diff2(x)))']
+  hold 1: acc=0.188  sel=['iqr90(diff(clip(x)))', 'iqr90(sq(id(x)))', 'meanabs(diff2(rollstd(x)))', 'iqr90(diff(sq(x)))', 'hent(clip(abs(x)))']
+  hold 2: acc=0.062  sel=['std(abs(diff(x)))', 'iqr90(tanh(diff(x)))', 'iqr90(diff(sq(x)))', 'meanabs(rollstd(sq(x)))', 'iqr90(sq(rollstd(x)))']
+  hold 3: acc=0.208  sel=['crest(clip(cumsum(x)))', 'acflag(clip(diff(x)))', 'crest(cumsum(abs(x)))', 'runcv(cumsum(rollstd(x)))', 'std(sign(cumsum(x)))']
+  hold 4: acc=0.312  sel=['specflat(tanh(diff(x)))', 'runcv(cumsum(rollstd(x)))', 'std(abs(diff(x)))', 'meanabs(rollstd(sq(x)))', 'iqr90(diff(sq(x)))']
+FORGE nested (top-5 prescreen): 0.212  CI [0.133,0.283]  [5s]
+PAIRED forge-lean: -0.067  CI [-0.154,+0.008]  forge>lean 1/5
+{'lean': 0.2791666666666667, 'forge': 0.2125, 'chance': 0.25, 'seconds': 5.079061031341553}

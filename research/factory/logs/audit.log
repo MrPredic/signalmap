@@ -1,0 +1,8 @@
+[PASS] neg-control-noise: biased-top5 LOGO on noise = 0.075 (chance 0.167; must stay low even biased)
+[PASS] pos-control-planted: planted 3-class signal recovered at 1.000 (chance 0.333; must be high)
+[PASS] label-shuffle-ecn: real 0.592 -> shuffled 0.158 (shuffle must destroy signal)
+[PASS] group-integrity-logo: 0 folds with train/test recording overlap (must be 0)
+[PASS] scaler-note: pipeline 0.592 vs global-scaled 0.592 (RF scale-invariant; scaling not a leak vector)
+[PASS] selection-bias-visible: in-sample-scored on noise = 1.000 (inflated) vs honest-LOGO 0.075 (~chance) -> bias real AND nested removes it
+
+=== AUDIT: 6/6 checks passed ===

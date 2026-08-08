@@ -1,0 +1,5 @@
+groups(subjects): 21
+
+===== HAR-activity-LOSO (MIXED-LABEL LOGO): 1790 win, 21 groups, 6 cls, chance=0.167 =====
+LEAN: 0.347  CI [0.318,0.379]
+gate 1050/2128, prescreen->250; features [62s]

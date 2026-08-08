@@ -1,0 +1,17 @@
+guard: 1150 -> 897 programs (cumsum excluded)
+  hold rec 0: acc=0.786  sel=['specratio(sign(diff(x)))', 'specratio(tanh(id(x)))', 'specratio(diff2(id(x)))', 'specratio(diff2(clip(x)))', 'hent(tanh(diff(x)))']
+  hold rec 1: acc=0.714  sel=['specratio(sign(diff(x)))', 'lcross(diff2(rank(x)))', 'specratio(tanh(id(x)))', 'hent(tanh(diff(x)))', 'specratio(diff2(id(x)))']
+  hold rec 2: acc=0.857  sel=['specratio(sign(diff(x)))', 'specratio(diff2(id(x)))', 'specratio(tanh(id(x)))', 'lcross(diff2(rank(x)))', 'hent(tanh(diff(x)))']
+  hold rec 3: acc=0.857  sel=['specratio(sign(diff(x)))', 'hent(tanh(diff(x)))', 'hent(sq(diff2(x)))', 'lcross(diff2(rank(x)))', 'specflat(diff2(clip(x)))']
+  hold rec 4: acc=1.000  sel=['specratio(sign(diff(x)))', 'specratio(tanh(id(x)))', 'zcr(rollstd(sign(x)))', 'lcross(diff2(rank(x)))', 'hent(tanh(diff(x)))']
+  hold rec 5: acc=1.000  sel=['specratio(sign(diff(x)))', 'hent(tanh(diff(x)))', 'lcross(diff2(rank(x)))', 'speccent(diff2(rollstd(x)))', 'lcross(rollstd(diff(x)))']
+  hold rec 6: acc=0.000  sel=['specratio(sign(diff(x)))', 'specratio(tanh(id(x)))', 'lcross(diff2(rank(x)))', 'hent(tanh(diff(x)))', 'specratio(diff2(id(x)))']
+  hold rec 9: acc=1.000  sel=['specratio(sign(diff(x)))', 'specratio(tanh(id(x)))', 'specratio(diff2(id(x)))', 'hent(tanh(diff(x)))', 'specratio(sign(id(x)))']
+  hold rec 10: acc=1.000  sel=['specratio(sign(diff(x)))', 'specratio(tanh(id(x)))', 'hent(tanh(diff(x)))', 'specratio(diff2(id(x)))', 'acf1(diff2(env(x)))']
+  hold rec 11: acc=0.857  sel=['specratio(sign(diff(x)))', 'specratio(tanh(id(x)))', 'acf1(diff2(env(x)))', 'speccent(diff2(env(x)))', 'lcross(diff2(rank(x)))']
+  hold rec 12: acc=0.500  sel=['specratio(sign(diff(x)))', 'specratio(tanh(id(x)))', 'lcross(diff2(rank(x)))', 'hent(tanh(diff(x)))', 'specratio(diff2(rank(x)))']
+  hold rec 13: acc=0.214  sel=['specratio(sign(diff(x)))', 'specratio(diff2(sign(x)))', 'peakcv(diff2(rollstd(x)))', 'speccent(sign(diff(x)))', 'hent(tanh(diff(x)))']
+  hold rec 14: acc=0.857  sel=['specratio(sign(diff(x)))', 'specratio(sign(id(x)))', 'specratio(diff2(tanh(x)))', 'specratio(diff2(rank(x)))', 'hent(tanh(diff(x)))']
+  hold rec 15: acc=0.000  sel=['specratio(diff2(id(x)))', 'ordtrans(diff(env(x)))', 'zcr(diff2(env(x)))', 'speccent(env(rank(x)))', 'acf1(diff2(env(x)))']
+
+ECN-v2.1-dedup+guard: NESTED forged = 0.689 (biased was reported earlier)  vs LEAN 0.592   [203s]

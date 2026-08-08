@@ -1,0 +1,61 @@
+== hydcooler: 18 recordings, 72 windows, 6 channels, classes ['cooler100', 'cooler20', 'cooler3']
+# signalmap distill — gauntlet receipt
+
+- verdict: PASS
+- classes (3): cooler100, cooler20, cooler3
+- recordings: 18 · windows: 72 · chance: 0.333
+
+## capacity gate
+- grammar total: 2128
+- budget = min(2128, 50*18) = 900 (50.0 programs/recording)
+
+## accuracy receipts (LOGO over recordings)
+- nested LOGO (honesty anchor): 0.694
+- deploy selection (biased UB): 0.750
+- lean baseline (permEnt+psdSlope): 0.625 (+0.125 vs lean)
+- group-permutation p: 0.005
+- NULL self-test (labels shuffled): 0.361 (want ~chance 0.333)
+- cost: 0.183 ms/window (5 programs)
+
+## premium families (cost-receipted champion rule)
+- coherence: base 0.750 -> augmented 0.889 (paired +0.139, 95% CI [+0.042, +0.236]) — **INCLUDED**
+  cost: 14.84 ms/window vs base 0.183 ms/window (~81x); O(C n log n) Welch cross-spectra per (ch0, chj) pair; fixed product config c128b2 (coherence_fair CONFIRMED)
+
+## deploy spec (selected programs)
+- acf1(sq(diff(x)))
+- acf1(env(abs(x)))
+- acf1(abs(env(x)))
+- acf1(diff(diff2(x)))
+- acf1(rollstd(tanh(x)))
+
+Deploy: `signalmap fit`/`monitor` load spec.json as the feature backend.
+[hydcooler] PRIMARY verdict: INCLUDED (base 0.750 -> aug 0.889, paired +0.139 CI [+0.042, +0.236], ~81x cost) | distill gates: PASS | 991.5s
+== gasid: 20 recordings, 159 windows, 8 channels, classes ['CO', 'ethanol', 'ethylene', 'methane']
+# signalmap distill — gauntlet receipt
+
+- verdict: PASS
+- classes (4): CO, ethanol, ethylene, methane
+- recordings: 20 · windows: 159 · chance: 0.250
+
+## capacity gate
+- grammar total: 2128
+- budget = min(2128, 50*20) = 1000 (50.0 programs/recording)
+
+## accuracy receipts (LOGO over recordings)
+- nested LOGO (honesty anchor): 0.333
+- deploy selection (biased UB): 0.429
+- lean baseline (permEnt+psdSlope): 0.237 (+0.191 vs lean)
+- group-permutation p: 0.005
+- NULL self-test (labels shuffled): 0.252 (want ~chance 0.250)
+- cost: 0.272 ms/window (2 programs)
+
+## premium families (cost-receipted champion rule)
+- coherence: base 0.429 -> augmented 0.435 (paired +0.006, 95% CI [-0.100, +0.113]) — **EXCLUDED** (not CI-solid over base)
+  cost: 19.48 ms/window vs base 0.272 ms/window (~72x); O(C n log n) Welch cross-spectra per (ch0, chj) pair; fixed product config c128b2 (coherence_fair CONFIRMED)
+
+## deploy spec (selected programs)
+- peakcv(clip(diff(x)))
+- crest(sq(rollstd(x)))
+
+Deploy: `signalmap fit`/`monitor` load spec.json as the feature backend.
+[gasid] PRIMARY verdict: EXCLUDED (base 0.429 -> aug 0.435, paired +0.006 CI [-0.100, +0.113], ~72x cost) | distill gates: PASS | 1545.6s

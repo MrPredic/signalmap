@@ -1,0 +1,68 @@
+[PASS] IMS-fault group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] IMS-fault label-shuffle: real 0.609 -> shuffled 0.500 (chance 0.500)
+
+===== IMS-fault: 192 windows, 12 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.609  CI [0.417,0.781]  [2s]
+LEAN group-perm-p = 0.164 (60 perms)
+gate: 600/2128 programs (C=50 x 12 recs); features [10s]
+  hold rec 1st-b0: acc=0.625  sel=['acflag(diff2(abs(x)))', 'speccent(diff2(env(x)))', 'acflag(diff(rollstd(x)))', 'crest(diff2(rank(x)))', 'specratio(diff2(sq(x)))']
+  hold rec 1st-b1: acc=0.938  sel=['acflag(diff(rollstd(x)))', 'acflag(diff2(abs(x)))', 'speccent(diff(sq(x)))', 'ordtrans(diff2(rollstd(x)))', 'acf1(rollstd(env(x)))']
+  hold rec 1st-b2: acc=0.688  sel=['runmean(rollstd(env(x)))', 'acflag(diff(rollstd(x)))', 'speccent(diff2(env(x)))', 'runmean(rollstd(abs(x)))', 'ordtrans(diff2(rollstd(x)))']
+  hold rec 1st-b3: acc=0.500  sel=['speccent(diff2(env(x)))', 'speccent(diff(sq(x)))', 'specratio(diff2(rollstd(x)))', 'acflag(diff(rollstd(x)))', 'ordtrans(diff2(rollstd(x)))']
+  hold rec 2nd-b0: acc=0.062  sel=['zcr(sign(tanh(x)))', 'zcr(id(id(x)))', 'zcr(tanh(id(x)))']
+  hold rec 2nd-b1: acc=0.938  sel=['acflag(diff2(abs(x)))', 'speccent(diff2(env(x)))', 'acflag(diff(rollstd(x)))', 'specratio(diff2(sq(x)))', 'ordtrans(diff2(rollstd(x)))']
+  hold rec 2nd-b2: acc=0.312  sel=['speccent(diff2(env(x)))', 'ordtrans(diff2(rollstd(x)))', 'specratio(diff2(rollstd(x)))', 'acflag(diff(rollstd(x)))', 'specflat(diff2(abs(x)))']
+  hold rec 2nd-b3: acc=0.750  sel=['acflag(diff2(abs(x)))', 'speccent(diff2(env(x)))', 'acf1(diff2(abs(x)))', 'iqr90(diff(rollstd(x)))', 'acflag(diff(rollstd(x)))']
+  hold rec 4th-b0: acc=0.938  sel=['speccent(diff2(env(x)))', 'acflag(diff(rollstd(x)))', 'acf1(rollstd(env(x)))', 'ordtrans(diff2(rollstd(x)))', 'zcr(rollstd(env(x)))']
+  hold rec 4th-b1: acc=0.875  sel=['acflag(diff2(abs(x)))', 'speccent(diff2(env(x)))', 'acflag(diff(rollstd(x)))', 'acf1(diff2(abs(x)))', 'speccent(diff(sq(x)))']
+  hold rec 4th-b2: acc=0.000  sel=['std(env(diff(x)))', 'specratio(clip(id(x)))', 'iqr90(rollstd(diff(x)))', 'specflat(diff2(abs(x)))', 'specratio(tanh(tanh(x)))']
+  hold rec 4th-b3: acc=0.875  sel=['speccent(diff2(env(x)))', 'iqr90(diff(rollstd(x)))', 'acflag(diff(rollstd(x)))', 'ordtrans(diff2(rollstd(x)))', 'specratio(diff2(rollstd(x)))']
+FORGE nested: 0.625  CI [0.432,0.797]
+PAIRED forge-lean: +0.016  CI [-0.068,+0.099]  forge>lean 5/12
+{'lean': 0.609375, 'forge': 0.625, 'perm_p': 0.16393442622950818, 'chance': 0.5}
+[PASS] IMS-stage group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] IMS-stage label-shuffle: real 0.257 -> shuffled 0.321 (chance 0.333)
+
+===== IMS-stage: 576 windows, 36 recordings, 3 classes, chance=0.333 =====
+LEAN: 0.257  CI [0.203,0.311]  [10s]
+LEAN group-perm-p = 0.820 (60 perms)
+gate: 1800/2128 programs (C=50 x 36 recs); features [91s]
+  hold rec 1st-b0-early: acc=0.438  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(rollstd(id(x)))']
+  hold rec 1st-b0-late: acc=0.125  sel=['peakcv(tanh(rollstd(x)))', 'peakcv(sq(rollstd(x)))']
+  hold rec 1st-b0-mid: acc=0.312  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))']
+  hold rec 1st-b1-early: acc=0.250  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(abs(rollstd(x)))']
+  hold rec 1st-b1-late: acc=0.062  sel=['peakcv(tanh(rollstd(x)))', 'hent(clip(diff(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 1st-b1-mid: acc=0.562  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(rollstd(id(x)))']
+  hold rec 1st-b2-early: acc=0.562  sel=['peakcv(rollstd(clip(x)))', 'specflat(sign(diff(x)))']
+  hold rec 1st-b2-late: acc=0.375  sel=['hent(clip(diff(x)))']
+  hold rec 1st-b2-mid: acc=0.438  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))']
+  hold rec 1st-b3-early: acc=0.312  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))']
+  hold rec 1st-b3-late: acc=0.375  sel=['peakcv(diff(rollstd(x)))', 'peakcv(diff2(rollstd(x)))']
+  hold rec 1st-b3-mid: acc=0.312  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(abs(rollstd(x)))', 'hent(clip(diff(x)))', 'runcv(sq(tanh(x)))']
+  hold rec 2nd-b0-early: acc=0.438  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(diff(rollstd(x)))', 'hent(clip(diff(x)))']
+  hold rec 2nd-b0-late: acc=0.812  sel=['specflat(sign(diff(x)))', 'peakcv(rollstd(clip(x)))']
+  hold rec 2nd-b0-mid: acc=0.250  sel=['specflat(sign(diff(x)))', 'peakcv(rollstd(clip(x)))']
+  hold rec 2nd-b1-early: acc=0.500  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(rollstd(id(x)))']
+  hold rec 2nd-b1-late: acc=0.562  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))']
+  hold rec 2nd-b1-mid: acc=0.312  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))']
+  hold rec 2nd-b2-early: acc=0.125  sel=['peakcv(tanh(rollstd(x)))', 'hent(clip(diff(x)))', 'peakcv(diff(rollstd(x)))']
+  hold rec 2nd-b2-late: acc=0.312  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'hent(clip(diff(x)))']
+  hold rec 2nd-b2-mid: acc=0.188  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(rollstd(id(x)))']
+  hold rec 2nd-b3-early: acc=0.250  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(rollstd(id(x)))', 'ordtrans(rollstd(diff(x)))']
+  hold rec 2nd-b3-late: acc=0.625  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(sq(rollstd(x)))']
+  hold rec 2nd-b3-mid: acc=0.438  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(sq(rollstd(x)))', 'hent(clip(diff(x)))']
+  hold rec 4th-b0-early: acc=0.312  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(abs(rollstd(x)))']
+  hold rec 4th-b0-late: acc=0.375  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'specflat(sign(diff(x)))']
+  hold rec 4th-b0-mid: acc=0.438  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))']
+  hold rec 4th-b1-early: acc=0.500  sel=['peakcv(tanh(rollstd(x)))', 'ordtrans(rollstd(diff(x)))']
+  hold rec 4th-b1-late: acc=0.438  sel=['runmean(rollstd(cumsum(x)))', 'peakcv(rollstd(clip(x)))', 'peakcv(diff(rollstd(x)))', 'hent(clip(diff(x)))']
+  hold rec 4th-b1-mid: acc=0.250  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))']
+  hold rec 4th-b2-early: acc=0.125  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(rollstd(id(x)))', 'peakcv(abs(rollstd(x)))', 'hent(clip(diff(x)))']
+  hold rec 4th-b2-late: acc=0.312  sel=['peakcv(rollstd(clip(x)))', 'specflat(sign(diff(x)))']
+  hold rec 4th-b2-mid: acc=0.312  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'specflat(sign(diff(x)))']
+  hold rec 4th-b3-early: acc=0.438  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))']
+  hold rec 4th-b3-late: acc=0.438  sel=['peakcv(sq(rollstd(x)))']
+  hold rec 4th-b3-mid: acc=0.250  sel=['peakcv(rollstd(clip(x)))', 'peakcv(tanh(rollstd(x)))', 'peakcv(abs(rollstd(x)))']
+FORGE nested: 0.365  CI [0.316,0.415]
+PAIRED forge-lean: +0.108  CI [+0.045,+0.170]  forge>lean 24/36
+{'lean': 0.2569444444444444, 'forge': 0.3645833333333333, 'perm_p': 0.819672131147541, 'chance': 0.3333333333333333}

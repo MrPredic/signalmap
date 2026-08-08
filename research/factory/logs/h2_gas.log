@@ -1,0 +1,44 @@
+[PASS] GAS-id group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] GAS-id label-shuffle: real 0.121 -> shuffled 0.163 (chance 0.250)
+
+===== GAS-id: 240 windows, 20 recordings, 4 classes, chance=0.250 =====
+LEAN: 0.121  CI [0.087,0.158]  [4s]
+LEAN group-perm-p = 0.934 (60 perms)
+gate: 897/897 programs (C=50 x 20 recs); features [16s]
+  hold rec 0: acc=0.583  sel=['iqr90(tanh(sq(x)))', 'std(sq(tanh(x)))', 'std(tanh(abs(x)))', 'iqr90(abs(clip(x)))']
+  hold rec 1: acc=0.167  sel=['std(sq(tanh(x)))', 'acflag(sign(rank(x)))']
+  hold rec 2: acc=0.250  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'hent(rollstd(clip(x)))']
+  hold rec 3: acc=0.083  sel=['std(sq(tanh(x)))']
+  hold rec 4: acc=0.083  sel=['iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))', 'std(tanh(sq(x)))', 'hent(rollstd(clip(x)))', 'acflag(sq(rank(x)))']
+  hold rec 5: acc=0.083  sel=['std(sq(tanh(x)))', 'crest(env(clip(x)))']
+  hold rec 6: acc=0.167  sel=['iqr90(tanh(sq(x)))', 'iqr90(tanh(abs(x)))', 'hent(env(sq(x)))', 'zcr(diff2(id(x)))', 'acflag(tanh(rank(x)))']
+  hold rec 7: acc=0.000  sel=['std(sq(tanh(x)))', 'acflag(sign(rank(x)))']
+  hold rec 8: acc=0.083  sel=['iqr90(sq(tanh(x)))', 'iqr90(tanh(sq(x)))', 'runmean(diff2(clip(x)))', 'acflag(rank(id(x)))', 'runmean(diff2(id(x)))']
+  hold rec 9: acc=0.167  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))', 'acflag(rank(id(x)))', 'acflag(clip(tanh(x)))', 'iqr90(abs(id(x)))']
+  hold rec 10: acc=0.167  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))', 'crest(env(clip(x)))', 'ordtrans(diff2(sq(x)))']
+  hold rec 11: acc=0.167  sel=['iqr90(tanh(sq(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))', 'acflag(rank(id(x)))']
+  hold rec 12: acc=0.250  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))', 'acflag(rank(id(x)))', 'acflag(tanh(id(x)))', 'acflag(diff(clip(x)))']
+  hold rec 13: acc=0.083  sel=['std(sq(tanh(x)))', 'acflag(sign(rank(x)))']
+  hold rec 14: acc=0.083  sel=['std(sq(tanh(x)))', 'std(tanh(sq(x)))', 'std(tanh(abs(x)))', 'iqr90(id(id(x)))']
+  hold rec 15: acc=0.167  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))']
+  hold rec 16: acc=0.167  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))']
+  hold rec 17: acc=0.167  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))']
+  hold rec 18: acc=0.000  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))', 'crest(env(clip(x)))', 'acflag(sq(rank(x)))']
+  hold rec 19: acc=0.250  sel=['std(sq(tanh(x)))', 'std(tanh(abs(x)))', 'lcross(rollstd(abs(x)))']
+FORGE nested: 0.158  CI [0.112,0.217]
+PAIRED forge-lean: +0.037  CI [-0.025,+0.108]  forge>lean 9/20
+STABILITY: top1-freq 0.75, mean-jaccard 0.27 (STABLE)
+CHAMPION (paired CI): tie->lean (default to cheaper)
+{'lean': 0.12083333333333332, 'forge': 0.1583333333333333, 'perm_p': 0.9344262295081968, 'chance': 0.25, 'paired_ci': (-0.025000000000000005, 0.10833333333333335), 'stability': 0.2702255639097744, 'top1_freq': 0.75, 'champion': 'tie->lean (default to cheaper)'}
+
+===== GAS-id-LODO (leave-one-DEVICE-out) (MIXED-LABEL LOGO): 240 win, 5 groups, 4 cls, chance=0.250 =====
+LEAN: 0.267  CI [0.237,0.300]
+gate 250/1150 programs; features [5s]
+  hold 0: acc=0.333  sel=['iqr90(env(clip(x)))', 'hent(rollstd(tanh(x)))', 'iqr90(tanh(env(x)))', 'runcv(cumsum(rollstd(x)))', 'hent(sq(diff2(x)))']
+  hold 1: acc=0.229  sel=['crest(rollstd(clip(x)))', 'crest(tanh(env(x)))', 'iqr90(env(clip(x)))', 'crest(env(env(x)))', 'iqr90(tanh(env(x)))']
+  hold 2: acc=0.229  sel=['iqr90(env(clip(x)))', 'iqr90(env(env(x)))', 'zcr(env(cumsum(x)))', 'iqr90(tanh(env(x)))', 'runcv(cumsum(rollstd(x)))']
+  hold 3: acc=0.188  sel=['iqr90(env(clip(x)))', 'iqr90(env(env(x)))', 'std(clip(env(x)))', 'runcv(diff(sign(x)))', 'acf1(env(rank(x)))']
+  hold 4: acc=0.104  sel=['iqr90(env(clip(x)))', 'runcv(cumsum(rank(x)))', 'hent(rollstd(tanh(x)))', 'iqr90(tanh(env(x)))', 'zcr(cumsum(rank(x)))']
+FORGE nested (top-5 prescreen): 0.217  CI [0.154,0.283]  [5s]
+PAIRED forge-lean: -0.050  CI [-0.121,+0.017]  forge>lean 1/5
+{'lean': 0.26666666666666666, 'forge': 0.21666666666666665, 'chance': 0.25, 'seconds': 5.494860887527466}

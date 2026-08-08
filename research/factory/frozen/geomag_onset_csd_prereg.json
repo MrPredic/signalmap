@@ -1,0 +1,88 @@
+{
+ "spec": {
+  "prereg": "GEOMAG-ONSET-CSD (critical-slowing-down early-warning, 12-24h pre-storm-onset, directed, theory-anchor, same anchor as IMS-CSD/CALCE-CSD)",
+  "frozen_utc": "2026-07-11T18:40:00Z",
+  "domain": "USGS geomag 1Hz X component, observatories BOU+FRD",
+  "event_definition": {
+   "onset": "Kp[t]>=5 & Kp[t-1]<5 & max(Kp[t-8:t])<5 (24h clean baseline, G1+)",
+   "quiet": ">=48h consecutive Kp<3 run, reference = 30h into run",
+   "period": "2015-01-01 to 2026-07-01 (fixed)",
+   "subsample": "stride pick, target N=20 each (geomag_fresh.pickdays idiom)"
+  },
+  "window": "[reference-24h, reference-12h) -- 12h, 1Hz X, per obs",
+  "slow_variable": "HI[t] = raw 1Hz X (nT) in window",
+  "params": {
+   "health_indicator": "per-snapshot RMS amplitude",
+   "axis_pin": "test1 uses col 2*b (axis x); test2/3 col b",
+   "detrend_gaussian_sigma_frac": 0.05,
+   "rolling_window_frac": 0.5,
+   "rolling_step_frac": 0.005,
+   "n_surrogate": 500,
+   "alpha": 0.05,
+   "surrogate": "fourier phase-randomization of residual",
+   "seed": 20260708
+  },
+  "statistic": "ims_csd._csd_bearing(hi) UNCHANGED: Kendall tau of rolling ar1(t)/logvar(t) of Gaussian-detrended residual",
+  "significance": "per window, Fourier phase-randomized surrogate x N_surr (ims_csd params); 1-sided p",
+  "primary": "per obs: CSD+ rate (tau_ar1>0 & p_ar1<alpha & tau_var>0 & p_var<alpha) onset > quiet; Fisher exact greater",
+  "specificity": "quiet windows must not fire at the onset rate",
+  "confound_guard": "ar1-rise reported separately from var-rise; CONFIRMED needs BOTH",
+  "honest_n_gate": "if n_onset_valid < 15 after fetch drops -> verdict forced INSUFFICIENT-N (per obs)",
+  "claim_scope": "ground X-component fluctuation dynamics, 12-24h pre-onset, BOU+FRD only",
+  "n_onset_target": 20,
+  "n_quiet_target": 20,
+  "events_sha256": "5e8e3bd8dc0b8000da2e7401c609323b952b8248593650f09fddaf5074726697"
+ },
+ "events": {
+  "onset": [
+   "2019-01-05T00:00:00Z",
+   "2019-09-27T18:00:00Z",
+   "2021-03-25T00:00:00Z",
+   "2021-10-12T00:00:00Z",
+   "2022-02-04T15:00:00Z",
+   "2022-07-07T12:00:00Z",
+   "2022-10-03T18:00:00Z",
+   "2023-02-15T06:00:00Z",
+   "2023-05-12T12:00:00Z",
+   "2023-09-18T15:00:00Z",
+   "2023-11-25T18:00:00Z",
+   "2024-05-02T12:00:00Z",
+   "2024-07-30T03:00:00Z",
+   "2024-10-07T00:00:00Z",
+   "2025-02-15T09:00:00Z",
+   "2025-04-15T15:00:00Z",
+   "2025-06-26T21:00:00Z",
+   "2025-10-12T18:00:00Z",
+   "2026-01-02T18:00:00Z",
+   "2026-02-16T18:00:00Z"
+  ],
+  "quiet": [
+   "2019-01-02T06:00:00Z",
+   "2019-05-13T06:00:00Z",
+   "2019-09-26T00:00:00Z",
+   "2020-03-20T09:00:00Z",
+   "2020-08-05T12:00:00Z",
+   "2021-01-29T09:00:00Z",
+   "2021-05-19T12:00:00Z",
+   "2021-09-14T15:00:00Z",
+   "2022-01-05T12:00:00Z",
+   "2022-05-19T09:00:00Z",
+   "2022-09-16T09:00:00Z",
+   "2023-01-09T21:00:00Z",
+   "2023-06-06T03:00:00Z",
+   "2023-10-03T12:00:00Z",
+   "2024-02-12T18:00:00Z",
+   "2024-05-25T18:00:00Z",
+   "2024-08-16T06:00:00Z",
+   "2024-12-11T06:00:00Z",
+   "2025-07-09T12:00:00Z",
+   "2025-11-22T06:00:00Z"
+  ],
+  "n_onset_raw": 166,
+  "n_quiet_raw": 326,
+  "kp_period": [
+   "2019-01-01T00:00:00Z",
+   "2026-07-01T00:00:00Z"
+  ]
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "context": "Ep 51 not occurred at freeze (watcher log + HVO forecast Jul 9-15)",
+ "frozen_utc": "2026-07-04T19:42:51Z",
+ "models": {
+  "RIMD": {
+   "n_windows": 720,
+   "path": "frozen/precursor12h_model_rimd.joblib",
+   "sha256": "4c1bd3bf3940be9f45ed5d2b01807deb8d9c2a28e5611ee65757350d516a4985"
+  },
+  "UWE": {
+   "n_windows": 720,
+   "path": "frozen/precursor12h_model_uwe.joblib",
+   "sha256": "993ce0e14866c7c9aa3fb52ce9db984d756b4d4b3f32ddf891be2b361542a6c4"
+  }
+ },
+ "plan_sha256": "906a53f6d34d90a1038815de095793207695cf63b017bb6ea2a0db6b5721b9ec",
+ "prereg": "VOLCANO-PRECURSOR-12H-EP51 (PREREG-3, prospective, n=1 demo receipt)",
+ "protocol": "PRE=[start-12.5h,start-12h]; MID=midpoint(Ep50_end,start) date at same clock; validity mid>=24h from boundaries, |mid-pre|>=6h; primary=ORDERING pre-prob(PRE)>pre-prob(MID), strict=both majorities correct; UWE primary, RIMD replication",
+ "selection_honesty": "-12h chosen AFTER exploratory look at 50-episode bank (UWE 0.656 p=.008 / RIMD 0.656 p=.003, both-station replication, ledger affbdc1d); prospective Ep-51 test is the required confirmation"
+}

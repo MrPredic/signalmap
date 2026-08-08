@@ -1,0 +1,64 @@
+{
+  "K": 20,
+  "W": 1024,
+  "alarm": {
+    "alarm_rate_anomaly": 0.0,
+    "alarm_rate_normal": 0.0,
+    "gap": 0.0,
+    "gap_ci_hi": 0.0,
+    "gap_ci_lo": 0.0
+  },
+  "auc": 0.3171875,
+  "auc_star": 0.6828125,
+  "ci_hi": 0.419416339474479,
+  "ci_lo": 0.22347838767794906,
+  "direction": "inverted",
+  "domain": "paderborn_kat_n15",
+  "envelope": 3.0,
+  "h2_separates": true,
+  "manifest": {
+    "anomaly_mapping": "the source's own bearing codes: ['KA01', 'KA03', 'KI01', 'KI03'] are damaged (KA = outer race, KI = inner race); K001-K005 are undamaged",
+    "channel": "phase_current_1 \u2014 the first channel in the source's own order (force, phase_current_1, phase_current_2, speed, temp_2_bearing_module, torque, vibration_1) that meets the 20480-sample minimum; force has only 16001. Prereg AMENDMENT 6.",
+    "fs_hz": 64000,
+    "license": "Paderborn University KAt-DataCenter bearing dataset, free for scientific use with citation of Lessmeier et al. (PHM Europe 2016)",
+    "modality": "motor phase current on a bearing test rig",
+    "source_url": "https://groups.uni-paderborn.de/kat/BearingDataCenter/"
+  },
+  "n1_null_ci": [
+    0.3931171875,
+    0.6062578124999999
+  ],
+  "n1_null_covers_half": true,
+  "n2_ci": [
+    0.3784250665726817,
+    0.7348983253588515
+  ],
+  "n2_healthy_vs_healthy_auc": 0.5625,
+  "n2_ok": true,
+  "n3_leaked_recordings": [],
+  "n_anomaly": 80,
+  "n_boot_used": 2000,
+  "n_eval": 120,
+  "n_fit_recordings": 60,
+  "n_fit_windows": 1200,
+  "n_normal": 40,
+  "null_star_q95": 0.606578125,
+  "perm_p_two_sided": 0.0005,
+  "prereg": "PREREG_SIGN_IDENTIFIABILITY.md",
+  "runtime_s": 12.2,
+  "seed": 0,
+  "spec_premium": [],
+  "spec_programs": [
+    "acf1(id(id(x)))",
+    "crest(id(id(x)))",
+    "lcross(id(id(x)))",
+    "meanabs(id(id(x)))",
+    "peakcv(id(id(x)))",
+    "runcv(id(id(x)))",
+    "runmean(id(id(x)))",
+    "std(id(id(x)))",
+    "zcr(id(id(x)))"
+  ],
+  "threshold": 28.38966310486032,
+  "verdict": "PASS"
+}

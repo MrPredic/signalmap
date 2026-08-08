@@ -1,0 +1,48 @@
+{
+ "prereg": "GEOMAG-FRESH out-of-time holdout (bank ended Oct 2024)",
+ "frozen_utc": "2026-07-03T17:13:15Z",
+ "family": "lean duo perm3+psd_slope, StandardScaler+RF(150,rs=0), per obs",
+ "storm_days": [
+  "2025-01-01",
+  "2025-04-16",
+  "2025-06-01",
+  "2025-06-02",
+  "2025-06-03",
+  "2025-09-30",
+  "2025-11-12",
+  "2025-11-13",
+  "2026-01-19",
+  "2026-01-20",
+  "2026-01-21",
+  "2026-03-21",
+  "2026-03-22"
+ ],
+ "quiet_days": [
+  "2025-01-25",
+  "2025-01-26",
+  "2025-02-03",
+  "2025-02-07",
+  "2025-07-10",
+  "2025-08-07",
+  "2025-09-19",
+  "2025-11-19",
+  "2025-12-08",
+  "2026-03-19",
+  "2026-04-13",
+  "2026-04-16",
+  "2026-05-06"
+ ],
+ "quiet_threshold": "Kp_max<=1.0 (relaxed from 0.67, documented)",
+ "models": {
+  "BOU": {
+   "n_train_windows": 128,
+   "sha256": "63ee1c9c6e3035fc7aaaffdc282039214ceb358b5672d9374da4778aeabf69be"
+  },
+  "FRD": {
+   "n_train_windows": 120,
+   "sha256": "fbedd082a09623959f4035d85271118c4540ec61a8720ffdca4f142ae64614fc"
+  }
+ },
+ "criterion": "per obs: day-majority acc, cluster-bootstrap CI over days, PASS=CI-lo>0.5",
+ "plan_sha256": "628609960e7020853d3ea18433edaeff9ee2c92c0177c247a7ccc464910022c0"
+}

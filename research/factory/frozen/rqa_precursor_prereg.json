@@ -1,0 +1,26 @@
+{
+ "spec": {
+  "prereg": "RQA-PRECURSOR (WEG 5, recurrence quantification, TRIANGULATION path 5, multi-offset)",
+  "frozen_utc": "2026-07-10T19:20:56Z",
+  "representation": "phase-space recurrence structure of the within-window znormed HHZ segment (pyunicorn RecurrencePlot), reused precursor cache -- reference impl, NO grid search",
+  "params_fixed_a_priori": {
+   "dim": 3,
+   "tau": 5,
+   "recurrence_rate": 0.1
+  },
+  "descriptors": "det=determinism(l_min=2), lam=laminarity(v_min=2), entr=diag-entropy; DISTINCT from Weg1 (perm_entropy,psd_slope) and Weg3 (centroid,spec_ent,hf_ratio)",
+  "offsets_h": [
+   2,
+   6,
+   12
+  ],
+  "unit": "per episode per station per offset: PRE vs MID (same pause), segment = mean descriptor over its 8 znormed windows",
+  "primary_tests": "per (offset,descriptor) TWO-SIDED paired sign test + Wilcoxon, episode-wise PRE-vs-MID; MOVES if sign_p<0.05 AND wilcoxon_p<0.05; UWE primary, RIMD replication",
+  "multiplicity": "3 offsets x 3 descriptors = 9 cells per station; Holm-Bonferroni within-station; scan for lead-time mapping, corrected verdict is authoritative",
+  "no_new_fetch": "reuses volcano_precursor._bank on the already-frozen/fetched precursor plan; zero new IRIS calls",
+  "orthogonality": "nonlinear recurrence-structure representation, independent of learned boundary (Weg1), linear envelope stats (Weg2), Fourier shape (Weg3)",
+  "claim_scope": "site-local (Kilauea summit), recurrence-structure level",
+  "episode_table_sha256": "adb56f649b97008ae8209be05a377f0571bd552a8053249181279f8d66063bd3",
+  "prec_plan_sha256": "906a53f6d34d90a1038815de095793207695cf63b017bb6ea2a0db6b5721b9ec"
+ }
+}

@@ -1,0 +1,87 @@
+[PASS] DCASE-pump-anomaly-PEAK group-integrity: 0 mixed-label recordings (must be 0)
+[FAIL] DCASE-pump-anomaly-PEAK label-shuffle: real 0.637 -> shuffled 0.675 (chance 0.500)
+DCASE-pump-anomaly-PEAK: bank_audit FAIL -> gauntlet skipped
+[PASS] DCASE-pump-id-PEAK group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] DCASE-pump-id-PEAK label-shuffle: real 0.233 -> shuffled 0.150 (chance 0.250)
+
+===== DCASE-pump-id-PEAK: 120 windows, 24 recordings, 4 classes, chance=0.250 =====
+LEAN: 0.233  CI [0.117,0.358]  [4s]
+LEAN group-perm-p = 0.393 (200 perms)
+gate: 897/897 programs (C=50 x 24 recs); features [8s]
+  hold rec 0: acc=0.400  sel=['specflat(env(clip(x)))', 'acflag(diff(abs(x)))', 'specflat(env(rank(x)))', 'specflat(env(id(x)))', 'hent(env(id(x)))']
+  hold rec 1: acc=0.000  sel=['crest(diff2(rollstd(x)))', 'hent(diff2(rollstd(x)))', 'hent(diff(sq(x)))', 'hent(env(id(x)))', 'acflag(diff(sq(x)))']
+  hold rec 2: acc=0.000  sel=['hent(env(env(x)))', 'hent(sq(id(x)))', 'hent(diff2(rollstd(x)))', 'hent(abs(id(x)))', 'specflat(env(id(x)))']
+  hold rec 3: acc=0.000  sel=['specflat(env(clip(x)))', 'specflat(env(id(x)))', 'specflat(tanh(env(x)))', 'acflag(diff(tanh(x)))', 'specratio(tanh(id(x)))']
+  hold rec 4: acc=0.400  sel=['specflat(env(clip(x)))', 'acflag(diff(sq(x)))', 'hent(env(id(x)))', 'hent(diff2(rollstd(x)))', 'acflag(diff(abs(x)))']
+  hold rec 5: acc=0.200  sel=['hent(env(id(x)))', 'hent(env(env(x)))', 'acflag(diff(sign(x)))', 'acflag(diff(abs(x)))', 'hent(diff2(rollstd(x)))']
+  hold rec 6: acc=0.600  sel=['hent(env(id(x)))', 'specflat(env(clip(x)))', 'acflag(diff(abs(x)))', 'hent(rollstd(diff2(x)))', 'hent(diff2(rollstd(x)))']
+  hold rec 7: acc=0.200  sel=['lcross(abs(diff2(x)))', 'hent(diff2(rollstd(x)))', 'hent(env(id(x)))', 'lcross(diff2(clip(x)))', 'acflag(diff(sign(x)))']
+  hold rec 8: acc=0.400  sel=['hent(env(id(x)))', 'specflat(env(clip(x)))', 'acflag(diff(abs(x)))', 'hent(diff2(rollstd(x)))', 'acflag(diff(sign(x)))']
+  hold rec 9: acc=0.800  sel=['hent(env(id(x)))', 'hent(env(env(x)))', 'acflag(diff(abs(x)))', 'specflat(env(clip(x)))', 'hent(diff2(rollstd(x)))']
+  hold rec 10: acc=0.200  sel=['hent(env(id(x)))', 'hent(env(env(x)))', 'specflat(env(clip(x)))', 'specflat(env(id(x)))', 'acflag(diff(sq(x)))']
+  hold rec 11: acc=0.000  sel=['acflag(diff(sq(x)))', 'hent(diff2(rollstd(x)))', 'specflat(env(id(x)))', 'acflag(sign(diff2(x)))', 'crest(diff2(rollstd(x)))']
+  hold rec 12: acc=1.000  sel=['hent(env(id(x)))', 'hent(env(env(x)))', 'hent(diff2(rollstd(x)))', 'acflag(diff(abs(x)))', 'hent(sq(id(x)))']
+  hold rec 13: acc=0.000  sel=['hent(env(id(x)))', 'hent(env(env(x)))', 'hent(diff2(rollstd(x)))', 'acflag(diff(abs(x)))', 'hent(sq(id(x)))']
+  hold rec 14: acc=0.000  sel=['acflag(diff(sq(x)))', 'specflat(env(id(x)))', 'specflat(env(rank(x)))', 'std(clip(id(x)))', 'crest(diff2(rollstd(x)))']
+  hold rec 15: acc=0.800  sel=['hent(env(id(x)))', 'hent(env(env(x)))', 'hent(diff2(rollstd(x)))', 'acflag(diff(abs(x)))', 'specflat(env(rank(x)))']
+  hold rec 16: acc=1.000  sel=['hent(env(id(x)))', 'hent(diff2(rollstd(x)))', 'specflat(env(clip(x)))', 'acflag(diff(abs(x)))', 'ordtrans(rollstd(diff(x)))']
+  hold rec 17: acc=1.000  sel=['hent(env(id(x)))', 'specflat(env(clip(x)))', 'hent(diff2(rollstd(x)))', 'acflag(diff(abs(x)))', 'acflag(diff(sign(x)))']
+  hold rec 18: acc=0.600  sel=['hent(env(id(x)))', 'acflag(diff(sign(x)))', 'hent(diff2(rollstd(x)))', 'acflag(diff(abs(x)))', 'acflag(rank(diff2(x)))']
+  hold rec 19: acc=0.200  sel=['ordtrans(rollstd(diff(x)))', 'hent(diff2(rollstd(x)))', 'specflat(env(rank(x)))', 'acflag(diff(sq(x)))', 'hent(env(diff2(x)))']
+  hold rec 20: acc=0.000  sel=['lcross(diff2(id(x)))', 'acflag(sign(diff2(x)))', 'lcross(diff2(clip(x)))', 'acflag(diff(sq(x)))', 'hent(diff2(rollstd(x)))']
+  hold rec 21: acc=0.000  sel=['specflat(env(clip(x)))', 'specflat(env(tanh(x)))', 'specflat(tanh(env(x)))', 'hent(diff2(rollstd(x)))', 'specflat(env(id(x)))']
+  hold rec 22: acc=0.000  sel=['runcv(rollstd(sign(x)))', 'acflag(diff(abs(x)))', 'runmean(rollstd(sign(x)))', 'ordtrans(rollstd(sign(x)))', 'acflag(diff(sign(x)))']
+  hold rec 23: acc=1.000  sel=['hent(diff2(rollstd(x)))', 'acflag(diff(sq(x)))', 'acflag(diff(sign(x)))', 'specflat(env(rank(x)))']
+FORGE nested: 0.367  CI [0.225,0.525]
+PAIRED forge-lean: +0.133  CI [-0.042,+0.300]  forge>lean 14/24
+STABILITY: top1-freq 0.46, mean-jaccard 0.26 (UNSTABLE -> do not trust forge)
+CHAMPION (paired CI, chance-gated): NULL (nobody clears chance)
+CLF-ROBUSTNESS (LogReg on champion features): 0.250  (RF-ONLY -> flag model-dependence)
+[PASS] IMS-fault-PEAK group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] IMS-fault-PEAK label-shuffle: real 0.479 -> shuffled 0.490 (chance 0.500)
+
+===== IMS-fault-PEAK: 192 windows, 12 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.479  CI [0.281,0.672]  [2s]
+LEAN group-perm-p = 0.617 (200 perms)
+gate: 600/897 programs (C=50 x 12 recs); features [9s]
+  hold rec 1st-b0: acc=0.562  sel=['acf1(diff(abs(x)))', 'speccent(diff(abs(x)))', 'lcross(diff2(sq(x)))', 'lcross(abs(id(x)))', 'crest(diff2(rank(x)))']
+  hold rec 1st-b1: acc=0.750  sel=['acf1(diff(abs(x)))', 'speccent(diff(abs(x)))', 'specratio(diff2(env(x)))', 'acf1(diff2(abs(x)))', 'lcross(diff2(sq(x)))']
+  hold rec 1st-b2: acc=0.250  sel=['runmean(rollstd(abs(x)))', 'lcross(diff2(sq(x)))', 'acf1(diff(abs(x)))', 'runmean(rollstd(sq(x)))', 'speccent(diff(abs(x)))']
+  hold rec 1st-b3: acc=0.812  sel=['acf1(diff(abs(x)))', 'lcross(diff2(sq(x)))', 'crest(diff(abs(x)))', 'lcross(id(id(x)))', 'specflat(rank(diff2(x)))']
+  hold rec 2nd-b0: acc=0.500  sel=['ordtrans(diff2(rollstd(x)))', 'acf1(diff(abs(x)))', 'iqr90(diff(rollstd(x)))', 'lcross(diff2(sq(x)))', 'zcr(diff2(rollstd(x)))']
+  hold rec 2nd-b1: acc=1.000  sel=['acf1(diff(abs(x)))', 'speccent(diff(abs(x)))', 'lcross(diff2(sq(x)))', 'ordtrans(diff2(rollstd(x)))', 'acflag(diff(rollstd(x)))']
+  hold rec 2nd-b2: acc=0.375  sel=['ordtrans(diff(env(x)))', 'acf1(diff(abs(x)))', 'runmean(diff2(env(x)))', 'speccent(rollstd(sq(x)))', 'speccent(env(rank(x)))']
+  hold rec 2nd-b3: acc=0.938  sel=['acf1(diff(abs(x)))', 'speccent(diff(abs(x)))', 'acflag(diff(rollstd(x)))', 'lcross(diff2(sq(x)))', 'ordtrans(diff2(rollstd(x)))']
+  hold rec 4th-b0: acc=0.938  sel=['acf1(diff(abs(x)))', 'speccent(diff(abs(x)))', 'speccent(env(rank(x)))', 'crest(rollstd(env(x)))', 'crest(rollstd(sq(x)))']
+  hold rec 4th-b1: acc=0.750  sel=['acf1(diff(abs(x)))', 'speccent(diff(abs(x)))', 'iqr90(diff(rollstd(x)))', 'lcross(clip(abs(x)))', 'lcross(abs(id(x)))']
+  hold rec 4th-b2: acc=0.000  sel=['iqr90(rollstd(diff(x)))', 'std(rollstd(env(x)))', 'std(rollstd(rollstd(x)))', 'zcr(env(rollstd(x)))', 'specratio(id(id(x)))']
+  hold rec 4th-b3: acc=0.938  sel=['acf1(diff(abs(x)))', 'speccent(diff(abs(x)))', 'speccent(env(rank(x)))', 'runmean(rollstd(env(x)))', 'ordtrans(diff(env(x)))']
+FORGE nested: 0.651  CI [0.469,0.812]
+PAIRED forge-lean: +0.172  CI [+0.042,+0.328]  forge>lean 9/12
+STABILITY: top1-freq 0.67, mean-jaccard 0.23 (STABLE)
+CHAMPION (paired CI, chance-gated): NULL (nobody clears chance)
+CLF-ROBUSTNESS (LogReg on champion features): 0.552  (RF-ONLY -> flag model-dependence)
+[PASS] IMS-fault-POOL4 group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] IMS-fault-POOL4 label-shuffle: real 0.766 -> shuffled 0.625 (chance 0.500)
+
+===== IMS-fault-POOL4: 192 windows, 12 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.766  CI [0.573,0.922]  [2s]
+LEAN group-perm-p = 0.005 (200 perms)
+gate: 600/897 programs (C=50 x 12 recs); features [10s]
+  hold rec 1st-b0: acc=1.000  sel=['specratio(rollstd(rollstd(x)))', 'specflat(rollstd(rollstd(x)))', 'ordtrans(diff2(tanh(x)))', 'runmean(rollstd(env(x)))', 'acflag(sq(id(x)))']
+  hold rec 1st-b1: acc=1.000  sel=['ordtrans(diff2(tanh(x)))', 'specratio(rollstd(rollstd(x)))', 'acf1(tanh(diff(x)))', 'acflag(sq(id(x)))']
+  hold rec 1st-b2: acc=0.625  sel=['acflag(sq(id(x)))', 'specratio(rollstd(rollstd(x)))', 'runmean(rollstd(env(x)))', 'peakcv(diff2(diff(x)))', 'acflag(abs(diff(x)))']
+  hold rec 1st-b3: acc=0.938  sel=['acflag(sq(id(x)))', 'specratio(rollstd(rollstd(x)))', 'ordtrans(diff2(tanh(x)))', 'runmean(rollstd(env(x)))', 'acflag(clip(diff(x)))']
+  hold rec 2nd-b0: acc=0.000  sel=['speccent(sign(diff(x)))', 'specratio(abs(diff2(x)))', 'acf1(rollstd(env(x)))', 'speccent(abs(diff2(x)))', 'crest(rollstd(env(x)))']
+  hold rec 2nd-b1: acc=1.000  sel=['iqr90(sq(clip(x)))', 'specratio(rollstd(rollstd(x)))', 'ordtrans(diff2(tanh(x)))', 'acflag(sq(id(x)))', 'acf1(tanh(diff(x)))']
+  hold rec 2nd-b2: acc=0.250  sel=['runmean(rollstd(env(x)))', 'ordtrans(diff2(tanh(x)))', 'specratio(rollstd(rollstd(x)))']
+  hold rec 2nd-b3: acc=0.500  sel=['peakcv(diff2(id(x)))', 'specratio(rollstd(rollstd(x)))', 'acflag(sq(id(x)))', 'iqr90(diff2(sign(x)))', 'ordtrans(diff(id(x)))']
+  hold rec 4th-b0: acc=0.875  sel=['specratio(rollstd(rollstd(x)))', 'acflag(sq(id(x)))', 'peakcv(diff2(diff(x)))', 'acf1(sq(diff(x)))', 'hent(env(rollstd(x)))']
+  hold rec 4th-b1: acc=0.938  sel=['specratio(rollstd(rollstd(x)))', 'acflag(sq(id(x)))', 'ordtrans(diff(clip(x)))', 'iqr90(diff2(sign(x)))']
+  hold rec 4th-b2: acc=0.062  sel=['specratio(diff2(diff2(x)))', 'specratio(rollstd(rollstd(x)))', 'specflat(rollstd(rollstd(x)))', 'ordtrans(diff(tanh(x)))', 'crest(env(diff(x)))']
+  hold rec 4th-b3: acc=0.500  sel=['peakcv(diff2(diff(x)))', 'speccent(abs(diff2(x)))', 'ordtrans(diff(id(x)))', 'specratio(rollstd(rollstd(x)))', 'acf1(sq(diff(x)))']
+FORGE nested: 0.641  CI [0.438,0.833]
+PAIRED forge-lean: -0.125  CI [-0.224,-0.042]  forge>lean 1/12
+STABILITY: top1-freq 0.25, mean-jaccard 0.24 (UNSTABLE -> do not trust forge)
+CHAMPION (paired CI, chance-gated): lean
+CLF-ROBUSTNESS (LogReg on champion features): 0.651  (RF-ONLY -> flag model-dependence)

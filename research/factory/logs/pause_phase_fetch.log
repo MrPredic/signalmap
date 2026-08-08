@@ -1,0 +1,6 @@
+[checkpoint] 25/84 EARLY segments
+  UWE 2026-06-03T07:06:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_UWE__HHZ_M, 700 samples, 100 sps, 2026-06-03T07:35:50.680000, SLIST, INTEGER, COUNTS'
+[checkpoint] 50/84 EARLY segments
+[checkpoint] 75/84 EARLY segments
+  RIMD 2026-06-03T07:06:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_RIMD__HHZ_M, 824 samples, 100 sps, 2026-06-03T07:35:48.940000, SLIST, INTEGER, COUNTS'
+fetch complete: 84 EARLY segments (incl. cached/failed)

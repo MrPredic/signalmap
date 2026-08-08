@@ -1,0 +1,40 @@
+
+===== SYNTH-20G (speed regression) (MIXED-LABEL LOGO): 240 win, 20 groups, 3 cls, chance=0.333 =====
+LEAN: 0.346  CI [0.283,0.408]
+gate 1000/2128 programs; features [25s]
+  hold 0: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(diff(tanh(x)))', 'specflat(id(id(x)))', 'specflat(rank(tanh(x)))']
+  hold 1: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(diff(tanh(x)))', 'specflat(id(id(x)))', 'specflat(rank(tanh(x)))']
+  hold 2: acc=1.000  sel=['acf1(diff2(diff2(x)))', 'specflat(clip(diff(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(rank(tanh(x)))']
+  hold 3: acc=1.000  sel=['acf1(diff2(diff2(x)))', 'specflat(clip(diff(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(rank(tanh(x)))']
+  hold 4: acc=1.000  sel=['acf1(diff2(diff2(x)))', 'specflat(clip(diff(x)))', 'specflat(id(id(x)))', 'specflat(clip(id(x)))', 'specflat(diff(tanh(x)))']
+  hold 5: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(rank(tanh(x)))']
+  hold 6: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(rank(tanh(x)))']
+  hold 7: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(rank(tanh(x)))', 'specflat(diff(tanh(x)))']
+  hold 8: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(rank(tanh(x)))']
+  hold 9: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(rank(tanh(x)))']
+  hold 10: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(rank(tanh(x)))']
+  hold 11: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(rank(tanh(x)))']
+  hold 12: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(diff(tanh(x)))', 'specflat(id(id(x)))', 'specflat(clip(id(x)))']
+  hold 13: acc=1.000  sel=['specflat(clip(diff(x)))', 'specflat(diff(tanh(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(clip(id(x)))']
+  hold 14: acc=1.000  sel=['acf1(diff2(diff2(x)))', 'specflat(clip(diff(x)))', 'specflat(id(id(x)))', 'specflat(rank(tanh(x)))', 'specflat(diff(tanh(x)))']
+  hold 15: acc=1.000  sel=['specflat(clip(diff(x)))', 'specflat(diff(tanh(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(clip(id(x)))']
+  hold 16: acc=1.000  sel=['specflat(clip(diff(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'acf1(diff2(diff2(x)))', 'specflat(rank(tanh(x)))']
+  hold 17: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(clip(id(x)))']
+  hold 18: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(diff(tanh(x)))', 'specflat(id(id(x)))', 'specflat(rank(tanh(x)))']
+  hold 19: acc=1.000  sel=['specflat(clip(diff(x)))', 'acf1(diff2(diff2(x)))', 'specflat(id(id(x)))', 'specflat(diff(tanh(x)))', 'specflat(clip(id(x)))']
+FORGE nested (top-5 prescreen): 1.000  CI [1.000,1.000]  [28s]
+PAIRED forge-lean: +0.654  CI [+0.592,+0.717]  forge>lean 20/20
+
+===== CALCE-soh-LOCO (speed regression) (MIXED-LABEL LOGO): 306 win, 6 groups, 3 cls, chance=0.333 =====
+LEAN: 0.773  CI [0.698,0.853]
+gate 300/2128 programs; features [11s]
+  hold 0: acc=0.868  sel=['acflag(diff(id(x)))', 'specratio(clip(diff2(x)))', 'runcv(diff(env(x)))', 'ordtrans(abs(rollstd(x)))', 'runmean(env(env(x)))']
+  hold 1: acc=0.785  sel=['acflag(diff(id(x)))', 'specratio(clip(diff2(x)))', 'runcv(diff(env(x)))', 'ordtrans(abs(rollstd(x)))', 'runmean(env(env(x)))']
+  hold 2: acc=0.935  sel=['acflag(diff(id(x)))', 'specratio(clip(diff2(x)))', 'runcv(diff(env(x)))', 'ordtrans(abs(rollstd(x)))', 'runmean(env(env(x)))']
+  hold 3: acc=1.000  sel=['acflag(diff(id(x)))', 'specratio(clip(diff2(x)))', 'runcv(diff(env(x)))', 'ordtrans(abs(rollstd(x)))', 'runmean(env(env(x)))']
+  hold 4: acc=0.935  sel=['acflag(diff(id(x)))', 'specratio(clip(diff2(x)))', 'runcv(diff(env(x)))', 'ordtrans(abs(rollstd(x)))', 'runmean(env(env(x)))']
+  hold 5: acc=0.936  sel=['acflag(diff(id(x)))', 'specratio(clip(diff2(x)))', 'runcv(diff(env(x)))', 'ordtrans(abs(rollstd(x)))', 'runmean(env(env(x)))']
+FORGE nested (top-5 prescreen): 0.910  CI [0.849,0.957]  [12s]
+PAIRED forge-lean: +0.137  CI [+0.025,+0.231]  forge>lean 5/6
+
+=== SPEED REGRESSION PASS: synth20 28s, CALCE-LOCO 12s (both <300s), total 78s ===

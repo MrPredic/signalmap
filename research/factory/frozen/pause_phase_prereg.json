@@ -1,0 +1,336 @@
+{
+ "spec": {
+  "prereg": "PAUSE-PHASE-ORDINAL (EARLY vs MID vs PRE(-12h), same pause, same clock)",
+  "frozen_utc": "2026-07-04T20:29:02Z",
+  "question": "is the -12h!=MID texture difference (ledger affbdc1d) a late-pause-specific change or a monotone pause-phase gradient?",
+  "design": "EARLY = first datetime >= prev_end+24h at the -12h PRE clock, 30min, shared fetch rule/cache; validity mid-early>=6h; scorer = LOGO(episode) RF(150,seed0) lean-duo trained on pre/mid of other pauses, held-out EARLY/MID/PRE scored by mean pre-prob",
+  "primary": "UWE: exact binomial sign test, two-sided, on episode-wise ordering pre-prob(EARLY) vs pre-prob(MID); RIMD replication",
+  "interpretation_map": {
+   "early~mid AND late>mid persists": "late-pause-specific (precursor-side reading survives)",
+   "early<mid significant": "monotone pause-phase gradient reading",
+   "early>mid significant": "non-monotone/artifact flag, no positive claim"
+  },
+  "multiplicity": "second registered test family on the precursor-bank segments; -12h clock family chosen because the exploratory hit lives there; disambiguation, not a new discovery claim",
+  "new_bank_rule": "bank_audit+gauntlet on (early vs mid) paired bank; checks 6/7 expected-FAIL paired (amendment 317bce69); gauntlet perm-p no verdict weight",
+  "episode_table_sha256": "adb56f649b97008ae8209be05a377f0571bd552a8053249181279f8d66063bd3",
+  "plan_sha256": "31ae9069992a80ade5a926c45bfab8504f13168d1164b5124b170f86346bf40d",
+  "n_pauses_valid": 42
+ },
+ "plan": [
+  {
+   "ep": 4,
+   "early": "2025-01-05T06:30:00",
+   "mid": "2025-01-10T06:30:00",
+   "pre": "2025-01-15T06:30:00",
+   "drop": null
+  },
+  {
+   "ep": 5,
+   "early": null,
+   "mid": "2025-01-20T12:00:00",
+   "pre": "2025-01-22T12:00:00",
+   "drop": "early fails validity (mid-early<6h)"
+  },
+  {
+   "ep": 8,
+   "early": "2025-01-30T19:22:00",
+   "mid": "2025-02-01T19:22:00",
+   "pre": "2025-02-03T19:22:00",
+   "drop": null
+  },
+  {
+   "ep": 9,
+   "early": "2025-02-06T07:46:00",
+   "mid": "2025-02-08T07:46:00",
+   "pre": "2025-02-11T07:46:00",
+   "drop": null
+  },
+  {
+   "ep": 10,
+   "early": "2025-02-14T17:52:00",
+   "mid": "2025-02-16T17:52:00",
+   "pre": "2025-02-19T17:52:00",
+   "drop": null
+  },
+  {
+   "ep": 11,
+   "early": "2025-02-22T15:56:00",
+   "mid": "2025-02-23T15:56:00",
+   "pre": "2025-02-25T15:56:00",
+   "drop": null
+  },
+  {
+   "ep": 12,
+   "early": "2025-02-28T05:00:00",
+   "mid": "2025-03-01T05:00:00",
+   "pre": "2025-03-04T05:00:00",
+   "drop": null
+  },
+  {
+   "ep": 13,
+   "early": "2025-03-07T00:06:00",
+   "mid": "2025-03-08T00:06:00",
+   "pre": "2025-03-11T00:06:00",
+   "drop": null
+  },
+  {
+   "ep": 14,
+   "early": "2025-03-13T06:56:00",
+   "mid": "2025-03-15T06:56:00",
+   "pre": "2025-03-19T06:56:00",
+   "drop": null
+  },
+  {
+   "ep": 15,
+   "early": "2025-03-22T09:34:00",
+   "mid": "2025-03-23T09:34:00",
+   "pre": "2025-03-25T09:34:00",
+   "drop": null
+  },
+  {
+   "ep": 16,
+   "early": "2025-03-28T20:27:00",
+   "mid": "2025-03-29T20:27:00",
+   "pre": "2025-03-31T20:27:00",
+   "drop": null
+  },
+  {
+   "ep": 17,
+   "early": "2025-04-04T19:45:00",
+   "mid": "2025-04-05T19:45:00",
+   "pre": "2025-04-07T19:45:00",
+   "drop": null
+  },
+  {
+   "ep": 18,
+   "early": "2025-04-11T01:00:00",
+   "mid": "2025-04-16T01:00:00",
+   "pre": "2025-04-22T01:00:00",
+   "drop": null
+  },
+  {
+   "ep": 19,
+   "early": "2025-04-24T18:58:00",
+   "mid": "2025-04-27T18:58:00",
+   "pre": "2025-05-01T18:58:00",
+   "drop": null
+  },
+  {
+   "ep": 20,
+   "early": null,
+   "mid": "2025-05-04T14:58:00",
+   "pre": "2025-05-06T14:58:00",
+   "drop": "early fails validity (mid-early<6h)"
+  },
+  {
+   "ep": 21,
+   "early": "2025-05-08T10:15:00",
+   "mid": "2025-05-09T10:15:00",
+   "pre": "2025-05-11T10:15:00",
+   "drop": null
+  },
+  {
+   "ep": 22,
+   "early": null,
+   "mid": "2025-05-14T02:43:00",
+   "pre": "2025-05-16T02:43:00",
+   "drop": "early fails validity (mid-early<6h)"
+  },
+  {
+   "ep": 23,
+   "early": "2025-05-18T13:45:00",
+   "mid": "2025-05-21T13:45:00",
+   "pre": "2025-05-25T13:45:00",
+   "drop": null
+  },
+  {
+   "ep": 24,
+   "early": "2025-05-27T18:25:00",
+   "mid": "2025-05-31T18:25:00",
+   "pre": "2025-06-04T18:25:00",
+   "drop": null
+  },
+  {
+   "ep": 25,
+   "early": "2025-06-07T09:27:00",
+   "mid": "2025-06-08T09:27:00",
+   "pre": "2025-06-11T09:27:00",
+   "drop": null
+  },
+  {
+   "ep": 26,
+   "early": "2025-06-13T23:10:00",
+   "mid": "2025-06-16T23:10:00",
+   "pre": "2025-06-19T23:10:00",
+   "drop": null
+  },
+  {
+   "ep": 27,
+   "early": "2025-06-22T06:35:00",
+   "mid": "2025-06-25T06:35:00",
+   "pre": "2025-06-29T06:35:00",
+   "drop": null
+  },
+  {
+   "ep": 28,
+   "early": "2025-07-02T01:40:00",
+   "mid": "2025-07-04T01:40:00",
+   "pre": "2025-07-09T01:40:00",
+   "drop": null
+  },
+  {
+   "ep": 29,
+   "early": "2025-07-11T02:45:00",
+   "mid": "2025-07-15T02:45:00",
+   "pre": "2025-07-20T02:45:00",
+   "drop": null
+  },
+  {
+   "ep": 30,
+   "early": "2025-07-22T22:50:00",
+   "mid": "2025-07-29T22:50:00",
+   "pre": "2025-08-05T22:50:00",
+   "drop": null
+  },
+  {
+   "ep": 31,
+   "early": "2025-08-08T11:34:00",
+   "mid": "2025-08-14T11:34:00",
+   "pre": "2025-08-22T11:34:00",
+   "drop": null
+  },
+  {
+   "ep": 32,
+   "early": "2025-08-25T04:05:00",
+   "mid": "2025-08-28T04:05:00",
+   "pre": "2025-09-02T04:05:00",
+   "drop": null
+  },
+  {
+   "ep": 33,
+   "early": "2025-09-05T00:41:00",
+   "mid": "2025-09-11T00:41:00",
+   "pre": "2025-09-19T00:41:00",
+   "drop": null
+  },
+  {
+   "ep": 34,
+   "early": "2025-09-20T22:23:00",
+   "mid": "2025-09-25T22:23:00",
+   "pre": "2025-09-30T22:23:00",
+   "drop": null
+  },
+  {
+   "ep": 35,
+   "early": "2025-10-02T17:35:00",
+   "mid": "2025-10-09T17:35:00",
+   "pre": "2025-10-17T17:35:00",
+   "drop": null
+  },
+  {
+   "ep": 36,
+   "early": "2025-10-20T08:45:00",
+   "mid": "2025-10-29T08:45:00",
+   "pre": "2025-11-09T08:45:00",
+   "drop": null
+  },
+  {
+   "ep": 37,
+   "early": "2025-11-11T12:00:00",
+   "mid": "2025-11-18T12:00:00",
+   "pre": "2025-11-25T12:00:00",
+   "drop": null
+  },
+  {
+   "ep": 38,
+   "early": "2025-11-28T06:15:00",
+   "mid": "2025-12-01T06:15:00",
+   "pre": "2025-12-06T06:15:00",
+   "drop": null
+  },
+  {
+   "ep": 39,
+   "early": "2025-12-08T17:40:00",
+   "mid": "2025-12-15T17:40:00",
+   "pre": "2025-12-23T17:40:00",
+   "drop": null
+  },
+  {
+   "ep": 40,
+   "early": "2025-12-26T05:52:00",
+   "mid": "2026-01-03T05:52:00",
+   "pre": "2026-01-12T05:52:00",
+   "drop": null
+  },
+  {
+   "ep": 41,
+   "early": "2026-01-14T08:40:00",
+   "mid": "2026-01-19T08:40:00",
+   "pre": "2026-01-24T08:40:00",
+   "drop": null
+  },
+  {
+   "ep": 42,
+   "early": "2026-01-26T11:20:00",
+   "mid": "2026-02-05T11:20:00",
+   "pre": "2026-02-15T11:20:00",
+   "drop": null
+  },
+  {
+   "ep": 43,
+   "early": "2026-02-18T06:47:00",
+   "mid": "2026-02-27T06:47:00",
+   "pre": "2026-03-10T06:47:00",
+   "drop": null
+  },
+  {
+   "ep": 44,
+   "early": "2026-03-12T08:40:00",
+   "mid": "2026-03-26T08:40:00",
+   "pre": "2026-04-09T08:40:00",
+   "drop": null
+  },
+  {
+   "ep": 45,
+   "early": "2026-04-11T23:04:00",
+   "mid": "2026-04-16T23:04:00",
+   "pre": "2026-04-22T23:04:00",
+   "drop": null
+  },
+  {
+   "ep": 46,
+   "early": "2026-04-25T05:47:00",
+   "mid": "2026-04-29T05:47:00",
+   "pre": "2026-05-05T05:47:00",
+   "drop": null
+  },
+  {
+   "ep": 47,
+   "early": "2026-05-07T12:57:00",
+   "mid": "2026-05-10T12:57:00",
+   "pre": "2026-05-14T12:57:00",
+   "drop": null
+  },
+  {
+   "ep": 48,
+   "early": "2026-05-17T02:10:00",
+   "mid": "2026-05-24T02:10:00",
+   "pre": "2026-06-01T02:10:00",
+   "drop": null
+  },
+  {
+   "ep": 49,
+   "early": "2026-06-03T07:06:00",
+   "mid": "2026-06-08T07:06:00",
+   "pre": "2026-06-14T07:06:00",
+   "drop": null
+  },
+  {
+   "ep": 50,
+   "early": "2026-06-16T07:40:00",
+   "mid": "2026-06-21T07:40:00",
+   "pre": "2026-06-27T07:40:00",
+   "drop": null
+  }
+ ]
+}

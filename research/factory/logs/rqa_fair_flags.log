@@ -1,0 +1,50 @@
+calce lean: LOGO 0.579  @ 0.4 ms/win
+hydcooler lean: LOGO 0.533  @ 0.4 ms/win
+Traceback (most recent call last):
+  File "<local-path>/signalmap/research/factory/rqa_fair.py", line 120, in <module>
+    dim, tau = int(sys.argv[2]), int(sys.argv[3])
+               ^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '3 5'
+Traceback (most recent call last):
+  File "<local-path>/signalmap/research/factory/rqa_fair.py", line 120, in <module>
+    dim, tau = int(sys.argv[2]), int(sys.argv[3])
+               ^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '3 5'
+Traceback (most recent call last):
+  File "<local-path>/signalmap/research/factory/rqa_fair.py", line 120, in <module>
+    dim, tau = int(sys.argv[2]), int(sys.argv[3])
+               ^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '3 10'
+Traceback (most recent call last):
+  File "<local-path>/signalmap/research/factory/rqa_fair.py", line 120, in <module>
+    dim, tau = int(sys.argv[2]), int(sys.argv[3])
+               ^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '3 10'
+Traceback (most recent call last):
+  File "<local-path>/signalmap/research/factory/rqa_fair.py", line 120, in <module>
+    dim, tau = int(sys.argv[2]), int(sys.argv[3])
+               ^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '5 5'
+Traceback (most recent call last):
+  File "<local-path>/signalmap/research/factory/rqa_fair.py", line 120, in <module>
+    dim, tau = int(sys.argv[2]), int(sys.argv[3])
+               ^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '5 5'
+Traceback (most recent call last):
+  File "<local-path>/signalmap/research/factory/rqa_fair.py", line 120, in <module>
+    dim, tau = int(sys.argv[2]), int(sys.argv[3])
+               ^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '5 10'
+Traceback (most recent call last):
+  File "<local-path>/signalmap/research/factory/rqa_fair.py", line 120, in <module>
+    dim, tau = int(sys.argv[2]), int(sys.argv[3])
+               ^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '5 10'
+calce m3t5: LOGO 0.797  @ 74.0 ms/win
+calce m3t10: LOGO 0.846  @ 72.1 ms/win
+calce m5t5: LOGO 0.842  @ 72.7 ms/win
+calce m5t10: LOGO 0.860  @ 70.2 ms/win
+hydcooler m3t5: LOGO 0.656  @ 75.1 ms/win
+hydcooler m3t10: LOGO 0.689  @ 72.7 ms/win
+hydcooler m5t5: LOGO 0.678  @ 72.4 ms/win
+hydcooler m5t10: LOGO 0.656  @ 78.9 ms/win

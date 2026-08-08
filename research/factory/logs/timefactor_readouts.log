@@ -1,0 +1,323 @@
+day= 0 cell= 1 fresh N= 3948 tau_ar1=-0.054(p=0.513) tau_var=-0.059(p=0.517) .
+day= 0 cell= 2 fresh N= 3953 tau_ar1=+0.048(p=0.489) tau_var=-0.022(p=0.523) .
+day= 0 cell= 3 fresh N= 3910 tau_ar1=+0.058(p=0.459) tau_var=-0.039(p=0.517) .
+day= 0 cell= 4 fresh N= 3956 tau_ar1=+0.055(p=0.493) tau_var=-0.027(p=0.525) .
+day= 0 cell= 5 fresh N= 3955 tau_ar1=-0.047(p=0.511) tau_var=-0.042(p=0.515) .
+day= 0 cell= 6 fresh N= 3915 tau_ar1=-0.038(p=0.551) tau_var=-0.017(p=0.539) .
+day= 0 cell= 7 fresh N= 3888 tau_ar1=-0.044(p=0.549) tau_var=-0.036(p=0.543) .
+day= 0 cell= 8 fresh N= 3889 tau_ar1=-0.036(p=0.543) tau_var=-0.049(p=0.551) .
+day= 0 cell= 9 fresh N= 3958 tau_ar1=+0.017(p=0.459) tau_var=-0.010(p=0.469) .
+day= 0 cell=10 fresh N= 3922 tau_ar1=+0.006(p=0.517) tau_var=-0.026(p=0.513) .
+day= 0 cell=11 fresh N= 3963 tau_ar1=-0.031(p=0.461) tau_var=-0.043(p=0.477) .
+day= 0 cell=12 fresh N= 3957 tau_ar1=+0.011(p=0.517) tau_var=+0.011(p=0.509) .
+day= 0 cell=13 fresh N= 3956 tau_ar1=+0.051(p=0.493) tau_var=+0.011(p=0.507) .
+day= 0 cell=14 fresh N= 3948 tau_ar1=+0.043(p=0.477) tau_var=-0.041(p=0.509) .
+day= 0 cell=15 fresh N= 3961 tau_ar1=+0.024(p=0.465) tau_var=+0.001(p=0.491) .
+day= 0 cell=16 fresh N= 3962 tau_ar1=+0.042(p=0.445) tau_var=+0.019(p=0.451) .
+day= 0 cell=17 fresh N= 3957 tau_ar1=-0.000(p=0.523) tau_var=-0.007(p=0.515) .
+day= 0 cell=18 fresh N= 3896 tau_ar1=-0.035(p=0.513) tau_var=-0.010(p=0.513) .
+day= 0 cell=19 fresh N= 3949 tau_ar1=-0.046(p=0.509) tau_var=-0.038(p=0.509) .
+day= 0 cell=20 fresh N= 3901 tau_ar1=+0.048(p=0.467) tau_var=+0.003(p=0.481) .
+day= 0 cell=21 fresh N= 3969 tau_ar1=+0.023(p=0.503) tau_var=-0.033(p=0.521) .
+day= 0 cell=22 fresh N= 3897 tau_ar1=+0.033(p=0.493) tau_var=+0.017(p=0.497) .
+day= 0 cell=23 fresh N= 3955 tau_ar1=+0.039(p=0.459) tau_var=+0.013(p=0.483) .
+day= 0 cell=24 fresh N= 3903 tau_ar1=-0.031(p=0.503) tau_var=-0.049(p=0.505) .
+day=10 cell= 1 fresh N= 3840 tau_ar1=-0.034(p=0.489) tau_var=-0.039(p=0.499) .
+day=10 cell= 2 fresh N= 3913 tau_ar1=+0.004(p=0.491) tau_var=+0.004(p=0.505) .
+day=10 cell= 3 fresh N= 3880 tau_ar1=+0.045(p=0.515) tau_var=+0.042(p=0.519) .
+day=10 cell= 4 fresh N= 3934 tau_ar1=+0.030(p=0.475) tau_var=+0.003(p=0.485) .
+day=10 cell= 5 fresh N= 3909 tau_ar1=+0.044(p=0.509) tau_var=+0.020(p=0.525) .
+day=10 cell= 6 fresh N= 3868 tau_ar1=-0.040(p=0.555) tau_var=+0.001(p=0.539) .
+day=10 cell= 7 fresh N= 3767 tau_ar1=-0.050(p=0.501) tau_var=-0.052(p=0.499) .
+day=10 cell= 8 fresh N= 3882 tau_ar1=-0.039(p=0.533) tau_var=-0.062(p=0.541) .
+day=10 cell= 9 fresh N= 3936 tau_ar1=+0.051(p=0.455) tau_var=+0.019(p=0.469) .
+day=10 cell=10 fresh N= 3900 tau_ar1=+0.004(p=0.489) tau_var=-0.033(p=0.491) .
+day=10 cell=11 fresh N= 3931 tau_ar1=+0.052(p=0.439) tau_var=+0.030(p=0.435) .
+day=10 cell=12 fresh N= 3900 tau_ar1=+0.047(p=0.467) tau_var=+0.033(p=0.473) .
+day=10 cell=13 fresh N= 3934 tau_ar1=+0.055(p=0.463) tau_var=+0.022(p=0.475) .
+day=10 cell=14 fresh N= 3901 tau_ar1=+0.054(p=0.463) tau_var=+0.040(p=0.471) .
+day=10 cell=15 fresh N= 3948 tau_ar1=+0.048(p=0.477) tau_var=+0.037(p=0.485) .
+day=10 cell=16 fresh N= 3926 tau_ar1=+0.042(p=0.483) tau_var=+0.033(p=0.483) .
+day=10 cell=17 fresh N= 3910 tau_ar1=-0.017(p=0.505) tau_var=-0.041(p=0.519) .
+day=10 cell=18 fresh N= 3873 tau_ar1=+0.044(p=0.509) tau_var=-0.042(p=0.543) .
+day=10 cell=19 fresh N= 3901 tau_ar1=+0.054(p=0.463) tau_var=+0.026(p=0.473) .
+day=10 cell=20 fresh N= 3833 tau_ar1=+0.037(p=0.503) tau_var=+0.040(p=0.507) .
+day=10 cell=21 fresh N= 3861 tau_ar1=-0.019(p=0.469) tau_var=-0.042(p=0.485) .
+day=10 cell=22 fresh N= 3767 tau_ar1=+0.013(p=0.479) tau_var=-0.052(p=0.499) .
+day=10 cell=23 fresh N= 3872 tau_ar1=-0.054(p=0.557) tau_var=-0.065(p=0.555) .
+day=10 cell=24 fresh N= 3783 tau_ar1=+0.055(p=0.433) tau_var=+0.033(p=0.431) .
+day=20 cell= 1 fresh N= 3861 tau_ar1=-0.028(p=0.475) tau_var=-0.034(p=0.479) .
+day=20 cell= 2 fresh N= 3912 tau_ar1=+0.040(p=0.477) tau_var=+0.025(p=0.501) .
+day=20 cell= 3 fresh N= 3862 tau_ar1=+0.041(p=0.465) tau_var=-0.014(p=0.493) .
+day=20 cell= 4 fresh N= 3914 tau_ar1=-0.063(p=0.557) tau_var=-0.009(p=0.537) .
+day=20 cell= 5 fresh N= 3948 tau_ar1=-0.054(p=0.513) tau_var=-0.059(p=0.517) .
+day=20 cell= 6 fresh N= 3854 tau_ar1=-0.026(p=0.541) tau_var=-0.034(p=0.531) .
+day=20 cell= 7 fresh N= 3663 tau_ar1=-0.067(p=0.551) tau_var=-0.065(p=0.551) .
+day=20 cell= 8 fresh N= 3850 tau_ar1=+0.008(p=0.495) tau_var=-0.007(p=0.491) .
+day=20 cell= 9 fresh N= 3860 tau_ar1=-0.055(p=0.493) tau_var=-0.056(p=0.489) .
+day=20 cell=10 fresh N= 3894 tau_ar1=+0.010(p=0.525) tau_var=-0.027(p=0.539) .
+day=20 cell=11 fresh N= 3925 tau_ar1=+0.025(p=0.475) tau_var=+0.017(p=0.473) .
+day=20 cell=12 fresh N= 3866 tau_ar1=-0.003(p=0.525) tau_var=-0.025(p=0.521) .
+day=20 cell=13 fresh N= 3926 tau_ar1=-0.009(p=0.503) tau_var=-0.029(p=0.523) .
+day=20 cell=14 fresh N= 3880 tau_ar1=+0.028(p=0.521) tau_var=-0.036(p=0.547) .
+day=20 cell=15 fresh N= 3931 tau_ar1=-0.021(p=0.475) tau_var=-0.035(p=0.491) .
+day=20 cell=16 fresh N= 3902 tau_ar1=+0.053(p=0.461) tau_var=+0.046(p=0.461) .
+day=20 cell=17 fresh N= 3875 tau_ar1=-0.030(p=0.491) tau_var=-0.053(p=0.503) .
+day=20 cell=18 fresh N= 3855 tau_ar1=+0.030(p=0.497) tau_var=+0.010(p=0.507) .
+day=20 cell=19 fresh N= 3876 tau_ar1=+0.036(p=0.493) tau_var=-0.012(p=0.517) .
+day=20 cell=20 fresh N= 3790 tau_ar1=-0.061(p=0.515) tau_var=-0.057(p=0.505) .
+day=20 cell=21 fresh N= 3812 tau_ar1=+0.016(p=0.477) tau_var=+0.010(p=0.483) .
+day=20 cell=22 fresh N= 3649 tau_ar1=+0.048(p=0.465) tau_var=-0.006(p=0.509) .
+day=20 cell=23 fresh N= 3819 tau_ar1=+0.052(p=0.457) tau_var=+0.045(p=0.455) .
+day=20 cell=24 fresh N= 3716 tau_ar1=+0.052(p=0.447) tau_var=+0.023(p=0.459) .
+day=40 cell= 1 aged  N= 3849 tau_ar1=-0.055(p=0.487) tau_var=+0.000(p=0.467) .
+day=40 cell= 3 aged  N= 3840 tau_ar1=+0.068(p=0.431) tau_var=+0.320(p=0.319) .
+day=40 cell= 4 aged  N= 3823 tau_ar1=+0.051(p=0.471) tau_var=+0.048(p=0.481) .
+day=40 cell= 5 aged  N= 3881 tau_ar1=+0.041(p=0.515) tau_var=+0.034(p=0.527) .
+day=40 cell= 6 aged  N= 3790 tau_ar1=+0.012(p=0.477) tau_var=-0.115(p=0.525) .
+day=40 cell= 7 aged  N= 3634 tau_ar1=+0.024(p=0.483) tau_var=+0.035(p=0.483) .
+day=40 cell= 8 aged  N= 3832 tau_ar1=+0.042(p=0.501) tau_var=+0.042(p=0.507) .
+day=40 cell= 9 aged  N= 3840 tau_ar1=-0.115(p=0.527) tau_var=+0.214(p=0.371) .
+day=40 cell=10 aged  N= 3880 tau_ar1=+0.036(p=0.517) tau_var=+0.019(p=0.527) .
+day=40 cell=11 aged  N= 3896 tau_ar1=-0.063(p=0.527) tau_var=-0.071(p=0.539) .
+day=40 cell=12 aged  N= 3781 tau_ar1=+0.003(p=0.463) tau_var=+0.001(p=0.459) .
+day=40 cell=13 aged  N= 3912 tau_ar1=+0.057(p=0.471) tau_var=+0.044(p=0.491) .
+day=40 cell=14 aged  N= 3834 tau_ar1=+0.009(p=0.525) tau_var=-0.026(p=0.531) .
+day=40 cell=15 aged  N= 3906 tau_ar1=+0.049(p=0.451) tau_var=+0.035(p=0.463) .
+day=40 cell=16 aged  N= 3863 tau_ar1=-0.059(p=0.509) tau_var=-0.067(p=0.513) .
+day=40 cell=17 aged  N= 3779 tau_ar1=+0.004(p=0.491) tau_var=+0.046(p=0.465) .
+day=40 cell=18 aged  N= 3819 tau_ar1=+0.035(p=0.465) tau_var=+0.026(p=0.461) .
+day=40 cell=19 aged  N= 3833 tau_ar1=-0.055(p=0.545) tau_var=-0.072(p=0.555) .
+day=40 cell=20 aged  N= 3720 tau_ar1=+0.044(p=0.463) tau_var=+0.036(p=0.463) .
+day=40 cell=21 aged  N= 3715 tau_ar1=+0.053(p=0.509) tau_var=+0.043(p=0.521) .
+day=40 cell=22 aged  N= 3310 tau_ar1=+0.023(p=0.463) tau_var=+0.020(p=0.477) .
+day=40 cell=23 aged  N= 3711 tau_ar1=+0.058(p=0.487) tau_var=+0.049(p=0.481) .
+day=40 cell=24 aged  N= 3612 tau_ar1=-0.029(p=0.517) tau_var=-0.038(p=0.503) .
+day=70 cell= 5 aged  N= 3852 tau_ar1=-0.049(p=0.537) tau_var=-0.013(p=0.519) .
+day=70 cell= 6 aged  N= 3695 tau_ar1=+0.016(p=0.491) tau_var=+0.022(p=0.485) .
+day=70 cell= 7 aged  N= 3389 tau_ar1=-0.061(p=0.517) tau_var=+0.031(p=0.495) .
+day=90 cell= 5 aged  N= 3829 tau_ar1=-0.063(p=0.501) tau_var=+0.023(p=0.451) .
+day=90 cell= 6 aged  N= 3622 tau_ar1=-0.012(p=0.513) tau_var=+0.031(p=0.485) .
+day=90 cell= 7 aged  N= 3328 tau_ar1=-0.065(p=0.521) tau_var=+0.036(p=0.457) .
+
+== SUMMARY [cdcg] ==
+  csd_pass_aged: 0/29
+  csd_pass_fresh: 0/72
+  fisher_p_aged_gt_fresh: 1.0
+  ar1_rise_aged: 0/29
+  var_rise_aged: 0/29
+  verdict: CSD-NULL
+  indicator: cdcg
+  note: n_aged=29 (vs IMS n_failed=4); verdict thresholds documented in code (directed + p<0.05 CONFIRMED, p<0.10 PARTIAL)
+ledger tip = dbed33cc2efcbfea6d1e91b4a1a90125c17c26e7333ef7cdaff01db892b60765
+day= 0 cell= 1 fresh N= 3948 tau_ar1=+0.596(p=0.180) tau_var=+0.632(p=0.166) .
+day= 0 cell= 2 fresh N= 3953 tau_ar1=+0.600(p=0.168) tau_var=+0.631(p=0.164) .
+day= 0 cell= 3 fresh N= 3910 tau_ar1=+0.580(p=0.158) tau_var=+0.617(p=0.150) .
+day= 0 cell= 4 fresh N= 3956 tau_ar1=+0.596(p=0.172) tau_var=+0.630(p=0.146) .
+day= 0 cell= 5 fresh N= 3955 tau_ar1=+0.606(p=0.166) tau_var=+0.638(p=0.150) .
+day= 0 cell= 6 fresh N= 3915 tau_ar1=+0.591(p=0.192) tau_var=+0.625(p=0.158) .
+day= 0 cell= 7 fresh N= 3888 tau_ar1=+0.588(p=0.192) tau_var=+0.623(p=0.164) .
+day= 0 cell= 8 fresh N= 3889 tau_ar1=+0.600(p=0.186) tau_var=+0.635(p=0.156) .
+day= 0 cell= 9 fresh N= 3958 tau_ar1=+0.594(p=0.150) tau_var=+0.630(p=0.134) .
+day= 0 cell=10 fresh N= 3922 tau_ar1=+0.598(p=0.184) tau_var=+0.635(p=0.164) .
+day= 0 cell=11 fresh N= 3963 tau_ar1=+0.613(p=0.144) tau_var=+0.640(p=0.124) .
+day= 0 cell=12 fresh N= 3957 tau_ar1=+0.605(p=0.168) tau_var=+0.630(p=0.146) .
+day= 0 cell=13 fresh N= 3956 tau_ar1=+0.614(p=0.164) tau_var=+0.635(p=0.146) .
+day= 0 cell=14 fresh N= 3948 tau_ar1=+0.596(p=0.178) tau_var=+0.631(p=0.166) .
+day= 0 cell=15 fresh N= 3961 tau_ar1=+0.604(p=0.154) tau_var=+0.638(p=0.136) .
+day= 0 cell=16 fresh N= 3962 tau_ar1=+0.601(p=0.152) tau_var=+0.640(p=0.124) .
+day= 0 cell=17 fresh N= 3957 tau_ar1=+0.592(p=0.172) tau_var=+0.632(p=0.146) .
+day= 0 cell=18 fresh N= 3896 tau_ar1=+0.579(p=0.172) tau_var=+0.616(p=0.160) .
+day= 0 cell=19 fresh N= 3949 tau_ar1=+0.595(p=0.182) tau_var=+0.632(p=0.166) .
+day= 0 cell=20 fresh N= 3901 tau_ar1=+0.580(p=0.212) tau_var=+0.620(p=0.194) .
+day= 0 cell=21 fresh N= 3969 tau_ar1=+0.594(p=0.170) tau_var=+0.636(p=0.152) .
+day= 0 cell=22 fresh N= 3897 tau_ar1=+0.577(p=0.174) tau_var=+0.617(p=0.160) .
+day= 0 cell=23 fresh N= 3955 tau_ar1=+0.593(p=0.174) tau_var=+0.630(p=0.152) .
+day= 0 cell=24 fresh N= 3903 tau_ar1=+0.580(p=0.166) tau_var=+0.620(p=0.154) .
+day=10 cell= 1 fresh N= 3840 tau_ar1=+0.599(p=0.162) tau_var=+0.647(p=0.146) .
+day=10 cell= 2 fresh N= 3913 tau_ar1=+0.595(p=0.172) tau_var=+0.630(p=0.130) .
+day=10 cell= 3 fresh N= 3880 tau_ar1=+0.601(p=0.176) tau_var=+0.638(p=0.146) .
+day=10 cell= 4 fresh N= 3934 tau_ar1=+0.601(p=0.170) tau_var=+0.648(p=0.132) .
+day=10 cell= 5 fresh N= 3909 tau_ar1=+0.508(p=0.269) tau_var=+0.639(p=0.182) .
+day=10 cell= 6 fresh N= 3868 tau_ar1=+0.519(p=0.236) tau_var=+0.681(p=0.120) .
+day=10 cell= 7 fresh N= 3767 tau_ar1=+0.516(p=0.198) tau_var=+0.642(p=0.122) .
+day=10 cell= 8 fresh N= 3882 tau_ar1=+0.596(p=0.158) tau_var=+0.633(p=0.132) .
+day=10 cell= 9 fresh N= 3936 tau_ar1=+0.586(p=0.174) tau_var=+0.635(p=0.134) .
+day=10 cell=10 fresh N= 3900 tau_ar1=+0.642(p=0.178) tau_var=+0.687(p=0.130) .
+day=10 cell=11 fresh N= 3931 tau_ar1=+0.607(p=0.150) tau_var=+0.652(p=0.124) .
+day=10 cell=12 fresh N= 3900 tau_ar1=+0.643(p=0.180) tau_var=+0.683(p=0.132) .
+day=10 cell=13 fresh N= 3934 tau_ar1=+0.641(p=0.128) tau_var=+0.680(p=0.112) .
+day=10 cell=14 fresh N= 3901 tau_ar1=+0.615(p=0.198) tau_var=+0.658(p=0.156) .
+day=10 cell=15 fresh N= 3948 tau_ar1=+0.618(p=0.164) tau_var=+0.681(p=0.132) .
+day=10 cell=16 fresh N= 3926 tau_ar1=+0.647(p=0.130) tau_var=+0.683(p=0.118) .
+day=10 cell=17 fresh N= 3910 tau_ar1=+0.642(p=0.126) tau_var=+0.683(p=0.100) .
+day=10 cell=18 fresh N= 3873 tau_ar1=+0.632(p=0.146) tau_var=+0.673(p=0.116) .
+day=10 cell=19 fresh N= 3901 tau_ar1=+0.631(p=0.184) tau_var=+0.683(p=0.132) .
+day=10 cell=20 fresh N= 3833 tau_ar1=+0.632(p=0.152) tau_var=+0.677(p=0.122) .
+day=10 cell=21 fresh N= 3861 tau_ar1=+0.647(p=0.108) tau_var=+0.672(p=0.102) .
+day=10 cell=22 fresh N= 3767 tau_ar1=+0.651(p=0.106) tau_var=+0.695(p=0.084) .
+day=10 cell=23 fresh N= 3872 tau_ar1=+0.637(p=0.140) tau_var=+0.675(p=0.116) .
+day=10 cell=24 fresh N= 3783 tau_ar1=+0.636(p=0.126) tau_var=+0.677(p=0.108) .
+day=20 cell= 1 fresh N= 3861 tau_ar1=+0.606(p=0.128) tau_var=+0.640(p=0.114) .
+day=20 cell= 2 fresh N= 3912 tau_ar1=+0.596(p=0.170) tau_var=+0.629(p=0.130) .
+day=20 cell= 3 fresh N= 3862 tau_ar1=+0.582(p=0.210) tau_var=+0.619(p=0.178) .
+day=20 cell= 4 fresh N= 3914 tau_ar1=+0.606(p=0.192) tau_var=+0.634(p=0.150) .
+day=20 cell= 5 fresh N= 3948 tau_ar1=+0.596(p=0.180) tau_var=+0.632(p=0.166) .
+day=20 cell= 6 fresh N= 3854 tau_ar1=+0.661(p=0.130) tau_var=+0.703(p=0.100) .
+day=20 cell= 7 fresh N= 3663 tau_ar1=+0.534(p=0.228) tau_var=+0.696(p=0.120) .
+day=20 cell= 8 fresh N= 3850 tau_ar1=+0.592(p=0.178) tau_var=+0.628(p=0.156) .
+day=20 cell= 9 fresh N= 3860 tau_ar1=+0.593(p=0.130) tau_var=+0.636(p=0.118) .
+day=20 cell=10 fresh N= 3894 tau_ar1=+0.637(p=0.146) tau_var=+0.659(p=0.140) .
+day=20 cell=11 fresh N= 3925 tau_ar1=+0.636(p=0.114) tau_var=+0.678(p=0.090) .
+day=20 cell=12 fresh N= 3866 tau_ar1=+0.637(p=0.160) tau_var=+0.690(p=0.120) .
+day=20 cell=13 fresh N= 3926 tau_ar1=+0.639(p=0.134) tau_var=+0.676(p=0.118) .
+day=20 cell=14 fresh N= 3880 tau_ar1=+0.622(p=0.172) tau_var=+0.663(p=0.132) .
+day=20 cell=15 fresh N= 3931 tau_ar1=+0.645(p=0.128) tau_var=+0.689(p=0.096) .
+day=20 cell=16 fresh N= 3902 tau_ar1=+0.642(p=0.138) tau_var=+0.690(p=0.110) .
+day=20 cell=17 fresh N= 3875 tau_ar1=+0.649(p=0.134) tau_var=+0.691(p=0.096) .
+day=20 cell=18 fresh N= 3855 tau_ar1=+0.619(p=0.162) tau_var=+0.662(p=0.132) .
+day=20 cell=19 fresh N= 3876 tau_ar1=+0.649(p=0.100) tau_var=+0.688(p=0.076) .
+day=20 cell=20 fresh N= 3790 tau_ar1=+0.651(p=0.142) tau_var=+0.687(p=0.110) .
+day=20 cell=21 fresh N= 3812 tau_ar1=+0.632(p=0.136) tau_var=+0.692(p=0.096) .
+day=20 cell=22 fresh N= 3649 tau_ar1=+0.629(p=0.146) tau_var=+0.692(p=0.096) .
+day=20 cell=23 fresh N= 3819 tau_ar1=+0.644(p=0.144) tau_var=+0.690(p=0.110) .
+day=20 cell=24 fresh N= 3716 tau_ar1=+0.641(p=0.140) tau_var=+0.690(p=0.114) .
+day=40 cell= 1 aged  N= 3849 tau_ar1=+0.520(p=0.198) tau_var=+0.640(p=0.126) .
+day=40 cell= 3 aged  N= 3840 tau_ar1=+0.617(p=0.152) tau_var=+0.628(p=0.150) .
+day=40 cell= 4 aged  N= 3823 tau_ar1=+0.507(p=0.259) tau_var=+0.640(p=0.150) .
+day=40 cell= 5 aged  N= 3881 tau_ar1=+0.651(p=0.146) tau_var=+0.699(p=0.102) .
+day=40 cell= 6 aged  N= 3790 tau_ar1=+0.680(p=0.120) tau_var=+0.699(p=0.104) .
+day=40 cell= 7 aged  N= 3634 tau_ar1=+0.517(p=0.234) tau_var=+0.678(p=0.130) .
+day=40 cell= 8 aged  N= 3832 tau_ar1=+0.505(p=0.238) tau_var=+0.641(p=0.142) .
+day=40 cell= 9 aged  N= 3840 tau_ar1=+0.625(p=0.148) tau_var=+0.637(p=0.148) .
+day=40 cell=10 aged  N= 3880 tau_ar1=+0.648(p=0.148) tau_var=+0.689(p=0.102) .
+day=40 cell=11 aged  N= 3896 tau_ar1=+0.643(p=0.134) tau_var=+0.694(p=0.112) .
+day=40 cell=12 aged  N= 3781 tau_ar1=+0.629(p=0.130) tau_var=+0.672(p=0.118) .
+day=40 cell=13 aged  N= 3912 tau_ar1=+0.644(p=0.134) tau_var=+0.684(p=0.096) .
+day=40 cell=14 aged  N= 3834 tau_ar1=+0.606(p=0.150) tau_var=+0.652(p=0.112) .
+day=40 cell=15 aged  N= 3906 tau_ar1=+0.649(p=0.130) tau_var=+0.687(p=0.118) .
+day=40 cell=16 aged  N= 3863 tau_ar1=+0.645(p=0.160) tau_var=+0.672(p=0.140) .
+day=40 cell=17 aged  N= 3779 tau_ar1=+0.632(p=0.118) tau_var=+0.684(p=0.086) .
+day=40 cell=18 aged  N= 3819 tau_ar1=+0.644(p=0.146) tau_var=+0.689(p=0.110) .
+day=40 cell=19 aged  N= 3833 tau_ar1=+0.644(p=0.146) tau_var=+0.685(p=0.116) .
+day=40 cell=20 aged  N= 3720 tau_ar1=+0.637(p=0.148) tau_var=+0.686(p=0.120) .
+day=40 cell=21 aged  N= 3715 tau_ar1=+0.647(p=0.140) tau_var=+0.689(p=0.104) .
+day=40 cell=22 aged  N= 3310 tau_ar1=+0.603(p=0.150) tau_var=+0.660(p=0.118) .
+day=40 cell=23 aged  N= 3711 tau_ar1=+0.643(p=0.120) tau_var=+0.687(p=0.104) .
+day=40 cell=24 aged  N= 3612 tau_ar1=+0.634(p=0.150) tau_var=+0.678(p=0.106) .
+day=70 cell= 5 aged  N= 3852 tau_ar1=+0.506(p=0.240) tau_var=+0.701(p=0.110) .
+day=70 cell= 6 aged  N= 3695 tau_ar1=+0.520(p=0.198) tau_var=+0.704(p=0.086) .
+day=70 cell= 7 aged  N= 3389 tau_ar1=+0.526(p=0.208) tau_var=+0.691(p=0.112) .
+day=90 cell= 5 aged  N= 3829 tau_ar1=+0.525(p=0.212) tau_var=+0.697(p=0.100) .
+day=90 cell= 6 aged  N= 3622 tau_ar1=+0.524(p=0.226) tau_var=+0.691(p=0.116) .
+day=90 cell= 7 aged  N= 3328 tau_ar1=+0.527(p=0.194) tau_var=+0.691(p=0.086) .
+
+== SUMMARY [vdcg] ==
+  csd_pass_aged: 0/29
+  csd_pass_fresh: 0/72
+  fisher_p_aged_gt_fresh: 1.0
+  ar1_rise_aged: 0/29
+  var_rise_aged: 0/29
+  verdict: CSD-NULL
+  indicator: vdcg
+  note: n_aged=29 (vs IMS n_failed=4); verdict thresholds documented in code (directed + p<0.05 CONFIRMED, p<0.10 PARTIAL)
+ledger tip = 3bcc467cab20936e5d5e75583ddb430c94ffbbfcf6860241f37383976e961940
+BOU onset 2019-01-05T00:00:00Z N=43201 tau_ar1=+0.380(p=0.335) tau_var=+0.827(p=0.034) .
+BOU onset 2019-09-27T18:00:00Z N=43141 tau_ar1=+0.145(p=0.465) tau_var=-0.079(p=0.583) .
+BOU onset 2021-03-25T00:00:00Z N=43201 tau_ar1=+0.864(p=0.044) tau_var=+0.090(p=0.465) .
+BOU onset 2021-10-12T00:00:00Z N=43201 tau_ar1=+0.658(p=0.146) tau_var=+0.413(p=0.277) .
+BOU onset 2022-02-04T15:00:00Z N=43201 tau_ar1=+0.579(p=0.194) tau_var=+0.569(p=0.216) .
+BOU onset 2022-07-07T12:00:00Z N=43201 tau_ar1=-0.013(p=0.489) tau_var=-0.545(p=0.758) .
+BOU onset 2022-10-03T18:00:00Z N=43201 tau_ar1=+0.492(p=0.208) tau_var=-0.427(p=0.705) .
+BOU onset 2023-05-12T12:00:00Z N=43201 tau_ar1=+0.570(p=0.190) tau_var=+0.789(p=0.040) .
+BOU onset 2023-09-18T15:00:00Z N=43201 tau_ar1=+0.436(p=0.279) tau_var=+0.685(p=0.104) .
+BOU onset 2023-11-25T18:00:00Z N=43201 tau_ar1=+0.923(p=0.002) tau_var=-0.063(p=0.513) .
+BOU onset 2024-05-02T12:00:00Z N=43201 tau_ar1=+0.887(p=0.012) tau_var=+0.941(p=0.002) CSD+
+BOU onset 2024-07-30T03:00:00Z N=43201 tau_ar1=+0.472(p=0.248) tau_var=+0.771(p=0.082) .
+BOU onset 2024-10-07T00:00:00Z N=43201 tau_ar1=+0.627(p=0.144) tau_var=+0.935(p=0.002) .
+BOU onset 2025-02-15T09:00:00Z N=43201 tau_ar1=+0.506(p=0.250) tau_var=+0.771(p=0.074) .
+BOU onset 2025-04-15T15:00:00Z N=43201 tau_ar1=+0.960(p=0.002) tau_var=+0.339(p=0.337) .
+BOU onset 2025-06-26T21:00:00Z N=43201 tau_ar1=-0.649(p=0.838) tau_var=-0.946(p=0.992) .
+BOU onset 2025-10-12T18:00:00Z N=43201 tau_ar1=+0.592(p=0.186) tau_var=-0.646(p=0.794) .
+BOU onset 2026-01-02T18:00:00Z N=43201 tau_ar1=+0.892(p=0.014) tau_var=+0.672(p=0.128) .
+BOU onset 2026-02-16T18:00:00Z N=43201 tau_ar1=+0.941(p=0.002) tau_var=+0.583(p=0.174) .
+BOU quiet 2019-01-02T06:00:00Z N=43201 tau_ar1=-0.950(p=1.000) tau_var=-0.794(p=0.978) .
+BOU quiet 2019-05-13T06:00:00Z N=43201 tau_ar1=-0.449(p=0.687) tau_var=-0.469(p=0.691) .
+BOU quiet 2019-09-26T00:00:00Z N=43201 tau_ar1=+0.569(p=0.214) tau_var=+0.903(p=0.008) .
+BOU quiet 2020-03-20T09:00:00Z N=43137 tau_ar1=-0.616(p=0.711) tau_var=-0.610(p=0.713) .
+BOU quiet 2020-08-05T12:00:00Z N=43201 tau_ar1=+0.726(p=0.138) tau_var=+0.888(p=0.012) .
+BOU quiet 2021-01-29T09:00:00Z N=43201 tau_ar1=+0.531(p=0.210) tau_var=+0.665(p=0.118) .
+BOU quiet 2021-05-19T12:00:00Z N=42862 tau_ar1=-0.101(p=0.547) tau_var=+0.377(p=0.277) .
+BOU quiet 2021-09-14T15:00:00Z N=43201 tau_ar1=+0.721(p=0.064) tau_var=+0.152(p=0.415) .
+BOU quiet 2022-01-05T12:00:00Z N=43201 tau_ar1=-0.810(p=0.980) tau_var=+0.547(p=0.154) .
+BOU quiet 2022-05-19T09:00:00Z N=42715 tau_ar1=-0.806(p=0.976) tau_var=+0.798(p=0.028) .
+BOU quiet 2022-09-16T09:00:00Z N=43201 tau_ar1=-0.039(p=0.497) tau_var=+0.732(p=0.068) .
+BOU quiet 2023-06-06T03:00:00Z N=43201 tau_ar1=-0.510(p=0.697) tau_var=+0.280(p=0.363) .
+BOU quiet 2023-10-03T12:00:00Z N=43201 tau_ar1=-0.316(p=0.653) tau_var=+0.580(p=0.150) .
+BOU quiet 2024-02-12T18:00:00Z N=43201 tau_ar1=+0.027(p=0.455) tau_var=-0.576(p=0.872) .
+BOU quiet 2024-05-25T18:00:00Z N=42894 tau_ar1=+0.960(p=0.002) tau_var=+0.891(p=0.008) CSD+
+BOU quiet 2024-08-16T06:00:00Z N=43015 tau_ar1=+0.819(p=0.020) tau_var=+0.945(p=0.004) CSD+
+BOU quiet 2024-12-11T06:00:00Z N=43201 tau_ar1=-0.829(p=0.970) tau_var=-0.833(p=0.968) .
+BOU quiet 2025-07-09T12:00:00Z N=43201 tau_ar1=-0.239(p=0.603) tau_var=+0.843(p=0.034) .
+BOU quiet 2025-11-22T06:00:00Z N=43201 tau_ar1=+0.097(p=0.415) tau_var=+0.408(p=0.228) .
+
+== SUMMARY [BOU] ==
+  n_onset_valid: 19
+  n_quiet_valid: 19
+  csd_pass_onset: 1/19
+  csd_pass_quiet: 2/19
+  fisher_p_onset_gt_quiet: 0.8851
+  ar1_rise_onset: 6/19
+  var_rise_onset: 4/19
+  verdict: CSD-NULL
+FRD onset 2019-01-05T00:00:00Z N=43201 tau_ar1=+0.398(p=0.301) tau_var=+0.307(p=0.349) .
+FRD onset 2019-09-27T18:00:00Z N=43201 tau_ar1=+0.232(p=0.381) tau_var=+0.062(p=0.473) .
+FRD onset 2021-03-25T00:00:00Z N=43201 tau_ar1=+0.390(p=0.289) tau_var=-0.530(p=0.745) .
+FRD onset 2021-10-12T00:00:00Z N=43201 tau_ar1=-0.753(p=0.910) tau_var=-0.858(p=0.960) .
+FRD onset 2022-02-04T15:00:00Z N=43201 tau_ar1=+0.609(p=0.130) tau_var=+0.535(p=0.182) .
+FRD onset 2022-07-07T12:00:00Z N=43201 tau_ar1=+0.120(p=0.431) tau_var=-0.674(p=0.862) .
+FRD onset 2022-10-03T18:00:00Z N=43201 tau_ar1=+0.563(p=0.146) tau_var=-0.127(p=0.533) .
+FRD onset 2023-02-15T06:00:00Z N=43201 tau_ar1=-0.941(p=1.000) tau_var=-0.935(p=1.000) .
+FRD onset 2023-05-12T12:00:00Z N=43201 tau_ar1=+0.671(p=0.078) tau_var=+0.775(p=0.038) .
+FRD onset 2023-09-18T15:00:00Z N=43201 tau_ar1=+0.396(p=0.250) tau_var=+0.542(p=0.188) .
+FRD onset 2024-05-02T12:00:00Z N=43201 tau_ar1=+0.292(p=0.337) tau_var=+0.700(p=0.104) .
+FRD onset 2024-07-30T03:00:00Z N=43201 tau_ar1=-0.700(p=0.908) tau_var=+0.351(p=0.313) .
+FRD onset 2024-10-07T00:00:00Z N=43201 tau_ar1=+0.458(p=0.230) tau_var=+0.939(p=0.002) .
+FRD onset 2025-02-15T09:00:00Z N=43201 tau_ar1=-0.661(p=0.852) tau_var=-0.464(p=0.699) .
+FRD onset 2025-04-15T15:00:00Z N=43201 tau_ar1=+0.800(p=0.054) tau_var=+0.511(p=0.251) .
+FRD onset 2025-06-26T21:00:00Z N=43201 tau_ar1=-0.225(p=0.595) tau_var=-0.775(p=0.942) .
+FRD onset 2025-10-12T18:00:00Z N=43201 tau_ar1=+0.845(p=0.022) tau_var=+0.599(p=0.168) .
+FRD onset 2026-01-02T18:00:00Z N=43201 tau_ar1=+0.962(p=0.002) tau_var=+0.895(p=0.018) CSD+
+FRD onset 2026-02-16T18:00:00Z N=43201 tau_ar1=+0.965(p=0.002) tau_var=+0.753(p=0.070) .
+FRD quiet 2019-01-02T06:00:00Z N=43201 tau_ar1=-0.930(p=0.996) tau_var=-0.524(p=0.762) .
+FRD quiet 2019-05-13T06:00:00Z N=43201 tau_ar1=+0.372(p=0.343) tau_var=+0.795(p=0.080) .
+FRD quiet 2019-09-26T00:00:00Z N=43201 tau_ar1=+0.174(p=0.383) tau_var=+0.949(p=0.004) .
+FRD quiet 2020-03-20T09:00:00Z N=42881 tau_ar1=-0.867(p=0.930) tau_var=-0.843(p=0.902) .
+FRD quiet 2020-08-05T12:00:00Z N=43201 tau_ar1=+0.676(p=0.134) tau_var=+0.764(p=0.084) .
+FRD quiet 2021-01-29T09:00:00Z N=43201 tau_ar1=-0.455(p=0.739) tau_var=+0.387(p=0.281) .
+FRD quiet 2021-05-19T12:00:00Z N=42958 tau_ar1=+0.004(p=0.503) tau_var=+0.576(p=0.172) .
+FRD quiet 2021-09-14T15:00:00Z N=43201 tau_ar1=+0.969(p=0.002) tau_var=+0.221(p=0.377) .
+FRD quiet 2022-01-05T12:00:00Z N=43201 tau_ar1=+0.283(p=0.375) tau_var=-0.750(p=0.898) .
+FRD quiet 2022-05-19T09:00:00Z N=43029 tau_ar1=-0.688(p=0.876) tau_var=-0.543(p=0.786) .
+FRD quiet 2022-09-16T09:00:00Z N=43201 tau_ar1=+0.536(p=0.128) tau_var=+0.572(p=0.118) .
+FRD quiet 2023-01-09T21:00:00Z N=43201 tau_ar1=-0.981(p=1.000) tau_var=-0.888(p=1.000) .
+FRD quiet 2023-06-06T03:00:00Z N=43201 tau_ar1=-0.675(p=0.898) tau_var=-0.136(p=0.525) .
+FRD quiet 2023-10-03T12:00:00Z N=43201 tau_ar1=+0.596(p=0.128) tau_var=+0.793(p=0.034) .
+FRD quiet 2024-02-12T18:00:00Z N=43201 tau_ar1=-0.029(p=0.495) tau_var=-0.302(p=0.591) .
+FRD quiet 2024-05-25T18:00:00Z N=43201 tau_ar1=+0.735(p=0.046) tau_var=+0.351(p=0.271) .
+FRD quiet 2024-08-16T06:00:00Z N=43201 tau_ar1=+0.771(p=0.062) tau_var=+0.882(p=0.014) .
+FRD quiet 2024-12-11T06:00:00Z N=43201 tau_ar1=-0.971(p=1.000) tau_var=-0.888(p=0.996) .
+FRD quiet 2025-07-09T12:00:00Z N=43201 tau_ar1=-0.857(p=0.976) tau_var=+0.176(p=0.395) .
+FRD quiet 2025-11-22T06:00:00Z N=43201 tau_ar1=-0.571(p=0.786) tau_var=+0.377(p=0.285) .
+
+== SUMMARY [FRD] ==
+  n_onset_valid: 19
+  n_quiet_valid: 20
+  csd_pass_onset: 1/19
+  csd_pass_quiet: 0/20
+  fisher_p_onset_gt_quiet: 0.4872
+  ar1_rise_onset: 3/19
+  var_rise_onset: 3/19
+  verdict: CSD-NULL
+
+ledger tip = c5b3db8388bc2556425e04254e3bf065f02a3b936898c1f70bce1be017ec4fe9

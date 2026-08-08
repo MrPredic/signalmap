@@ -1,0 +1,37 @@
+
+===== DCASE-valve-id: 120 windows, 24 recordings, 4 classes, chance=0.250 =====
+LEAN: 0.342  CI [0.233,0.450]  [4s]
+LEAN group-perm-p = 0.049 (60 perms)
+gate: 1200/2128 programs (C=50 x 24 recs); features [10s]
+  hold rec 0: acc=0.000  sel=['runmean(diff(sq(x)))', 'iqr90(abs(diff2(x)))', 'iqr90(diff2(tanh(x)))', 'lcross(diff2(clip(x)))', 'ordtrans(sign(diff(x)))']
+  hold rec 1: acc=1.000  sel=['lcross(tanh(sq(x)))', 'lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'runmean(rollstd(diff2(x)))']
+  hold rec 2: acc=0.800  sel=['lcross(tanh(sq(x)))', 'lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'runmean(rollstd(diff2(x)))', 'crest(clip(diff2(x)))']
+  hold rec 3: acc=0.400  sel=['lcross(tanh(sq(x)))', 'lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'zcr(rollstd(abs(x)))']
+  hold rec 4: acc=0.200  sel=['lcross(tanh(sq(x)))', 'std(diff2(diff(x)))', 'lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff2(rank(x)))']
+  hold rec 5: acc=0.000  sel=['runmean(rollstd(diff2(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff2(rank(x)))']
+  hold rec 6: acc=0.600  sel=['lcross(tanh(sq(x)))', 'lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'runmean(rollstd(clip(x)))', 'zcr(rollstd(abs(x)))']
+  hold rec 7: acc=0.800  sel=['lcross(tanh(sq(x)))', 'iqr90(sq(diff(x)))', 'lcross(diff2(rank(x)))', 'specratio(sign(diff2(x)))', 'lcross(diff2(clip(x)))']
+  hold rec 8: acc=0.400  sel=['lcross(tanh(sq(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff2(clip(x)))']
+  hold rec 9: acc=1.000  sel=['specratio(diff2(tanh(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff2(clip(x)))', 'specratio(diff2(diff(x)))', 'lcross(diff2(rank(x)))']
+  hold rec 10: acc=0.000  sel=['meanabs(env(diff2(x)))', 'std(diff2(tanh(x)))', 'meanabs(diff2(abs(x)))']
+  hold rec 11: acc=0.200  sel=['zcr(env(diff2(x)))', 'runmean(rollstd(diff2(x)))', 'lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'iqr90(sq(diff(x)))']
+  hold rec 12: acc=0.000  sel=['lcross(tanh(sq(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff2(rank(x)))']
+  hold rec 13: acc=0.000  sel=['lcross(tanh(sq(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff2(clip(x)))', 'iqr90(sq(diff(x)))', 'runmean(rollstd(diff2(x)))']
+  hold rec 14: acc=0.000  sel=['iqr90(rollstd(sq(x)))', 'lcross(diff2(clip(x)))', 'iqr90(rollstd(diff2(x)))', 'runmean(env(diff(x)))', 'crest(clip(rollstd(x)))']
+  hold rec 15: acc=0.000  sel=['lcross(tanh(sq(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff2(clip(x)))', 'iqr90(diff2(id(x)))', 'runmean(rollstd(diff2(x)))']
+  hold rec 16: acc=0.200  sel=['lcross(tanh(sq(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff2(clip(x)))', 'runmean(rollstd(diff2(x)))', 'std(diff2(tanh(x)))']
+  hold rec 17: acc=0.000  sel=['lcross(tanh(sq(x)))', 'lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'iqr90(sq(diff(x)))', 'iqr90(diff2(tanh(x)))']
+  hold rec 18: acc=0.400  sel=['lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff(diff(x)))', 'iqr90(diff2(id(x)))']
+  hold rec 19: acc=0.400  sel=['runmean(rollstd(diff2(x)))', 'iqr90(abs(diff2(x)))', 'iqr90(diff2(diff(x)))']
+  hold rec 20: acc=0.800  sel=['iqr90(abs(diff2(x)))', 'lcross(diff2(clip(x)))', 'meanabs(diff2(abs(x)))']
+  hold rec 21: acc=0.400  sel=['lcross(tanh(sq(x)))', 'lcross(diff2(clip(x)))', 'iqr90(abs(diff2(x)))', 'lcross(diff(diff(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 22: acc=0.400  sel=['iqr90(abs(diff2(x)))', 'lcross(diff2(clip(x)))', 'specratio(sign(diff2(x)))', 'acf1(diff(sq(x)))']
+  hold rec 23: acc=0.200  sel=['lcross(tanh(sq(x)))', 'lcross(diff2(rank(x)))', 'crest(clip(diff2(x)))', 'iqr90(sq(diff(x)))', 'iqr90(rollstd(sq(x)))']
+FORGE nested: 0.342  CI [0.217,0.483]
+PAIRED forge-lean: -0.000  CI [-0.158,+0.158]  forge>lean 9/24
+Traceback (most recent call last):
+  File "<string>", line 6, in <module>
+  File "<local-path>/signalmap/research/factory/gauntlet.py", line 80, in gauntlet
+    new = not os.path.exists(FOLDS_CSV)
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'research/factory/logs/gauntlet_folds.csv'

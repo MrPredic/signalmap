@@ -1,0 +1,64 @@
+{
+  "K": 20,
+  "W": 1024,
+  "alarm": {
+    "alarm_rate_anomaly": 0.0,
+    "alarm_rate_normal": 0.0,
+    "gap": 0.0,
+    "gap_ci_hi": 0.0,
+    "gap_ci_lo": 0.0
+  },
+  "auc": 0.5609336609336609,
+  "auc_star": 0.5609336609336609,
+  "ci_hi": 0.6236465972030065,
+  "ci_lo": 0.49515504588544307,
+  "direction": "undetermined",
+  "domain": "mimii_fan_id00",
+  "envelope": 3.0,
+  "h2_separates": true,
+  "manifest": {
+    "anomaly_mapping": "the source's own filename prefix: clips named anomaly_id_00_* are the dataset's labelled anomalies, normal_id_00_* its labelled normal operation; the train split is all-normal by dataset construction",
+    "channel": "0 = the only channel; source clips are 16 kHz mono 16-bit PCM",
+    "fs_hz": 16000,
+    "license": "CC BY-SA 4.0 (MIMII / DCASE2020 Task 2 development dataset)",
+    "modality": "acoustic (single microphone, machine operating sound)",
+    "source_url": "https://zenodo.org/record/3678171 (DCASE2020 Task 2 development set, derived from the MIMII dataset, https://zenodo.org/record/3384388)"
+  },
+  "n1_null_ci": [
+    0.44019287469287466,
+    0.5609871007371007
+  ],
+  "n1_null_covers_half": true,
+  "n2_ci": [
+    0.3502609577922078,
+    0.5852945075757572
+  ],
+  "n2_healthy_vs_healthy_auc": 0.47,
+  "n2_ok": true,
+  "n3_leaked_recordings": [],
+  "n_anomaly": 407,
+  "n_boot_used": 2000,
+  "n_eval": 507,
+  "n_fit_recordings": 911,
+  "n_fit_windows": 18220,
+  "n_normal": 100,
+  "null_star_q95": 0.5604459459459459,
+  "perm_p_two_sided": 0.0485,
+  "prereg": "PREREG_SIGN_IDENTIFIABILITY.md",
+  "runtime_s": 113.3,
+  "seed": 0,
+  "spec_premium": [],
+  "spec_programs": [
+    "acf1(id(id(x)))",
+    "crest(id(id(x)))",
+    "lcross(id(id(x)))",
+    "meanabs(id(id(x)))",
+    "peakcv(id(id(x)))",
+    "runcv(id(id(x)))",
+    "runmean(id(id(x)))",
+    "std(id(id(x)))",
+    "zcr(id(id(x)))"
+  ],
+  "threshold": 35.092925711982794,
+  "verdict": "REFUSED"
+}

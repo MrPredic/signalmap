@@ -1,0 +1,49 @@
+bank: 256 windows, 32 recordings, classes=['Blip', 'Scattered_Light']
+  H1/Blip: 8 events
+  H1/Scattered_Light: 8 events
+  L1/Blip: 8 events
+  L1/Scattered_Light: 8 events
+
+===== LIGO-GLITCH: 256 windows, 32 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.934  CI [0.898,0.965]  [7s]
+LEAN group-perm-p = 0.005 (200 perms)
+gate: 897/897 programs (C=50 x 32 recs); features [17s]
+  hold rec 0: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(env(diff2(x)))', 'iqr90(diff2(rollstd(x)))']
+  hold rec 1: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(env(diff2(x)))', 'specratio(diff(rollstd(x)))']
+  hold rec 2: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(env(diff2(x)))', 'iqr90(diff2(rollstd(x)))']
+  hold rec 3: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(env(diff2(x)))', 'iqr90(diff2(rollstd(x)))']
+  hold rec 4: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(env(diff2(x)))', 'iqr90(diff2(rollstd(x)))']
+  hold rec 5: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'peakcv(abs(diff2(x)))']
+  hold rec 6: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 7: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(env(diff2(x)))', 'runcv(diff2(diff(x)))']
+  hold rec 8: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 9: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(diff(rollstd(x)))']
+  hold rec 10: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(diff(rollstd(x)))']
+  hold rec 11: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(diff(rollstd(x)))']
+  hold rec 12: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(diff(rollstd(x)))']
+  hold rec 13: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(diff(rollstd(x)))']
+  hold rec 14: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 15: acc=1.000  sel=['specflat(sign(diff2(x)))', 'iqr90(diff(rollstd(x)))', 'zcr(diff2(rank(x)))']
+  hold rec 16: acc=0.875  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))']
+  hold rec 17: acc=0.500  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 18: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 19: acc=0.875  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(env(diff2(x)))', 'peakcv(diff2(tanh(x)))']
+  hold rec 20: acc=0.875  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(env(diff2(x)))', 'runcv(rollstd(diff2(x)))']
+  hold rec 21: acc=0.875  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'ordtrans(diff2(tanh(x)))', 'ordtrans(diff2(id(x)))']
+  hold rec 22: acc=0.875  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'ordtrans(diff2(id(x)))', 'peakcv(abs(diff2(x)))']
+  hold rec 23: acc=1.000  sel=['iqr90(diff(rollstd(x)))', 'specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))']
+  hold rec 24: acc=0.750  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 25: acc=0.750  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'iqr90(diff2(rollstd(x)))']
+  hold rec 26: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 27: acc=0.875  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 28: acc=0.625  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 29: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+  hold rec 30: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))', 'specratio(diff(rollstd(x)))']
+  hold rec 31: acc=1.000  sel=['specflat(sign(diff2(x)))', 'zcr(diff2(rank(x)))', 'iqr90(diff(rollstd(x)))']
+FORGE nested: 0.934  CI [0.887,0.973]
+PAIRED forge-lean: +0.000  CI [-0.035,+0.035]  forge>lean 7/32
+STABILITY: top1-freq 0.97, mean-jaccard 0.70 (STABLE)
+CHAMPION (paired CI, chance-gated): tie->lean (default to cheaper)
+CLF-ROBUSTNESS (LogReg on champion features): 0.570  (RF-ONLY -> flag model-dependence)
+
+result dict: {'lean': 0.93359375, 'forge': 0.93359375, 'perm_p': 0.004975124378109453, 'chance': 0.5, 'paired_ci': (-0.03515625, 0.03515625), 'stability': 0.6954781105990783, 'top1_freq': 0.96875, 'champion': 'tie->lean (default to cheaper)', 'clf_robust': 0.5703125, 'clf_robust_holds': False}

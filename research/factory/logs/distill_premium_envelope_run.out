@@ -1,0 +1,99 @@
+== cwru: 24 recordings, 2849 windows, classes ['B007', 'B021', 'IR007', 'IR021', 'OR007', 'OR021']
+# signalmap distill — gauntlet receipt
+
+- verdict: PASS
+- classes (6): B007, B021, IR007, IR021, OR007, OR021
+- recordings: 24 · windows: 2849 · chance: 0.167
+
+## capacity gate
+- grammar total: 2128
+- budget = min(2128, 50*24) = 1200 (50.0 programs/recording)
+
+## accuracy receipts (LOGO over recordings)
+- nested LOGO (honesty anchor): 0.874
+- deploy selection (biased UB): 0.914
+- lean baseline (permEnt+psdSlope): 0.872 (+0.042 vs lean)
+- group-permutation p: 0.005
+- NULL self-test (labels shuffled): 0.082 (want ~chance 0.167)
+- cost: 0.116 ms/window (5 programs)
+
+## premium families (cost-receipted champion rule)
+The PASS/FAIL verdict above gates the BASE selection only (nested LOGO on grammar programs). Premium families are judged separately by the champion rule below — a bank can honestly be base-FAIL with a premium family INCLUDED when the signal lives only in the premium features.
+- envelope: base 0.914 -> augmented 0.926 (paired +0.012, 95% CI [-0.031, +0.054]) — **EXCLUDED** (not CI-solid over base)
+  cost: 0.08 ms/window vs base 0.116 ms/window (~1x); O(n log n) Hilbert+FFT per window (cheap)
+
+## deploy spec (selected programs)
+- acf1(abs(clip(x)))
+- meanabs(diff(abs(x)))
+- meanabs(sq(sq(x)))
+- meanabs(abs(abs(x)))
+- crest(tanh(diff(x)))
+
+Deploy: `signalmap fit`/`monitor` load spec.json as the feature backend.
+[cwru/envelope] PRIMARY verdict: EXCLUDED (paired +0.012 CI [-0.031, +0.054], ~0.7x cost) | distill gates: PASS | 1878.4s
+== mfpt: 20 recordings, 3718 windows, classes ['baseline', 'inner', 'outer']
+# signalmap distill — gauntlet receipt
+
+- verdict: PASS
+- classes (3): baseline, inner, outer
+- recordings: 20 · windows: 3718 · chance: 0.333
+
+## capacity gate
+- grammar total: 2128
+- budget = min(2128, 50*20) = 1000 (50.0 programs/recording)
+
+## accuracy receipts (LOGO over recordings)
+- nested LOGO (honesty anchor): 0.812
+- deploy selection (biased UB): 0.830
+- lean baseline (permEnt+psdSlope): 0.780 (+0.050 vs lean)
+- group-permutation p: 0.005
+- NULL self-test (labels shuffled): 0.387 (want ~chance 0.333)
+- cost: 0.388 ms/window (5 programs)
+
+## premium families (cost-receipted champion rule)
+The PASS/FAIL verdict above gates the BASE selection only (nested LOGO on grammar programs). Premium families are judged separately by the champion rule below — a bank can honestly be base-FAIL with a premium family INCLUDED when the signal lives only in the premium features.
+- envelope: base 0.830 -> augmented 0.842 (paired +0.012, 95% CI [-0.009, +0.035]) — **EXCLUDED** (not CI-solid over base)
+  cost: 0.15 ms/window vs base 0.388 ms/window (~0x); O(n log n) Hilbert+FFT per window (cheap)
+
+## deploy spec (selected programs)
+- acf1(cumsum(sq(x)))
+- acf1(cumsum(abs(x)))
+- hent(tanh(id(x)))
+- peakcv(cumsum(abs(x)))
+- crest(tanh(rollstd(x)))
+
+Deploy: `signalmap fit`/`monitor` load spec.json as the feature backend.
+[mfpt/envelope] PRIMARY verdict: EXCLUDED (paired +0.012 CI [-0.009, +0.035], ~0.4x cost) | distill gates: PASS | 2904.5s
+== ims: 12 recordings, 192 windows, classes ['defect', 'healthy']
+# signalmap distill — gauntlet receipt
+
+- verdict: PASS
+- classes (2): defect, healthy
+- recordings: 12 · windows: 192 · chance: 0.500
+
+## capacity gate
+- grammar total: 2128
+- budget = min(2128, 50*12) = 600 (50.0 programs/recording)
+
+## accuracy receipts (LOGO over recordings)
+- nested LOGO (honesty anchor): 0.688
+- deploy selection (biased UB): 0.797
+- lean baseline (permEnt+psdSlope): 0.604 (+0.193 vs lean)
+- group-permutation p: 0.005
+- NULL self-test (labels shuffled): 0.474 (want ~chance 0.500)
+- cost: 0.165 ms/window (5 programs)
+
+## premium families (cost-receipted champion rule)
+The PASS/FAIL verdict above gates the BASE selection only (nested LOGO on grammar programs). Premium families are judged separately by the champion rule below — a bank can honestly be base-FAIL with a premium family INCLUDED when the signal lives only in the premium features.
+- envelope: base 0.797 -> augmented 0.766 (paired -0.031, 95% CI [-0.104, +0.026]) — **EXCLUDED** (not CI-solid over base)
+  cost: 0.19 ms/window vs base 0.165 ms/window (~1x); O(n log n) Hilbert+FFT per window (cheap)
+
+## deploy spec (selected programs)
+- acf1(diff(abs(x)))
+- acf1(diff2(rollstd(x)))
+- crest(diff2(tanh(x)))
+- acf1(diff2(sq(x)))
+- lcross(diff(sq(x)))
+
+Deploy: `signalmap fit`/`monitor` load spec.json as the feature backend.
+[ims/envelope] PRIMARY verdict: EXCLUDED (paired -0.031 CI [-0.104, +0.026], ~1.2x cost) | distill gates: PASS | 734.3s

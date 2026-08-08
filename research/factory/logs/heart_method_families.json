@@ -1,0 +1,39 @@
+{
+  "prereg": "d917e1e10a5a354f2c8cee070eba30af58a5c300cd03c2d83d638251c1c3fa17",
+  "n": 36,
+  "families": {
+    "generic": {
+      "accuracy_recording_macro": 1.0,
+      "n_valid_windows": 36,
+      "n_groups": 12,
+      "group_label_perm_p_200": 0.004975124378109453
+    },
+    "morphology": {
+      "accuracy_recording_macro": 0.8055555555555555,
+      "n_valid_windows": 36,
+      "n_groups": 12,
+      "paired_delta_vs_generic": -0.19444444444444445,
+      "shared_groups": 12,
+      "phase_null_recording_macro": 0.5,
+      "group_label_perm_p_200": 0.01990049751243781
+    },
+    "hrv": {
+      "accuracy_recording_macro": 0.20833333333333331,
+      "n_valid_windows": 21,
+      "n_groups": 8,
+      "paired_delta_vs_generic": -0.7916666666666667,
+      "shared_groups": 8,
+      "phase_null_recording_macro": 0.38888888888888884,
+      "group_label_perm_p_200": 0.9353233830845771
+    },
+    "wavelet": {
+      "accuracy_recording_macro": 0.861111111111111,
+      "n_valid_windows": 36,
+      "n_groups": 12,
+      "paired_delta_vs_generic": -0.1388888888888889,
+      "shared_groups": 12,
+      "phase_null_recording_macro": 0.6666666666666666,
+      "group_label_perm_p_200": 0.009950248756218905
+    }
+  }
+}

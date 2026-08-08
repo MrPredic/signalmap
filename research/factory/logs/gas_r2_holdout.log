@@ -1,0 +1,11 @@
+features: 1000/151800 sampled (gate C=50x20) [14s]
+frozen family (selected on ALL R1, k=5): ['shape:logratio(5,7):hent(diff(sq(x)))', 'level:logratio(0,7):std(sign(diff(x)))', 'level:chdiff(2,5):runmean(rollstd(tanh(x)))', 'level:logratio(1,5):zcr(diff2(clip(x)))', 'level:chdiff(1,5):crest(sq(id(x)))']
+features: 1000/151800 sampled (gate C=50x20) [14s]
+R2 bank: 159 windows, 20 recs, 5 devices, chance 0.250
+  hold B1: R2-LODO=0.719  R1->R2=0.531
+  hold B2: R2-LODO=0.812  R1->R2=0.750
+  hold B3: R2-LODO=0.781  R1->R2=0.656
+  hold B4: R2-LODO=0.719  R1->R2=0.812
+  hold B5: R2-LODO=0.516  R1->R2=0.548
+A R2-LODO frozen-family: 0.709  CI [0.610,0.787]  (chance 0.250, n=5 devices) -> CI-fest > chance
+B train-R1 -> test-R2 (cross-rep+cross-device): 0.660  CI [0.563,0.756]  (chance 0.250, n=5 devices) -> CI-fest > chance

@@ -1,0 +1,32 @@
+
+===== HYDCOOLER (lean 0.625 @ 0.4 ms/win, chance 0.333) =====
+  c128b2_alone: 0.931 @ 22 ms/win
+  c256b4_alone: 0.931 @ 15 ms/win
+  c256b8_alone: 0.972 @ 15 ms/win
+  c64b1_alone: 0.875 @ 38 ms/win
+  c128b2_aug: 0.944 @ 22 ms/win
+  c256b4_aug: 0.931 @ 15 ms/win
+  c256b8_aug: 0.944 @ 15 ms/win
+  c64b1_aug: 0.875 @ 38 ms/win
+  BEST aug = c128b2_aug: 0.944  paired aug-lean +0.319 CI [+0.194,+0.444]
+  BEST alone = c256b8_alone: 0.972  paired alone-lean +0.347 CI [+0.236,+0.458]
+  STABILITY (config jackknife): 18/18 = 1.00 (STABLE)
+  CHANCE-GATE: best-aug acc CI-lo 0.889 > chance 0.333
+  VERDICT: FLAG CONFIRMED
+
+===== GASID (lean 0.300 @ 0.4 ms/win, chance 0.250) =====
+  c128b2_alone: 0.449 @ 41 ms/win
+  c256b4_alone: 0.467 @ 29 ms/win
+  c256b8_alone: 0.485 @ 28 ms/win
+  c64b1_alone: 0.479 @ 71 ms/win
+  c128b2_aug: 0.429 @ 41 ms/win
+  c256b4_aug: 0.454 @ 29 ms/win
+  c256b8_aug: 0.516 @ 28 ms/win
+  c64b1_aug: 0.460 @ 71 ms/win
+  BEST aug = c256b8_aug: 0.516  paired aug-lean +0.216 CI [+0.106,+0.335]
+  BEST alone = c256b8_alone: 0.485  paired alone-lean +0.185 CI [+0.079,+0.296]
+  STABILITY (config jackknife): 20/20 = 1.00 (STABLE)
+  CHANCE-GATE: best-aug acc CI-lo 0.460 > chance 0.250
+  VERDICT: FLAG CONFIRMED
+
+ledger tip = 72fa75d6f53e1c823e034318d43707f32ead3c65391f21977cd161f84ac21923

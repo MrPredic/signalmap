@@ -1,0 +1,34 @@
+== PROVENANCE ==
+PROVENANCE mox_Dataset.zip: 6962b58ee95da385... (141110296 B)
+PROVENANCE battery_csv.zip: 6ffda60a762f35ad... (886016 B)
+PROVENANCE battery_FCC.xlsx: ecc93edd8c561a5e... (21771 B)
+
+== HARNESS SYNTHETIC CONTROLS ==
+[PASS] neg-control-noise: biased-top5 LOGO on noise = 0.067 (chance 0.167; must stay low even biased) [1s]
+[PASS] pos-control-planted: planted 3-class signal recovered at 1.000 (chance 0.333; must be high) [1s]
+[PASS] selection-bias-visible: in-sample-scored on noise = 1.000 (inflated) vs honest-LOGO 0.067 (~chance) -> bias real AND nested removes it [0s]
+
+== #11 MOX-DRIFT ==
+[FAIL] window-provenance[mox]: 0 exact + 15322 near-identical (|r|>0.999) across different groups (must be 0)
+features: 1950/8845800 sampled (gate C=50x39) [144s]
+[PASS] linear-swap[mox]: LogReg LODO 0.603 CI[0.567,0.639] (chance 0.333; survives model swap iff CI-lo>chance)
+features: 1950/8845800 sampled (gate C=50x39) [146s]
+
+===== MOX-NOISE-PLACEBO (LODO, 39 days, chance 0.333) =====
+MC-FORGE: 0.338  CI [0.304,0.375]   lean(single-ch): 0.346  CI (0.30727333668510143, 0.38201776437070556)
+PAIRED mc-lean: -0.007  CI [-0.057,+0.044]
+STABILITY top1-freq 0.87 (STABLE)
+CHAMPION (chance-gated): NULL (nobody clears chance)
+[PASS] noise-placebo[mox]: forge 0.338 CI[0.3036701860231273, 0.37464387464387466] (must be ~chance 0.333)
+
+== #12 BATTERY-TRANSFER (aging) ==
+[FAIL] window-provenance[battery]: 0 exact + 4663 near-identical (|r|>0.999) across different groups (must be 0)
+[PASS] linear-swap[battery]: LogReg LODO 0.591 CI[0.549,0.640] (chance 0.500; survives model swap iff CI-lo>chance)
+
+===== BATTERY-NOISE-PLACEBO (LOCO, 24 cells, chance 0.500) =====
+FORGE: 0.529 CI[0.490,0.567]  lean: 0.440 CI[0.392,0.489]
+PAIRED forge-lean: +0.090 CI[+0.046,+0.134]
+STABILITY top1 0.83  CHAMPION(chance-gated): NULL (nobody clears chance)
+[PASS] noise-placebo[battery]: forge 0.529 CI[0.4899410270147411, 0.566886770244821] (must be ~chance 0.500)
+
+== HARDEN COMPLETE: 2 failed checks [593s] ==

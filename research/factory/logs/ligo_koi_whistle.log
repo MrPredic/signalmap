@@ -1,0 +1,73 @@
+  H1/Koi_Fish: 614 candidates, picked 8 spanning 11668s
+    downloading H-H1_LOSC_4_V1-1135779840-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1135783936-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1135788032-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1135792128-4096.hdf5 ...
+  H1/Whistle: 15 candidates, picked 8 spanning 1539167s
+    downloading H-H1_LOSC_4_V1-1127223296-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1127313408-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1127452672-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1127473152-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1128620032-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1128624128-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1128632320-4096.hdf5 ...
+    downloading H-H1_LOSC_4_V1-1128759296-4096.hdf5 ...
+  L1/Koi_Fish: 217 candidates, picked 8 spanning 47640s
+    downloading L-L1_LOSC_4_V1-1130541056-4096.hdf5 ...
+    downloading L-L1_LOSC_4_V1-1130549248-4096.hdf5 ...
+    downloading L-L1_LOSC_4_V1-1130553344-4096.hdf5 ...
+    downloading L-L1_LOSC_4_V1-1130569728-4096.hdf5 ...
+    downloading L-L1_LOSC_4_V1-1130573824-4096.hdf5 ...
+    downloading L-L1_LOSC_4_V1-1130582016-4096.hdf5 ...
+    downloading L-L1_LOSC_4_V1-1130590208-4096.hdf5 ...
+  L1/Whistle: 312 candidates, picked 8 spanning 349s
+    downloading L-L1_LOSC_4_V1-1136750592-4096.hdf5 ...
+  [1 errors logged in <local-path>/signalmap/research/factory/cache/ligo/provenance.json]
+bank: 248 windows, 31 recordings, classes=['Koi_Fish', 'Whistle']
+  H1/Koi_Fish: 8 events
+  H1/Whistle: 7 events
+  L1/Koi_Fish: 8 events
+  L1/Whistle: 8 events
+
+===== LIGO-GLITCH_KOI_FISH_WHISTLE: 248 windows, 31 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.629  CI [0.544,0.706]  [5s]
+LEAN group-perm-p = 0.015 (200 perms)
+gate: 897/897 programs (C=50 x 31 recs); features [16s]
+  hold rec 0: acc=0.875  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 1: acc=0.750  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'runcv(diff(rollstd(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 2: acc=0.750  sel=['specratio(rollstd(rank(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(tanh(rollstd(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))']
+  hold rec 3: acc=0.625  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(clip(rollstd(x)))']
+  hold rec 4: acc=0.875  sel=['specratio(rollstd(rank(x)))', 'specratio(rollstd(tanh(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))', 'runmean(diff2(rank(x)))']
+  hold rec 5: acc=0.875  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 6: acc=0.750  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))', 'runmean(diff2(rank(x)))']
+  hold rec 7: acc=0.375  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))', 'peakcv(rollstd(env(x)))']
+  hold rec 8: acc=0.000  sel=['ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(rank(x)))', 'specratio(rollstd(clip(x)))', 'specratio(sign(diff2(x)))', 'acf1(sq(diff2(x)))']
+  hold rec 9: acc=0.250  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))', 'runmean(diff2(rank(x)))']
+  hold rec 10: acc=0.750  sel=['specratio(sign(diff2(x)))', 'specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(clip(x)))', 'acf1(sq(diff2(x)))']
+  hold rec 11: acc=0.750  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'zcr(diff2(rank(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 12: acc=0.375  sel=['ordtrans(rollstd(id(x)))', 'specratio(rollstd(rank(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(rollstd(clip(x)))', 'zcr(diff2(rank(x)))']
+  hold rec 13: acc=0.250  sel=['ordtrans(rollstd(id(x)))', 'specratio(rollstd(rank(x)))', 'ordtrans(rollstd(rank(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(tanh(rollstd(x)))']
+  hold rec 14: acc=0.875  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(tanh(rollstd(x)))']
+  hold rec 15: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 16: acc=0.875  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 17: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))', 'runcv(env(rollstd(x)))']
+  hold rec 18: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(sign(diff2(x)))', 'runmean(diff2(rank(x)))']
+  hold rec 19: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))', 'runmean(diff2(rank(x)))']
+  hold rec 20: acc=1.000  sel=['ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(rank(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))', 'ordtrans(rollstd(clip(x)))']
+  hold rec 21: acc=0.875  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(clip(rollstd(x)))']
+  hold rec 22: acc=0.875  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 23: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(clip(rollstd(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 24: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(rollstd(clip(x)))']
+  hold rec 25: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(tanh(rollstd(x)))']
+  hold rec 26: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(tanh(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 27: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 28: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))', 'runcv(env(rollstd(x)))']
+  hold rec 29: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(rollstd(tanh(x)))', 'specratio(sign(diff2(x)))']
+  hold rec 30: acc=1.000  sel=['specratio(rollstd(rank(x)))', 'ordtrans(rollstd(id(x)))', 'ordtrans(rollstd(tanh(x)))', 'specratio(clip(rollstd(x)))', 'specratio(sign(diff2(x)))']
+FORGE nested: 0.798  CI [0.698,0.887]
+PAIRED forge-lean: +0.169  CI [+0.060,+0.274]  forge>lean 23/31
+STABILITY: top1-freq 0.84, mean-jaccard 0.52 (STABLE)
+CHAMPION (paired CI, chance-gated): forge
+CLF-ROBUSTNESS (LogReg on champion features): 0.766  (HOLDS)
+
+result dict: {'lean': 0.6290322580645161, 'forge': 0.7983870967741935, 'perm_p': 0.014925373134328358, 'chance': 0.5, 'paired_ci': (0.06048387096774194, 0.27419354838709675), 'stability': 0.5151988393923879, 'top1_freq': 0.8387096774193549, 'champion': 'forge', 'clf_robust': 0.7661290322580645, 'clf_robust_holds': True}

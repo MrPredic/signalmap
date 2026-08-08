@@ -1,0 +1,29 @@
+
+===== DCASE-valve-anomaly: 80 windows, 16 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.463  CI [0.275,0.650]  [2s]
+LEAN group-perm-p = 0.541 (60 perms)
+gate: 800/2128 programs (C=50 x 16 recs); features [5s]
+  hold rec 0: acc=0.600  sel=['peakcv(diff(abs(x)))', 'peakcv(diff(id(x)))']
+  hold rec 1: acc=0.200  sel=['runcv(diff2(rank(x)))', 'peakcv(diff(id(x)))', 'peakcv(diff(abs(x)))', 'peakcv(cumsum(sign(x)))']
+  hold rec 2: acc=0.000  sel=['peakcv(diff(id(x)))', 'runmean(cumsum(diff2(x)))', 'acflag(rank(diff2(x)))', 'zcr(sign(diff(x)))', 'runcv(sign(diff2(x)))']
+  hold rec 3: acc=0.400  sel=['peakcv(diff(id(x)))', 'peakcv(env(rollstd(x)))']
+  hold rec 4: acc=0.600  sel=['peakcv(diff(id(x)))', 'peakcv(diff(abs(x)))', 'acflag(rank(diff2(x)))']
+  hold rec 5: acc=1.000  sel=['peakcv(diff(id(x)))', 'peakcv(diff(abs(x)))', 'acflag(rank(diff2(x)))']
+  hold rec 6: acc=0.200  sel=['peakcv(diff(id(x)))', 'peakcv(env(rollstd(x)))', 'peakcv(diff(abs(x)))', 'acflag(rank(diff2(x)))', 'runcv(diff(abs(x)))']
+  hold rec 7: acc=0.800  sel=['hent(clip(sq(x)))', 'acflag(rank(diff2(x)))', 'hent(env(abs(x)))', 'peakcv(diff(abs(x)))']
+  hold rec 8: acc=0.000  sel=['peakcv(diff(id(x)))', 'acflag(rank(diff2(x)))', 'peakcv(diff(abs(x)))']
+  hold rec 9: acc=0.800  sel=['peakcv(diff(id(x)))', 'runcv(cumsum(diff2(x)))', 'crest(rollstd(cumsum(x)))']
+  hold rec 10: acc=0.200  sel=['peakcv(diff(id(x)))', 'runcv(cumsum(diff2(x)))', 'peakcv(diff(abs(x)))']
+  hold rec 11: acc=0.400  sel=['peakcv(diff(id(x)))']
+  hold rec 12: acc=0.400  sel=['peakcv(env(rollstd(x)))', 'peakcv(diff(abs(x)))', 'acflag(rank(diff2(x)))', 'peakcv(rollstd(rollstd(x)))', 'peakcv(diff(tanh(x)))']
+  hold rec 13: acc=1.000  sel=['peakcv(diff(id(x)))', 'peakcv(diff(abs(x)))', 'acflag(rank(diff2(x)))', 'acflag(diff2(diff(x)))', 'zcr(rollstd(rollstd(x)))']
+  hold rec 14: acc=0.600  sel=['peakcv(diff(id(x)))', 'runcv(diff2(rank(x)))']
+  hold rec 15: acc=0.200  sel=['peakcv(diff(id(x)))', 'acflag(rank(diff2(x)))', 'speccent(sq(rollstd(x)))']
+FORGE nested: 0.463  CI [0.312,0.625]
+PAIRED forge-lean: -0.000  CI [-0.200,+0.212]  forge>lean 6/16
+{
+ "lean": 0.4625,
+ "forge": 0.4625,
+ "perm_p": 0.5409836065573771,
+ "chance": 0.5
+}

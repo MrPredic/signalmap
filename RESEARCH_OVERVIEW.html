@@ -1,0 +1,202 @@
+<title>SignalMap — Forschungs-Übersicht</title>
+<style>
+  .viz-root{
+    --surface-1:#fcfcfb; --plane:#f9f9f7;
+    --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --seq-100:#cde2fb; --seq-300:#6da7ec; --seq-450:#2a78d6; --seq-650:#104281;
+    --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+    --good-ink:#006300;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    color:var(--ink); background:var(--plane);
+    line-height:1.5; max-width:1080px; margin:0 auto; padding:28px 20px 80px;
+  }
+  @media (prefers-color-scheme:dark){
+    .viz-root{
+      --surface-1:#1a1a19; --plane:#0d0d0d;
+      --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --base:#383835; --border:rgba(255,255,255,0.10);
+      --seq-100:#0d366b; --seq-300:#1c5cab; --seq-450:#3987e5; --seq-650:#86b6ef;
+      --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+      --good-ink:#0ca30c;
+    }
+  }
+  .viz-root h1{font-size:26px; margin:0 0 4px; letter-spacing:-.02em}
+  .viz-root h2{font-size:18px; margin:34px 0 10px; letter-spacing:-.01em}
+  .viz-root h3{font-size:14px; margin:18px 0 6px; color:var(--ink2)}
+  .viz-root p{margin:8px 0; color:var(--ink2); font-size:14px}
+  .viz-root .lead{font-size:15px; color:var(--ink)}
+  .viz-root small{color:var(--muted); font-size:12px}
+  .card{background:var(--surface-1); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0}
+  .tiles{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0}
+  .tile{flex:1 1 150px; background:var(--surface-1); border:1px solid var(--border); border-radius:12px; padding:14px 16px}
+  .tile .n{font-size:30px; font-weight:650; letter-spacing:-.02em}
+  .tile .l{font-size:12px; color:var(--ink2)}
+  .scroll{overflow-x:auto}
+  table{border-collapse:collapse; width:100%; font-size:13px; min-width:720px}
+  th,td{text-align:left; padding:9px 10px; border-bottom:1px solid var(--grid); vertical-align:top}
+  th{font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600}
+  td.num{font-variant-numeric:tabular-nums}
+  .badge{display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:2px 8px; border-radius:999px; white-space:nowrap; border:1px solid var(--border)}
+  .b-disc{color:#fff; background:var(--good)}
+  .b-pass{color:var(--good-ink); background:color-mix(in srgb, var(--good) 16%, transparent)}
+  .b-part{color:#7a5600; background:color-mix(in srgb, var(--warning) 30%, transparent)}
+  @media (prefers-color-scheme:dark){.b-part{color:#fab219; background:color-mix(in srgb, var(--warning) 16%, transparent)}}
+  .b-null{color:var(--muted); background:color-mix(in srgb, var(--muted) 16%, transparent)}
+  .bar{position:relative; height:16px; background:color-mix(in srgb, var(--muted) 14%, transparent); border-radius:4px; min-width:120px}
+  .bar>i{position:absolute; left:0; top:0; bottom:0; background:var(--seq-450); border-radius:4px}
+  .bar>b{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--ink); opacity:.55}
+  .bar .cap{position:absolute; right:5px; top:0; bottom:0; display:flex; align-items:center; font-size:10px; font-variant-numeric:tabular-nums; color:var(--ink); font-weight:600}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin:10px 0; font-size:12px; color:var(--ink2)}
+  .legend span{display:inline-flex; align-items:center; gap:6px}
+  .dot{width:10px; height:10px; border-radius:3px; display:inline-block}
+  ul{margin:8px 0; padding-left:20px} li{font-size:14px; color:var(--ink2); margin:4px 0}
+  .warn{border-left:3px solid var(--warning); padding-left:12px}
+  .k{color:var(--ink); font-weight:600}
+  hr{border:none; border-top:1px solid var(--grid); margin:22px 0}
+</style>
+
+<div class="viz-root">
+
+<h1>SignalMap — was wir gebaut, gemessen und belegt haben</h1>
+<p class="lead">Ein sensor-agnostisches Verfahren, das <span class="k">Zustand/Anomalie aus roher Sensor-Textur</span> liest — dieselbe kleine Pipeline über viele Physik-Domänen, billig, mit leck-freier Prüf-Disziplin.</p>
+<p><small>Stand 5. Juli 2026 · privates Forschungs-Repo · Reifegrad „&lt;5% fertig" (kein Produkt, keine Nutzer). Diese Seite ist bewusst <span class="k">nicht schöngeredet</span> — Nulls stehen gleichberechtigt neben Treffern.</small></p>
+
+<h2>Das Verfahren in 3 Schichten — was davon <em>unser</em> ist</h2>
+<div class="scroll"><table>
+<tr><th>Schicht</th><th>Was sie tut</th><th>Neu vs. Standard?</th></tr>
+<tr><td class="k">1 · Lean-Baseline</td><td>2 billige Merkmale (Permutations-Entropie + PSD-Steigung) + Random Forest</td><td>Merkmale sind Stand der Technik (catch22, PE-auf-CWRU vielfach publiziert). <span class="k">Nicht neu.</span></td></tr>
+<tr><td class="k">2 · Feature-Forge</td><td>Deterministische Programm-Grammatik erzeugt Merkmale; nested-LOGO-Selektion; Multichannel-Kombinierer (logratio/chdiff)</td><td>Delta = <span class="k">EINE Forge generalisiert über Physiken</span> + Effizienz-Beweis (Lean ≈ schwere Methoden bei ~30× weniger Rechenlast).</td></tr>
+<tr><td class="k">3 · Trust / Receipts</td><td>Prereg-vor-Readout · Hash-Ketten-Ledger (tamper-evident) · 12-Punkt-Adversarial-Audit · chance-gated paired-CI · Noise-Placebo · SHA-Provenienz</td><td><span class="k">Der eigentliche Moat.</span> Diese Reproduzierbarkeits-Härte ist im Sensor-ML-Feld selten und übertragbar.</td></tr>
+</table></div>
+
+<h2>Physik-Familien — Scorecard</h2>
+<div class="legend">
+  <span><span class="dot" style="background:var(--seq-450)"></span> Genauigkeit</span>
+  <span><span style="display:inline-block;width:2px;height:11px;background:var(--ink);opacity:.55"></span> Zufalls-Niveau (chance)</span>
+  <span><span class="badge b-disc">★ Discovery</span></span>
+  <span><span class="badge b-pass">✓ Capability</span></span>
+  <span><span class="badge b-part">◐ Partial</span></span>
+  <span><span class="badge b-null">∅ Null / Grenze</span></span>
+</div>
+<div class="scroll"><table>
+<tr><th>Familie</th><th>Banken / was geprüft</th><th>Bestes Ergebnis vs. chance</th><th>Verdikt</th><th>Beweist…</th></tr>
+
+<tr><td class="k">Lager / Vibration<br><small>CWRU, MFPT, IMS</small></td>
+<td>Fehler-ID (6-Kl.), Deploy fit→monitor. 238/238 Fehler @0,2% FP; CWRU perm-p 0.010</td>
+<td class="num"><div class="bar"><i style="width:87%"></i><b style="left:17%"></b><span class="cap">0.87</span></div><small>CWRU · chance 0.17 · Detektion AUC 1.0</small></td>
+<td><span class="badge b-pass">✓ Capability</span></td>
+<td>Ja — stärkster Einzel-Beweis; MFPT Parität, IMS-peak Null (ehrlich)</td></tr>
+
+<tr><td class="k">Batterie<br><small>CALCE, EIS-Transfer #12</small></td>
+<td>SOH-Klassifikation (Zyklus) + <span class="k">Device-Transfer auf EIS</span> (leave-one-cell-out, neue Modalität)</td>
+<td class="num"><div class="bar"><i style="width:90%"></i><b style="left:33%"></b><span class="cap">0.90</span></div><small>CALCE · chance 0.33 · EIS-Transfer 0.72/0.56</small></td>
+<td><span class="badge b-pass">✓ Capability</span></td>
+<td>Ja — 2 unabhängige Belege inkl. Geräte-Transfer</td></tr>
+
+<tr><td class="k">Gas / Chemie e-Nose<br><small>GAS-id, MOX-DRIFT #11</small></td>
+<td>Analyt-ID; Start = Null (1 Kanal) → Multichannel → <span class="k">Drift-Invarianz über 12 Monate</span></td>
+<td class="num"><div class="bar"><i style="width:59%"></i><b style="left:33%"></b><span class="cap">0.59</span></div><small>MOX-DRIFT · chance 0.33 · Device-LODO 0.62</small></td>
+<td><span class="badge b-disc">★ Discovery</span></td>
+<td>Ja — Null zuerst ehrlich, dann via Multichannel gelöst; Drift-Invarianz ist neu getestet</td></tr>
+
+<tr><td class="k">Seismik<br><small>SEIS flach/tief</small></td>
+<td>Erdbeben-Tiefe aus 10 s Textur, 2 Stationen, fresh-Holdout</td>
+<td class="num"><div class="bar"><i style="width:94%"></i><b style="left:50%"></b><span class="cap">0.94</span></div><small>ANMO · chance 0.50 · KONO 0.84</small></td>
+<td><span class="badge b-pass">✓ Capability</span></td>
+<td>Ja — beidseitig PASS auf ungesehenen Daten</td></tr>
+
+<tr><td class="k">Geomagnetik<br><small>Sturm-Onset</small></td>
+<td>Sturm-Tag vs. ruhig (Kp≥7 vs ≤1), 2 Observatorien, frische Fenster</td>
+<td class="num"><div class="bar"><i style="width:89%"></i><b style="left:50%"></b><span class="cap">0.89</span></div><small>FRD · chance 0.50 · BOU 0.81</small></td>
+<td><span class="badge b-pass">✓ Capability</span></td>
+<td>Ja — beidseitig PASS</td></tr>
+
+<tr><td class="k">Korrosion<br><small>ECN</small></td>
+<td>6 Chemikalien; Effizienz-Moat-Domäne #1 (~33× billiger als schwer)</td>
+<td class="num"><div class="bar"><i style="width:59%"></i><b style="left:17%"></b><span class="cap">0.59</span></div><small>chance 0.17 · Lean 0.43</small></td>
+<td><span class="badge b-pass">✓ Capability</span></td>
+<td>Ja (moderat) — trägt v. a. den Effizienz-Beweis</td></tr>
+
+<tr><td class="k">Netzfrequenz<br><small>GRIDFREQ PMU</small></td>
+<td>6 Netze; Forge-Win in-sample <span class="k">aber</span> out-of-time zeigte: misst v. a. Standort-Drift</td>
+<td class="num"><div class="bar"><i style="width:69%"></i><b style="left:17%"></b><span class="cap">0.69</span></div><small>chance 0.17 · nur in-sample</small></td>
+<td><span class="badge b-part">◐ Partial</span></td>
+<td>Teilweise — Win in-sample, <span class="k">ehrlich herabgestuft</span> auf Generalisierung</td></tr>
+
+<tr><td class="k">Hydraulik<br><small>Cooler, Valve, Accumulator</small></td>
+<td>3 Komponenten-Zustände; Cooler CI-fester Win, Valve/Accumulator Null</td>
+<td class="num"><div class="bar"><i style="width:72%"></i><b style="left:33%"></b><span class="cap">0.72</span></div><small>Cooler · chance 0.33 · 2 von 3 Null</small></td>
+<td><span class="badge b-part">◐ Partial</span></td>
+<td>Gemischt — 1 Win, 2 ehrliche Nulls (klare Grenze)</td></tr>
+
+<tr><td class="k">Akustik<br><small>DCASE Valve/Pump</small></td>
+<td>Maschinen-ID / Anomalie aus Mikrofon; Parität bzw. Null (Coverage-Caveat)</td>
+<td class="num"><div class="bar"><i style="width:34%"></i><b style="left:25%"></b><span class="cap">0.34</span></div><small>chance 0.25 · ~Parität</small></td>
+<td><span class="badge b-null">∅ Null / Grenze</span></td>
+<td><span class="k">Zeigt was wir NICHT können</span> — hier kein Vorteil; ehrlich dokumentiert</td></tr>
+
+<tr><td class="k">Vulkan<br><small>Tremor-Zustand + Ep-51-Präkursor</small></td>
+<td>Eruptiv vs. ruhig (Regime OK); Präkursor −2h Null, −12h nur exploratorisch; prospektiver Test läuft (Fenster 9.–14. Jul)</td>
+<td class="num"><div class="bar"><i style="width:81%"></i><b style="left:50%"></b><span class="cap">0.81</span></div><small>Regime · chance 0.50 · Präkursor unbestätigt</small></td>
+<td><span class="badge b-part">◐ Partial</span></td>
+<td>Teilweise — Regime-Erkennung ja; <span class="k">Vorhersage (Präkursor) noch NICHT belegt</span></td></tr>
+</table></div>
+
+<div class="tiles">
+  <div class="tile"><div class="n">10</div><div class="l">Physik-Familien getestet</div></div>
+  <div class="tile"><div class="n">6</div><div class="l">Familien mit klarer Capability (inkl. 1 Discovery)</div></div>
+  <div class="tile"><div class="n">3</div><div class="l">Partial / gemischt (ehrliche Grenzen)</div></div>
+  <div class="tile"><div class="n">1</div><div class="l">Null-Grenze (können wir dort nicht)</div></div>
+</div>
+<p><small>„Capability" = eine Messart, die belegt dass das Verfahren dort etwas kann (CI-untere-Grenze über chance, perm-p&lt;0.05, Shuffle-Null≈chance). „Null" ist kein Fehler, sondern eine bewiesene Grenze — der Wert liegt darin, sie zu <em>kennen</em>.</small></p>
+
+<h2>Methoden-Thesen (Querschnitt, nicht domänen-spezifisch)</h2>
+<ul>
+  <li><span class="k">Effizienz-Moat:</span> billige Lean-Merkmale ≈ schwere Methoden bei ~30× weniger Rechenlast — CI-fest auf 2 Domänen (ECN, CWRU). Edge/TinyML-Winkel.</li>
+  <li><span class="k">Cross-Physik-Generalisierung:</span> dieselbe Forge trägt über 6+ Familien; frische Holdouts (Seismik/Geomag PASS, Vulkan Regime-Shift ehrlich negativ).</li>
+  <li><span class="k">Zwei-Achsen-Generalisierung (diese Session):</span> Zeit-Drift (MOX #11) UND Geräte-Transfer (Batterie #12) je vorregistriert & gehärtet.</li>
+  <li><span class="k">Trust-Disziplin:</span> jedes Ergebnis mit Prereg + Hash-Ketten-Beleg + Adversarial-Audit + Noise-Placebo + SHA-Provenienz reproduzierbar.</li>
+</ul>
+
+<hr>
+
+<h2>Was wir haben, das es so kaum/nirgends gibt — und ehrlich, was schon existiert</h2>
+<div class="scroll"><table>
+<tr><th>Unser (rarer) Delta</th><th>Was schon existiert (Prior Art / Konkurrenz)</th></tr>
+<tr><td>Eine winzige, sensor-<span class="k">agnostische</span> Pipeline über 10 Physiken mit identischem Code + leck-freier LOGO-Disziplin</td><td>Tools sind meist domänen-spezifisch; generische Merkmale (<span class="k">catch22</span>) existieren aber ohne Cross-Physik-Beleg</td></tr>
+<tr><td><span class="k">Effizienz-Beweis</span> (Lean ≈ schwer, ~30× billiger, CI-fest)</td><td><span class="k">NanoEdge AI Studio</span> (fit/monitor, aber STM32-gelockt); <span class="k">SensiML</span> (wird 2026 open-source → Fenster schließt sich)</td></tr>
+<tr><td><span class="k">Trust-/Audit-Layer</span> (Prereg, Hash-Ketten-Ledger, 12-Punkt-Audit, chance-gated CI, Placebo) — der defensivste, übertragbarste Teil</td><td>Im Sensor-ML selten; akademische CCM/TE-RCA dicht, aber <span class="k">kein geshipptes Tool</span></td></tr>
+<tr><td>Dokumentierte <span class="k">ehrliche Nulls</span> (Akustik, Hydraulik-Valve, Vulkan-Präkursor) — das Verfahren kennt seine Grenzen</td><td>Merkmale selbst (PE/RQA/Wavelet auf CWRU/Lagern) sind <span class="k">stark publiziert → keine Feature-Novelty</span></td></tr>
+</table></div>
+
+<h2>Ehrlicher Marktwert — was das real wert ist</h2>
+<div class="card warn">
+  <h3>Kommerziell HEUTE: ≈ 0 €</h3>
+  <p>Kein Produkt, keine Nutzer, keine Distribution, privates Repo, „&lt;5% fertig". Ein rigoros bewiesenes Verfahren ist <span class="k">nicht dasselbe</span> wie ein Marktwert — dazwischen liegen Produkt, Distribution und ein verteidigbarer Wedge.</p>
+</div>
+<div class="card">
+  <h3>Als Asset / Fundament: real, aber unbepreist</h3>
+  <ul>
+    <li><span class="k">Wissenschaftliche Glaubwürdigkeit:</span> ein de-riskter, ungewöhnlich disziplinierter Multi-Physik-Benchmark. Publizierbar (MOX-Drift-Invarianz, Geomag-Onset), aber einzeln geringer $-Wert.</li>
+    <li><span class="k">Wiederverwendbarer Trust-Harness:</span> der übertragbarste Teil — deckt sich mit indelible/simdiff (Agent-Trust). Wahrscheinlich der stärkste eigentliche Hebel.</li>
+    <li><span class="k">Monetarisierungs-Pfade (spekulativ):</span> (a) OSS-Edge-Anomalie-Lib — <span class="k">überfüllt</span> (NanoEdge/SensiML/catch22), Fenster schließt 2026; (b) Sensor-Modell-Validierungs-/Trust-Tooling — weniger überfüllt, nutzt die Disziplin-Schicht.</li>
+  </ul>
+</div>
+<div class="card">
+  <h3>Falls ausgeführt (unvalidierte Schätzung)</h3>
+  <p>Pilot-Verträge grob <span class="k">5–50 k €</span> (eigene frühere, <span class="k">nicht validierte</span> Annahme) — hängt völlig an Adoption + einem verteidigbaren Wedge. Zeitkritisch: SensiML-Open-Sourcing 2026 verkleinert den Effizienz-Moat; der <span class="k">durable Differentiator ist der Trust-Layer</span>, nicht die Merkmale.</p>
+</div>
+<p class="lead">Unterm Strich: <span class="k">starke wissenschaftlich-technische Glaubwürdigkeit und ein echtes Fundament — aber noch kein bepreisbares Asset.</span> Der ehrlichste Hebel nach vorn ist nicht „noch eine Physik", sondern den Trust-/Audit-Layer zu einem eigenständigen Werkzeug zu machen.</p>
+
+<hr>
+<h2>Diese Session (5. Jul) — kurz</h2>
+<ul>
+  <li><span class="k">#11 MOX-DRIFT = Discovery</span> (Zeit-Drift-Invarianz, e-Nose, LODO 0.591) · vorregistriert, gehärtet.</li>
+  <li><span class="k">#12 BATTERY-TRANSFER = Device-Transfer PASS</span> (EIS, leave-one-cell-out; aging 0.718, SOH 0.559) · schließt den „1-Gerät"-Gap von #11.</li>
+  <li><span class="k">Härtung:</span> Provenienz-SHA, Linear-Swap (Modell-unabhängig), Noise-Placebo→chance, exact-dup=0. window-provenance-Flag als benigner Fehlalarm aufgelöst.</li>
+  <li><span class="k">Ep-51-Watcher</span> misst KEINE Live-Daten — er snapshottet nur die USGS-Alarmstufe, um den Onset automatisch zu fangen; Präkursor-Seismik wird retrospektiv geholt. Polling daher auf 12 h gedrosselt (oder ganz abschaltbar).</li>
+</ul>
+<p><small>Alle Ergebnisse mit Ledger-Belegen in research/factory/RESULTS.md + LEDGER.jsonl. Zahlen sind Bestwerte pro Familie; Details/Nulls in RESULTS.md.</small></p>
+
+</div>

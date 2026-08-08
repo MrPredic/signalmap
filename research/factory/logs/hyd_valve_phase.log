@@ -1,0 +1,38 @@
+phase-aligned bank: 24 windows/recs
+
+===== HYD-valve-PHASE: 24 windows, 24 recordings, 4 classes, chance=0.250 =====
+LEAN: 0.458  CI [0.250,0.667]  [3s]
+LEAN group-perm-p = 0.049 (60 perms)
+gate: 1200/2128 programs (C=50 x 24 recs); features [2s]
+  hold rec 0: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(cumsum(tanh(x)))', 'speccent(cumsum(cumsum(x)))', 'crest(env(id(x)))']
+  hold rec 1: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(env(id(x)))', 'crest(rollstd(tanh(x)))']
+  hold rec 2: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(rollstd(cumsum(x)))', 'acf1(cumsum(tanh(x)))', 'speccent(cumsum(cumsum(x)))', 'meanabs(cumsum(cumsum(x)))']
+  hold rec 3: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(cumsum(sign(x)))', 'acf1(diff(cumsum(x)))', 'speccent(cumsum(cumsum(x)))']
+  hold rec 4: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(cumsum(tanh(x)))', 'speccent(cumsum(cumsum(x)))']
+  hold rec 5: acc=0.000  sel=['acf1(cumsum(sign(x)))', 'acf1(cumsum(tanh(x)))', 'hent(env(clip(x)))', 'std(rollstd(cumsum(x)))', 'speccent(cumsum(cumsum(x)))']
+  hold rec 6: acc=0.000  sel=['speccent(cumsum(diff(x)))', 'acf1(sq(abs(x)))']
+  hold rec 7: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(abs(x)))']
+  hold rec 8: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(id(x)))']
+  hold rec 9: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(rollstd(cumsum(x)))', 'acf1(cumsum(tanh(x)))']
+  hold rec 10: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(abs(x)))', 'meanabs(rollstd(tanh(x)))']
+  hold rec 11: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(id(x)))']
+  hold rec 12: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(env(abs(x)))', 'meanabs(rollstd(tanh(x)))']
+  hold rec 13: acc=0.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(abs(x)))', 'crest(rollstd(tanh(x)))']
+  hold rec 14: acc=0.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(id(x)))', 'crest(rollstd(tanh(x)))', 'speccent(cumsum(sq(x)))']
+  hold rec 15: acc=0.000  sel=['speccent(cumsum(diff(x)))', 'acf1(rollstd(cumsum(x)))']
+  hold rec 16: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(id(x)))', 'acf1(cumsum(tanh(x)))', 'speccent(cumsum(cumsum(x)))']
+  hold rec 17: acc=0.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(abs(x)))']
+  hold rec 18: acc=0.000  sel=['speccent(cumsum(diff(x)))', 'acf1(tanh(rollstd(x)))', 'acf1(cumsum(sign(x)))']
+  hold rec 19: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(env(abs(x)))']
+  hold rec 20: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(cumsum(tanh(x)))']
+  hold rec 21: acc=1.000  sel=['speccent(cumsum(diff(x)))', 'acf1(cumsum(tanh(x)))', 'acf1(rollstd(cumsum(x)))']
+  hold rec 22: acc=0.000  sel=['speccent(cumsum(diff(x)))', 'acf1(env(abs(x)))']
+  hold rec 23: acc=0.000  sel=['speccent(cumsum(diff(x)))', 'acf1(abs(id(x)))', 'crest(rollstd(tanh(x)))']
+FORGE nested: 0.625  CI [0.417,0.833]
+PAIRED forge-lean: +0.167  CI [-0.042,+0.375]  forge>lean 6/24
+{
+ "lean": 0.4583333333333333,
+ "forge": 0.625,
+ "perm_p": 0.04918032786885246,
+ "chance": 0.25
+}

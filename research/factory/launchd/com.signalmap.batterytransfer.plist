@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+ <key>Label</key><string>com.signalmap.batterytransfer</string>
+ <key>ProgramArguments</key><array>
+  <string><local-path>/signalmap/.venv-research/bin/python</string>
+  <string><local-path>/signalmap/research/factory/battery_pipeline.py</string>
+  <string>run</string>
+ </array>
+ <key>WorkingDirectory</key><string><local-path>/signalmap/research/factory</string>
+ <key>StartInterval</key><integer>1800</integer>
+ <key>RunAtLoad</key><true/>
+ <key>Nice</key><integer>19</integer>
+ <key>StandardOutPath</key><string><local-path>/signalmap/research/factory/logs/battery_pipeline.out</string>
+ <key>StandardErrorPath</key><string><local-path>/signalmap/research/factory/logs/battery_pipeline.err</string>
+</dict></plist>

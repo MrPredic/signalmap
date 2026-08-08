@@ -1,0 +1,145 @@
+  ECN/base: 0.592  [2s]
+  ECN/pool4: 0.357  [2s]
+  ECN/pool16: 0.301  [2s]
+  ECN/even_sub: 0.495  [2s]
+  ECN/peak_sub: 0.480  [2s]
+  ECN/level: 0.638  [2s]
+  ECN/integ: 0.469  [2s]
+ECN: base=0.592 pool4=0.357 pool16=0.301 even=0.495 peak=0.480 level=0.638(dead) integ=0.469  (chance 0.167)
+ECN: no readout flag (null/claim robust on all four proxy axes)
+  CWRU/base: 0.872  [6s]
+  CWRU/pool4: 0.412  [7s]
+  CWRU/pool16: 0.141  [7s]
+  CWRU/even_sub: 0.564  [7s]
+  CWRU/peak_sub: 0.630  [7s]
+  CWRU/level: 0.993  [7s]
+  CWRU/integ: 0.819  [6s]
+CWRU: base=0.872 pool4=0.412 pool16=0.141 even=0.564 peak=0.630 level=0.993(dead) integ=0.819  (chance 0.167)
+CWRU: SAMPLING (peak-even +0.065, CI-lo +0.027); NORM/LEVEL (+0.122, CI-lo +0.050) [level destroyed at load -> crest only]
+  MFPT/base: 0.780  [6s]
+  MFPT/pool4: 0.465  [7s]
+  MFPT/pool16: 0.381  [6s]
+  MFPT/even_sub: 0.524  [6s]
+  MFPT/peak_sub: 0.686  [6s]
+  MFPT/level: 0.877  [7s]
+  MFPT/integ: 0.739  [6s]
+MFPT: base=0.780 pool4=0.465 pool16=0.381 even=0.524 peak=0.686 level=0.877(dead) integ=0.739  (chance 0.333)
+MFPT: SAMPLING (peak-even +0.162, CI-lo +0.115)
+  CALCE-soh/base: 0.579  [3s]
+  CALCE-soh/pool4: 0.681  [3s]
+  CALCE-soh/pool16: 0.705  [3s]
+  CALCE-soh/even_sub: 0.648  [3s]
+  CALCE-soh/peak_sub: 0.638  [3s]
+  CALCE-soh/level: 0.782  [3s]
+  CALCE-soh/integ: 0.749  [3s]
+CALCE-soh: base=0.579 pool4=0.681 pool16=0.705 even=0.648 peak=0.638 level=0.782(dead) integ=0.749  (chance 0.333)
+CALCE-soh: TIMESCALE (pool16-base +0.126, CI-lo -0.059, monotone); NORM/LEVEL (+0.203, CI-lo +0.025) [level destroyed at load -> crest only]; WINDOW/PHASE (integ-base +0.170, CI-lo +0.005)
+  HYD-cooler/base: 0.533  [3s]
+  HYD-cooler/pool4: 0.411  [3s]
+  HYD-cooler/pool16: 0.522  [3s]
+  HYD-cooler/even_sub: 0.544  [3s]
+  HYD-cooler/peak_sub: 0.578  [3s]
+  HYD-cooler/level: 0.622  [3s]
+  HYD-cooler/integ: 0.489  [3s]
+HYD-cooler: base=0.533 pool4=0.411 pool16=0.522 even=0.544 peak=0.578 level=0.622(dead) integ=0.489  (chance 0.333)
+HYD-cooler: no readout flag (null/claim robust on all four proxy axes)
+  HYD-valve/base: 0.192  [4s]
+  HYD-valve/pool4: 0.167  [4s]
+  HYD-valve/pool16: 0.267  [4s]
+  HYD-valve/even_sub: 0.100  [4s]
+  HYD-valve/peak_sub: 0.208  [4s]
+  HYD-valve/level: 0.150  [4s]
+  HYD-valve/integ: 0.233  [4s]
+HYD-valve: base=0.192 pool4=0.167 pool16=0.267 even=0.100 peak=0.208 level=0.150(dead) integ=0.233  (chance 0.250)
+HYD-valve: no readout flag (null/claim robust on all four proxy axes)
+  HYD-accumulator/base: 0.275  [4s]
+  HYD-accumulator/pool4: 0.342  [4s]
+  HYD-accumulator/pool16: 0.283  [4s]
+  HYD-accumulator/even_sub: 0.175  [4s]
+  HYD-accumulator/peak_sub: 0.208  [4s]
+  HYD-accumulator/level: 0.250  [4s]
+  HYD-accumulator/integ: 0.208  [4s]
+HYD-accumulator: base=0.275 pool4=0.342 pool16=0.283 even=0.175 peak=0.208 level=0.250(dead) integ=0.208  (chance 0.250)
+HYD-accumulator: no readout flag (null/claim robust on all four proxy axes)
+  DCASE-valve-id/base: 0.325  [4s]
+  DCASE-valve-id/pool4: 0.192  [4s]
+  DCASE-valve-id/pool16: 0.158  [4s]
+  DCASE-valve-id/even_sub: 0.283  [4s]
+  DCASE-valve-id/peak_sub: 0.275  [4s]
+  DCASE-valve-id/level: 0.333  [4s]
+  DCASE-valve-id/integ: 0.275  [4s]
+DCASE-valve-id: base=0.325 pool4=0.192 pool16=0.158 even=0.283 peak=0.275 level=0.333(dead) integ=0.275  (chance 0.250)
+DCASE-valve-id: no readout flag (null/claim robust on all four proxy axes)
+  DCASE-valve-anomaly/base: 0.238  [2s]
+  DCASE-valve-anomaly/pool4: 0.287  [2s]
+  DCASE-valve-anomaly/pool16: 0.562  [2s]
+  DCASE-valve-anomaly/even_sub: 0.438  [3s]
+  DCASE-valve-anomaly/peak_sub: 0.363  [3s]
+  DCASE-valve-anomaly/level: 0.375  [2s]
+  DCASE-valve-anomaly/integ: 0.275  [2s]
+DCASE-valve-anomaly: base=0.238 pool4=0.287 pool16=0.562 even=0.438 peak=0.363 level=0.375(dead) integ=0.275  (chance 0.500)
+DCASE-valve-anomaly: TIMESCALE (pool16-base +0.325, CI-lo +0.175, monotone)
+  DCASE-pump-id/base: 0.292  [4s]
+  DCASE-pump-id/pool4: 0.283  [4s]
+  DCASE-pump-id/pool16: 0.150  [4s]
+  DCASE-pump-id/even_sub: 0.250  [4s]
+  DCASE-pump-id/peak_sub: 0.250  [4s]
+  DCASE-pump-id/level: 0.275  [4s]
+  DCASE-pump-id/integ: 0.258  [4s]
+DCASE-pump-id: base=0.292 pool4=0.283 pool16=0.150 even=0.250 peak=0.250 level=0.275(dead) integ=0.258  (chance 0.250)
+DCASE-pump-id: no readout flag (null/claim robust on all four proxy axes)
+  DCASE-pump-anomaly/base: 0.362  [2s]
+  DCASE-pump-anomaly/pool4: 0.500  [2s]
+  DCASE-pump-anomaly/pool16: 0.488  [2s]
+  DCASE-pump-anomaly/even_sub: 0.475  [2s]
+  DCASE-pump-anomaly/peak_sub: 0.400  [3s]
+  DCASE-pump-anomaly/level: 0.525  [2s]
+  DCASE-pump-anomaly/integ: 0.487  [2s]
+DCASE-pump-anomaly: base=0.362 pool4=0.500 pool16=0.488 even=0.475 peak=0.400 level=0.525(dead) integ=0.487  (chance 0.500)
+DCASE-pump-anomaly: no readout flag (null/claim robust on all four proxy axes)
+  IMS-fault/base: 0.609  [2s]
+  IMS-fault/pool4: 0.755  [2s]
+  IMS-fault/pool16: 0.516  [2s]
+  IMS-fault/even_sub: 0.557  [2s]
+  IMS-fault/peak_sub: 0.443  [2s]
+  IMS-fault/level: 0.656  [2s]
+  IMS-fault/integ: 0.651  [2s]
+IMS-fault: base=0.609 pool4=0.755 pool16=0.516 even=0.557 peak=0.443 level=0.656(dead) integ=0.651  (chance 0.500)
+IMS-fault: no readout flag (null/claim robust on all four proxy axes)
+  SEIS-depth/base: 0.688  [2s]
+  SEIS-depth/pool4: 0.789  [2s]
+  SEIS-depth/pool16: 0.586  [2s]
+  SEIS-depth/even_sub: 0.688  [2s]
+  SEIS-depth/peak_sub: 0.688  [2s]
+  SEIS-depth/level: 0.805  [3s]
+  SEIS-depth/integ: 0.758  [3s]
+SEIS-depth: base=0.688 pool4=0.789 pool16=0.586 even=0.688 peak=0.688 level=0.805(dead) integ=0.758  (chance 0.500)
+SEIS-depth: NORM/LEVEL (+0.117, CI-lo +0.023) [level destroyed at load -> crest only]
+GEOMAG-storm: all variants checkpointed, skip
+  GRIDFREQ-area/base: 0.536  [4s]
+  GRIDFREQ-area/pool4: 0.521  [4s]
+  GRIDFREQ-area/pool16: 0.281  [4s]
+  GRIDFREQ-area/even_sub: 0.297  [4s]
+  GRIDFREQ-area/peak_sub: 0.521  [4s]
+  GRIDFREQ-area/level: 0.568  [4s]
+  GRIDFREQ-area/integ: 0.510  [4s]
+GRIDFREQ-area: base=0.536 pool4=0.521 pool16=0.281 even=0.297 peak=0.521 level=0.568 integ=0.510  (chance 0.167)
+GRIDFREQ-area: SAMPLING (peak-even +0.224, CI-lo +0.094)
+  GAS-id/base: 0.121  [4s]
+  GAS-id/pool4: 0.104  [4s]
+  GAS-id/pool16: 0.138  [4s]
+  GAS-id/even_sub: 0.179  [4s]
+  GAS-id/peak_sub: 0.162  [4s]
+  GAS-id/level: 0.125  [4s]
+  GAS-id/integ: 0.104  [3s]
+GAS-id: base=0.121 pool4=0.104 pool16=0.138 even=0.179 peak=0.162 level=0.125(dead) integ=0.104  (chance 0.250)
+GAS-id: no readout flag (null/claim robust on all four proxy axes)
+  VOLCANO-eruption/base: 0.767  [2s]
+  VOLCANO-eruption/pool4: 0.600  [2s]
+  VOLCANO-eruption/pool16: 0.900  [2s]
+  VOLCANO-eruption/even_sub: 0.775  [3s]
+  VOLCANO-eruption/peak_sub: 0.717  [2s]
+  VOLCANO-eruption/level: 0.750  [2s]
+  VOLCANO-eruption/integ: 0.717  [2s]
+VOLCANO-eruption: base=0.767 pool4=0.600 pool16=0.900 even=0.775 peak=0.717 level=0.750(dead) integ=0.717  (chance 0.500)
+VOLCANO-eruption: no readout flag (null/claim robust on all four proxy axes)

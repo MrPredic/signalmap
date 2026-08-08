@@ -1,0 +1,6 @@
+ECN v1: paired forge-lean = +0.117  95% CI [+0.036, +0.214]  n=14  folds forge>lean: 8/14
+[4s]
+MFPT v1: paired forge-lean = -0.005  95% CI [-0.125, +0.118]  n=20  folds forge>lean: 11/20
+[14s]
+CWRU v1: paired forge-lean = +0.031  95% CI [-0.069, +0.144]  n=24  folds forge>lean: 10/24
+done [26s]

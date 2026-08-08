@@ -1,0 +1,37 @@
+
+===== HYD-valve: 120 windows, 24 recordings, 4 classes, chance=0.250 =====
+LEAN: 0.192  CI [0.133,0.258]  [3s]
+LEAN group-perm-p = 0.623 (60 perms)
+gate: 1200/2128 programs (C=50 x 24 recs); features [7s]
+  hold rec 0: acc=0.400  sel=['crest(sq(tanh(x)))', 'std(tanh(sign(x)))', 'iqr90(tanh(clip(x)))', 'iqr90(clip(tanh(x)))']
+  hold rec 1: acc=0.600  sel=['crest(sq(tanh(x)))', 'std(sign(clip(x)))', 'iqr90(tanh(clip(x)))', 'iqr90(clip(tanh(x)))']
+  hold rec 2: acc=0.400  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'hent(tanh(abs(x)))', 'hent(abs(tanh(x)))']
+  hold rec 3: acc=0.400  sel=['crest(tanh(tanh(x)))', 'crest(sq(tanh(x)))', 'crest(abs(tanh(x)))', 'crest(clip(tanh(x)))', 'std(sign(sign(x)))']
+  hold rec 4: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(abs(tanh(x)))']
+  hold rec 5: acc=0.200  sel=['hent(tanh(sq(x)))', 'crest(sq(tanh(x)))', 'iqr90(tanh(clip(x)))', 'iqr90(clip(tanh(x)))']
+  hold rec 6: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(tanh(clip(x)))', 'hent(abs(tanh(x)))']
+  hold rec 7: acc=0.400  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(abs(tanh(x)))', 'std(tanh(tanh(x)))', 'iqr90(tanh(clip(x)))']
+  hold rec 8: acc=0.400  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(abs(tanh(x)))', 'iqr90(abs(tanh(x)))']
+  hold rec 9: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(tanh(clip(x)))', 'crest(abs(tanh(x)))', 'std(sign(sign(x)))']
+  hold rec 10: acc=0.400  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(abs(tanh(x)))', 'iqr90(tanh(clip(x)))', 'iqr90(clip(tanh(x)))']
+  hold rec 11: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(tanh(clip(x)))']
+  hold rec 12: acc=0.000  sel=['crest(sq(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(tanh(clip(x)))', 'crest(tanh(tanh(x)))', 'iqr90(abs(tanh(x)))']
+  hold rec 13: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(abs(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(tanh(clip(x)))']
+  hold rec 14: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(tanh(clip(x)))', 'iqr90(tanh(clip(x)))']
+  hold rec 15: acc=0.000  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(tanh(clip(x)))', 'iqr90(tanh(clip(x)))']
+  hold rec 16: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(tanh(clip(x)))', 'iqr90(tanh(clip(x)))']
+  hold rec 17: acc=0.000  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'std(sign(clip(x)))', 'crest(abs(tanh(x)))']
+  hold rec 18: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'crest(abs(tanh(x)))', 'std(sign(clip(x)))']
+  hold rec 19: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(abs(tanh(x)))', 'iqr90(clip(tanh(x)))']
+  hold rec 20: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'iqr90(tanh(sq(x)))']
+  hold rec 21: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'std(sign(clip(x)))']
+  hold rec 22: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))', 'iqr90(tanh(clip(x)))']
+  hold rec 23: acc=0.200  sel=['crest(sq(tanh(x)))', 'crest(tanh(tanh(x)))', 'crest(clip(tanh(x)))']
+FORGE nested: 0.242  CI [0.192,0.300]
+PAIRED forge-lean: +0.050  CI [-0.017,+0.117]  forge>lean 11/24
+Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+  File "<local-path>/signalmap/research/factory/gauntlet.py", line 80, in gauntlet
+    with open(FOLDS_CSV, "a") as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'research/factory/logs/gauntlet_folds.csv'

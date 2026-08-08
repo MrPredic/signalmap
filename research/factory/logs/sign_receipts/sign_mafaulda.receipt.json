@@ -1,0 +1,78 @@
+{
+  "claim": "on domain 'mafaulda', a healthy-only calibrated signalmap detector ranks anomalies inverted relative to normal (AUC 0.3124, 95% CI [0.2370, 0.3819])",
+  "countersignatures": [],
+  "created_at": "2026-08-07T10:48:41Z",
+  "evidence": {
+    "K": 20,
+    "W": 1024,
+    "alarm": {
+      "alarm_rate_anomaly": 0.5465465465465466,
+      "alarm_rate_normal": 0.896551724137931,
+      "gap": -0.3500051775913845,
+      "gap_ci_hi": -0.2184708652187523,
+      "gap_ci_lo": -0.4702438186813187
+    },
+    "auc": 0.31241586414000205,
+    "auc_star": 0.6875841358599979,
+    "ci_hi": 0.38185689654948896,
+    "ci_lo": 0.23695376624378983,
+    "direction": "inverted",
+    "domain": "mafaulda",
+    "envelope": 3.0,
+    "h2_separates": true,
+    "manifest": {
+      "anomaly_mapping": "the source's own directory split: normal/ is healthy, imbalance/<weight>/ are the labelled imbalance faults, all severities 6g-35g included without selection",
+      "channel": "source column 2 (zero-based index 1), underhang bearing accelerometer axial \u2014 the first condition-measuring column; column 1 is a tachometer reference. Prereg AMENDMENT 7.",
+      "fs_hz": 50000,
+      "license": "MAFAULDA, UFRJ \u2014 free for research use with attribution",
+      "modality": "accelerometer on a rotating machinery fault simulator",
+      "source_url": "https://www02.smt.ufrj.br/~offshore/mfs/page_01.html"
+    },
+    "n1_null_ci": [
+      0.393802423112768,
+      0.6093196644920782
+    ],
+    "n1_null_covers_half": true,
+    "n2_ci": [
+      0.9714285714285714,
+      1.0
+    ],
+    "n2_healthy_vs_healthy_auc": 0.9952380952380953,
+    "n2_ok": false,
+    "n3_leaked_recordings": [],
+    "n_anomaly": 333,
+    "n_boot_used": 2000,
+    "n_eval": 362,
+    "n_fit_recordings": 20,
+    "n_fit_windows": 400,
+    "n_normal": 29,
+    "null_star_q95": 0.6071295433364399,
+    "perm_p_two_sided": 0.0005,
+    "prereg": "PREREG_SIGN_IDENTIFIABILITY.md",
+    "runtime_s": 20.5,
+    "seed": 0,
+    "spec_premium": [],
+    "spec_programs": [
+      "acf1(id(id(x)))",
+      "crest(id(id(x)))",
+      "lcross(id(id(x)))",
+      "meanabs(id(id(x)))",
+      "peakcv(id(id(x)))",
+      "runcv(id(id(x)))",
+      "runmean(id(id(x)))",
+      "std(id(id(x)))",
+      "zcr(id(id(x)))"
+    ],
+    "threshold": 4945755.853107457,
+    "verdict": "REFUSED"
+  },
+  "input_hashes": {
+    "manifest_sha256": "f4acc852eb2654eae9aaec68cf805437f755a597bae14fa6e55bcb2a52ced8da"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "a96a1b3d66bc89ff6ccc36c8aa8e8f8889c4832efebd265241c82dcd74e8a30c133730b0c00c1226ab5920a3f9ecde61be49d0902e05938532999bc963176c07",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "REFUSED"
+}

@@ -1,0 +1,9 @@
+  perm 25/200: hits=0
+  perm 50/200: hits=0
+  perm 75/200: hits=0
+  perm 100/200: hits=0
+  perm 125/200: hits=0
+  perm 150/200: hits=0
+  perm 175/200: hits=0
+  perm 200/200: hits=0
+PERM-P (forge LOCO, within-cell, M=200): obs=0.718, p=0.0050

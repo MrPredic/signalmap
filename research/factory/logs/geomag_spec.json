@@ -1,0 +1,18 @@
+{
+  "programs": [
+    "peakcv(diff(rank(x)))",
+    "zcr(abs(diff(x)))",
+    "acf1(abs(diff2(x)))",
+    "meanabs(diff2(diff(x)))"
+  ],
+  "classes": [
+    "quiet",
+    "storm"
+  ],
+  "window": 1024,
+  "budget_c": 50,
+  "n_recordings": 16,
+  "nested_acc": 0.8828125,
+  "forged_acc": 0.96875,
+  "chance": 0.5
+}

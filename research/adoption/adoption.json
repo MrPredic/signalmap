@@ -1,0 +1,170 @@
+{
+  "ci_runs": {
+    "2026-06-26": 7,
+    "2026-06-27": 2,
+    "2026-06-28": 2,
+    "2026-07-02": 1,
+    "2026-07-27": 1,
+    "2026-07-28": 1,
+    "2026-07-30": 7,
+    "2026-07-31": 2,
+    "2026-08-05": 10
+  },
+  "clones": {
+    "2026-07-22": {
+      "count": 1,
+      "uniques": 1
+    },
+    "2026-07-23": {
+      "count": 1,
+      "uniques": 1
+    },
+    "2026-07-24": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-25": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-26": {
+      "count": 1,
+      "uniques": 1
+    },
+    "2026-07-27": {
+      "count": 7,
+      "uniques": 5
+    },
+    "2026-07-28": {
+      "count": 15,
+      "uniques": 9
+    },
+    "2026-07-29": {
+      "count": 1,
+      "uniques": 1
+    },
+    "2026-07-30": {
+      "count": 69,
+      "uniques": 26
+    },
+    "2026-07-31": {
+      "count": 15,
+      "uniques": 7
+    },
+    "2026-08-01": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-08-02": {
+      "count": 1,
+      "uniques": 1
+    },
+    "2026-08-03": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-08-04": {
+      "count": 1,
+      "uniques": 1
+    }
+  },
+  "last_snapshot": "2026-08-06T05:38:49+00:00",
+  "marks": {
+    "2026-08-06": {
+      "forks": 0,
+      "open_issues": 0,
+      "stars": 0,
+      "watchers": 0
+    }
+  },
+  "paths": {
+    "2026-08-06": [
+      {
+        "count": 9,
+        "path": "/MrPredic/signalmap",
+        "title": "Overview",
+        "uniques": 7
+      },
+      {
+        "count": 3,
+        "path": "/MrPredic/signalmap/blob/main/docs/ARCHITECTURE.md",
+        "title": "/blob/main/docs/ARCHITECTURE.md",
+        "uniques": 3
+      }
+    ]
+  },
+  "pypi_downloads": {
+    "2026-07-30": 118,
+    "2026-07-31": 3,
+    "2026-08-01": 1,
+    "2026-08-02": 2,
+    "2026-08-05": 234
+  },
+  "referrers": {
+    "2026-08-06": [
+      {
+        "count": 3,
+        "referrer": "github.com",
+        "uniques": 2
+      }
+    ]
+  },
+  "views": {
+    "2026-07-22": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-23": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-24": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-25": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-26": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-27": {
+      "count": 2,
+      "uniques": 1
+    },
+    "2026-07-28": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-29": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-07-30": {
+      "count": 10,
+      "uniques": 9
+    },
+    "2026-07-31": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-08-01": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-08-02": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-08-03": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-08-04": {
+      "count": 0,
+      "uniques": 0
+    }
+  }
+}

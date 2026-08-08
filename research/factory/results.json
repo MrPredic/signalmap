@@ -1,0 +1,65 @@
+{
+  "updated": "2026-07-02",
+  "ecn": {
+    "chance": 0.167,
+    "windows": 196,
+    "recordings": 14,
+    "methods": {
+      "LEAN perm3+psd_slope": {
+        "acc": 0.592,
+        "ms": 0.38,
+        "ours": true
+      },
+      "FORGED 5-set (preliminary)": {
+        "acc": 0.704,
+        "ms": 0.24,
+        "ours": true,
+        "note": "p=0.016, nested pending"
+      },
+      "RQA (rec+det)": {
+        "acc": 0.265,
+        "ms": 11.5
+      },
+      "Wavelet-Entropie": {
+        "acc": 0.194,
+        "ms": 0.06
+      },
+      "RQA+Wavelet": {
+        "acc": 0.434,
+        "ms": 11.4
+      }
+    },
+    "perm_p_ours": 0.016
+  },
+  "cwru": {
+    "chance": 0.167,
+    "windows": 2849,
+    "recordings": 24,
+    "perm_p_ours": 0.01,
+    "methods": {
+      "LEAN perm3+psd_slope": {
+        "acc": 0.872,
+        "ms": 0.68,
+        "ours": true
+      },
+      "RQA (rec+det)": {
+        "acc": 0.356,
+        "ms": 22.2
+      },
+      "Wavelet-Entropie": {
+        "acc": 0.336,
+        "ms": 0.1
+      },
+      "RQA+Wavelet": {
+        "acc": 0.543,
+        "ms": 22.4
+      },
+      "FORGED 5-set": {
+        "acc": 0.911,
+        "ms": 0.08,
+        "ours": true,
+        "note": "p=0.016, nested pending"
+      }
+    }
+  }
+}

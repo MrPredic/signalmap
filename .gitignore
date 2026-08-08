@@ -30,11 +30,6 @@ research/factory/logs/cache/
 # on the machine. They carry local paths and unreleased planning, never the
 # public repo.
 .remember/
-NEXT.md
-PARALLEL_PLAN.md
-PLAN_*.md
-SESSION_HANDOVER_*.md
-RESEARCH_OVERVIEW.html
 
 # coverage
 .coverage
@@ -44,12 +39,7 @@ htmlcov/
 # Research artifacts: the public repo carries the verdict corpus and exactly
 # the reports/specs/preregs its receipts pin (~44 KiB) — raw run logs, caches
 # and frozen models (~70 MB) stay on the private research branch.
-research/*
-!research/factory/
-research/factory/*
-!research/factory/PREREG_*.md
-!research/factory/receipts/
-!research/factory/logs/
-research/factory/logs/*
-!research/factory/logs/*_report.md
-!research/factory/logs/*_spec.json
+
+# The full research tree is published; only these stay local:
+research/factory/logs/cache/
+research/factory/logs/*.err   # multi-MB stderr dumps, no value to a reader

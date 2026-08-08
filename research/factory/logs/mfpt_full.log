@@ -1,0 +1,42 @@
+MFPT: 3718 windows, 20 recordings, chance=0.333
+LEAN  perm3+psd_slope  LOGO=0.779 @ 0.68ms
+HEAVY rqa              LOGO=0.505 @ 21.63ms
+HEAVY wavelet          LOGO=0.462 @ 0.11ms
+HEAVY rqa+wav          LOGO=0.684 @ 21.04ms
+lean group-perm p = 0.016
+
+================ MFPT (biased UB): 3718 windows, 20 recordings, chance=0.333 ================
+forged 1092 programs x 3718 windows in 248s
+  + hent(tanh(id(x)))                -> LOGO 0.670
+  + hent(tanh(abs(x)))               -> LOGO 0.737
+  + speccent(env(id(x)))             -> LOGO 0.760
+  + hent(tanh(sq(x)))                -> LOGO 0.765
+  + specratio(env(env(x)))           -> LOGO 0.787
+
+  LEAN baseline (perm3+psd_slope): LOGO 0.780 (std 0.199)
+  FORGED set (5 programs):      LOGO 0.787 @ 0.54 ms/win
+  group-perm p: forged=0.016  lean=0.016  (60 perms)
+
+=== MFPT nested ===
+  hold rec 0: acc=0.692  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'speccent(env(abs(x)))', 'hent(tanh(sq(x)))', 'speccent(env(tanh(x)))']
+  hold rec 1: acc=0.636  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'specratio(env(rollstd(x)))', 'speccent(env(id(x)))', 'specratio(env(env(x)))']
+  hold rec 2: acc=0.675  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'hent(tanh(abs(x)))', 'speccent(env(abs(x)))', 'speccent(env(id(x)))']
+  hold rec 3: acc=0.832  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'speccent(env(id(x)))', 'hent(tanh(sq(x)))', 'specratio(env(env(x)))']
+  hold rec 4: acc=0.133  sel=['hent(tanh(sq(x)))', 'crest(tanh(rollstd(x)))', 'hent(abs(tanh(x)))', 'hent(sq(tanh(x)))', 'crest(tanh(diff(x)))']
+  hold rec 5: acc=0.864  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'speccent(abs(env(x)))', 'speccent(env(id(x)))', 'specratio(env(env(x)))']
+  hold rec 6: acc=0.916  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'speccent(abs(env(x)))', 'specratio(rollstd(env(x)))', 'specratio(env(env(x)))']
+  hold rec 7: acc=0.853  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'speccent(abs(env(x)))', 'speccent(rollstd(tanh(x)))', 'specratio(env(env(x)))']
+  hold rec 8: acc=0.734  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'speccent(abs(env(x)))', 'specratio(rollstd(env(x)))', 'specratio(env(env(x)))']
+  hold rec 9: acc=0.678  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'speccent(abs(env(x)))', 'hent(tanh(sq(x)))', 'specratio(env(env(x)))']
+  hold rec 10: acc=0.713  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'speccent(env(abs(x)))', 'hent(tanh(sq(x)))', 'specratio(env(env(x)))']
+  hold rec 11: acc=0.769  sel=['acf1(rollstd(sq(x)))', 'hent(tanh(id(x)))', 'acf1(rollstd(abs(x)))', 'runcv(rollstd(rollstd(x)))', 'meanabs(env(rollstd(x)))']
+  hold rec 12: acc=0.902  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'speccent(env(id(x)))', 'speccent(rollstd(tanh(x)))', 'speccent(env(sq(x)))']
+  hold rec 13: acc=0.958  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'speccent(env(id(x)))', 'hent(tanh(sq(x)))', 'specratio(env(env(x)))']
+  hold rec 14: acc=0.944  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'speccent(env(abs(x)))', 'hent(tanh(sq(x)))', 'specratio(env(env(x)))']
+  hold rec 15: acc=1.000  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'speccent(env(id(x)))', 'specratio(env(env(x)))', 'speccent(rollstd(tanh(x)))']
+  hold rec 16: acc=0.965  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'speccent(env(abs(x)))', 'hent(tanh(sq(x)))', 'specratio(env(env(x)))']
+  hold rec 17: acc=0.469  sel=['hent(tanh(id(x)))', 'hent(tanh(abs(x)))', 'speccent(env(abs(x)))', 'specratio(env(diff(x)))', 'speccent(env(sq(x)))']
+  hold rec 18: acc=0.902  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'hent(tanh(abs(x)))', 'speccent(env(id(x)))', 'specratio(env(env(x)))']
+  hold rec 19: acc=0.864  sel=['hent(tanh(id(x)))', 'hent(abs(tanh(x)))', 'hent(tanh(abs(x)))', 'speccent(env(id(x)))', 'hent(tanh(sq(x)))']
+
+MFPT: NESTED forged = 0.775 (biased was reported earlier)  vs LEAN 0.780   [410s]

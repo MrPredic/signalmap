@@ -1,0 +1,26 @@
+# signalmap distill — gauntlet receipt
+
+- verdict: PASS
+- classes (6): B007, B021, IR007, IR021, OR007, OR021
+- recordings: 24 · windows: 2849 · chance: 0.167
+
+## capacity gate
+- grammar total: 2128
+- budget = min(2128, 50*24) = 1200 (50.0 programs/recording)
+
+## accuracy receipts (LOGO over recordings)
+- nested LOGO (honesty anchor): 0.864
+- deploy selection (biased UB): 0.875
+- lean baseline (permEnt+psdSlope): 0.870 (+0.005 vs lean)
+- group-permutation p: 0.032
+- NULL self-test (labels shuffled): 0.084 (want ~chance 0.167)
+- cost: 0.114 ms/window (5 programs)
+
+## deploy spec (selected programs)
+- acf1(abs(clip(x)))
+- meanabs(diff(abs(x)))
+- acf1(sq(tanh(x)))
+- meanabs(sq(sq(x)))
+- meanabs(abs(abs(x)))
+
+Deploy: `signalmap fit`/`monitor` load spec.json as the feature backend.

@@ -1,0 +1,4 @@
+grammar size = 2128
+features done [446s]
+  hold rec 23: acc=1.000  sel=['crest(diff2(cumsum(x)))', 'meanabs(diff(abs(x)))', 'acf1(abs(clip(x)))', 'crest(tanh(diff(x)))', 'crest(sq(clip(x)))']
+done [475s]

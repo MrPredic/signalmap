@@ -1,0 +1,14 @@
+cells as groups: 6
+
+===== CALCE-soh-LOCO: 306 windows, 6 recordings, 3 classes, chance=0.333 =====
+LEAN: 0.773  CI [0.698,0.853]  [1s]
+LEAN group-perm-p = 1.000 (60 perms)
+gate: 300/2128 programs (C=50 x 6 recs); features [5s]
+  hold rec 0: acc=0.792  sel=['runmean(rank(rollstd(x)))', 'specflat(sq(rollstd(x)))', 'lcross(abs(clip(x)))', 'lcross(abs(sq(x)))', 'specratio(rank(cumsum(x)))']
+  hold rec 1: acc=0.662  sel=['runmean(rank(rollstd(x)))', 'runcv(abs(rollstd(x)))', 'crest(sq(diff2(x)))', 'speccent(cumsum(sign(x)))', 'specflat(tanh(diff(x)))']
+  hold rec 2: acc=0.774  sel=['runmean(rank(rollstd(x)))', 'specflat(sq(rollstd(x)))', 'lcross(abs(clip(x)))', 'specratio(rank(cumsum(x)))', 'runcv(abs(rollstd(x)))']
+  hold rec 3: acc=1.000  sel=['runmean(rank(rollstd(x)))', 'specflat(sq(rollstd(x)))', 'lcross(abs(clip(x)))', 'runcv(abs(rollstd(x)))', 'crest(sq(diff2(x)))']
+  hold rec 4: acc=0.913  sel=['runmean(rank(rollstd(x)))', 'specflat(sq(rollstd(x)))', 'lcross(abs(clip(x)))', 'specratio(rank(cumsum(x)))', 'runcv(abs(rollstd(x)))']
+  hold rec 5: acc=0.936  sel=['runmean(rank(rollstd(x)))', 'specflat(sq(rollstd(x)))', 'lcross(abs(clip(x)))', 'runcv(abs(rollstd(x)))', 'crest(sq(diff2(x)))']
+FORGE nested: 0.846  CI [0.749,0.936]
+PAIRED forge-lean: +0.073  CI [-0.057,+0.184]  forge>lean 4/6

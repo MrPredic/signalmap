@@ -1,0 +1,464 @@
+== PRECURSOR-UWE-2h: bank_audit + gauntlet (NEW-bank rule; checks 6/7 expected-FAIL paired, gauntlet perm-p no weight)
+
+--- bank PRECURSOR-UWE-2h: 720 win, 46 recs, 2 cls, chance=0.500 ---
+[PASS] group-integrity[PRECURSOR-UWE-2h]: 0 folds with train/test recording overlap (must be 0) [0s]
+[PASS] window-provenance[PRECURSOR-UWE-2h]: 0 exact + 0 near-identical (|r|>0.999) windows shared across different groups (must be 0) [0s]
+[FAIL] class-balance[PRECURSOR-UWE-2h]: majority share: windows 0.500, recordings 0.978 (both must be < 1.5x chance 0.750) [0s]
+[FAIL] label-shuffle[PRECURSOR-UWE-2h]: real 0.538 -> shuffled 0.976 (shuffle must destroy signal) [16s]
+[PASS] seed-stability[PRECURSOR-UWE-2h]: lean LOGO over seeds 0/1/2 = ['0.538', '0.533', '0.539'], spread 0.007 (<0.05) and all > chance [24s]
+[PASS] determinism[PRECURSOR-UWE-2h]: features identical=True, LOGO 0.538043 == 0.538043 -> True [16s]
+[PASS] feature-degeneracy[PRECURSOR-UWE-2h]: top-30 ranking: 0 constants (must be 0), 30/30 effective unique clusters (must be >=8; <30 = grammar identity-duplicates burning candidate budget -> dedup recommended) [0s]
+[FAIL] nested-vs-biased[PRECURSOR-UWE-2h]: biased 0.515 >= nested 0.492 (gap +0.023) and nested > chance+0.05 (0.550) [1097s]
+[PASS] scaler-note[PRECURSOR-UWE-2h]: pipeline 0.538 vs global-scaled 0.538 (RF scale-invariant; scaling not a leak vector) [8s]
+
+===== PRECURSOR-UWE-2h: 720 windows, 46 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.538  CI [0.478,0.597]  [8s]
+LEAN group-perm-p = 1.000 (60 perms)
+gate: 897/897 programs (C=50 x 46 recs); features [48s]
+  hold rec 4: acc=0.438  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 5: acc=0.312  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'specratio(env(diff(x)))']
+  hold rec 7: acc=0.500  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 8: acc=0.375  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'crest(tanh(rollstd(x)))']
+  hold rec 9: acc=0.500  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))']
+  hold rec 10: acc=0.688  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 11: acc=0.500  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))']
+  hold rec 12: acc=0.312  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'crest(env(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 13: acc=0.438  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'runmean(rollstd(rollstd(x)))']
+  hold rec 14: acc=0.438  sel=['meanabs(env(rank(x)))', 'hent(sq(rollstd(x)))', 'hent(abs(clip(x)))', 'crest(sq(rollstd(x)))', 'runmean(rollstd(rollstd(x)))']
+  hold rec 15: acc=0.250  sel=['meanabs(env(rank(x)))', 'hent(sq(rollstd(x)))', 'hent(abs(clip(x)))', 'crest(sq(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 16: acc=0.562  sel=['meanabs(env(rank(x)))', 'hent(abs(clip(x)))', 'crest(sq(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'peakcv(rollstd(rank(x)))']
+  hold rec 17: acc=0.188  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 18: acc=0.312  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))']
+  hold rec 19: acc=0.312  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'specratio(env(diff(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 20: acc=0.688  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 21: acc=0.688  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 22: acc=0.312  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'speccent(abs(diff2(x)))', 'crest(rollstd(id(x)))']
+  hold rec 23: acc=0.688  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 24: acc=0.562  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 25: acc=0.375  sel=['meanabs(env(rank(x)))', 'hent(sq(rollstd(x)))', 'hent(env(rollstd(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))']
+  hold rec 26: acc=0.688  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 27: acc=0.375  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'hent(env(clip(x)))', 'peakcv(rollstd(id(x)))']
+  hold rec 28: acc=0.688  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 29: acc=0.250  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))', 'acf1(rollstd(rollstd(x)))']
+  hold rec 30: acc=0.438  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 31: acc=0.375  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))']
+  hold rec 32: acc=0.750  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'hent(env(clip(x)))']
+  hold rec 33: acc=0.812  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'hent(tanh(rollstd(x)))', 'crest(rollstd(id(x)))']
+  hold rec 34: acc=0.375  sel=['meanabs(env(rank(x)))', 'hent(sq(rollstd(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))']
+  hold rec 35: acc=1.000  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))', 'hent(rollstd(id(x)))']
+  hold rec 36: acc=0.625  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))']
+  hold rec 37: acc=0.500  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(rollstd(id(x)))', 'speccent(abs(diff2(x)))', 'specratio(rollstd(diff(x)))']
+  hold rec 38: acc=0.938  sel=['acflag(sign(diff2(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 39: acc=0.688  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'crest(env(rollstd(x)))']
+  hold rec 40: acc=0.812  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 41: acc=0.812  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'zcr(rollstd(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 42: acc=0.500  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'crest(env(rollstd(x)))']
+  hold rec 43: acc=0.438  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'speccent(abs(diff2(x)))']
+  hold rec 44: acc=0.688  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'hent(env(clip(x)))', 'peakcv(rollstd(id(x)))']
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+  hold rec 45: acc=0.438  sel=['meanabs(env(rank(x)))', 'acf1(rollstd(rollstd(x)))', 'hent(env(clip(x)))', 'crest(env(rollstd(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 46: acc=0.375  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'runcv(diff(rollstd(x)))']
+  hold rec 47: acc=0.000  sel=['meanabs(id(id(x)))', 'peakcv(diff(tanh(x)))', 'specratio(diff(tanh(x)))', 'ordtrans(diff(tanh(x)))', 'lcross(diff(tanh(x)))']
+  hold rec 48: acc=0.625  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'peakcv(clip(rollstd(x)))', 'specratio(env(diff(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 49: acc=0.438  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'runmean(rollstd(rollstd(x)))', 'crest(env(rollstd(x)))', 'hent(rollstd(id(x)))']
+  hold rec 50: acc=0.500  sel=['meanabs(env(rank(x)))', 'crest(sq(rollstd(x)))', 'hent(env(clip(x)))', 'hent(rollstd(id(x)))', 'peakcv(rollstd(id(x)))']
+FORGE nested: 0.512  CI [0.455,0.571]
+PAIRED forge-lean: -0.026  CI [-0.090,+0.038]  forge>lean 16/46
+STABILITY: top1-freq 0.74, mean-jaccard 0.39 (STABLE)
+CHAMPION (paired CI, chance-gated): NULL (nobody clears chance)
+CLF-ROBUSTNESS (LogReg on champion features): 0.579  (RF-ONLY -> flag model-dependence)
+PRECURSOR-UWE-2h [PRIMARY]: n=90 acc=0.567 CI[0.465,0.670] pairs=26/44 sign_p=0.1456 -> NULL
+PRECURSOR-UWE-6h [exploratory]: n=89 acc=0.551 CI[0.467,0.633] pairs=25/44 sign_p=0.2257 -> exploratory
+PRECURSOR-UWE-12h [exploratory]: n=90 acc=0.656 CI[0.556,0.756] pairs=31/45 sign_p=0.0080 -> exploratory
+== PRECURSOR-RIMD-2h: bank_audit + gauntlet (NEW-bank rule; checks 6/7 expected-FAIL paired, gauntlet perm-p no weight)
+
+--- bank PRECURSOR-RIMD-2h: 720 win, 46 recs, 2 cls, chance=0.500 ---
+[PASS] group-integrity[PRECURSOR-RIMD-2h]: 0 folds with train/test recording overlap (must be 0) [0s]
+[PASS] window-provenance[PRECURSOR-RIMD-2h]: 0 exact + 0 near-identical (|r|>0.999) windows shared across different groups (must be 0) [0s]
+[FAIL] class-balance[PRECURSOR-RIMD-2h]: majority share: windows 0.500, recordings 0.978 (both must be < 1.5x chance 0.750) [0s]
+[FAIL] label-shuffle[PRECURSOR-RIMD-2h]: real 0.531 -> shuffled 0.978 (shuffle must destroy signal) [16s]
+[PASS] seed-stability[PRECURSOR-RIMD-2h]: lean LOGO over seeds 0/1/2 = ['0.531', '0.537', '0.539'], spread 0.008 (<0.05) and all > chance [23s]
+[PASS] determinism[PRECURSOR-RIMD-2h]: features identical=True, LOGO 0.531250 == 0.531250 -> True [16s]
+  (built F cache PRECURSOR-RIMD-2h: (720, 1150) in 59s)
+[PASS] feature-degeneracy[PRECURSOR-RIMD-2h]: top-30 ranking: 0 constants (must be 0), 30/30 effective unique clusters (must be >=8; <30 = grammar identity-duplicates burning candidate budget -> dedup recommended) [0s]
+[FAIL] nested-vs-biased[PRECURSOR-RIMD-2h]: biased 0.539 >= nested 0.473 (gap +0.067) and nested > chance+0.05 (0.550) [13171s]
+[PASS] scaler-note[PRECURSOR-RIMD-2h]: pipeline 0.531 vs global-scaled 0.531 (RF scale-invariant; scaling not a leak vector) [8s]
+
+===== PRECURSOR-RIMD-2h: 720 windows, 46 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.531  CI [0.473,0.591]  [8s]
+LEAN group-perm-p = 1.000 (60 perms)
+gate: 897/897 programs (C=50 x 46 recs); features [47s]
+  hold rec 4: acc=0.438  sel=['iqr90(tanh(abs(x)))', 'runcv(sign(rank(x)))', 'hent(env(clip(x)))', 'zcr(rollstd(diff(x)))']
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+  hold rec 5: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))']
+  hold rec 7: acc=0.500  sel=['iqr90(tanh(abs(x)))', 'runcv(sign(rank(x)))', 'meanabs(tanh(env(x)))']
+  hold rec 8: acc=0.312  sel=['iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'std(clip(sq(x)))']
+  hold rec 9: acc=0.562  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'hent(clip(env(x)))']
+  hold rec 10: acc=0.625  sel=['iqr90(tanh(abs(x)))', 'runcv(sign(rank(x)))', 'iqr90(env(id(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 11: acc=0.500  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'zcr(rollstd(diff(x)))', 'std(tanh(sq(x)))']
+  hold rec 12: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'iqr90(tanh(sq(x)))']
+  hold rec 13: acc=0.438  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'meanabs(tanh(env(x)))']
+  hold rec 14: acc=0.500  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(clip(abs(x)))', 'zcr(rollstd(diff(x)))']
+  hold rec 15: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))']
+  hold rec 16: acc=0.625  sel=['iqr90(tanh(abs(x)))', 'runcv(sign(rank(x)))', 'runmean(rollstd(diff(x)))', 'iqr90(env(env(x)))']
+  hold rec 17: acc=0.500  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'std(sq(tanh(x)))']
+  hold rec 18: acc=0.438  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'meanabs(tanh(env(x)))', 'zcr(rollstd(diff(x)))']
+  hold rec 19: acc=0.562  sel=['iqr90(tanh(abs(x)))', 'runcv(sign(rank(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 20: acc=0.688  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'meanabs(tanh(env(x)))']
+  hold rec 21: acc=0.750  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))', 'zcr(rollstd(diff(x)))']
+  hold rec 22: acc=0.688  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))']
+  hold rec 23: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))']
+  hold rec 24: acc=0.438  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'std(env(env(x)))']
+  hold rec 25: acc=0.500  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'meanabs(tanh(env(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 26: acc=0.438  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'iqr90(env(id(x)))', 'runmean(rollstd(diff(x)))', 'iqr90(env(env(x)))']
+  hold rec 27: acc=0.438  sel=['iqr90(tanh(abs(x)))', 'iqr90(tanh(sq(x)))']
+  hold rec 28: acc=0.625  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 29: acc=0.625  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))']
+  hold rec 30: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'iqr90(env(id(x)))']
+  hold rec 31: acc=0.438  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(clip(abs(x)))']
+  hold rec 32: acc=0.438  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'meanabs(tanh(env(x)))']
+  hold rec 33: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'hent(tanh(sq(x)))']
+  hold rec 34: acc=0.625  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'meanabs(tanh(env(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 35: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(clip(abs(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 36: acc=0.562  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 37: acc=0.500  sel=['iqr90(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'hent(env(clip(x)))']
+  hold rec 38: acc=0.438  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))']
+  hold rec 39: acc=0.500  sel=['iqr90(tanh(abs(x)))', 'runcv(sign(rank(x)))', 'meanabs(tanh(env(x)))', 'hent(tanh(sq(x)))']
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+<local-path>/signalmap/.venv-research/lib/python3.11/site-packages/sklearn/utils/parallel.py:144: UserWarning: `sklearn.utils.parallel.delayed` should be used with `sklearn.utils.parallel.Parallel` to make it possible to propagate the scikit-learn configuration of the current thread to the joblib workers.
+  warnings.warn(
+  hold rec 40: acc=0.500  sel=['iqr90(tanh(abs(x)))', 'runcv(sign(rank(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 41: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))', 'std(clip(abs(x)))', 'std(tanh(sq(x)))']
+  hold rec 42: acc=0.438  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))']
+  hold rec 43: acc=0.500  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'runmean(rollstd(diff(x)))']
+  hold rec 44: acc=0.625  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(clip(sq(x)))']
+  hold rec 45: acc=0.562  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(clip(abs(x)))', 'zcr(rollstd(diff(x)))']
+  hold rec 46: acc=0.312  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'meanabs(tanh(env(x)))', 'hent(tanh(sq(x)))']
+  hold rec 47: acc=0.375  sel=['meanabs(id(id(x)))', 'hent(diff(tanh(x)))', 'crest(diff(tanh(x)))', 'lcross(diff(tanh(x)))']
+  hold rec 48: acc=0.500  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'std(tanh(abs(x)))', 'std(clip(abs(x)))', 'std(tanh(sq(x)))']
+  hold rec 49: acc=0.375  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'iqr90(tanh(sq(x)))', 'meanabs(tanh(env(x)))']
+  hold rec 50: acc=0.250  sel=['runcv(sign(rank(x)))', 'iqr90(tanh(abs(x)))', 'lcross(env(diff(x)))', 'meanabs(tanh(env(x)))', 'hent(tanh(sq(x)))']
+FORGE nested: 0.481  CI [0.451,0.512]
+PAIRED forge-lean: -0.050  CI [-0.111,+0.011]  forge>lean 17/46
+STABILITY: top1-freq 0.76, mean-jaccard 0.43 (STABLE)
+CHAMPION (paired CI, chance-gated): NULL (nobody clears chance)
+CLF-ROBUSTNESS (LogReg on champion features): 0.614  (HOLDS)
+PRECURSOR-RIMD-2h [replication]: n=90 acc=0.522 CI[0.418,0.629] pairs=27/44 sign_p=0.0871 -> NULL
+PRECURSOR-RIMD-6h [exploratory]: n=89 acc=0.539 CI[0.433,0.644] pairs=22/44 sign_p=0.5598 -> exploratory
+PRECURSOR-RIMD-12h [exploratory]: n=90 acc=0.656 CI[0.567,0.744] pairs=32/45 sign_p=0.0033 -> exploratory
+ledger tip = affbdc1dcfba3bb7f1463e5c49881fd2c9767bf55ea68cd1dec777424f36494a

@@ -1,0 +1,78 @@
+{
+  "claim": "on domain 'paderborn_kat_n15', a healthy-only calibrated signalmap detector ranks anomalies inverted relative to normal (AUC 0.3172, 95% CI [0.2235, 0.4194])",
+  "countersignatures": [],
+  "created_at": "2026-08-07T10:48:41Z",
+  "evidence": {
+    "K": 20,
+    "W": 1024,
+    "alarm": {
+      "alarm_rate_anomaly": 0.0,
+      "alarm_rate_normal": 0.0,
+      "gap": 0.0,
+      "gap_ci_hi": 0.0,
+      "gap_ci_lo": 0.0
+    },
+    "auc": 0.3171875,
+    "auc_star": 0.6828125,
+    "ci_hi": 0.419416339474479,
+    "ci_lo": 0.22347838767794906,
+    "direction": "inverted",
+    "domain": "paderborn_kat_n15",
+    "envelope": 3.0,
+    "h2_separates": true,
+    "manifest": {
+      "anomaly_mapping": "the source's own bearing codes: ['KA01', 'KA03', 'KI01', 'KI03'] are damaged (KA = outer race, KI = inner race); K001-K005 are undamaged",
+      "channel": "phase_current_1 \u2014 the first channel in the source's own order (force, phase_current_1, phase_current_2, speed, temp_2_bearing_module, torque, vibration_1) that meets the 20480-sample minimum; force has only 16001. Prereg AMENDMENT 6.",
+      "fs_hz": 64000,
+      "license": "Paderborn University KAt-DataCenter bearing dataset, free for scientific use with citation of Lessmeier et al. (PHM Europe 2016)",
+      "modality": "motor phase current on a bearing test rig",
+      "source_url": "https://groups.uni-paderborn.de/kat/BearingDataCenter/"
+    },
+    "n1_null_ci": [
+      0.3931171875,
+      0.6062578124999999
+    ],
+    "n1_null_covers_half": true,
+    "n2_ci": [
+      0.3784250665726817,
+      0.7348983253588515
+    ],
+    "n2_healthy_vs_healthy_auc": 0.5625,
+    "n2_ok": true,
+    "n3_leaked_recordings": [],
+    "n_anomaly": 80,
+    "n_boot_used": 2000,
+    "n_eval": 120,
+    "n_fit_recordings": 60,
+    "n_fit_windows": 1200,
+    "n_normal": 40,
+    "null_star_q95": 0.606578125,
+    "perm_p_two_sided": 0.0005,
+    "prereg": "PREREG_SIGN_IDENTIFIABILITY.md",
+    "runtime_s": 11.5,
+    "seed": 0,
+    "spec_premium": [],
+    "spec_programs": [
+      "acf1(id(id(x)))",
+      "crest(id(id(x)))",
+      "lcross(id(id(x)))",
+      "meanabs(id(id(x)))",
+      "peakcv(id(id(x)))",
+      "runcv(id(id(x)))",
+      "runmean(id(id(x)))",
+      "std(id(id(x)))",
+      "zcr(id(id(x)))"
+    ],
+    "threshold": 28.38966310486032,
+    "verdict": "PASS"
+  },
+  "input_hashes": {
+    "manifest_sha256": "da6ce1f45ba76821f318b6035c4ee901da9dab894e8f54b9af6a1553e63d75b0"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "bae899346feb891338fbb71f7a8ab6dda52bdf27dac217ae3f73e442e8a9ff4014d6c359f73aeb05e4ec9faa990a8da3e6adcd97d27fa2906f943d93b0b51406",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "PASS"
+}

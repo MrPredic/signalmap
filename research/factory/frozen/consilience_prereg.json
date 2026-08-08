@@ -1,0 +1,21 @@
+{
+ "spec": {
+  "prereg": "CONSILIENCE (per-episode agreement + shuffle-null across triangulation paths)",
+  "frozen_utc": "2026-07-06T23:15:13Z",
+  "scores": "per episode PRE-MID: weg1_texture=LOGO RF pre-prob delta; weg2_ar1/weg2_var=envelope AR1/logVar delta; weg3_centroid/specent/hf=spectral-shape delta",
+  "metric": "Spearman rho of per-episode scores over common valid episodes; permutation null shuffles one vector's episode order (n_perm=10000), two-sided p = share |rho_perm|>=|rho_obs|",
+  "independent_pairs": [
+   [
+    "weg1_texture",
+    "weg2_ar1"
+   ],
+   [
+    "weg1_texture",
+    "weg2_var"
+   ]
+  ],
+  "weg3_caveat": "weg3 shares representation with weg1 -> weg1<->weg3 reported, NOT counted as independent corroboration",
+  "pass_rule": "PASS(pair)=perm p<0.05; CONSILIENCE = >=1 independent (weg1<->weg2) pair PASS with same sign on UWE and RIMD; else honest divergence readout",
+  "prec_plan_sha256": "906a53f6d34d90a1038815de095793207695cf63b017bb6ea2a0db6b5721b9ec"
+ }
+}

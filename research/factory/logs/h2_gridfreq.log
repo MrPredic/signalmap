@@ -1,0 +1,36 @@
+[PASS] GRIDFREQ-area group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] GRIDFREQ-area label-shuffle: real 0.536 -> shuffled 0.120 (chance 0.167)
+
+===== GRIDFREQ-area: 192 windows, 24 recordings, 6 classes, chance=0.167 =====
+LEAN: 0.536  CI [0.396,0.677]  [4s]
+LEAN group-perm-p = 0.016 (60 perms)
+gate: 897/897 programs (C=50 x 24 recs); features [13s]
+  hold rec 0: acc=0.875  sel=['meanabs(diff2(id(x)))', 'meanabs(clip(diff2(x)))', 'meanabs(diff2(diff(x)))', 'specflat(clip(diff(x)))']
+  hold rec 1: acc=1.000  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))']
+  hold rec 2: acc=1.000  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'peakcv(diff2(sign(x)))']
+  hold rec 3: acc=1.000  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'runcv(id(id(x)))']
+  hold rec 4: acc=0.500  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))']
+  hold rec 5: acc=0.250  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'iqr90(diff2(diff2(x)))']
+  hold rec 6: acc=0.375  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'meanabs(diff2(diff2(x)))']
+  hold rec 7: acc=0.500  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'meanabs(clip(diff2(x)))']
+  hold rec 8: acc=0.625  sel=['specflat(tanh(diff(x)))', 'specflat(clip(diff(x)))', 'meanabs(clip(diff2(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(tanh(diff2(x)))']
+  hold rec 9: acc=0.625  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(diff2(diff2(x)))', 'meanabs(diff2(abs(x)))', 'specflat(diff(sq(x)))']
+  hold rec 10: acc=0.250  sel=['specflat(clip(diff(x)))', 'meanabs(clip(diff2(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(abs(x)))', 'iqr90(diff2(diff(x)))']
+  hold rec 11: acc=1.000  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))']
+  hold rec 12: acc=1.000  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'meanabs(diff2(abs(x)))']
+  hold rec 13: acc=0.875  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(id(x)))']
+  hold rec 14: acc=0.750  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(diff2(diff2(x)))', 'std(clip(diff2(x)))']
+  hold rec 15: acc=0.875  sel=['meanabs(diff2(id(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(clip(diff2(x)))', 'specflat(clip(diff(x)))', 'meanabs(diff2(abs(x)))']
+  hold rec 16: acc=0.750  sel=['specratio(sign(diff(x)))', 'specratio(diff(abs(x)))', 'specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'specratio(diff2(abs(x)))']
+  hold rec 17: acc=1.000  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))']
+  hold rec 18: acc=0.000  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'ordtrans(diff(rollstd(x)))']
+  hold rec 19: acc=1.000  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'meanabs(clip(diff2(x)))']
+  hold rec 20: acc=0.625  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'specflat(rank(diff(x)))']
+  hold rec 21: acc=0.375  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'ordtrans(rollstd(diff(x)))']
+  hold rec 22: acc=0.625  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))']
+  hold rec 23: acc=0.750  sel=['specflat(clip(diff(x)))', 'meanabs(diff2(diff(x)))', 'meanabs(diff2(id(x)))', 'meanabs(tanh(diff2(x)))', 'meanabs(clip(diff2(x)))']
+FORGE nested: 0.693  CI [0.578,0.802]
+PAIRED forge-lean: +0.156  CI [+0.036,+0.281]  forge>lean 13/24
+STABILITY: top1-freq 0.83, mean-jaccard 0.53 (STABLE)
+CHAMPION (paired CI): forge
+{'lean': 0.5364583333333334, 'forge': 0.6927083333333334, 'perm_p': 0.01639344262295082, 'chance': 0.16666666666666666, 'paired_ci': (0.036458333333333336, 0.28125), 'stability': 0.527146595353117, 'top1_freq': 0.8333333333333334, 'champion': 'forge'}

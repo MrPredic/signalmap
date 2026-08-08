@@ -1,0 +1,119 @@
+{
+  "claim": "the sign of a healthy-only calibrated anomaly score is not identifiable from the training data: it is CI-fest inverted in at least one domain and CI-fest aligned in another under one frozen recipe",
+  "countersignatures": [],
+  "created_at": "2026-08-07T10:48:41Z",
+  "evidence": {
+    "h1_confirmed": true,
+    "h2_domains_clearly_separating": 6,
+    "h2_domains_marginal": 1,
+    "h3_status": "not validly measured (prereg AMENDMENT 3: window-calibrated threshold compared against a recording mean; alarm silent on both classes)",
+    "n_domains": 9,
+    "per_domain": {
+      "mafaulda": {
+        "auc": 0.31241586414000205,
+        "ci": [
+          0.23695376624378983,
+          0.38185689654948896
+        ],
+        "direction": "inverted",
+        "verdict": "REFUSED"
+      },
+      "mimii_fan_id00": {
+        "auc": 0.5609336609336609,
+        "ci": [
+          0.49515504588544307,
+          0.6236465972030065
+        ],
+        "direction": "undetermined",
+        "verdict": "REFUSED"
+      },
+      "mimii_pump_id00": {
+        "auc": 0.5202797202797202,
+        "ci": [
+          0.44378741460869214,
+          0.5966581893455699
+        ],
+        "direction": "undetermined",
+        "verdict": "REFUSED"
+      },
+      "mimii_slider_id00": {
+        "auc": 0.8254494382022471,
+        "ci": [
+          0.7703172559107573,
+          0.878097935325589
+        ],
+        "direction": "aligned",
+        "verdict": "PASS"
+      },
+      "mimii_valve_id00": {
+        "auc": 0.2785714285714286,
+        "ci": [
+          0.21099189661780998,
+          0.35065198340595666
+        ],
+        "direction": "inverted",
+        "verdict": "PASS"
+      },
+      "paderborn_kat": {
+        "auc": 0.49763671875,
+        "ci": [
+          0.44335324909452195,
+          0.5513228560874636
+        ],
+        "direction": "undetermined",
+        "verdict": "REFUSED"
+      },
+      "paderborn_kat_n15": {
+        "auc": 0.3171875,
+        "ci": [
+          0.22347838767794906,
+          0.419416339474479
+        ],
+        "direction": "inverted",
+        "verdict": "PASS"
+      },
+      "synth_neg": {
+        "auc": 0.1525,
+        "ci": [
+          0.07629649390243903,
+          0.24116432178932176
+        ],
+        "direction": "inverted",
+        "verdict": "PASS"
+      },
+      "synth_pos": {
+        "auc": 1.0,
+        "ci": [
+          1.0,
+          1.0
+        ],
+        "direction": "aligned",
+        "verdict": "PASS"
+      }
+    },
+    "prereg": "PREREG_SIGN_IDENTIFIABILITY.md",
+    "transfer": {
+      "aligned": [
+        "mimii_slider_id00",
+        "synth_pos"
+      ],
+      "inverted": [
+        "mimii_valve_id00",
+        "paderborn_kat_n15",
+        "synth_neg"
+      ],
+      "n_decided_domains": 5,
+      "n_ordered_pairs": 20,
+      "sign_transfer_hit_rate": 0.4
+    }
+  },
+  "input_hashes": {
+    "report_sha256": "b087c9dd4b4b9b3dec13ea0aab5587cc19a7ddabcedddbc7c325f46a12ce2a97"
+  },
+  "pubkey": "9f73d3c161e688898ab00b30e02b022f6bf5135ed8095d89153eca50034e8ede",
+  "schema": "signalmap.receipt/1",
+  "signature": "f1561e44447e194cbb4f5fb2192bbb6e90dac62bce44866f8ececd9890347f319cd2495a9f98916814ad5bb56d8d0c940f8cb76dad87bfa74ffd09a855ba8e09",
+  "tool": "signalmap",
+  "tool_version": "0.4.0",
+  "verdict": "PASS"
+}

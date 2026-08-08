@@ -1,0 +1,16 @@
+[checkpoint] 25/264 envelopes
+[checkpoint] 50/264 envelopes
+[checkpoint] 75/264 envelopes
+[checkpoint] 100/264 envelopes
+[checkpoint] 125/264 envelopes
+  UWE 2026-06-03T07:06:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_UWE__HHZ_M, 700 samples, 100 sps, 2026-06-03T07:35:50.680000, SLIST, INTEGER, COUNTS'
+[checkpoint] 150/264 envelopes
+[checkpoint] 175/264 envelopes
+[checkpoint] 200/264 envelopes
+  RIMD 2025-10-20T08:45:00: FETCH-FAIL HTTP Error 500: 
+[checkpoint] 225/264 envelopes
+  RIMD 2025-12-06T06:15:00: FETCH-FAIL HTTP Error 500: 
+  RIMD 2026-01-03T05:52:00: FETCH-FAIL HTTP Error 500: 
+[checkpoint] 250/264 envelopes
+  RIMD 2026-06-03T07:06:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_RIMD__HHZ_M, 824 samples, 100 sps, 2026-06-03T07:35:48.940000, SLIST, INTEGER, COUNTS'
+fetch complete: 264 envelopes (incl. cached/failed)

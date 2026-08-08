@@ -1,0 +1,86 @@
+[PASS] PUMP-id group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] PUMP-id label-shuffle: real 0.292 -> shuffled 0.292 (chance 0.250)
+
+===== PUMP-id: 120 windows, 24 recordings, 4 classes, chance=0.250 =====
+LEAN: 0.292  CI [0.175,0.417]  [5s]
+LEAN group-perm-p = 0.049 (60 perms)
+gate: 1200/2128 programs (C=50 x 24 recs); features [12s]
+  hold rec 0: acc=0.000  sel=['specratio(tanh(diff2(x)))', 'specratio(clip(diff2(x)))', 'specratio(rank(diff(x)))', 'lcross(diff(id(x)))']
+  hold rec 1: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'specratio(clip(diff2(x)))', 'peakcv(diff(env(x)))', 'speccent(rollstd(rollstd(x)))']
+  hold rec 2: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'specratio(clip(diff2(x)))', 'specratio(rank(diff(x)))']
+  hold rec 3: acc=0.000  sel=['specratio(diff2(tanh(x)))', 'specratio(clip(diff2(x)))', 'specratio(tanh(diff2(x)))', 'speccent(rollstd(rollstd(x)))', 'specratio(diff2(abs(x)))']
+  hold rec 4: acc=0.800  sel=['specratio(tanh(diff2(x)))', 'specratio(clip(diff2(x)))', 'specflat(rollstd(sq(x)))', 'specratio(rank(diff(x)))', 'specratio(diff2(tanh(x)))']
+  hold rec 5: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'hent(diff(id(x)))']
+  hold rec 6: acc=0.400  sel=['specratio(tanh(diff2(x)))', 'specratio(clip(diff2(x)))', 'specratio(rank(diff(x)))']
+  hold rec 7: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'hent(diff(id(x)))', 'acflag(sign(rank(x)))', 'crest(diff(id(x)))']
+  hold rec 8: acc=0.000  sel=['specratio(tanh(diff2(x)))', 'hent(cumsum(diff2(x)))', 'specflat(rollstd(sq(x)))', 'specratio(rank(diff(x)))']
+  hold rec 9: acc=0.400  sel=['specratio(tanh(diff2(x)))', 'specflat(rollstd(sq(x)))', 'specratio(rank(diff(x)))']
+  hold rec 10: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'specratio(clip(diff2(x)))', 'specratio(rank(diff(x)))']
+  hold rec 11: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'specratio(rank(diff(x)))', 'specflat(rollstd(sq(x)))']
+  hold rec 12: acc=0.800  sel=['specratio(tanh(diff2(x)))', 'specflat(rollstd(sq(x)))', 'hent(cumsum(diff2(x)))']
+  hold rec 13: acc=0.000  sel=['specratio(tanh(diff2(x)))', 'acflag(diff(clip(x)))', 'zcr(rollstd(sign(x)))']
+  hold rec 14: acc=0.800  sel=['specratio(tanh(diff2(x)))', 'hent(diff(id(x)))', 'runcv(rollstd(cumsum(x)))', 'specratio(clip(diff2(x)))']
+  hold rec 15: acc=0.800  sel=['specratio(tanh(diff2(x)))', 'hent(diff(id(x)))', 'peakcv(diff(env(x)))', 'specflat(sq(diff(x)))']
+  hold rec 16: acc=1.000  sel=['specratio(tanh(diff2(x)))', 'specflat(rollstd(sq(x)))', 'specratio(rank(diff(x)))', 'acflag(sign(rank(x)))']
+  hold rec 17: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'specratio(clip(diff2(x)))', 'peakcv(diff(env(x)))', 'specratio(env(tanh(x)))']
+  hold rec 18: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'hent(diff(id(x)))', 'specratio(clip(diff2(x)))', 'ordtrans(sign(diff2(x)))', 'specflat(abs(diff(x)))']
+  hold rec 19: acc=0.200  sel=['specratio(tanh(diff2(x)))', 'hent(diff(id(x)))', 'lcross(abs(diff2(x)))', 'runcv(diff2(env(x)))']
+  hold rec 20: acc=0.000  sel=['specratio(tanh(diff2(x)))', 'specflat(rollstd(sq(x)))', 'specratio(clip(diff2(x)))', 'speccent(diff(clip(x)))', 'speccent(diff(rank(x)))']
+  hold rec 21: acc=0.000  sel=['peakcv(diff(env(x)))', 'specratio(rank(diff(x)))', 'runcv(diff(sq(x)))', 'specflat(rollstd(sq(x)))']
+  hold rec 22: acc=0.800  sel=['specratio(tanh(diff2(x)))', 'hent(diff(id(x)))', 'specratio(rank(diff(x)))', 'acflag(diff(clip(x)))', 'hent(rollstd(diff(x)))']
+  hold rec 23: acc=1.000  sel=['specflat(sq(diff(x)))', 'specratio(tanh(diff2(x)))', 'hent(cumsum(diff2(x)))']
+FORGE nested: 0.358  CI [0.233,0.500]
+PAIRED forge-lean: +0.067  CI [-0.067,+0.208]  forge>lean 10/24
+{'lean': 0.2916666666666667, 'forge': 0.35833333333333334, 'perm_p': 0.04918032786885246, 'chance': 0.25}
+[PASS] PUMP-anomaly group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] PUMP-anomaly label-shuffle: real 0.362 -> shuffled 0.362 (chance 0.500)
+
+===== PUMP-anomaly: 80 windows, 16 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.362  CI [0.238,0.500]  [3s]
+LEAN group-perm-p = 0.820 (60 perms)
+gate: 800/2128 programs (C=50 x 16 recs); features [6s]
+  hold rec 0: acc=0.200  sel=['hent(diff2(cumsum(x)))', 'peakcv(env(id(x)))']
+  hold rec 1: acc=0.600  sel=['peakcv(env(abs(x)))', 'std(cumsum(rollstd(x)))', 'std(cumsum(diff2(x)))', 'std(rollstd(abs(x)))', 'speccent(rollstd(diff2(x)))']
+  hold rec 2: acc=0.000  sel=['meanabs(cumsum(sign(x)))', 'std(cumsum(diff2(x)))', 'acf1(rollstd(tanh(x)))', 'hent(rollstd(diff(x)))', 'crest(diff2(clip(x)))']
+  hold rec 3: acc=1.000  sel=['lcross(diff2(id(x)))', 'std(cumsum(diff2(x)))', 'peakcv(rollstd(tanh(x)))', 'std(cumsum(rollstd(x)))', 'crest(diff2(cumsum(x)))']
+  hold rec 4: acc=1.000  sel=['lcross(diff2(id(x)))', 'std(cumsum(diff2(x)))', 'std(cumsum(rollstd(x)))', 'acflag(sign(diff2(x)))', 'peakcv(rollstd(tanh(x)))']
+  hold rec 5: acc=0.200  sel=['hent(diff2(cumsum(x)))', 'crest(diff(clip(x)))', 'peakcv(env(abs(x)))', 'runcv(sq(sq(x)))', 'iqr90(diff(env(x)))']
+  hold rec 6: acc=0.200  sel=['peakcv(abs(rollstd(x)))', 'peakcv(rollstd(tanh(x)))', 'peakcv(rollstd(rank(x)))', 'std(cumsum(diff2(x)))', 'std(cumsum(rollstd(x)))']
+  hold rec 7: acc=0.800  sel=['lcross(diff2(id(x)))', 'peakcv(env(id(x)))', 'hent(diff2(cumsum(x)))', 'peakcv(rollstd(tanh(x)))', 'std(cumsum(rollstd(x)))']
+  hold rec 8: acc=0.400  sel=['std(cumsum(diff2(x)))', 'hent(rollstd(diff(x)))', 'peakcv(env(id(x)))', 'peakcv(env(abs(x)))', 'speccent(rollstd(diff2(x)))']
+  hold rec 9: acc=0.400  sel=['lcross(diff2(id(x)))', 'peakcv(env(id(x)))', 'peakcv(env(abs(x)))', 'hent(env(cumsum(x)))', 'peakcv(rollstd(rank(x)))']
+  hold rec 10: acc=0.600  sel=['ordtrans(clip(clip(x)))', 'lcross(diff2(id(x)))', 'peakcv(env(abs(x)))', 'peakcv(sq(env(x)))', 'speccent(rollstd(diff2(x)))']
+  hold rec 11: acc=0.200  sel=['hent(rollstd(diff2(x)))', 'speccent(rollstd(diff2(x)))']
+  hold rec 12: acc=0.600  sel=['lcross(diff2(id(x)))', 'std(cumsum(diff2(x)))', 'runcv(rollstd(cumsum(x)))', 'peakcv(env(abs(x)))', 'peakcv(sq(env(x)))']
+  hold rec 13: acc=0.400  sel=['peakcv(sq(env(x)))', 'std(cumsum(diff2(x)))', 'std(cumsum(rollstd(x)))', 'crest(diff2(cumsum(x)))']
+  hold rec 14: acc=0.000  sel=['lcross(diff2(id(x)))', 'ordtrans(diff(rollstd(x)))', 'zcr(rollstd(tanh(x)))', 'std(diff(rollstd(x)))', 'meanabs(abs(cumsum(x)))']
+  hold rec 15: acc=0.200  sel=['std(cumsum(diff2(x)))', 'std(cumsum(rollstd(x)))', 'hent(env(cumsum(x)))', 'std(rollstd(abs(x)))', 'zcr(rollstd(abs(x)))']
+FORGE nested: 0.425  CI [0.287,0.575]
+PAIRED forge-lean: +0.062  CI [-0.112,+0.237]  forge>lean 7/16
+{'lean': 0.3625, 'forge': 0.42500000000000004, 'perm_p': 0.819672131147541, 'chance': 0.5}
+[PASS] SEIS-depth group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] SEIS-depth label-shuffle: real 0.688 -> shuffled 0.469 (chance 0.500)
+
+===== SEIS-depth: 128 windows, 16 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.688  CI [0.539,0.828]  [3s]
+LEAN group-perm-p = 0.033 (60 perms)
+gate: 800/2128 programs (C=50 x 16 recs); features [9s]
+  hold rec 0: acc=1.000  sel=['hent(clip(diff(x)))', 'ordtrans(sign(rank(x)))', 'zcr(env(diff(x)))', 'ordtrans(clip(id(x)))', 'ordtrans(rollstd(sq(x)))']
+  hold rec 1: acc=0.750  sel=['hent(clip(diff(x)))', 'zcr(env(diff(x)))', 'ordtrans(clip(id(x)))']
+  hold rec 2: acc=0.875  sel=['hent(clip(diff(x)))', 'zcr(rollstd(rollstd(x)))', 'zcr(env(diff(x)))', 'ordtrans(clip(id(x)))', 'ordtrans(clip(clip(x)))']
+  hold rec 3: acc=1.000  sel=['hent(clip(diff(x)))', 'zcr(env(diff(x)))', 'runmean(rollstd(rank(x)))', 'zcr(rollstd(rank(x)))', 'speccent(diff(rollstd(x)))']
+  hold rec 4: acc=0.750  sel=['hent(clip(diff(x)))', 'zcr(env(diff(x)))', 'ordtrans(clip(clip(x)))']
+  hold rec 5: acc=1.000  sel=['hent(clip(diff(x)))', 'runmean(env(diff(x)))', 'ordtrans(diff2(rank(x)))', 'zcr(rollstd(rank(x)))', 'acf1(rollstd(rollstd(x)))']
+  hold rec 6: acc=1.000  sel=['hent(clip(diff(x)))', 'zcr(env(diff(x)))', 'speccent(diff(rollstd(x)))']
+  hold rec 7: acc=0.000  sel=['zcr(env(diff(x)))', 'hent(clip(diff(x)))', 'zcr(rollstd(rollstd(x)))', 'runmean(sign(rank(x)))', 'crest(sq(diff(x)))']
+  hold rec 8: acc=0.750  sel=['hent(clip(diff(x)))', 'ordtrans(clip(id(x)))', 'ordtrans(clip(clip(x)))', 'ordtrans(clip(rank(x)))', 'ordtrans(tanh(sq(x)))']
+  hold rec 9: acc=0.875  sel=['hent(clip(diff(x)))', 'zcr(env(diff(x)))', 'speccent(diff(rollstd(x)))', 'ordtrans(rollstd(sq(x)))', 'specflat(diff(abs(x)))']
+  hold rec 10: acc=0.875  sel=['hent(clip(diff(x)))', 'zcr(env(diff(x)))', 'ordtrans(env(clip(x)))', 'ordtrans(env(abs(x)))', 'acf1(rollstd(rollstd(x)))']
+  hold rec 11: acc=0.375  sel=['hent(clip(diff(x)))', 'peakcv(cumsum(tanh(x)))', 'ordtrans(env(clip(x)))', 'ordtrans(rollstd(env(x)))', 'acf1(rollstd(rollstd(x)))']
+  hold rec 12: acc=0.375  sel=['hent(clip(diff(x)))', 'ordtrans(clip(id(x)))', 'ordtrans(abs(id(x)))', 'ordtrans(tanh(sq(x)))', 'ordtrans(tanh(id(x)))']
+  hold rec 13: acc=0.500  sel=['hent(clip(diff(x)))', 'zcr(env(diff(x)))', 'zcr(rollstd(rank(x)))', 'crest(sq(diff(x)))', 'ordtrans(rollstd(env(x)))']
+  hold rec 14: acc=0.625  sel=['hent(clip(diff(x)))', 'zcr(env(diff(x)))', 'zcr(rollstd(rank(x)))', 'runmean(rollstd(sq(x)))']
+  hold rec 15: acc=1.000  sel=['hent(clip(diff(x)))', 'specflat(cumsum(diff(x)))', 'meanabs(diff2(rank(x)))', 'runmean(rollstd(rank(x)))']
+FORGE nested: 0.734  CI [0.586,0.867]
+PAIRED forge-lean: +0.047  CI [-0.086,+0.195]  forge>lean 5/16
+{'lean': 0.6875, 'forge': 0.734375, 'perm_p': 0.03278688524590164, 'chance': 0.5}

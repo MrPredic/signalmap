@@ -1,0 +1,28 @@
+[checkpoint] 25/544 segments
+[checkpoint] 50/544 segments
+[checkpoint] 75/544 segments
+[checkpoint] 100/544 segments
+[checkpoint] 125/544 segments
+[checkpoint] 150/544 segments
+  UWE 2025-09-25T08:23:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_UWE__HHZ_M, 300 samples, 100 sps, 2025-09-25T08:46:33.680000, SLIST, INTEGER, COUNTS'
+[checkpoint] 175/544 segments
+[checkpoint] 200/544 segments
+[checkpoint] 225/544 segments
+  UWE 2026-05-14T22:57:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_UWE__HHZ_M, 100 samples, 100 sps, 2026-05-14T22:57:08.680000, SLIST, INTEGER, COUNTS'
+[checkpoint] 250/544 segments
+  UWE 2026-05-14T18:57:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_UWE__HHZ_M, 4900 samples, 100 sps, 2026-05-14T19:18:14.680000, SLIST, INTEGER, COUNTS'
+[checkpoint] 275/544 segments
+[checkpoint] 300/544 segments
+[checkpoint] 325/544 segments
+[checkpoint] 350/544 segments
+[checkpoint] 375/544 segments
+[checkpoint] 400/544 segments
+[checkpoint] 425/544 segments
+  RIMD 2025-09-25T08:23:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_RIMD__HHZ_M, 824 samples, 100 sps, 2025-09-25T08:46:29.460000, SLIST, INTEGER, COUNTS'
+[checkpoint] 450/544 segments
+[checkpoint] 475/544 segments
+[checkpoint] 500/544 segments
+  RIMD 2026-05-14T22:57:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_RIMD__HHZ_M, 1152 samples, 100 sps, 2026-05-14T22:57:06.420000, SLIST, INTEGER, COUNTS'
+  RIMD 2026-05-14T18:57:00: FETCH-FAIL could not convert string to float: 'TIMESERIES HV_RIMD__HHZ_M, 52543 samples, 100 sps, 2026-05-14T19:18:14.580000, SLIST, INTEGER, COUNTS'
+[checkpoint] 525/544 segments
+fetch complete: 544 segments (incl. cached/failed)

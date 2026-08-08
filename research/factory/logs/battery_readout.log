@@ -1,0 +1,11 @@
+bank: 935 spectra, 24 cells, per-class [470, 465]
+
+===== BATTERY-TRANSFER-aging (LOCO, 24 cells, chance 0.500) =====
+FORGE: 0.718 CI[0.676,0.763]  lean: 0.568 CI[0.532,0.605]
+PAIRED forge-lean: +0.150 CI[+0.108,+0.193]
+STABILITY top1 0.96  CHAMPION(chance-gated): forge
+
+===== BATTERY-TRANSFER-SHUFFLE-NULL (LOCO, 24 cells, chance 0.500) =====
+FORGE: 0.508 CI[0.465,0.550]  lean: 0.497 CI[0.465,0.526]
+PAIRED forge-lean: +0.011 CI[-0.035,+0.059]
+STABILITY top1 0.79  CHAMPION(chance-gated): NULL (nobody clears chance)

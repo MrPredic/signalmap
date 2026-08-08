@@ -1,0 +1,45 @@
+  storm 2024-05-10: ok
+  storm 2024-05-11: ok
+  storm 2024-10-10: ok
+  storm 2024-10-11: ok
+  storm 2023-03-23: ok
+  storm 2023-03-24: ok
+  storm 2023-04-23: ok
+  storm 2024-08-12: ok
+  quiet 2024-01-07: ok
+  quiet 2024-02-19: ok
+  quiet 2024-03-17: ok
+  quiet 2024-12-26: ok
+  quiet 2023-05-18: ok
+  quiet 2023-10-17: ok
+  quiet 2023-10-23: ok
+  quiet 2023-12-09: ok
+128 windows, 16 recs
+[PASS] GEOMAG-storm group-integrity: 0 mixed-label recordings (must be 0)
+[PASS] GEOMAG-storm label-shuffle: real 0.938 -> shuffled 0.727 (chance 0.500)
+
+===== GEOMAG-storm: 128 windows, 16 recordings, 2 classes, chance=0.500 =====
+LEAN: 0.938  CI [0.867,0.992]  [3s]
+LEAN group-perm-p = 0.016 (60 perms)
+gate: 800/897 programs (C=50 x 16 recs); features [11s]
+  hold rec 0: acc=1.000  sel=['zcr(abs(diff2(x)))', 'peakcv(diff(rank(x)))', 'specflat(diff(sq(x)))', 'specflat(diff(tanh(x)))', 'meanabs(diff2(diff2(x)))']
+  hold rec 1: acc=0.875  sel=['peakcv(diff(rank(x)))', 'specflat(diff(tanh(x)))', 'zcr(rollstd(diff(x)))', 'acf1(rollstd(diff2(x)))', 'lcross(clip(abs(x)))']
+  hold rec 2: acc=1.000  sel=['peakcv(diff(rank(x)))', 'specflat(diff(sq(x)))', 'specflat(diff(tanh(x)))', 'meanabs(diff2(diff2(x)))', 'acf1(abs(diff2(x)))']
+  hold rec 3: acc=0.875  sel=['peakcv(diff(rank(x)))', 'specflat(diff(tanh(x)))', 'acf1(abs(diff2(x)))']
+  hold rec 4: acc=1.000  sel=['peakcv(diff(rank(x)))', 'specflat(diff(sq(x)))', 'specflat(diff(tanh(x)))', 'acf1(abs(diff2(x)))']
+  hold rec 5: acc=1.000  sel=['peakcv(diff(rank(x)))', 'acf1(rollstd(diff(x)))', 'zcr(rollstd(diff(x)))', 'specflat(diff(tanh(x)))', 'acf1(abs(diff2(x)))']
+  hold rec 6: acc=0.125  sel=['zcr(env(diff(x)))', 'hent(rollstd(rank(x)))', 'runcv(sign(id(x)))']
+  hold rec 7: acc=1.000  sel=['peakcv(diff(rank(x)))', 'specflat(diff(sq(x)))', 'specflat(diff(tanh(x)))', 'acf1(abs(diff2(x)))', 'specflat(clip(diff(x)))']
+  hold rec 8: acc=0.875  sel=['specflat(diff(sq(x)))', 'peakcv(diff(rank(x)))', 'specflat(diff(tanh(x)))', 'acf1(abs(diff2(x)))']
+  hold rec 9: acc=1.000  sel=['specflat(diff(tanh(x)))', 'peakcv(diff(rank(x)))', 'specflat(sign(diff(x)))', 'acf1(abs(diff2(x)))', 'std(diff2(diff2(x)))']
+  hold rec 10: acc=1.000  sel=['specflat(diff(sq(x)))', 'specflat(diff(tanh(x)))', 'specflat(diff(id(x)))', 'specflat(clip(diff(x)))', 'peakcv(diff(rank(x)))']
+  hold rec 11: acc=1.000  sel=['meanabs(diff2(diff2(x)))', 'iqr90(diff2(diff2(x)))', 'iqr90(diff2(tanh(x)))', 'specflat(diff(sq(x)))', 'zcr(rollstd(diff(x)))']
+  hold rec 12: acc=0.750  sel=['peakcv(diff(rank(x)))', 'specflat(diff(sq(x)))', 'crest(diff2(env(x)))', 'acf1(rollstd(diff2(x)))', 'specflat(diff(id(x)))']
+  hold rec 13: acc=0.625  sel=['runcv(diff(sign(x)))', 'runcv(sign(id(x)))', 'specflat(diff(sq(x)))', 'peakcv(diff(rank(x)))', 'lcross(id(id(x)))']
+  hold rec 14: acc=0.875  sel=['peakcv(diff(rank(x)))', 'specflat(diff(tanh(x)))', 'specflat(sign(diff(x)))', 'acf1(abs(diff2(x)))']
+  hold rec 15: acc=1.000  sel=['peakcv(diff(rank(x)))', 'specflat(diff(sq(x)))', 'specflat(diff(tanh(x)))', 'lcross(id(id(x)))', 'meanabs(diff2(diff2(x)))']
+FORGE nested: 0.875  CI [0.758,0.961]
+PAIRED forge-lean: -0.062  CI [-0.203,+0.047]  forge>lean 2/16
+STABILITY: top1-freq 0.56, mean-jaccard 0.32 (STABLE)
+CHAMPION (paired CI): tie->lean (default to cheaper)
+{'lean': 0.9375, 'forge': 0.875, 'perm_p': 0.01639344262295082, 'chance': 0.5, 'paired_ci': (-0.203125, 0.046875), 'stability': 0.3237169312169312, 'top1_freq': 0.5625, 'champion': 'tie->lean (default to cheaper)'}

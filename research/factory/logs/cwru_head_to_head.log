@@ -1,0 +1,17 @@
+recordings=24 windows=2849 chance=0.167
+
+method                       LOGO_acc fold_std cost_ms/win
+OURS lean (perm3+psd_slope)     0.872    0.216       0.676
+HEAVY rqa (recrate+determ)      0.356    0.165      22.166
+HEAVY wavelet_entropy           0.336    0.192       0.100
+HEAVY rqa+wavelet (combo)       0.543    0.233      22.435
+
+OURS acc=0.872 @ 0.68ms  vs HEAVY acc=0.543 @ 22.44ms
+-> accuracy gap = +0.328   speed advantage = 33x cheaper
+  perm 20/100
+  perm 40/100
+  perm 60/100
+  perm 80/100
+  perm 100/100
+
+group-permutation p-value (OURS, 100 perms) = 0.010

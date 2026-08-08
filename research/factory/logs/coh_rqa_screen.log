@@ -1,0 +1,65 @@
+  ECN/rqa/lean: 0.592  [2s]
+  ECN/rqa/aug: 0.653  [17s]
+ECN/rqa: lean=0.592 aug=0.653 diff=+0.061 CI [-0.015,+0.138] chance=0.167 -> no flag
+  CWRU/rqa/lean: 0.872  [6s]
+  CWRU/rqa/aug: 0.997  [226s]
+CWRU/rqa: lean=0.872 aug=0.997 diff=+0.125 CI [+0.052,+0.225] chance=0.167 -> strong
+  MFPT/rqa/lean: 0.780  [6s]
+  MFPT/rqa/aug: 0.899  [331s]
+MFPT/rqa: lean=0.780 aug=0.899 diff=+0.119 CI [+0.041,+0.191] chance=0.333 -> strong
+  CALCE-soh/rqa/lean: 0.579  [3s]
+  CALCE-soh/rqa/aug: 0.859  [30s]
+CALCE-soh/rqa: lean=0.579 aug=0.859 diff=+0.280 CI [+0.092,+0.486] chance=0.333 -> strong
+  HYD-cooler/rqa/lean: 0.533  [4s]
+  HYD-cooler/rqa/aug: 0.733  [14s]
+HYD-cooler/rqa: lean=0.533 aug=0.733 diff=+0.200 CI [+0.078,+0.322] chance=0.333 -> strong
+  HYD-valve/rqa/lean: 0.192  [5s]
+  HYD-valve/rqa/aug: 0.167  [15s]
+HYD-valve/rqa: lean=0.192 aug=0.167 diff=-0.025 CI [-0.117,+0.067] chance=0.250 -> no flag
+  HYD-accumulator/rqa/lean: 0.275  [4s]
+  HYD-accumulator/rqa/aug: 0.183  [13s]
+HYD-accumulator/rqa: lean=0.275 aug=0.183 diff=-0.092 CI [-0.175,-0.008] chance=0.250 -> no flag
+  DCASE-valve-id/rqa/lean: 0.325  [4s]
+  DCASE-valve-id/rqa/aug: 0.308  [14s]
+DCASE-valve-id/rqa: lean=0.325 aug=0.308 diff=-0.017 CI [-0.117,+0.083] chance=0.250 -> no flag
+  DCASE-valve-anomaly/rqa/lean: 0.238  [3s]
+  DCASE-valve-anomaly/rqa/aug: 0.250  [9s]
+DCASE-valve-anomaly/rqa: lean=0.238 aug=0.250 diff=+0.012 CI [-0.125,+0.150] chance=0.500 -> no flag
+  DCASE-pump-id/rqa/lean: 0.292  [4s]
+  DCASE-pump-id/rqa/aug: 0.383  [14s]
+DCASE-pump-id/rqa: lean=0.292 aug=0.383 diff=+0.092 CI [-0.042,+0.217] chance=0.250 -> no flag
+  DCASE-pump-anomaly/rqa/lean: 0.362  [2s]
+  DCASE-pump-anomaly/rqa/aug: 0.488  [11s]
+DCASE-pump-anomaly/rqa: lean=0.362 aug=0.488 diff=+0.125 CI [-0.025,+0.275] chance=0.500 -> no flag
+  IMS-fault/rqa/lean: 0.609  [2s]
+  IMS-fault/rqa/aug: 0.677  [19s]
+IMS-fault/rqa: lean=0.609 aug=0.677 diff=+0.068 CI [-0.010,+0.146] chance=0.500 -> no flag
+  SEIS-depth/rqa/lean: 0.688  [3s]
+  SEIS-depth/rqa/aug: 0.773  [15s]
+SEIS-depth/rqa: lean=0.688 aug=0.773 diff=+0.086 CI [-0.039,+0.219] chance=0.500 -> no flag
+GEOMAG-storm/rqa: lean=0.938 aug=0.898 diff=-0.039 CI [-0.094,+0.008] chance=0.500 -> no flag
+  GRIDFREQ-area/rqa/lean: 0.536  [6s]
+  GRIDFREQ-area/rqa/aug: 0.625  [21s]
+GRIDFREQ-area/rqa: lean=0.536 aug=0.625 diff=+0.089 CI [-0.031,+0.203] chance=0.167 -> no flag
+  GAS-id/rqa/lean: 0.121  [4s]
+  GAS-id/rqa/aug: 0.071  [25s]
+GAS-id/rqa: lean=0.121 aug=0.071 diff=-0.050 CI [-0.092,-0.008] chance=0.250 -> no flag
+  VOLCANO-eruption/rqa/lean: 0.767  [3s]
+  VOLCANO-eruption/rqa/aug: 0.617  [16s]
+VOLCANO-eruption/rqa: lean=0.767 aug=0.617 diff=-0.150 CI [-0.342,-0.008] chance=0.500 -> no flag
+HYD-cooler-MC: 72 windows, n_ch=6, 18 recs
+HYD-cooler/coherence: lean=0.625 aug=0.778 diff=+0.153 CI [+0.069,+0.222] chance=0.333 -> strong
+HYD-valve-MC: 96 windows, n_ch=6, 24 recs
+  HYD-valve/coherence/lean: 0.198  [5s]
+  HYD-valve/coherence/aug: 0.219  [11s]
+HYD-valve/coherence: lean=0.198 aug=0.219 diff=+0.021 CI [-0.042,+0.083] chance=0.250 -> no flag
+HYD-accumulator-MC: 96 windows, n_ch=6, 24 recs
+  HYD-accumulator/coherence/lean: 0.219  [6s]
+  HYD-accumulator/coherence/aug: 0.177  [9s]
+HYD-accumulator/coherence: lean=0.219 aug=0.177 diff=-0.042 CI [-0.125,+0.042] chance=0.250 -> no flag
+GAS-id-MC: 159 windows, n_ch=8, 20 recs
+  GAS-id/coherence/lean: 0.300  [3s]
+  GAS-id/coherence/aug: 0.447  [16s]
+GAS-id/coherence: lean=0.300 aug=0.447 diff=+0.147 CI [+0.047,+0.256] chance=0.250 -> strong
+wrote <local-path>/signalmap/research/factory/COHERENCE_RQA_SCREEN.md
+ledger tip = 3731ba6f686295cead7e69538dfce2642f81f7c2f705830d4469498cf8e846c6
