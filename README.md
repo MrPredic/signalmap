@@ -155,6 +155,29 @@ the distilled base and enter `spec.json` only on a CI-solid win. Of the eight
 preregistered verdicts shipped in this repo, **six are exclusions** — the
 mechanism refuses far more often than it admits.
 
+## Live sources and where the output goes
+
+The batch flow above is not the only one — `signalmap plugins` lists what is
+wired in:
+
+```text
+source   : mic, mqtt, replay, sim
+sink     : parquet, qdrant, questdb, stdout
+```
+
+So a microphone or an MQTT topic can feed `monitor` directly instead of a
+parquet file, and scores can land in QuestDB for trend analysis rather than
+scrolling past in a terminal:
+
+```bash
+signalmap monitor --source mic  --detector detector.pt          # live audio
+signalmap monitor --source mqtt --broker tcp://plant:1883 --detector detector.pt
+```
+
+There is no SCADA or e-mail alerting adapter yet. Scores go to a sink; wiring
+a sink to your alerting is currently your job, and a contributed sink is the
+most useful thing anyone could add.
+
 ## More
 
 - [`study/`](study/) — the sign-identifiability study: preregistration, theory,

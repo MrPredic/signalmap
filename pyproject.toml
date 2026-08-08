@@ -5,17 +5,23 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "signalmap"
 version = "0.5.3"
-description = "Open, sensor-agnostic platform: stream raw signals from any (even salvaged) sensor, embed them unsupervised, explore the latent landscape for unknown patterns."
+description = "Unsupervised anomaly detection and predictive maintenance for machine sensor data — vibration, acoustics and motor current — with signed verdicts you can verify offline."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "Apache-2.0" }
 authors = [{ name = "SignalMap contributors" }]
-keywords = ["tinyml", "iot", "unsupervised", "anomaly-detection", "edge-ai", "sensors", "signal-processing"]
+keywords = ["anomaly-detection", "predictive-maintenance", "condition-monitoring",
+            "vibration-analysis", "acoustic-monitoring", "fault-detection",
+            "unsupervised", "time-series", "sensors", "signal-processing",
+            "tinyml", "iot", "edge-ai"]
 classifiers = [
   "License :: OSI Approved :: Apache Software License",
   "Programming Language :: Python :: 3",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
   "Topic :: System :: Hardware",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Intended Audience :: Manufacturing",
+  "Intended Audience :: Science/Research",
 ]
 # cryptography is not optional: distill/fit/monitor sign every verdict they emit.
 dependencies = ["numpy>=1.26", "torch>=2.2", "cryptography>=42"]
