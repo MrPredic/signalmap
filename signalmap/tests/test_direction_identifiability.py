@@ -118,8 +118,11 @@ def test_grouping_changes_the_inferential_unit(fitted):
     wins, labels, groups = _anchors(fitted, 0.95)
     windowed = fitted.calibrate_direction(wins, labels)
     grouped = fitted.calibrate_direction(wins, labels, groups=groups)
-    assert windowed.auc == pytest.approx(grouped.auc)
     assert windowed.n_anchors == 480 and grouped.n_anchors == 24
+    # The estimates must differ: one ranks 480 windows, the other 24 recording
+    # means. An earlier version reported the window AUC while bootstrapping
+    # recordings, which is how `checkup` ended up contradicting itself.
+    assert windowed.auc != pytest.approx(grouped.auc)
     assert (windowed.ci_lo, windowed.ci_hi) != (grouped.ci_lo, grouped.ci_hi)
 
 
@@ -251,3 +254,29 @@ def test_anchor_scores_with_nan_do_not_produce_a_nan_cut(fitted):
     s = np.array([1.0, float("nan"), 5.0, 6.0])
     cut = _best_cut(y, s, +1)
     assert cut is None or np.isfinite(cut)
+
+
+def test_grouped_calibration_judges_recordings_not_windows(fitted):
+    """With `groups` the whole question moves to the recording level.
+
+    Found by `signalmap checkup`, which computes its AUC over recording means
+    and then asked calibrate_direction the same question: the two disagreed,
+    because the bootstrap resampled recordings while the estimate was still
+    taken over windows. One command reported a decided direction and no
+    decided direction in the same breath.
+    """
+    wins, labels, groups = _anchors(fitted, 0.95)
+    v = fitted.calibrate_direction(wins, labels, groups=groups)
+
+    # the point estimate must be the recording-level AUC
+    import collections
+    per = collections.defaultdict(list)
+    lab = {}
+    for w, y, g in zip(wins, labels, groups):
+        per[g].append(fitted.score(w)); lab[g] = y
+    ids = sorted(per)
+    from signalmap.distill import _rank_auc
+    expected = _rank_auc(np.array([lab[g] for g in ids]),
+                         np.array([float(np.mean(per[g])) for g in ids]))
+    assert v.auc == pytest.approx(expected)
+    assert v.n_anchors == len(ids)

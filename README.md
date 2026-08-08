@@ -25,15 +25,46 @@ signalmap plugins                         # confirm the install
 `[distill]` alone is enough for `distill` / `fit` / `monitor` on `.npy` and
 `.csv` banks. Parquet needs `pyarrow`, which `[all]` includes.
 
-## Two commands
+## Start here: does it work on *your* recordings?
+
+Before anything else, ask the tool. Put your recordings in one directory named
+`normal_*.wav` and `anomaly_*.wav` — a handful of known-bad ones is enough —
+and run:
 
 ```bash
-signalmap fit     --dataset healthy.parquet --healthy-label normal --out detector.pt
-signalmap monitor --source replay --dataset live.parquet --detector detector.pt
+signalmap checkup --bank recordings/
 ```
 
-Nothing is labelled as a fault anywhere in that flow. `examples/` reproduces it
-end to end on public bearing data.
+```text
+SEPARATES — AUC 0.335, 95% CI [0.240, 0.428] over 169 held-out recordings
+
+  Direction: INVERTED — your faults score LOWER than healthy.
+  That is a real pattern, not a bug: faults here are more stereotyped than
+  normal operation. A detector that assumed 'far from healthy means faulty'
+  would be worse than useless on this data.
+
+  ALARM READY — cut 2.287 catches 53% of faulty recordings at 18% false alarms.
+```
+
+It fits on half your healthy recordings, scores the held-out half plus your
+faulty ones, and answers `SEPARATES` or `REFUSED` with a confidence interval.
+It will tell you it does not work on your data if it does not — that is the
+whole point, and it takes a minute instead of a week.
+
+## The monitoring flow
+
+```bash
+# 1. recordings -> frames. WAV, CSV and NPY all work.
+signalmap ingest-file healthy.wav --label normal        --out data.parquet
+signalmap ingest-file faulty.wav  --label ANOMALY_pump  --out data.parquet
+
+# 2. fit on the healthy rows only, then watch
+signalmap fit     --dataset data.parquet --healthy-label normal --out detector.pt
+signalmap monitor --source replay --dataset data.parquet --detector detector.pt
+```
+
+`fit` never sees a fault label. `examples/` reproduces this end to end on
+public bearing data.
 
 ## What it actually does, and where it stops
 

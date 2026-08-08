@@ -196,7 +196,37 @@ def _read_recording(path: str, column: int = 0) -> np.ndarray:
         return np.load(path).astype(float).ravel()
     if ext in (".csv", ".txt"):
         return _read_text_signal(path, column, "," if ext == ".csv" else None)
-    raise SystemExit(f"unsupported recording type {ext!r} (use .mat/.csv/.txt/.npy)")
+    if ext == ".wav":
+        return _read_wav_signal(path, column)
+    raise SystemExit(f"unsupported recording type {ext!r} "
+                     f"(use .wav/.mat/.csv/.txt/.npy)")
+
+
+def _read_wav_signal(path: str, column: int = 0) -> np.ndarray:
+    """Uncompressed PCM WAV, via the stdlib — no new dependency.
+
+    Machine acoustics arrives as WAV (MIMII and DCASE ship nothing else), so a
+    bank that could not read it turned away exactly the users this is for.
+    Multi-channel files are de-interleaved and `column` selects the channel.
+    Values stay as the raw integers; windowing z-normalises anyway.
+    """
+    import wave
+    with wave.open(path, "rb") as w:
+        width, n_ch, n_frames = w.getsampwidth(), w.getnchannels(), w.getnframes()
+        raw = w.readframes(n_frames)
+    dtype = {1: np.uint8, 2: np.int16, 4: np.int32}.get(width)
+    if dtype is None:
+        raise SystemExit(f"{path}: unsupported WAV sample width {width * 8}-bit "
+                         f"(8/16/32-bit PCM only; compressed WAV is not PCM)")
+    x = np.frombuffer(raw, dtype=dtype).astype(float)
+    if width == 1:                      # 8-bit PCM is unsigned, centre it
+        x = x - 128.0
+    if n_ch > 1:
+        if column >= n_ch:
+            raise SystemExit(f"{path}: channel {column} requested but the file "
+                             f"has {n_ch}")
+        x = x.reshape(-1, n_ch)[:, column]
+    return np.ascontiguousarray(x)
 
 
 MAX_SKIPPED_ROW_FRACTION = 0.05
@@ -355,7 +385,7 @@ def load_bank(path: str, label_by: str = "prefix", column: int = 0,
     recordings must agree on the channel layout (fail-closed)."""
     if os.path.isdir(path):
         files = sorted(f for f in glob.glob(os.path.join(path, "**", pattern), recursive=True)
-                       if os.path.splitext(f)[1].lower() in (".mat", ".npy", ".csv", ".txt")
+                       if os.path.splitext(f)[1].lower() in (".mat", ".npy", ".csv", ".txt", ".wav")
                        and os.path.isfile(f))
     else:
         files = sorted(glob.glob(path))
@@ -937,27 +967,44 @@ class DistilledDetector:
                                     "anchors must contain both classes")
 
         s = np.array([self.score(w) for w in windows], dtype=float)
-        observed = _rank_auc(y, s)
-        rng = np.random.default_rng(seed)
-        vals = []
-        if groups is None:
-            for _ in range(n_boot):
-                idx = rng.integers(0, y.size, y.size)
-                if np.unique(y[idx]).size < 2:
-                    continue
-                vals.append(_rank_auc(y[idx], s[idx]))
-        else:
-            g = np.asarray(groups)
-            uniq = np.unique(g)
+
+        if groups is not None:
+            # Move the whole question to the recording level: aggregate each
+            # recording's windows to one score, exactly as the readout does.
+            # Bootstrapping recordings while estimating over windows made one
+            # command report a decided direction and no decided direction at
+            # the same time.
+            g_all = np.asarray(groups)
+            uniq = np.unique(g_all)
+            agg_s, agg_y = [], []
+            for u in uniq:
+                m = g_all == u
+                if np.unique(y[m]).size > 1:
+                    return DirectionVerdict(False, None, None, None, None,
+                                            int(uniq.size),
+                                            f"group {u!r} carries both labels; a "
+                                            f"recording must be one or the other")
+                agg_s.append(float(np.mean(s[m])))
+                agg_y.append(int(y[m][0]))
+            s = np.asarray(agg_s, dtype=float)
+            y = np.asarray(agg_y, dtype=int)
+            groups = None if uniq.size else groups
+            if np.unique(y).size < 2:
+                return DirectionVerdict(False, None, None, None, None,
+                                        int(uniq.size),
+                                        "anchors must contain both classes")
             if uniq.size < 4:
-                return DirectionVerdict(False, None, observed, None, None,
+                return DirectionVerdict(False, None, None, None, None,
                                         int(uniq.size),
                                         "too few anchor recordings: need at "
                                         "least 4 distinct groups")
-            members = [np.flatnonzero(g == u) for u in uniq]
+
+        observed = _rank_auc(y, s)
+        rng = np.random.default_rng(seed)
+        vals = []
+        if True:
             for _ in range(n_boot):
-                pick = rng.integers(0, uniq.size, uniq.size)
-                idx = np.concatenate([members[k] for k in pick])
+                idx = rng.integers(0, y.size, y.size)
                 if np.unique(y[idx]).size < 2:
                     continue
                 vals.append(_rank_auc(y[idx], s[idx]))
@@ -965,7 +1012,7 @@ class DistilledDetector:
             return DirectionVerdict(False, None, observed, None, None,
                                     int(y.size),
                                     "bootstrap could not resample both classes")
-        n_units = int(y.size if groups is None else np.unique(groups).size)
+        n_units = int(y.size)
         lo, hi = (float(x) for x in np.percentile(vals, [2.5, 97.5]))
         if lo > 0.5:
             self.direction = 1

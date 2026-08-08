@@ -265,6 +265,15 @@ def cmd_corpus(args):
     print(corpus.traction_line(receipts))
 
 
+
+def cmd_checkup(args) -> int:
+    """Answer the first question a newcomer actually has, with a verdict."""
+    from .checkup import run_cli
+    res = run_cli(args.bank, label_by=args.label_by, pattern=args.pattern,
+                  column=args.column, healthy_class=args.healthy_class,
+                  out=args.out)
+    return 0 if res.get("verdict") == "SEPARATES" else 1
+
 def cmd_qualify(args):
     from .distill import load_bank
     from .qualification import MethodRegistry, profile_bank, route_method_families
@@ -443,6 +452,20 @@ def build_parser() -> argparse.ArgumentParser:
     co.add_argument("--out", default=None,
                     help="output directory (default research/factory/receipts)")
     co.set_defaults(func=cmd_corpus)
+
+    ck = sub.add_parser("checkup",
+                        help="does this method work on YOUR recordings? "
+                             "verdict + direction + whether an alarm would fire")
+    ck.add_argument("--bank", required=True,
+                    help="directory of recordings, both healthy and known-bad")
+    ck.add_argument("--label-by", default="prefix", dest="label_by",
+                    help="how the filename encodes the class (default: prefix)")
+    ck.add_argument("--pattern", default="*")
+    ck.add_argument("--column", type=int, default=0)
+    ck.add_argument("--healthy-class", default=None, dest="healthy_class",
+                    help="name of the healthy class if it cannot be guessed")
+    ck.add_argument("--out", default=None, help="also write the verdict as JSON")
+    ck.set_defaults(func=cmd_checkup)
 
     q = sub.add_parser("qualify", help="profile a source and route compatible method families")
     q.add_argument("--bank", required=True)
