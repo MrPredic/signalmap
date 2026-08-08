@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import glob
 import json
+import math
 import os
 from dataclasses import asdict, dataclass, field
 from typing import Callable
@@ -777,6 +778,29 @@ class FeatureSpec:
 MAD_TO_SIGMA = 1.4826
 
 
+def _best_cut(y_true: np.ndarray, y_score: np.ndarray, sign: int) -> float:
+    """Cut that best separates the labelled anchors, by Youden's J.
+
+    The healthy-envelope threshold (99th percentile x envelope) is calibrated
+    without ever seeing an anomaly, and the study behind this module measured
+    what that costs: on nine domains the resulting alarm never fired at all in
+    six of them. Once anchors exist they locate the cut far better than an
+    assumption can, so `decide` prefers this one.
+    """
+    y_true = np.asarray(y_true)
+    y_score = np.asarray(y_score, dtype=float)
+    best, best_j = None, -np.inf
+    # A NaN cut compares False against everything, which would silence the
+    # detector permanently and write an invalid `NaN` literal into det.json.
+    for cut in np.unique(y_score[np.isfinite(y_score)]):
+        hit = (y_score >= cut) if sign == 1 else (y_score <= cut)
+        tpr = float(hit[y_true == 1].mean()) if (y_true == 1).any() else 0.0
+        fpr = float(hit[y_true == 0].mean()) if (y_true == 0).any() else 0.0
+        if tpr - fpr > best_j:
+            best, best_j = float(cut), tpr - fpr
+    return best
+
+
 def _rank_auc(y_true: np.ndarray, y_score: np.ndarray) -> float:
     """Mann-Whitney AUC with tie-averaged ranks; keeps sklearn off this path."""
     y_true = np.asarray(y_true)
@@ -833,6 +857,7 @@ class DistilledDetector:
     threshold: float = 4.0
     degenerate: np.ndarray | None = None
     direction: int | None = None
+    decision_cut: float | None = None
 
     @classmethod
     def fit(cls, spec: FeatureSpec, healthy_windows: list[np.ndarray],
@@ -944,13 +969,16 @@ class DistilledDetector:
         lo, hi = (float(x) for x in np.percentile(vals, [2.5, 97.5]))
         if lo > 0.5:
             self.direction = 1
+            self.decision_cut = _best_cut(y, s, +1)
             return DirectionVerdict(True, 1, observed, lo, hi, n_units,
                                     "anomalies score higher than healthy")
         if hi < 0.5:
             self.direction = -1
+            self.decision_cut = _best_cut(y, s, -1)
             return DirectionVerdict(True, -1, observed, lo, hi, n_units,
                                     "anomalies score lower than healthy")
         self.direction = None
+        self.decision_cut = None
         return DirectionVerdict(False, None, observed, lo, hi, n_units,
                                 "the anchors do not separate: the CI covers "
                                 "0.5, so the direction stays unknown")
@@ -977,7 +1005,9 @@ class DistilledDetector:
                             "direction unknown: a healthy-only fit cannot tell "
                             "whether anomalies score higher or lower. Supply "
                             "labelled anchors to calibrate_direction().")
-        cut = self.threshold if self.direction == 1 else self.inverse_threshold
+        cut = (self.decision_cut if self.decision_cut is not None
+               else (self.threshold if self.direction == 1
+                     else self.inverse_threshold))
         hit = (s >= cut) if self.direction == 1 else (s <= cut)
         return Decision("ALARM" if hit else "QUIET", s,
                         f"direction {self.direction:+d}, score {s:.4g} "
@@ -993,7 +1023,8 @@ class DistilledDetector:
                        "mad": self.mad.tolist(), "threshold": self.threshold,
                        "degenerate": (None if self.degenerate is None
                                       else [bool(x) for x in self.degenerate]),
-                       "direction": self.direction},
+                       "direction": self.direction,
+                       "decision_cut": self.decision_cut},
                       fh, indent=2)
 
     @classmethod
@@ -1001,9 +1032,19 @@ class DistilledDetector:
         with open(path) as fh:
             d = json.load(fh)
         deg = d.get("degenerate")
+        # `decide` branches on direction == 1 and treats anything else as
+        # inverted, so a corrupt value would silently flip every decision.
+        direction = d.get("direction")
+        if direction not in (None, 1, -1):
+            raise ValueError(f"invalid direction in {path}: {direction!r} "
+                             f"(expected 1, -1 or null)")
+        cut = d.get("decision_cut")
+        if cut is not None and not math.isfinite(cut):
+            raise ValueError(f"invalid decision_cut in {path}: {cut!r} "
+                             f"(must be finite)")
         return cls(FeatureSpec(**d["spec"]), np.array(d["med"]), np.array(d["mad"]),
                    d["threshold"], None if deg is None else np.array(deg, dtype=bool),
-                   d.get("direction"))
+                   direction, cut)
 
 
 # ------------------------------------------------------------------ CLI entry

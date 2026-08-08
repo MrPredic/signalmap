@@ -11,6 +11,8 @@ So the detector carries a direction that starts UNKNOWN. A handful of labelled
 anchors can identify it; without them the honest answer to "is this window an
 anomaly?" is REFUSED, not a coin flip dressed as a score.
 """
+import json
+
 import numpy as np
 import pytest
 
@@ -167,3 +169,85 @@ def test_legacy_alert_is_untouched(fitted):
     """`alert()` is the shipped surface and must keep its exact meaning."""
     w = window(np.random.default_rng(6).normal(0, 1, 20 * 1024))[0]
     assert fitted.alert(w) == (fitted.score(w) >= fitted.threshold)
+
+
+# --------------------------------------------- the cut must come from anchors
+def test_calibrated_detector_actually_alarms_on_anomalies(fitted):
+    """Found by an end-to-end test on a fresh clone: identifying the sign was
+    not enough. `decide` still used the healthy-envelope threshold (99th
+    percentile x3), which the study showed never fires on real data, so a
+    calibrated detector answered QUIET to an obvious anomaly.
+
+    The anchors that identify the direction also locate the cut, so use them.
+    """
+    wins, labels, groups = _anchors(fitted, 0.95)
+    v = fitted.calibrate_direction(wins, labels, groups=groups)
+    assert v.identified and v.sign == 1
+
+    anomalous = _windows([0.95], seed=41)
+    healthy = _windows([0.3, 0.7], seed=42)
+    hit = np.mean([fitted.decide(w).verdict == "ALARM" for w in anomalous])
+    fp = np.mean([fitted.decide(w).verdict == "ALARM" for w in healthy])
+    assert hit > 0.5, f"calibrated detector stayed quiet on anomalies: {hit:.2f}"
+    assert fp < 0.5, f"too many false alarms on healthy: {fp:.2f}"
+
+
+def test_inverted_direction_alarms_on_the_low_side(fitted):
+    wins, labels, groups = _anchors(fitted, 0.5)
+    v = fitted.calibrate_direction(wins, labels, groups=groups)
+    assert v.identified and v.sign == -1
+    anomalous = _windows([0.5], seed=43)
+    healthy = _windows([0.2, 0.8], seed=44)
+    hit = np.mean([fitted.decide(w).verdict == "ALARM" for w in anomalous])
+    fp = np.mean([fitted.decide(w).verdict == "ALARM" for w in healthy])
+    assert hit > fp, f"inverted cut does not separate: hit={hit:.2f} fp={fp:.2f}"
+
+
+def test_the_anchor_cut_survives_save_load(fitted, tmp_path):
+    wins, labels, groups = _anchors(fitted, 0.95)
+    fitted.calibrate_direction(wins, labels, groups=groups)
+    p = tmp_path / "d.json"
+    fitted.save(str(p))
+    back = DistilledDetector.load(str(p))
+    assert back.decision_cut == pytest.approx(fitted.decision_cut)
+    w = _windows([0.95], seed=45)[0]
+    assert back.decide(w).verdict == fitted.decide(w).verdict
+
+
+# ----------------------------------------------------- hardening on load/save
+def test_a_corrupt_direction_is_rejected_not_silently_inverted(tmp_path, fitted):
+    """`decide` branches on direction == 1 and treats everything else as -1.
+
+    A det.json carrying direction: 0 or 7 would therefore be read as an
+    inverted detector and quietly flip every decision. Only +1, -1 and null
+    are meaningful, so anything else must fail loudly at load time.
+    """
+    p = tmp_path / "d.json"
+    fitted.save(str(p))
+    d = json.loads(p.read_text())
+    d["direction"] = 7
+    p.write_text(json.dumps(d))
+    with pytest.raises(ValueError, match="direction"):
+        DistilledDetector.load(str(p))
+
+
+def test_a_non_finite_cut_is_rejected_on_load(tmp_path, fitted):
+    """The project's own receipt verifier refuses NaN/Infinity literals; a
+    detector file must not be laxer than that."""
+    p = tmp_path / "d.json"
+    fitted.save(str(p))
+    d = json.loads(p.read_text())
+    d["decision_cut"] = float("nan")
+    p.write_text(json.dumps(d))
+    with pytest.raises(ValueError, match="decision_cut"):
+        DistilledDetector.load(str(p))
+
+
+def test_anchor_scores_with_nan_do_not_produce_a_nan_cut(fitted):
+    """A NaN cut compares False against everything, so the detector would go
+    silent for good — and json.dump would write an invalid `NaN` literal."""
+    from signalmap.distill import _best_cut
+    y = np.array([0, 0, 1, 1])
+    s = np.array([1.0, float("nan"), 5.0, 6.0])
+    cut = _best_cut(y, s, +1)
+    assert cut is None or np.isfinite(cut)
