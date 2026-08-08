@@ -3,7 +3,7 @@
 <p align="center">
 <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
 <img alt="Python" src="https://img.shields.io/badge/python-3.9%2B-blue">
-<img alt="Status" src="https://img.shields.io/badge/status-0.5.2-orange">
+<img alt="Status" src="https://img.shields.io/badge/status-0.5.3-orange">
 </p>
 
 You give it healthy data. It learns what healthy looks like and flags deviations.
@@ -60,10 +60,6 @@ So "far from healthy means faulty" is an assumption, not a result.
 nine domains, signed receipts, ten amendments including our own errors.
 
 ## What changed because of it
-
-> Available from a clone of this repository. The current PyPI release (0.5.2)
-> predates it — `pip install signalmap` does not yet carry `decide()` or
-> `calibrate_direction()`.
 
 The detector no longer assumes the direction. It starts out refusing:
 

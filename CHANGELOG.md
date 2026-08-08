@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.5.3 (2026-08-08)
+
+Added
+- `DistilledDetector.decide(w)` returns `ALARM` / `QUIET` / `REFUSED`. A fit on
+  healthy data alone fixes a threshold but never observes an anomaly, so
+  whether anomalies score higher or lower is an assumption, not something
+  learned. Measured across nine domains under one frozen recipe it goes both
+  ways — MIMII valve 0.2786, Paderborn phase current 0.3172, MIMII slider
+  0.8254, each with a bootstrap CI clear of 0.5. Until the direction is
+  identified, `REFUSED` is the correct answer.
+- `DistilledDetector.calibrate_direction(windows, labels, groups=...)`
+  identifies the sign from labelled anchors, and only when a bootstrap CI
+  clears 0.5. The same anchors locate the decision cut by Youden's J, which
+  matters: the healthy-envelope threshold never fired at all on six of the
+  nine domains. Pass `groups` so the bootstrap resamples recordings — twenty
+  windows cut from one signal are one observation.
+- `study/` — the preregistration, the non-identifiability argument, the
+  per-domain signed receipts and the bank manifests carrying the sha256 of all
+  7623 recordings.
+
+Fixed
+- `tools/verify_receipt.py` accepted receipts whose signed bytes and readable
+  fields could differ, and crashed with a traceback on malformed input instead
+  of returning a verdict. Hardened against duplicate JSON keys, `NaN` and
+  `Infinity` literals, integers beyond 2^53, unpaired surrogates, non-UTF-8
+  input, consistency rules evadable by reshaping the JSON, and unverifiable
+  countersignatures. The pinned-key check now compares key bytes rather than
+  their transcription, and a tampered body no longer also reports a false
+  pubkey mismatch. It still imports nothing from signalmap.
+- A feature that is constant by construction could capture the score: `window()`
+  z-normalises every window, so `std(x)` is exactly 1.0 for any input, and its
+  rounding noise was divided by an absolute 1e-12 guard. The guard is now
+  relative to the feature's own magnitude.
+- `direction` and `decision_cut` are validated when a detector is loaded.
+  `decide` treats anything other than `1` as inverted, so an out-of-range value
+  read from disk would have silently flipped every decision.
+
 ## 0.5.2 (2026-08-05)
 
 Fixed
