@@ -172,3 +172,35 @@ def test_stereo_picks_the_requested_channel(tmp_path):
     assert _read_recording(str(p), column=0).size == 4096
     with pytest.raises(SystemExit, match="channel 5"):
         _read_recording(str(p), column=5)
+
+
+def test_drivers_name_what_carried_the_verdict(tmp_path):
+    """SEPARATES without naming what separated is a number to trust rather
+    than a finding to check — and the per-feature directions are where the
+    inversion becomes visible."""
+    rng = np.random.default_rng(9)
+    b = _bank(tmp_path, list(rng.uniform(0.05, 0.95, 40)), [0.97] * 20)
+    res = checkup(b)
+    assert res["verdict"] == "SEPARATES"
+    d = res["drivers"]
+    assert d and len(d) <= 5
+    assert d == sorted(d, key=lambda x: -x["separation"])
+    assert all({"program", "auc", "separation", "degenerate_on_healthy"} <= set(x)
+               for x in d)
+    assert d[0]["program"] in res["spec_programs"]
+    assert d[0]["program"] in render(res)
+
+
+def test_a_flat_feature_is_marked_rather_than_presented_as_a_driver(tmp_path):
+    """std(x) is exactly 1.0 after windowing, so it can rank raw values and
+    still contribute nothing to the score. The report must not let a reader
+    mistake the first for the second."""
+    rng = np.random.default_rng(10)
+    b = _bank(tmp_path, list(rng.uniform(0.05, 0.95, 40)), [0.97] * 20)
+    res = checkup(b)
+    # render() shows the top three; only those can carry a visible mark.
+    shown = res["drivers"][:3]
+    flat_shown = [d for d in shown if d["degenerate_on_healthy"]]
+    text = render(res)
+    assert ("mute in the score" in text) == bool(flat_shown)
+    assert all("degenerate_on_healthy" in d for d in res["drivers"])

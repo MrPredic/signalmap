@@ -145,7 +145,32 @@ def checkup(bank_dir: str, label_by: str = "prefix", pattern: str = "*",
                      "hit_rate": hit, "false_alarm_rate": fp,
                      "ready": bool(hit > 0.5 and fp < 0.2)}
 
+    # Which programs carry the verdict. Both an agent and a human need this:
+    # "SEPARATES" without naming what separated is a number to be trusted
+    # rather than a finding to be checked.
+    drivers = []
+    if separates:
+        feats = np.array([spec.featurize(windows[i]) for i in eval_idx])
+        g_eval = np.array([int(groups[i]) for i in eval_idx])
+        y_eval = np.array([int(y_win[i]) for i in eval_idx])
+        for j, name in enumerate(spec.programs):
+            per_g, lab_g = {}, {}
+            for v, g, yy in zip(feats[:, j], g_eval, y_eval):
+                per_g.setdefault(int(g), []).append(float(v))
+                lab_g[int(g)] = int(yy)
+            ids = sorted(per_g)
+            fy = np.array([lab_g[g] for g in ids])
+            fs = np.array([float(np.mean(per_g[g])) for g in ids])
+            a_j = _rank_auc(fy, fs)
+            deg_j = bool(det.degenerate is not None
+                         and np.asarray(det.degenerate, dtype=bool)[j])
+            drivers.append({"program": name, "auc": a_j,
+                            "separation": abs(a_j - 0.5),
+                            "degenerate_on_healthy": deg_j})
+        drivers.sort(key=lambda d: -d["separation"])
+
     return {"verdict": verdict, "direction": direction,
+            "drivers": drivers[:5],
             "auc": auc, "ci_lo": lo, "ci_hi": hi,
             "n_recordings": int(bank.n_recordings),
             "n_fit_recordings": len(fit_ids),
@@ -216,6 +241,19 @@ def render(res: dict) -> str:
     else:
         L.append("  No alarm calibrated: without a decided direction there is no")
         L.append("  honest cut to place.")
+
+    if res.get("drivers"):
+        L.append("")
+        L.append("  Carried by:")
+        for d in res["drivers"][:3]:
+            way = "higher" if d["auc"] > 0.5 else "lower"
+            # A program can rank the classes apart on its raw values and still
+            # be useless inside the score, because the z-standardisation has
+            # nothing to divide by on healthy data. Say which.
+            note = ("  [flat on healthy — informative raw, mute in the score]"
+                    if d.get("degenerate_on_healthy") else "")
+            L.append(f"    {d['program']:22s} AUC {d['auc']:.3f} "
+                     f"(faults score {way}){note}")
 
     if res.get("degenerate"):
         L.append("")
