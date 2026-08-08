@@ -109,3 +109,52 @@ Downgrade** berichtet, nicht weggerechnet.
 
 Ohne eines dieser drei ist der ehrliche Verdict **REFUSED** — nicht „AUC
 0.26".
+
+## Vorarbeit — was hiervon NICHT neu ist (Nachtrag 8. Aug 2026)
+
+Der obige Satz wurde nach der Veröffentlichung einem feindseligen Review
+unterzogen (drei unabhängige Modelle, ausdrücklich auf Ablehnung und
+Prior-Art-Suche geframt). Das Urteil war einstimmig und trifft zu:
+
+**Der Satz ist trivial und bekannt.** Er benennt keine neue Einsicht.
+
+- **Neyman–Pearson.** Ohne spezifizierte Alternativhypothese ist der optimale
+  Test undefiniert. Genau das sagt unser Satz in anderen Worten: die
+  Trenngüte hängt von der Alternative ab, und die Alternative wird nie
+  beobachtet. Das ist Lehrbuchstoff.
+- **Chandola, Banerjee & Kumar (2009), Anomaly Detection: A Survey.** Die
+  Abhängigkeit der Leistung unüberwachter Anomalieerkennung von der
+  unbeobachteten Anomalie-Verteilung ist dort Bestandsaufnahme.
+- **Tax & Duin, SVDD (2004); Schölkopf et al., One-Class SVM (2001);
+  Markou & Singh (2003).** Ein-Klassen-Verfahren charakterisieren die
+  Anomalie per Konstruktion nicht; „outlierness" ist Abstand zu einer aus
+  Healthy gelernten Grenze, ihre Richtung eine Konvention.
+- **Autoencoder-Literatur.** Dass Anomalien *niedrigere* Rekonstruktionsfehler
+  erzeugen können, weil das Modell zu gut generalisiert, ist bekannt und wird
+  aktiv bekämpft (z. B. Verfahren, die die Rekonstruktionsfähigkeit für
+  Pseudo-Anomalien begrenzen).
+
+**Was der Beweis wirklich ist:** eine Ein-Zeilen-Folgerung. Hält man die
+Score-Funktion fest und lässt die Alternative frei, ist jeder AUC-Wert
+erreichbar — das folgt unmittelbar, sobald man es hinschreibt.
+
+**Was bleibt.** Nicht die Theorie, sondern drei Dinge, die davon unberührt
+sind:
+
+1. **Die Messung.** Neun Domänen, ein eingefrorenes Rezept, preregistriert,
+   mit Null-Kontrollen und CI: auf realen Industriedaten kippt das Vorzeichen
+   CI-fest in beide Richtungen. Bekannt-als-Phänomen und gemessen-mit-Zahl
+   sind nicht dasselbe, und wir haben keine Arbeit gefunden, die es unter
+   einem einzigen Rezept über mehrere öffentliche Sensordatensätze mit
+   Preregistrierung berichtet. Das ist ein bescheidener, aber echter Beitrag.
+2. **Die Konsequenz im Produkt.** REFUSED statt Raten, und `checkup`, das
+   einem Nutzer in einem Befehl sagt, ob sein Fall betroffen ist. Das ist
+   Engineering, keine Wissenschaft — und es ist der Teil, den ein
+   Instandhaltungsleiter im Review als einzigen als nützlich bezeichnet hat.
+3. **Die Zahl je Datensatz**, die man vorher nicht hatte, um zu entscheiden,
+   ob man dem Alarm trauen kann.
+
+Wer diesen Abschnitt liest, soll den Satz oben als **Herleitung einer
+Produktentscheidung** verstehen, nicht als Beitrag zur Theorie der
+Anomalieerkennung. Als solcher wurde er zuvor an prominenter Stelle
+präsentiert; das war zu viel behauptet.

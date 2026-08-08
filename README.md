@@ -79,16 +79,22 @@ constructed controls — the shipped alarm's gap between faulty and healthy is
 Worse, the direction is not even stable. On MIMII valve and Paderborn phase
 current the detector ranks anomalies as *more normal than normal* (AUC 0.2786
 and 0.3172, bootstrap CI clear of 0.5), while on MIMII slider it ranks them the
-expected way (0.8254). There is a theorem behind that, and it applies to any
-detector that sees only healthy data:
+expected way (0.8254).
 
-> The score is a function of the healthy distribution alone. Hold the fitted
-> detector fixed, vary only the never-observed anomaly distribution, and the
-> AUC attains every value in [0, 1].
+None of that is a new discovery, and we want to be precise about it. That a
+healthy-only detector cannot characterise the anomaly is textbook: without a
+specified alternative there is no optimal test (Neyman–Pearson), one-class
+methods define outlierness as distance from a boundary learned without
+outliers (Schölkopf 2001, Tax & Duin 2004), and the autoencoder literature has
+long known that anomalies can be reconstructed *well* and so score *low*. We
+restated a known limitation; a hostile review said so and it was right.
 
-So "far from healthy means faulty" is an assumption, not a result.
-**[Read the study →](study/)** — preregistered before any data was touched,
-nine domains, signed receipts, ten amendments including our own errors.
+What we did add is the measurement and the response to it: nine public
+datasets under one frozen recipe, preregistered, with null controls and
+confidence intervals, so the failure is a number per dataset rather than a
+known caveat — and a detector that answers **REFUSED** instead of guessing.
+**[Read the study →](study/)** — including the prior art that pre-empts the
+theory, and ten amendments recording our own errors.
 
 ## What changed because of it
 
@@ -146,9 +152,17 @@ signalmap distill --bank recordings/ --label-by prefix --out artifacts/spec.json
 ```
 
 Searches a compositional feature grammar for the few programs that separate
-*your* recordings, under a capacity gate (`budget = C × n_recordings`). Every
-run emits a gauntlet receipt: leakage-free nested LOGO accuracy, a
-group-permutation p-value, a label-shuffle null, and cost per window.
+*your* recordings. Every run emits a gauntlet receipt: leakage-free nested
+LOGO accuracy, a group-permutation p-value, a label-shuffle null, and cost per
+window. That receipt is the point — it is what lets you tell a found feature
+from a lucky one.
+
+A capacity gate (`budget = C × n_recordings`, C=50) is meant to keep the
+search proportional to the evidence, and it is honest to say where it stops
+working: the grammar enumerates 2128 programs, so above roughly 43 recordings
+the budget exceeds the whole candidate pool and the gate admits everything.
+On banks the size of the ones in `study/` it did nothing at all. The gauntlet,
+not the gate, is what actually catches selection noise there.
 
 Premium families (`--premium rqa,coherence`) run as opt-in challengers against
 the distilled base and enter `spec.json` only on a CI-solid win. Of the eight

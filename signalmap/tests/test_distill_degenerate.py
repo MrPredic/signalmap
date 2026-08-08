@@ -91,3 +91,22 @@ def test_detector_without_degenerate_info_still_scores(fitted):
     legacy = DistilledDetector(fitted.spec, fitted.med, fitted.mad, fitted.threshold)
     w = window(np.random.default_rng(5).normal(0.0, 1.0, 20 * 1024))[0]
     assert np.isfinite(legacy.score(w))
+
+
+# --------------------------------------------------- the capacity gate's reach
+def test_the_capacity_gate_is_inert_above_its_crossover():
+    """Measured, and it decides how the gate may be described.
+
+    `budget = C * n_recordings` with C=50 exceeds the whole enumerated grammar
+    once a bank has more than ~43 recordings, so from there the gate admits
+    every candidate and protects nothing. The MIMII banks in study/ carry
+    891-968 fit recordings; the gate did nothing on any of them. This pins the
+    crossover so the claim in the README cannot drift away from it.
+    """
+    from signalmap.distill import enumerate_programs, gate
+
+    progs = list(enumerate_programs())
+    crossover = len(progs) / 50.0
+    assert len(gate(progs, n_recordings=int(crossover) - 10, C=50)) < len(progs)
+    assert len(gate(progs, n_recordings=int(crossover) + 10, C=50)) == len(progs)
+    assert len(gate(progs, n_recordings=900, C=50)) == len(progs)

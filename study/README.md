@@ -26,6 +26,22 @@ It means the ranking is **inverted**: anomalies are scored as more normal than
 normal. Sign transfer between the decided domains is 0.400 over 20 ordered
 pairs; knowing the sign in one domain tells you little about the next.
 
+## This is not a new discovery
+
+Stated up front, because a hostile review of the section below concluded the
+theorem is trivial and known, and that verdict is correct. Without a specified
+alternative there is no optimal test (Neyman–Pearson); one-class methods
+define outlierness as distance from a boundary learned without outliers
+(Schölkopf 2001, Tax & Duin 2004, Markou & Singh 2003); the limitation is
+inventory in Chandola, Banerjee & Kumar (2009); and that anomalies can be
+reconstructed well — and therefore score low — is established in the
+autoencoder literature.
+
+What is contributed here is narrower: the measurement across nine public
+datasets under a single frozen, preregistered recipe with null controls, and
+a detector that refuses rather than guesses. `THEORY.md` carries the full
+prior-art note.
+
 ## Why this happens
 
 The score is `max_j |φ_j(w) − m_j| / s_j` — a **distance** from the healthy
